@@ -3,9 +3,12 @@
 	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutDashboardIcon, PenSquareIcon, SettingsIcon, UsersIcon } from 'lucide-svelte'
 	import { getCookie, setCookie } from './helpers/cookie'
 	import { Link, Route, Router } from 'svelte-routing'
+	import { loadAllLocales } from './i18n/i18n-util.sync'
 	import { onMount } from 'svelte'
 	import { requestToApi, requestTokens } from './helpers/api'
 	import { Toaster } from 'svelte-french-toast'
+	import LL, { setLocale } from './i18n/i18n-svelte'
+	import type { Locales } from './i18n/i18n-types'
 
 	// Import Components
 	import Tailwind from "./components/Tailwind.svelte"
@@ -15,9 +18,13 @@
 	import HomeFOComponent from './components/HomeFrontoffice.svelte'
     import NotFoundComponent from './components/NotFound.svelte'
 	import PermissionsComponent from './components/Permissions.svelte'
+	import ReviewsComponent from './components/Reviews.svelte'
+	import TemplatesComponent from './components/Templates.svelte'
+	import StatisticsComponent from './components/Statistics.svelte'
 
-	export let authToken: string	// variable with authentication token from smarttime
-	export let baseUrl: string		// variable with url of web api
+	export let authToken: string	// authentication token from smarttime
+	export let baseUrl: string		// url of web api
+	export let lang: string = "PT"	// language to use
 
 	let loading: boolean = true
 	let menuBackoffice = [
@@ -87,6 +94,9 @@
 		// change loading after all process, to show page in dom
 		loading = false
 	})
+
+	loadAllLocales()
+	setLocale(lang.toLowerCase().slice(0, 2) as Locales)
 </script>
 
 <Tailwind />
@@ -94,7 +104,7 @@
 
 {#if loading}
 	<div class="flex flex-col items-center justify-center min-h-screen">
-		<p>Loading...</p>
+		<p>{$LL.App.Loading()}...</p>
 	</div>
 {:else}
 	{#if user && user.profileType === 'Backoffice'}
@@ -109,6 +119,9 @@
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-5">
 							<Route path="/" component={HomeBOComponent} />
+							<Route path="/reviews" component={ReviewsComponent} />
+							<Route path="/templates" component={TemplatesComponent} />
+							<Route path="/statistics" component={StatisticsComponent} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
@@ -138,16 +151,16 @@
 		<div class="flex flex-col gap-y-5 items-center justify-center min-h-screen">
 			<svelte:component this={BadgeInfoIcon} class="w-[60px] h-[60px] text-black" strokeWidth={1.5} />
 			<div class="flex flex-col gap-y-2 items-center justify-center max-w-80">
-				<p class="font-semibold">User profile type missing</p>
-				<p class="font-light text-center text-sm text-gray-400">You don't have a profile type corresponding to either frontoffice or backoffice. Try to solve this problem first before accessing this page.</p>
+				<p class="font-semibold text-center">{$LL.App.NoUserProfileType()}</p>
+				<p class="font-light text-center text-sm text-gray-400">{$LL.App.NoUserProfileTypeDesc()}</p>
 			</div>
 		</div>
 	{:else}
 		<div class="flex flex-col gap-y-5 items-center justify-center min-h-screen">
 			<svelte:component this={BadgeXIcon} class="w-[60px] h-[60px] text-black" strokeWidth={1.5} />
 			<div class="flex flex-col gap-y-2 items-center justify-center max-w-80">
-				<p class="font-semibold">No login</p>
-				<p class="font-light text-center text-sm text-gray-400">Need to login first before accessing this page.</p>
+				<p class="font-semibold text-center">{$LL.App.NoLogin()}</p>
+				<p class="font-light text-center text-sm text-gray-400">{$LL.App.NoLoginDesc()}</p>
 			</div>
 		</div>
 	{/if}

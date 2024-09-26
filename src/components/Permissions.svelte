@@ -2,6 +2,7 @@
     import { navigate } from 'svelte-routing'
     import { onMount } from 'svelte'
     import { requestToApi } from '../helpers/api'
+    import LL from '../i18n/i18n-svelte'
     import toast from 'svelte-french-toast'
     
     export let user: UserData
@@ -13,6 +14,7 @@
     let profilePermissions: WindowPermissionData[] = []
     let profiles: ProfileData[] = []
 
+    // request to api of permission from profile in parameter :id
     async function getPermissionOfProfile(id: number) {
         let response = await requestToApi("GET", `Admin/${id}/Permissions?module=SmartEval`)
         if (response.statusCode === 200 && response.data.length > 0) {
@@ -22,6 +24,7 @@
         }
     }
 
+    // request to api all profiles
     async function getProfiles() {
         let response = await requestToApi("GET", "Profiles")
         if (response.statusCode === 200) profiles = response.data
@@ -33,6 +36,7 @@
         loading = false
     }
 
+    // send a post request to api to save changes in profile permissions
     async function saveSettings() {
         let permissionsGranted: number[] = []
         if (profilePermissions.length !== 0) {
@@ -44,12 +48,28 @@
         }
 
         let response = await requestToApi("POST", `Admin/${profileChooseId}/Permissions?module=SmartEval`, permissionsGranted)
+        console.log(response)
         if (response.statusCode === 200) {
-            toast.success("Permissions changed successfully!")
+            toast.success($LL.Permissions.PermissionsSave())
             navigate('/')
         } else {
-            toast.error("Error trying to change permissions")
+            toast.error($LL.Permissions.PermissionsSaveError())
         }
+    }
+
+    function getText(name: string) {
+        const mapping: { [key: string]: () => string } = {
+            "AdminSettings": $LL.Menu.Permissions,
+            "Forms": $LL.Menu.Templates,
+            "Reviews": $LL.Menu.Reviews,
+            "Statistics": $LL.Menu.Statistics,
+            "Create": $LL.Permissions.PermissionType.Create,
+            "Delete": $LL.Permissions.PermissionType.Delete,
+            "Patch": $LL.Permissions.PermissionType.Patch,
+            "Read": $LL.Permissions.PermissionType.Read,
+            "Update": $LL.Permissions.PermissionType.Update
+        }
+        return (mapping[name] ? mapping[name]() : "Error")
     }
 
     onMount(async () => {
@@ -65,13 +85,13 @@
 
 {#if loading}
     <div class="flex flex-col items-center justify-center min-h-screen">
-        <p>Loading...</p>
+        <p>{$LL.Permissions.Loading()}...</p>
     </div>
 {:else}
     <div class="flex flex-col gap-y-5">
         <div class="flex flex-col">
-            <p class="text-black text-lg font-semibold">Choose Profile</p>
-            <p class="text-gray-400 text-xs">Select profile to change permissions</p>
+            <p class="text-black text-lg font-semibold">{$LL.Permissions.ChooseProfile()}</p>
+            <p class="text-gray-400 text-xs">{$LL.Permissions.ChooseProfileDesc()}</p>
         </div>
         {#if profiles.length > 0}
             <select bind:value={profileChooseId} class="p-2 text-sm border border-gray-300 bg-gray-200 rounded">
@@ -82,17 +102,17 @@
 
             <div class="flex flex-col gap-y-5">
                 {#await getPermissionOfProfile(profileChooseId)}
-                    <p>Loading...</p>
+                    <p>{$LL.Permissions.Loading()}...</p>
                 {:then}
                     <div class="flex flex-col gap-y-5">
                         {#if profilePermissions.length !== 0}
                             {#each profilePermissions as wp}
                                 <div class="flex flex-col gap-y-2">
-                                    <li class="font-medium">{wp.windowType}</li>
+                                    <li class="font-medium">{getText(wp.windowType)}</li>
                                     <div class="flex flex-col gap-y-2">
                                         {#each wp.permissions as p}
                                             <div class="flex gap-x-2 justify-between">
-                                                <p>{p.permissionType}</p>
+                                                <p>{getText(p.permissionType)}</p>
                                                 <div class="flex-grow border-b-2 border-gray-300"></div>
                                                 <label class="toggle">
                                                     <input id={`permission_${p.permissionId}`} type="checkbox" bind:checked={p.hasPermission} />
@@ -104,7 +124,7 @@
                                 </div>
                             {/each}
                             <button on:click={() => saveSettings()} class="font-semibold mx-auto mt-5 px-5 py-2 rounded text-white bg-blue-500 hover:bg-blue-600 {permissionSave ? 'inline' : 'hidden'}">
-                                Save
+                                {$LL.Permissions.Save()}
                             </button>
                         {:else}
                             <div class="font-semibold p-2 text-sm rounded border-2 border-red-800 bg-red-700 text-white">
