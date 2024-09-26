@@ -1,5 +1,6 @@
 <script lang="ts">
     import { MenuIcon, PanelLeftCloseIcon, PanelLeftOpenIcon } from "lucide-svelte"
+    import LL from "../i18n/i18n-svelte"
 
     export let sidebar: boolean
 </script>
@@ -13,7 +14,7 @@
             <svelte:component this={MenuIcon} />
         </button>
         <div class="hidden lg:flex gap-x-1 items-center">
-            <a class="text-sm hover:underline text-gray-400" href="/">Início</a>
+            <a class="text-sm hover:underline text-gray-400" href="/">{$LL.Header.Home()}</a>
         </div>
     </div>
     <p class="font-semibold text-xl">SmartEval</p>

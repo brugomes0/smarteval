@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "typesafe-i18n": "typesafe-i18n"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",
@@ -32,6 +33,7 @@
   "dependencies": {
     "lucide-svelte": "^0.446.0",
     "sirv-cli": "^2.0.0",
-    "svelte-french-toast": "^1.2.0"
+    "svelte-french-toast": "^1.2.0",
+    "typesafe-i18n": "^5.26.2"
   }
 }
