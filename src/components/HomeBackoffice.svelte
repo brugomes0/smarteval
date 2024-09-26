@@ -1,0 +1,1 @@
+<p>Home Backoffice Component Page</p>
