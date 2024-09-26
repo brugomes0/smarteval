@@ -18,6 +18,9 @@
 	import HomeFOComponent from './components/HomeFrontoffice.svelte'
     import NotFoundComponent from './components/NotFound.svelte'
 	import PermissionsComponent from './components/Permissions.svelte'
+	import ReviewsComponent from './components/Reviews.svelte'
+	import TemplatesComponent from './components/Templates.svelte'
+	import StatisticsComponent from './components/Statistics.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -116,6 +119,9 @@
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-5">
 							<Route path="/" component={HomeBOComponent} />
+							<Route path="/reviews" component={ReviewsComponent} />
+							<Route path="/templates" component={TemplatesComponent} />
+							<Route path="/statistics" component={StatisticsComponent} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
