@@ -12,6 +12,12 @@ const pt = {
 	Header: {
 		Home: "Início"
 	},
+	HomeBackoffice: {
+		ActiveReviews: "Avaliações Ativas",
+		CompletedReviews: "Avaliações Completas",
+		Reviews: "Avaliações",
+		Templates: "Modelos"
+	},
 	Menu: {
 		Home: "Início",
 		Performance: "Desempenho",
@@ -42,6 +48,18 @@ const pt = {
 		Frontoffice: "Menu Frontoffice",
 		Hello: "Olá",
 		User: "Utilizador"
+	},
+	Templates: {
+		CreateTemplate: "Criar modelo",
+		Error: "Erro ao tentar listar os modelos",
+		InputText: "Filtrar modelos pelo título...",
+		NoTemplates: "Não existem modelos disponíveis de momento. Volte mais tarde ou crie um novo modelo para começar!",
+		NoTemplatesFilter: "Não foram encontrados modelos que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todos os modelos disponíveis.",
+		Preview: "Pré Visualizar",
+		ShowingItemsLabel: "Exibindo {firstElement} até {pageSize} de {total} items",
+		Templates: "Modelos",
+		ToastDelete: "Modelo removido com successo.",
+		ToastErrorDelete: "Erro ao remover modelo. Tente de novo."
 	}
 } satisfies BaseTranslation
 

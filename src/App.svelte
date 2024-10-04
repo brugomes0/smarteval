@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { API_URL } from './stores/apiStore'
-	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutDashboardIcon, PenSquareIcon, SettingsIcon, UsersIcon } from 'lucide-svelte'
-	import { getCookie, setCookie } from './helpers/cookie'
+	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutDashboardIcon, PenSquareIcon, SettingsIcon, ShieldIcon, UsersIcon } from 'lucide-svelte'
+	import { deleteCookie, getCookie, setCookie } from './helpers/cookie'
 	import { Link, Route, Router } from 'svelte-routing'
 	import { loadAllLocales } from './i18n/i18n-util.sync'
 	import { onMount } from 'svelte'
@@ -32,7 +32,7 @@
 		{ name: "Reviews", endpoint: '/reviews', icon: ClipboardIcon, permission: false },
 		{ name: "Templates", endpoint: '/templates', icon: LayoutDashboardIcon, permission: false },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
-		{ name: "Permissions", endpoint: '/permissions', icon: SettingsIcon, permission: false }
+		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
 	]
 	let menuFrontoffice = [
 		{ name: "Home", endpoint: '/', icon: HomeIcon, permission: true },
@@ -52,6 +52,8 @@
 		// if not get tokens from cookies
 		if (authToken) {
 			authToken = encodeURIComponent(authToken)
+			deleteCookie('se_at')
+			deleteCookie('se_rt')
 			let response = await requestTokens(authToken)
 			if (response.statusCode === 200) {
 				token.accessToken = response.data.token
@@ -120,7 +122,7 @@
 						<div class="max-w-[1400px] w-full p-5">
 							<Route path="/" component={HomeBOComponent} />
 							<Route path="/reviews" component={ReviewsComponent} />
-							<Route path="/templates" component={TemplatesComponent} />
+							<Route path="/templates" component={TemplatesComponent} {lang} {user} />
 							<Route path="/statistics" component={StatisticsComponent} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />

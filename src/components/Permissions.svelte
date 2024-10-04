@@ -7,6 +7,7 @@
     
     export let user: UserData
 
+    let buttonDisabled: boolean = false
     let error: string = ""
     let loading: boolean = true
     let permissionSave: boolean = false
@@ -38,6 +39,7 @@
 
     // send a post request to api to save changes in profile permissions
     async function saveSettings() {
+        buttonDisabled = true
         let permissionsGranted: number[] = []
         if (profilePermissions.length !== 0) {
             profilePermissions.forEach(window => {
@@ -48,12 +50,13 @@
         }
 
         let response = await requestToApi("POST", `Admin/${profileChooseId}/Permissions?module=SmartEval`, permissionsGranted)
-        console.log(response)
         if (response.statusCode === 200) {
             toast.success($LL.Permissions.PermissionsSave())
-            navigate('/')
+            //navigate('/')
+            setTimeout(() => {window.location.href = '/'}, 2000)
         } else {
             toast.error($LL.Permissions.PermissionsSaveError())
+            buttonDisabled = false
         }
     }
 
@@ -123,7 +126,7 @@
                                     </div>
                                 </div>
                             {/each}
-                            <button on:click={() => saveSettings()} class="font-semibold mx-auto mt-5 px-5 py-2 rounded text-white bg-blue-500 hover:bg-blue-600 {permissionSave ? 'inline' : 'hidden'}">
+                            <button on:click={() => saveSettings()} class="font-semibold mx-auto mt-5 px-5 py-2 rounded text-white {permissionSave ? 'inline' : 'hidden'} {buttonDisabled ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'}" disabled={buttonDisabled}>
                                 {$LL.Permissions.Save()}
                             </button>
                         {:else}

@@ -12,6 +12,12 @@ const en = {
     Header: {        
         Home: "Home"
     },
+    HomeBackoffice: {
+		ActiveReviews: "Active Reviews",
+		CompletedReviews: "Completed Reviews",
+		Reviews: "Reviews",
+		Templates: "Templates"
+	},
     Menu: {
 		Home: "Home",
 		Performance: "Performance",
@@ -42,6 +48,18 @@ const en = {
         Frontoffice: "Frontoffice Menu",
         Hello: "Hello",
         User: "User"
+    },
+    Templates: {
+        CreateTemplate: "Create template",
+        Error: "Error trying to list templates",
+        InputText: "Filter templates by title...",
+        NoTemplates: "No templates are available at the moment. Please check back later or create a new template to get started!",
+        NoTemplatesFilter: "No templates found matching your search. Try adjusting your keywords or clear the filter to see all available templates.",
+        Preview: "Preview",
+        ShowingItemsLabel: "Showing {firstElement} to {pageSize} of {total} items",
+        Templates: "Templates",
+        ToastDelete: "Template deleted successfully",
+        ToastErrorDelete: "Error when removing template. Try again."
     }
 } satisfies Translation
 
