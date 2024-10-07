@@ -1,4 +1,9 @@
 type AuthorizationData = { moduleId: number, moduleType: string, windowPermissions: WindowPermissionData[] }
+type CreateCategoryData = { position: number, valueCategory: number, questions: CreateQuestionData[], translations: CreateTranslationData[] }
+type CreateQuestionData = { position: number, type: string, valueQuestion: number, isRequired: boolean, isVisible: boolean, translations: CreateTranslationData[] }
+type CreateRatingOptionData = { numericValue: number, translations: CreateTranslationData[] }
+type CreateTemplateData = { totalValue: number, categories: CreateCategoryData[], ratingOptions: CreateRatingOptionData[], translations: CreateTranslationData[] }
+type CreateTranslationData = { language: string, title: string, description: string }
 type PermissionData = { permissionId: number, permissionType: string, hasPermission: boolean }
 type ProfileData = { idperfil: number, nome: string, portalColaborador: int }
 type TemplateData = { templateId: string, title: string, description: string, createDate: Date }

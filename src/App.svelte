@@ -21,6 +21,7 @@
 	import ReviewsComponent from './components/Reviews.svelte'
 	import TemplatesComponent from './components/Templates.svelte'
 	import StatisticsComponent from './components/Statistics.svelte'
+	import CreateTemplateComponent from './components/CreateTemplate.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -123,6 +124,7 @@
 							<Route path="/" component={HomeBOComponent} />
 							<Route path="/reviews" component={ReviewsComponent} />
 							<Route path="/templates" component={TemplatesComponent} {lang} {user} />
+							<Route path="/templates/createTemplate" component={CreateTemplateComponent} />
 							<Route path="/statistics" component={StatisticsComponent} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />

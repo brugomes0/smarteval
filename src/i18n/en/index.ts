@@ -9,6 +9,28 @@ const en = {
         NoUserProfileType: "No profile type",
         NoUserProfileTypeDesc: "You don't have a profile type corresponding to either frontoffice or backoffice. Try to solve this problem first before accessing this page."
     },
+    CreateTemplates: {
+        AddRatingOption: "Add rating option",
+        CategoriesAndQuestionsDesc: "Step for creating categories and questions associated with the template",
+        CategoriesAndQuestionsTitle: "Create categories and questions",
+        Continue: "Continue",
+        DeleteRatingOption: "Delete rating option",
+        Description: "This page allows the creation of questionnaire templates to be used in evaluations, thus maintaining a consistent and uniform standard across evaluations. For each template, multiple categories can be defined and questions can be added to each category.",
+        NoLanguagesError: "At least one language must be associated with the template",
+        NoRatingOptions: "Template doesn't have any associated rating option",
+        NumericValue: "Numeric value",
+        RatingOptionsDesc: "Rating options serve as response options for questions categorized as Rating type. If the survey contains Rating type questions, you must create the options you want. If there are no such questions, this step can be skipped.",
+        RatingOptionsTitle: "Create rating options",
+        RtoDescPlaceholder: "Insert a description",
+        RtoTitlePlaceholder: "Insert a title",
+        SelectedLanguage: "Selected language",
+        SelectLangs: "Select languages to create the template",
+        TemplateDescDesc: "Insert a description to the template",
+        TemplateDescTitle: "Template description",
+        TemplateTitleDesc: "Insert a title to the template",
+        TemplateTitleTitle: "Template title",
+        Title: "Create templates"
+    },
     Header: {        
         Home: "Home"
     },
@@ -18,6 +40,13 @@ const en = {
 		Reviews: "Reviews",
 		Templates: "Templates"
 	},
+    Languages: {
+        EN: "English",
+        ES: "Spanish",
+        FR: "French",
+        PL: "Polish",
+        PT: "Portuguese"
+    },
     Menu: {
 		Home: "Home",
 		Performance: "Performance",
@@ -48,6 +77,14 @@ const en = {
         Frontoffice: "Frontoffice Menu",
         Hello: "Hello",
         User: "User"
+    },
+    Steps: {
+        Details: "Details",
+        Categories: "Categories and questions",
+        Finalize: "Finish",
+        Forward: "Next",
+        RatingOptions: "Rating options",
+        Return: "Return"
     },
     Templates: {
         CreateTemplate: "Create template",

@@ -106,6 +106,7 @@
                 bind:value={input} 
                 on:input={() => { page = 1; handleInputChanges() }}
                 class="w-full pl-12 pr-5 py-3 rounded-lg text-sm border border-gray-200 bg-gray-100"
+                id="inputTitle"
                 placeholder="{$LL.Templates.InputText()}"
                 type="text"
             />

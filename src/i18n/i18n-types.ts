@@ -36,6 +36,88 @@ type RootTranslation = {
 		 */
 		NoUserProfileTypeDesc: string
 	}
+	CreateTemplates: {
+		/**
+		 * A​d​i​c​i​o​n​a​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		AddRatingOption: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​ ​q​u​e​s​t​õ​e​s​ ​a​s​s​o​c​i​a​d​a​s​ ​a​o​ ​m​o​d​e​l​o​.
+		 */
+		CategoriesAndQuestionsDesc: string
+		/**
+		 * C​r​i​a​r​ ​c​a​t​e​g​o​r​i​a​s​ ​e​ ​q​u​e​s​t​õ​e​s
+		 */
+		CategoriesAndQuestionsTitle: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Continue: string
+		/**
+		 * R​e​m​o​v​e​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		DeleteRatingOption: string
+		/**
+		 * E​s​t​a​ ​p​á​g​i​n​a​ ​p​e​r​m​i​t​e​ ​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​m​o​d​e​l​o​s​ ​d​e​ ​q​u​e​s​t​i​o​n​á​r​i​o​s​ ​p​a​r​a​ ​u​s​a​r​ ​n​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​,​ ​m​a​n​t​e​n​d​o​ ​a​s​s​i​m​ ​u​m​ ​p​a​d​r​ã​o​ ​c​o​n​s​i​s​t​e​n​t​e​ ​e​ ​u​n​i​f​o​r​m​e​ ​e​n​t​r​e​ ​a​v​a​l​i​a​ç​õ​e​s​.​ ​P​a​r​a​ ​c​a​d​a​ ​m​o​d​e​l​o​ ​p​o​d​e​m​ ​s​e​r​ ​d​e​f​i​n​i​d​a​s​ ​v​á​r​i​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​ ​a​d​i​c​i​o​n​a​r​ ​q​u​e​s​t​õ​e​s​ ​a​ ​c​a​d​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		Description: string
+		/**
+		 * N​e​c​e​s​s​á​r​i​o​ ​a​s​s​o​c​i​a​r​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​l​i​n​g​u​a​g​e​m​ ​a​o​ ​m​o​d​e​l​o
+		 */
+		NoLanguagesError: string
+		/**
+		 * M​o​d​e​l​o​ ​n​ã​o​ ​t​e​m​ ​q​u​a​l​q​u​e​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a
+		 */
+		NoRatingOptions: string
+		/**
+		 * V​a​l​o​r​ ​n​u​m​é​r​i​c​o
+		 */
+		NumericValue: string
+		/**
+		 * A​s​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​s​e​r​v​e​m​ ​c​o​m​o​ ​o​p​ç​õ​e​s​ ​d​e​ ​r​e​s​p​o​s​t​a​ ​n​a​s​ ​q​u​e​s​t​õ​e​s​ ​c​a​t​e​g​o​r​i​z​a​d​a​s​ ​c​o​m​o​ ​t​i​p​o​ ​R​a​t​i​n​g​.​ ​S​e​ ​o​ ​i​n​q​u​é​r​i​t​o​ ​c​o​n​t​a​r​ ​c​o​m​ ​p​e​r​g​u​n​t​a​s​ ​d​o​ ​t​i​p​o​ ​R​a​t​i​n​g​,​ ​d​e​v​e​r​á​ ​c​r​i​a​r​ ​a​s​ ​o​p​ç​õ​e​s​ ​q​u​e​ ​d​e​s​e​j​a​.​ ​C​a​s​o​ ​n​ã​o​ ​e​x​i​s​t​a​ ​e​s​s​e​ ​t​i​p​o​ ​d​e​ ​p​e​r​g​u​n​t​a​s​,​ ​e​s​t​e​ ​p​a​s​s​o​ ​p​o​d​e​ ​s​e​r​ ​p​a​s​s​a​d​o​.
+		 */
+		RatingOptionsDesc: string
+		/**
+		 * C​r​i​a​r​ ​a​s​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingOptionsTitle: string
+		/**
+		 * I​n​s​i​r​a​ ​a​ ​d​e​s​c​r​i​ç​ã​o
+		 */
+		RtoDescPlaceholder: string
+		/**
+		 * I​n​s​i​r​a​ ​o​ ​t​í​t​u​l​o
+		 */
+		RtoTitlePlaceholder: string
+		/**
+		 * I​d​i​o​m​a​ ​s​e​l​e​c​i​o​n​a​d​o
+		 */
+		SelectedLanguage: string
+		/**
+		 * S​e​l​e​c​i​o​n​a​r​ ​i​d​i​o​m​a​s​ ​p​a​r​a​ ​c​r​i​a​r​ ​o​ ​m​o​d​e​l​o
+		 */
+		SelectLangs: string
+		/**
+		 * I​n​s​e​r​i​r​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​o​ ​m​o​d​e​l​o
+		 */
+		TemplateDescDesc: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​o​ ​m​o​d​e​l​o
+		 */
+		TemplateDescTitle: string
+		/**
+		 * I​n​s​e​r​i​r​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​o​ ​m​o​d​e​l​o
+		 */
+		TemplateTitleDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​o​ ​m​o​d​e​l​o
+		 */
+		TemplateTitleTitle: string
+		/**
+		 * C​r​i​a​r​ ​m​o​d​e​l​o
+		 */
+		Title: string
+	}
 	Header: {
 		/**
 		 * I​n​í​c​i​o
@@ -59,6 +141,28 @@ type RootTranslation = {
 		 * M​o​d​e​l​o​s
 		 */
 		Templates: string
+	}
+	Languages: {
+		/**
+		 * I​n​g​l​ê​s
+		 */
+		EN: string
+		/**
+		 * E​s​p​a​n​h​o​l
+		 */
+		ES: string
+		/**
+		 * F​r​a​n​c​ê​s
+		 */
+		FR: string
+		/**
+		 * P​o​l​a​c​o
+		 */
+		PL: string
+		/**
+		 * P​o​r​t​u​g​u​ê​s
+		 */
+		PT: string
 	}
 	Menu: {
 		/**
@@ -160,6 +264,32 @@ type RootTranslation = {
 		 */
 		User: string
 	}
+	Steps: {
+		/**
+		 * D​e​t​a​l​h​e​s
+		 */
+		Details: string
+		/**
+		 * C​a​t​e​g​o​r​i​a​s​ ​e​ ​q​u​e​s​t​õ​e​s
+		 */
+		Categories: string
+		/**
+		 * F​i​n​a​l​i​z​a​r
+		 */
+		Finalize: string
+		/**
+		 * A​v​a​n​ç​a​r
+		 */
+		Forward: string
+		/**
+		 * O​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingOptions: string
+		/**
+		 * V​o​l​t​a​r
+		 */
+		Return: string
+	}
 	Templates: {
 		/**
 		 * C​r​i​a​r​ ​m​o​d​e​l​o
@@ -230,6 +360,88 @@ export type TranslationFunctions = {
 		 */
 		NoUserProfileTypeDesc: () => LocalizedString
 	}
+	CreateTemplates: {
+		/**
+		 * Adicionar opção de classificação
+		 */
+		AddRatingOption: () => LocalizedString
+		/**
+		 * Passo para criação das categorias e questões associadas ao modelo.
+		 */
+		CategoriesAndQuestionsDesc: () => LocalizedString
+		/**
+		 * Criar categorias e questões
+		 */
+		CategoriesAndQuestionsTitle: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Continue: () => LocalizedString
+		/**
+		 * Remover opção de classificação
+		 */
+		DeleteRatingOption: () => LocalizedString
+		/**
+		 * Esta página permite a criação de modelos de questionários para usar nas avaliações, mantendo assim um padrão consistente e uniforme entre avaliações. Para cada modelo podem ser definidas várias categorias e adicionar questões a cada categoria.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Necessário associar pelo menos uma linguagem ao modelo
+		 */
+		NoLanguagesError: () => LocalizedString
+		/**
+		 * Modelo não tem qualquer opção de classificação associada
+		 */
+		NoRatingOptions: () => LocalizedString
+		/**
+		 * Valor numérico
+		 */
+		NumericValue: () => LocalizedString
+		/**
+		 * As opções de classificação servem como opções de resposta nas questões categorizadas como tipo Rating. Se o inquérito contar com perguntas do tipo Rating, deverá criar as opções que deseja. Caso não exista esse tipo de perguntas, este passo pode ser passado.
+		 */
+		RatingOptionsDesc: () => LocalizedString
+		/**
+		 * Criar as opções de classificação
+		 */
+		RatingOptionsTitle: () => LocalizedString
+		/**
+		 * Insira a descrição
+		 */
+		RtoDescPlaceholder: () => LocalizedString
+		/**
+		 * Insira o título
+		 */
+		RtoTitlePlaceholder: () => LocalizedString
+		/**
+		 * Idioma selecionado
+		 */
+		SelectedLanguage: () => LocalizedString
+		/**
+		 * Selecionar idiomas para criar o modelo
+		 */
+		SelectLangs: () => LocalizedString
+		/**
+		 * Inserir uma descrição para o modelo
+		 */
+		TemplateDescDesc: () => LocalizedString
+		/**
+		 * Descrição do modelo
+		 */
+		TemplateDescTitle: () => LocalizedString
+		/**
+		 * Inserir um título para o modelo
+		 */
+		TemplateTitleDesc: () => LocalizedString
+		/**
+		 * Título do modelo
+		 */
+		TemplateTitleTitle: () => LocalizedString
+		/**
+		 * Criar modelo
+		 */
+		Title: () => LocalizedString
+	}
 	Header: {
 		/**
 		 * Início
@@ -253,6 +465,28 @@ export type TranslationFunctions = {
 		 * Modelos
 		 */
 		Templates: () => LocalizedString
+	}
+	Languages: {
+		/**
+		 * Inglês
+		 */
+		EN: () => LocalizedString
+		/**
+		 * Espanhol
+		 */
+		ES: () => LocalizedString
+		/**
+		 * Francês
+		 */
+		FR: () => LocalizedString
+		/**
+		 * Polaco
+		 */
+		PL: () => LocalizedString
+		/**
+		 * Português
+		 */
+		PT: () => LocalizedString
 	}
 	Menu: {
 		/**
@@ -353,6 +587,32 @@ export type TranslationFunctions = {
 		 * Utilizador
 		 */
 		User: () => LocalizedString
+	}
+	Steps: {
+		/**
+		 * Detalhes
+		 */
+		Details: () => LocalizedString
+		/**
+		 * Categorias e questões
+		 */
+		Categories: () => LocalizedString
+		/**
+		 * Finalizar
+		 */
+		Finalize: () => LocalizedString
+		/**
+		 * Avançar
+		 */
+		Forward: () => LocalizedString
+		/**
+		 * Opções de classificação
+		 */
+		RatingOptions: () => LocalizedString
+		/**
+		 * Voltar
+		 */
+		Return: () => LocalizedString
 	}
 	Templates: {
 		/**

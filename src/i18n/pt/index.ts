@@ -9,6 +9,28 @@ const pt = {
 		NoUserProfileType: "Utilizador não tem tipo de perfil",
 		NoUserProfileTypeDesc: "O utilizador não tem nenhum tipo de perfil associado seja frontoffice ou backoffice. Tente solucionar este problema antes de acessar a página."
 	},
+	CreateTemplates: {
+		AddRatingOption: "Adicionar opção de classificação",
+		CategoriesAndQuestionsDesc: "Passo para criação das categorias e questões associadas ao modelo.",
+		CategoriesAndQuestionsTitle: "Criar categorias e questões",
+		Continue: "Continuar",
+		DeleteRatingOption: "Remover opção de classificação",
+		Description: "Esta página permite a criação de modelos de questionários para usar nas avaliações, mantendo assim um padrão consistente e uniforme entre avaliações. Para cada modelo podem ser definidas várias categorias e adicionar questões a cada categoria.",
+		NoLanguagesError: "Necessário associar pelo menos uma linguagem ao modelo",
+		NoRatingOptions: "Modelo não tem qualquer opção de classificação associada",
+		NumericValue: "Valor numérico",
+		RatingOptionsDesc: "As opções de classificação servem como opções de resposta nas questões categorizadas como tipo Rating. Se o inquérito contar com perguntas do tipo Rating, deverá criar as opções que deseja. Caso não exista esse tipo de perguntas, este passo pode ser passado.",
+		RatingOptionsTitle: "Criar as opções de classificação",
+		RtoDescPlaceholder: "Insira a descrição",
+		RtoTitlePlaceholder: "Insira o título",
+		SelectedLanguage: "Idioma selecionado",
+		SelectLangs: "Selecionar idiomas para criar o modelo",
+		TemplateDescDesc: "Inserir uma descrição para o modelo",
+		TemplateDescTitle: "Descrição do modelo",
+		TemplateTitleDesc: "Inserir um título para o modelo",
+		TemplateTitleTitle: "Título do modelo",
+		Title: "Criar modelo"
+	},
 	Header: {
 		Home: "Início"
 	},
@@ -17,6 +39,13 @@ const pt = {
 		CompletedReviews: "Avaliações Completas",
 		Reviews: "Avaliações",
 		Templates: "Modelos"
+	},
+	Languages: {
+		EN: "Inglês",
+		ES: "Espanhol",
+		FR: "Francês",
+		PL: "Polaco",
+		PT: "Português"
 	},
 	Menu: {
 		Home: "Início",
@@ -48,6 +77,14 @@ const pt = {
 		Frontoffice: "Menu Frontoffice",
 		Hello: "Olá",
 		User: "Utilizador"
+	},
+	Steps: {
+		Details: "Detalhes",
+		Categories: "Categorias e questões",
+		Finalize: "Finalizar",
+		Forward: "Avançar",
+		RatingOptions: "Opções de classificação",
+		Return: "Voltar"
 	},
 	Templates: {
 		CreateTemplate: "Criar modelo",
