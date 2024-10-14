@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { navigate } from 'svelte-routing'
     import { onMount } from 'svelte'
     import { requestToApi } from '../helpers/api'
     import LL from '../i18n/i18n-svelte'
@@ -62,10 +61,12 @@
 
     function getText(name: string) {
         const mapping: { [key: string]: () => string } = {
-            "AdminSettings": $LL.Menu.Permissions,
-            "Forms": $LL.Menu.Templates,
+            "Categories": $LL.Menu.Categories,
+            "Permissions": $LL.Menu.Permissions,
+            "RatingGroups": $LL.Menu.RatingGroups,
             "Reviews": $LL.Menu.Reviews,
             "Statistics": $LL.Menu.Statistics,
+            "Submissions": $LL.Menu.Submissions,
             "Create": $LL.Permissions.PermissionType.Create,
             "Delete": $LL.Permissions.PermissionType.Delete,
             "Patch": $LL.Permissions.PermissionType.Patch,
@@ -78,7 +79,7 @@
     onMount(async () => {
         // get if user have permission to save changes of profile permissions
         const module = user.authorizations.find(temp => temp.moduleType === 'SmartEval')
-        const windowPermission = module?.windowPermissions.find(temp => temp.windowType === 'AdminSettings')
+        const windowPermission = module?.windowPermissions.find(temp => temp.windowType === 'Permissions')
         const permission = windowPermission?.permissions.find(temp => temp.permissionType === 'Create')
         if (permission?.hasPermission) permissionSave = true
 
@@ -126,8 +127,22 @@
                                     </div>
                                 </div>
                             {/each}
-                            <button on:click={() => saveSettings()} class="font-semibold mx-auto mt-5 px-5 py-2 rounded text-white {permissionSave ? 'inline' : 'hidden'} {buttonDisabled ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'}" disabled={buttonDisabled}>
-                                {$LL.Permissions.Save()}
+                            <button on:click={() => saveSettings()} class="flex font-semibold items-center justify-center mt-5 mx-auto py-2 rounded w-[100px] bg-blue-500 hover:bg-blue-600 text-white {permissionSave ? 'inline' : 'hidden'}" disabled={buttonDisabled}>
+                                {#if buttonDisabled}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" {...$$props}>
+                                        <g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                                            <path stroke-dasharray="16" stroke-dashoffset="16" d="M12 3c4.97 0 9 4.03 9 9">
+                                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="16;0" />
+                                                <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
+                                            </path>
+                                            <path stroke-dasharray="64" stroke-dashoffset="64" stroke-opacity="0.5" d="M12 3c4.97 0 9 4.03 9 9c0 4.97 -4.03 9 -9 9c-4.97 0 -9 -4.03 -9 -9c0 -4.97 4.03 -9 9 -9Z">
+                                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="1.2s" values="64;0" />
+                                            </path>
+                                        </g>
+                                    </svg>
+                                {:else}
+                                    {$LL.Permissions.Save()}
+                                {/if}    
                             </button>
                         {:else}
                             <div class="font-semibold p-2 text-sm rounded border-2 border-red-800 bg-red-700 text-white">

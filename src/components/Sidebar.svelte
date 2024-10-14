@@ -11,10 +11,12 @@
     // function to get name of tab and give the translated text in the lang used
     function getText(name: string) {
         const menuMapping: { [key: string]: () => string } = {
+            "Categories": $LL.Menu.Categories,
             "Home": $LL.Menu.Home,
             "Performance": $LL.Menu.Performance,
             "Permissions": $LL.Menu.Permissions,
             "Reviews": $LL.Menu.Reviews,
+            "RatingGroups": $LL.Menu.RatingGroups,
             "Statistics": $LL.Menu.Statistics,
             "Submissions": $LL.Menu.Submissions,
             "TeamPerformance": $LL.Menu.TeamPerformance,

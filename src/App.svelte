@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { API_URL } from './stores/apiStore'
-	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutDashboardIcon, PenSquareIcon, SettingsIcon, ShieldIcon, UsersIcon } from 'lucide-svelte'
+	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayersIcon, ListIcon, PenSquareIcon, SettingsIcon, ShieldIcon, UsersIcon } from 'lucide-svelte'
 	import { deleteCookie, getCookie, setCookie } from './helpers/cookie'
-	import { Link, Route, Router } from 'svelte-routing'
+	import { Route, Router } from 'svelte-routing'
 	import { loadAllLocales } from './i18n/i18n-util.sync'
 	import { onMount } from 'svelte'
 	import { requestToApi, requestTokens } from './helpers/api'
@@ -15,12 +15,11 @@
 	import Header from './components/Header.svelte'
 	import Sidebar from './components/Sidebar.svelte'
 	import HomeBOComponent from './components/HomeBackoffice.svelte'
-	import HomeFOComponent from './components/HomeFrontoffice.svelte'
     import NotFoundComponent from './components/NotFound.svelte'
 	import PermissionsComponent from './components/Permissions.svelte'
-	import ReviewsComponent from './components/Reviews.svelte'
-	import TemplatesComponent from './components/Templates.svelte'
-	import StatisticsComponent from './components/Statistics.svelte'
+	import RatingGroupsComponent from './components/RatingGroups.svelte'
+    import SingleRatingGroupComponent from './components/SingleRatingGroup.svelte'
+	import CreateRatingGroupComponent from './components/CreateRatingGroup.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -30,7 +29,8 @@
 	let menuBackoffice = [
 		{ name: "Home", endpoint: '/', icon: HomeIcon, permission: true },
 		{ name: "Reviews", endpoint: '/reviews', icon: ClipboardIcon, permission: false },
-		{ name: "Templates", endpoint: '/templates', icon: LayoutDashboardIcon, permission: false },
+		{ name: "Categories", endpoint: '/categories', icon: LayersIcon, permission: false },
+		{ name: "RatingGroups", endpoint: '/ratingGroups', icon: ListIcon, permission: false },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
 		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
 	]
@@ -77,17 +77,8 @@
 			menuBackoffice.forEach(item => {
 				if (item.name == 'Home') return
 
-				let windowAux: string = ''
-				if (item.name === 'Permissions') {
-					windowAux = 'AdminSettings'
-				} else if (item.name === 'Templates') {
-					windowAux = 'Forms'
-				} else {
-					windowAux = item.name
-				}
-
 				const module = user.authorizations.find(temp => temp.moduleType === 'SmartEval')
-				const windowPermission = module?.windowPermissions.find(temp => temp.windowType === windowAux)
+				const windowPermission = module?.windowPermissions.find(temp => temp.windowType === item.name)
 				const permission = windowPermission?.permissions.find(temp => temp.permissionType === 'Read')
 				if (permission?.hasPermission) item.permission = true
 			})
@@ -121,9 +112,9 @@
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-5">
 							<Route path="/" component={HomeBOComponent} />
-							<Route path="/reviews" component={ReviewsComponent} />
-							<Route path="/templates" component={TemplatesComponent} {lang} {user} />
-							<Route path="/statistics" component={StatisticsComponent} />
+							<Route path="/ratingGroups" component={RatingGroupsComponent} {user} />
+							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} {user} />
+							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
@@ -142,7 +133,6 @@
 					<Header bind:sidebar />
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-5">
-							<Route path="/" component={HomeFOComponent} />
 							<Route component={NotFoundComponent} />
 						</div>
 					</div>

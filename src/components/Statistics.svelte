@@ -1,1 +1,0 @@
-<p>Statistics Page</p>

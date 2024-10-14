@@ -1,1 +1,0 @@
-<p>Home Frontoffice Component Page</p>
