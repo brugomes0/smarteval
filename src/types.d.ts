@@ -22,6 +22,27 @@ type CreateRatingOptionTranslationData = {
     description: string
 }
 
+type EditRatingGroup = {
+    ratingGroupId: string,
+    title: string,
+    description: string
+    ratingOptions: EditRatingOption[]
+}
+
+type EditRatingOption = {
+    ratingOptionId?: string,
+    numericValue: number,
+    needComment: boolean,
+    translations: EditRatingOptionTranslation[]
+}
+
+type EditRatingOptionTranslation = {
+    ratingOptionTranslationId?: string,
+    language: string,
+    title: string,
+    description: string
+}
+
 type PermissionData = { 
     permissionId: number, 
     permissionType: string, 

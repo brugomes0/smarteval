@@ -49,10 +49,6 @@ type RootTranslation = {
 		 */
 		Description: string
 		/**
-		 * D​e​t​a​l​h​e​s
-		 */
-		Details: string
-		/**
 		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
 		 */
 		RatingGroupDescDesc: string
@@ -76,10 +72,6 @@ type RootTranslation = {
 		 * T​í​t​u​l​o​ ​d​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		RatingGroupTitleTitle: string
-		/**
-		 * O​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
-		 */
-		RatingOptions: string
 		/**
 		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​a​s​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​a​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
 		 */
@@ -136,6 +128,16 @@ type RootTranslation = {
 			 */
 			RatingOptionTitle: RequiredParams<'language' | 'position'>
 		}
+	}
+	EditRatingGroups: {
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​u​m​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		Description: string
+		/**
+		 * E​d​i​t​a​r​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		Title: string
 	}
 	Header: {
 		/**
@@ -372,6 +374,10 @@ type RootTranslation = {
 	}
 	Steps: {
 		/**
+		 * D​e​t​a​l​h​e​s
+		 */
+		Details: string
+		/**
 		 * F​i​n​a​l​i​z​a​r
 		 */
 		Finalize: string
@@ -379,6 +385,10 @@ type RootTranslation = {
 		 * A​v​a​n​ç​a​r
 		 */
 		Forward: string
+		/**
+		 * O​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingOptions: string
 		/**
 		 * V​o​l​t​a​r
 		 */
@@ -423,10 +433,6 @@ export type TranslationFunctions = {
 		 */
 		Description: () => LocalizedString
 		/**
-		 * Detalhes
-		 */
-		Details: () => LocalizedString
-		/**
 		 * Insira uma descrição para o critério de avaliação.
 		 */
 		RatingGroupDescDesc: () => LocalizedString
@@ -450,10 +456,6 @@ export type TranslationFunctions = {
 		 * Título do critério de avaliação
 		 */
 		RatingGroupTitleTitle: () => LocalizedString
-		/**
-		 * Opções de classificação
-		 */
-		RatingOptions: () => LocalizedString
 		/**
 		 * Passo para criação das opções de classificação associadas ao critério de avaliação.
 		 */
@@ -508,6 +510,16 @@ export type TranslationFunctions = {
 			 */
 			RatingOptionTitle: (arg: { language: unknown, position: unknown }) => LocalizedString
 		}
+	}
+	EditRatingGroups: {
+		/**
+		 * Nesta página pode realizar a edição de um critério de avaliação.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Editar critério de avaliação
+		 */
+		Title: () => LocalizedString
 	}
 	Header: {
 		/**
@@ -741,6 +753,10 @@ export type TranslationFunctions = {
 	}
 	Steps: {
 		/**
+		 * Detalhes
+		 */
+		Details: () => LocalizedString
+		/**
 		 * Finalizar
 		 */
 		Finalize: () => LocalizedString
@@ -748,6 +764,10 @@ export type TranslationFunctions = {
 		 * Avançar
 		 */
 		Forward: () => LocalizedString
+		/**
+		 * Opções de classificação
+		 */
+		RatingOptions: () => LocalizedString
 		/**
 		 * Voltar
 		 */

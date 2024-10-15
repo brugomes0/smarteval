@@ -14,7 +14,7 @@
     let languagesChoosen: string[] = []
     let languageShow: string = ""
     let ratingGroup: CreateRatingGroupData = { title: "", description: "", ratingOptions: [] }
-    let steps = [{ text: $LL.CreateRatingGroups.Details() }, { text: $LL.CreateRatingGroups.RatingOptions() }]
+    let steps = [{ text: $LL.Steps.Details() }, { text: $LL.Steps.RatingOptions() }]
 
     async function saveRatingGroup() {
         let response = await requestToApi("POST", `SmartEval/RatingGroups`, ratingGroup)
