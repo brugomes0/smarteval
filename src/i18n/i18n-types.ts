@@ -37,6 +37,14 @@ type RootTranslation = {
 	}
 	CreateRatingGroups: {
 		/**
+		 * A​d​i​c​i​o​n​a​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		AddRatingOption: string
+		/**
+		 * R​e​m​o​v​e​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		DeleteRatingOption: string
+		/**
 		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​c​r​i​t​é​r​i​o​s​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.​ ​C​a​d​a​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​é​ ​c​r​i​a​d​o​ ​c​o​m​ ​u​m​ ​g​r​u​p​o​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​q​u​e​ ​é​ ​u​s​a​d​o​ ​c​o​m​o​ ​r​e​s​p​o​s​t​a​ ​a​ ​q​u​e​s​t​õ​e​s​ ​d​o​ ​t​i​p​o​ ​C​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​q​u​a​n​d​o​ ​a​s​s​o​c​i​a​d​o​ ​a​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o​/​s​u​b​-​a​v​a​l​i​a​ç​ã​o​.
 		 */
 		Description: string
@@ -45,7 +53,7 @@ type RootTranslation = {
 		 */
 		Details: string
 		/**
-		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
 		 */
 		RatingGroupDescDesc: string
 		/**
@@ -53,7 +61,7 @@ type RootTranslation = {
 		 */
 		RatingGroupDescTitle: string
 		/**
-		 * S​e​l​e​c​i​o​n​e​ ​o​s​ ​i​d​i​o​m​a​s​ ​p​a​r​a​ ​o​s​ ​q​u​a​i​s​ ​e​s​t​e​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​v​a​i​ ​s​e​r​ ​c​r​i​a​d​o
+		 * S​e​l​e​c​i​o​n​e​ ​o​s​ ​i​d​i​o​m​a​s​ ​p​a​r​a​ ​o​s​ ​q​u​a​i​s​ ​e​s​t​e​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​v​a​i​ ​s​e​r​ ​c​r​i​a​d​o​.
 		 */
 		RatingGroupLangDesc: string
 		/**
@@ -61,7 +69,7 @@ type RootTranslation = {
 		 */
 		RatingGroupLangTitle: string
 		/**
-		 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​i​d​e​n​t​i​f​i​c​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​i​d​e​n​t​i​f​i​c​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
 		 */
 		RatingGroupTitleDesc: string
 		/**
@@ -73,9 +81,61 @@ type RootTranslation = {
 		 */
 		RatingOptions: string
 		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​a​s​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​a​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		RatingOptionsDesc: string
+		/**
+		 * C​r​i​a​r​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingOptionsTitle: string
+		/**
+		 * A​p​r​e​s​e​n​t​a​r​ ​n​a​ ​l​i​n​g​u​a​g​e​m​:
+		 */
+		ShowInLanguage: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		SingleRatingOptionDesc: string
+		/**
+		 * N​e​c​e​s​s​i​t​a​ ​d​e​ ​c​o​m​e​n​t​á​r​i​o
+		 */
+		SingleRatingOptionNeedComment: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		SingleRatingOptionTitle: string
+		/**
 		 * C​r​i​a​r​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		Title: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​c​r​i​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o
+		 */
+		ToastError: string
+		/**
+		 * C​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​c​r​i​a​d​o​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastSuccess: string
+		ValidationError: {
+			/**
+			 * S​e​l​e​c​i​o​n​e​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​l​i​n​g​u​a​g​e​m​ ​p​a​r​a​ ​a​ ​q​u​a​l​ ​s​e​r​á​ ​c​r​i​a​d​o​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​l​a​i​a​ç​ã​o
+			 */
+			NoLanguages: string
+			/**
+			 * C​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​d​e​v​e​ ​t​e​r​ ​p​e​l​o​ ​m​e​n​o​s​ ​d​u​a​s​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+			 */
+			NoRatingOptions: string
+			/**
+			 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+			 */
+			RatingGroupTitle: string
+			/**
+			 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​a​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​n​a​ ​p​o​s​i​ç​ã​o​ ​{​p​o​s​i​t​i​o​n​}​ ​e​ ​i​d​i​o​m​a​ ​{​l​a​n​g​u​a​g​e​}
+			 * @param {unknown} language
+			 * @param {unknown} position
+			 */
+			RatingOptionTitle: RequiredParams<'language' | 'position'>
+		}
 	}
 	Header: {
 		/**
@@ -351,6 +411,14 @@ export type TranslationFunctions = {
 	}
 	CreateRatingGroups: {
 		/**
+		 * Adicionar opção de classificação
+		 */
+		AddRatingOption: () => LocalizedString
+		/**
+		 * Remover opção de classificação
+		 */
+		DeleteRatingOption: () => LocalizedString
+		/**
 		 * Nesta página pode realizar a criação de critérios de avaliação. Cada critério de avaliação é criado com um grupo de opções de classificação que é usado como resposta a questões do tipo Classificação quando associado a uma avaliação/sub-avaliação.
 		 */
 		Description: () => LocalizedString
@@ -359,7 +427,7 @@ export type TranslationFunctions = {
 		 */
 		Details: () => LocalizedString
 		/**
-		 * Insira uma descrição para o critério de avaliação
+		 * Insira uma descrição para o critério de avaliação.
 		 */
 		RatingGroupDescDesc: () => LocalizedString
 		/**
@@ -367,7 +435,7 @@ export type TranslationFunctions = {
 		 */
 		RatingGroupDescTitle: () => LocalizedString
 		/**
-		 * Selecione os idiomas para os quais este critério de avaliação vai ser criado
+		 * Selecione os idiomas para os quais este critério de avaliação vai ser criado.
 		 */
 		RatingGroupLangDesc: () => LocalizedString
 		/**
@@ -375,7 +443,7 @@ export type TranslationFunctions = {
 		 */
 		RatingGroupLangTitle: () => LocalizedString
 		/**
-		 * Insira um título para identificar o critério de avaliação
+		 * Insira um título para identificar o critério de avaliação.
 		 */
 		RatingGroupTitleDesc: () => LocalizedString
 		/**
@@ -387,9 +455,59 @@ export type TranslationFunctions = {
 		 */
 		RatingOptions: () => LocalizedString
 		/**
+		 * Passo para criação das opções de classificação associadas ao critério de avaliação.
+		 */
+		RatingOptionsDesc: () => LocalizedString
+		/**
+		 * Criar opções de classificação
+		 */
+		RatingOptionsTitle: () => LocalizedString
+		/**
+		 * Apresentar na linguagem:
+		 */
+		ShowInLanguage: () => LocalizedString
+		/**
+		 * Descrição da opção de classificação
+		 */
+		SingleRatingOptionDesc: () => LocalizedString
+		/**
+		 * Necessita de comentário
+		 */
+		SingleRatingOptionNeedComment: () => LocalizedString
+		/**
+		 * Título da opção de classificação
+		 */
+		SingleRatingOptionTitle: () => LocalizedString
+		/**
 		 * Criar critério de avaliação
 		 */
 		Title: () => LocalizedString
+		/**
+		 * Erro ao criar o critério de avaliação. Tente de novo
+		 */
+		ToastError: () => LocalizedString
+		/**
+		 * Critério de avaliação criado com sucesso
+		 */
+		ToastSuccess: () => LocalizedString
+		ValidationError: {
+			/**
+			 * Selecione pelo menos uma linguagem para a qual será criado o critério de avlaiação
+			 */
+			NoLanguages: () => LocalizedString
+			/**
+			 * Critério de avaliação deve ter pelo menos duas opções de classificação
+			 */
+			NoRatingOptions: () => LocalizedString
+			/**
+			 * Insira um título para o critério de avaliação
+			 */
+			RatingGroupTitle: () => LocalizedString
+			/**
+			 * Insira um título para a opção de classificação na posição {position} e idioma {language}
+			 */
+			RatingOptionTitle: (arg: { language: unknown, position: unknown }) => LocalizedString
+		}
 	}
 	Header: {
 		/**

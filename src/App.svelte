@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { API_URL } from './stores/apiStore'
-	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayersIcon, ListIcon, PenSquareIcon, SettingsIcon, ShieldIcon, UsersIcon } from 'lucide-svelte'
+	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutListIcon, ListIcon, PenSquareIcon, ShieldIcon, UsersIcon } from 'lucide-svelte'
 	import { deleteCookie, getCookie, setCookie } from './helpers/cookie'
 	import { Route, Router } from 'svelte-routing'
 	import { loadAllLocales } from './i18n/i18n-util.sync'
@@ -29,7 +29,7 @@
 	let menuBackoffice = [
 		{ name: "Home", endpoint: '/', icon: HomeIcon, permission: true },
 		{ name: "Reviews", endpoint: '/reviews', icon: ClipboardIcon, permission: false },
-		{ name: "Categories", endpoint: '/categories', icon: LayersIcon, permission: false },
+		{ name: "Categories", endpoint: '/categories', icon: LayoutListIcon, permission: false },
 		{ name: "RatingGroups", endpoint: '/ratingGroups', icon: ListIcon, permission: false },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
 		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
@@ -113,7 +113,7 @@
 						<div class="max-w-[1400px] w-full p-5">
 							<Route path="/" component={HomeBOComponent} />
 							<Route path="/ratingGroups" component={RatingGroupsComponent} {user} />
-							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} {user} />
+							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />

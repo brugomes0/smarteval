@@ -10,16 +10,32 @@ const pt = {
 		NoUserProfileTypeDesc: "O utilizador não tem nenhum tipo de perfil associado seja frontoffice ou backoffice. Tente solucionar este problema antes de acessar a página."
 	},
 	CreateRatingGroups: {
+		AddRatingOption: "Adicionar opção de classificação",
+		DeleteRatingOption: "Remover opção de classificação",
 		Description: "Nesta página pode realizar a criação de critérios de avaliação. Cada critério de avaliação é criado com um grupo de opções de classificação que é usado como resposta a questões do tipo Classificação quando associado a uma avaliação/sub-avaliação.",
 		Details: "Detalhes",
-		RatingGroupDescDesc: "Insira uma descrição para o critério de avaliação",
+		RatingGroupDescDesc: "Insira uma descrição para o critério de avaliação.",
 		RatingGroupDescTitle: "Descrição do critério de avaliação",
-		RatingGroupLangDesc: "Selecione os idiomas para os quais este critério de avaliação vai ser criado",
+		RatingGroupLangDesc: "Selecione os idiomas para os quais este critério de avaliação vai ser criado.",
 		RatingGroupLangTitle: "Idiomas do critério de avaliação",
-		RatingGroupTitleDesc: "Insira um título para identificar o critério de avaliação",
+		RatingGroupTitleDesc: "Insira um título para identificar o critério de avaliação.",
 		RatingGroupTitleTitle: "Título do critério de avaliação",
 		RatingOptions: "Opções de classificação",
-		Title: "Criar critério de avaliação"
+		RatingOptionsDesc: "Passo para criação das opções de classificação associadas ao critério de avaliação.",
+		RatingOptionsTitle: "Criar opções de classificação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		SingleRatingOptionDesc: "Descrição da opção de classificação",
+		SingleRatingOptionNeedComment: "Necessita de comentário",
+		SingleRatingOptionTitle: "Título da opção de classificação",
+		Title: "Criar critério de avaliação",
+		ToastError: "Erro ao criar o critério de avaliação. Tente de novo",
+		ToastSuccess: "Critério de avaliação criado com sucesso",
+		ValidationError: {
+			NoLanguages: "Selecione pelo menos uma linguagem para a qual será criado o critério de avlaiação",
+			NoRatingOptions: "Critério de avaliação deve ter pelo menos duas opções de classificação",
+			RatingGroupTitle: "Insira um título para o critério de avaliação",
+			RatingOptionTitle: "Insira um título para a opção de classificação na posição {position} e idioma {language}"
+		}
 	},
 	Header: {
 		Home: "Início"
