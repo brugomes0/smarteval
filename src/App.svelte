@@ -20,6 +20,7 @@
 	import RatingGroupsComponent from './components/RatingGroups.svelte'
     import SingleRatingGroupComponent from './components/SingleRatingGroup.svelte'
 	import CreateRatingGroupComponent from './components/CreateRatingGroup.svelte'
+	import EditRatingGroupComponent from './components/EditRatingGroup.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -115,6 +116,7 @@
 							<Route path="/ratingGroups" component={RatingGroupsComponent} {user} />
 							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
+							<Route path="/ratingGroups/:ratingGroupId/edit" component={EditRatingGroupComponent} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>

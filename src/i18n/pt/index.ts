@@ -13,14 +13,12 @@ const pt = {
 		AddRatingOption: "Adicionar opção de classificação",
 		DeleteRatingOption: "Remover opção de classificação",
 		Description: "Nesta página pode realizar a criação de critérios de avaliação. Cada critério de avaliação é criado com um grupo de opções de classificação que é usado como resposta a questões do tipo Classificação quando associado a uma avaliação/sub-avaliação.",
-		Details: "Detalhes",
 		RatingGroupDescDesc: "Insira uma descrição para o critério de avaliação.",
 		RatingGroupDescTitle: "Descrição do critério de avaliação",
 		RatingGroupLangDesc: "Selecione os idiomas para os quais este critério de avaliação vai ser criado.",
 		RatingGroupLangTitle: "Idiomas do critério de avaliação",
 		RatingGroupTitleDesc: "Insira um título para identificar o critério de avaliação.",
 		RatingGroupTitleTitle: "Título do critério de avaliação",
-		RatingOptions: "Opções de classificação",
 		RatingOptionsDesc: "Passo para criação das opções de classificação associadas ao critério de avaliação.",
 		RatingOptionsTitle: "Criar opções de classificação",
 		ShowInLanguage: "Apresentar na linguagem:",
@@ -36,6 +34,28 @@ const pt = {
 			RatingGroupTitle: "Insira um título para o critério de avaliação",
 			RatingOptionTitle: "Insira um título para a opção de classificação na posição {position} e idioma {language}"
 		}
+	},
+	EditRatingGroups: {
+		AddRatingOption: "Adicionar opção de classificação",
+		DeleteRatingOption: "Remover opção de classificação",
+		Description: "Nesta página pode realizar a edição de um critério de avaliação.",
+		IsBeingUsedAdd: "Não é possível adicionar uma opção de classificação pois este critério de avaliação ká está a ser usado.",
+		IsBeingUsedDelete: "Não é possível remover uma opção de classificação pois este critério de avaliação já está a ser usado.",
+		RatingGroupDescDesc: "Insira uma descrição para o critério de avaliação.",
+		RatingGroupDescTitle: "Descrição do critério de avaliação",
+		RatingGroupLangDesc: "Selecione os idiomas para os quais este critério de avaliação vai ser criado.",
+		RatingGroupLangTitle: "Idiomas do critério de avaliação",
+		RatingGroupTitleDesc: "Insira um título para identificar o critério de avaliação.",
+		RatingGroupTitleTitle: "Título do critério de avaliação",
+		RatingOptionsDesc: "Passo para editar as opções de classificação associadas ao critério de avaliação",
+		RatingOptionsTitle: "Editar opções de classificação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		SingleRatingOptionDesc: "Descrição da opção de classificação",
+		SingleRatingOptionNeedComment: "Necessita de comentário",
+		SingleRatingOptionTitle: "Título da opção de classificação",
+		Title: "Editar critério de avaliação",
+		ToastError: "Erro ao editar o critério de avaliação. Tente de novo",
+		ToastSuccess: "Critério de avaliação editado com sucesso"
 	},
 	Header: {
 		Home: "Início"
@@ -109,8 +129,10 @@ const pt = {
 		RatingOptionsDesc: "Abaixo estão listadas as opções de classificação para resposta às questões de uma avaliação/sub-avaliação ao qual este critério de avaliação está associado. Clique no elemento de seleção para alternar entre os idiomas disponíveis."
 	},
 	Steps: {
+		Details: "Detalhes",
 		Finalize: "Finalizar",
 		Forward: "Avançar",
+		RatingOptions: "Opções de classificação",
 		Return: "Voltar",
 	}
 } satisfies BaseTranslation

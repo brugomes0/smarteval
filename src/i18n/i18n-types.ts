@@ -49,10 +49,6 @@ type RootTranslation = {
 		 */
 		Description: string
 		/**
-		 * D​e​t​a​l​h​e​s
-		 */
-		Details: string
-		/**
 		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
 		 */
 		RatingGroupDescDesc: string
@@ -76,10 +72,6 @@ type RootTranslation = {
 		 * T​í​t​u​l​o​ ​d​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		RatingGroupTitleTitle: string
-		/**
-		 * O​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
-		 */
-		RatingOptions: string
 		/**
 		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​a​s​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​a​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
 		 */
@@ -136,6 +128,88 @@ type RootTranslation = {
 			 */
 			RatingOptionTitle: RequiredParams<'language' | 'position'>
 		}
+	}
+	EditRatingGroups: {
+		/**
+		 * A​d​i​c​i​o​n​a​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		AddRatingOption: string
+		/**
+		 * R​e​m​o​v​e​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		DeleteRatingOption: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​u​m​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		Description: string
+		/**
+		 * N​ã​o​ ​é​ ​p​o​s​s​í​v​e​l​ ​a​d​i​c​i​o​n​a​r​ ​u​m​a​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​p​o​i​s​ ​e​s​t​e​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​k​á​ ​e​s​t​á​ ​a​ ​s​e​r​ ​u​s​a​d​o​.
+		 */
+		IsBeingUsedAdd: string
+		/**
+		 * N​ã​o​ ​é​ ​p​o​s​s​í​v​e​l​ ​r​e​m​o​v​e​r​ ​u​m​a​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​p​o​i​s​ ​e​s​t​e​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​j​á​ ​e​s​t​á​ ​a​ ​s​e​r​ ​u​s​a​d​o​.
+		 */
+		IsBeingUsedDelete: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		RatingGroupDescDesc: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		RatingGroupDescTitle: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​o​s​ ​i​d​i​o​m​a​s​ ​p​a​r​a​ ​o​s​ ​q​u​a​i​s​ ​e​s​t​e​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​v​a​i​ ​s​e​r​ ​c​r​i​a​d​o​.
+		 */
+		RatingGroupLangDesc: string
+		/**
+		 * I​d​i​o​m​a​s​ ​d​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		RatingGroupLangTitle: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​i​d​e​n​t​i​f​i​c​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		RatingGroupTitleDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		RatingGroupTitleTitle: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​e​d​i​t​a​r​ ​a​s​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​a​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		RatingOptionsDesc: string
+		/**
+		 * E​d​i​t​a​r​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingOptionsTitle: string
+		/**
+		 * A​p​r​e​s​e​n​t​a​r​ ​n​a​ ​l​i​n​g​u​a​g​e​m​:
+		 */
+		ShowInLanguage: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		SingleRatingOptionDesc: string
+		/**
+		 * N​e​c​e​s​s​i​t​a​ ​d​e​ ​c​o​m​e​n​t​á​r​i​o
+		 */
+		SingleRatingOptionNeedComment: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		SingleRatingOptionTitle: string
+		/**
+		 * E​d​i​t​a​r​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		Title: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​e​d​i​t​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o
+		 */
+		ToastError: string
+		/**
+		 * C​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​e​d​i​t​a​d​o​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastSuccess: string
 	}
 	Header: {
 		/**
@@ -372,6 +446,10 @@ type RootTranslation = {
 	}
 	Steps: {
 		/**
+		 * D​e​t​a​l​h​e​s
+		 */
+		Details: string
+		/**
 		 * F​i​n​a​l​i​z​a​r
 		 */
 		Finalize: string
@@ -379,6 +457,10 @@ type RootTranslation = {
 		 * A​v​a​n​ç​a​r
 		 */
 		Forward: string
+		/**
+		 * O​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingOptions: string
 		/**
 		 * V​o​l​t​a​r
 		 */
@@ -423,10 +505,6 @@ export type TranslationFunctions = {
 		 */
 		Description: () => LocalizedString
 		/**
-		 * Detalhes
-		 */
-		Details: () => LocalizedString
-		/**
 		 * Insira uma descrição para o critério de avaliação.
 		 */
 		RatingGroupDescDesc: () => LocalizedString
@@ -450,10 +528,6 @@ export type TranslationFunctions = {
 		 * Título do critério de avaliação
 		 */
 		RatingGroupTitleTitle: () => LocalizedString
-		/**
-		 * Opções de classificação
-		 */
-		RatingOptions: () => LocalizedString
 		/**
 		 * Passo para criação das opções de classificação associadas ao critério de avaliação.
 		 */
@@ -508,6 +582,88 @@ export type TranslationFunctions = {
 			 */
 			RatingOptionTitle: (arg: { language: unknown, position: unknown }) => LocalizedString
 		}
+	}
+	EditRatingGroups: {
+		/**
+		 * Adicionar opção de classificação
+		 */
+		AddRatingOption: () => LocalizedString
+		/**
+		 * Remover opção de classificação
+		 */
+		DeleteRatingOption: () => LocalizedString
+		/**
+		 * Nesta página pode realizar a edição de um critério de avaliação.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Não é possível adicionar uma opção de classificação pois este critério de avaliação ká está a ser usado.
+		 */
+		IsBeingUsedAdd: () => LocalizedString
+		/**
+		 * Não é possível remover uma opção de classificação pois este critério de avaliação já está a ser usado.
+		 */
+		IsBeingUsedDelete: () => LocalizedString
+		/**
+		 * Insira uma descrição para o critério de avaliação.
+		 */
+		RatingGroupDescDesc: () => LocalizedString
+		/**
+		 * Descrição do critério de avaliação
+		 */
+		RatingGroupDescTitle: () => LocalizedString
+		/**
+		 * Selecione os idiomas para os quais este critério de avaliação vai ser criado.
+		 */
+		RatingGroupLangDesc: () => LocalizedString
+		/**
+		 * Idiomas do critério de avaliação
+		 */
+		RatingGroupLangTitle: () => LocalizedString
+		/**
+		 * Insira um título para identificar o critério de avaliação.
+		 */
+		RatingGroupTitleDesc: () => LocalizedString
+		/**
+		 * Título do critério de avaliação
+		 */
+		RatingGroupTitleTitle: () => LocalizedString
+		/**
+		 * Passo para editar as opções de classificação associadas ao critério de avaliação
+		 */
+		RatingOptionsDesc: () => LocalizedString
+		/**
+		 * Editar opções de classificação
+		 */
+		RatingOptionsTitle: () => LocalizedString
+		/**
+		 * Apresentar na linguagem:
+		 */
+		ShowInLanguage: () => LocalizedString
+		/**
+		 * Descrição da opção de classificação
+		 */
+		SingleRatingOptionDesc: () => LocalizedString
+		/**
+		 * Necessita de comentário
+		 */
+		SingleRatingOptionNeedComment: () => LocalizedString
+		/**
+		 * Título da opção de classificação
+		 */
+		SingleRatingOptionTitle: () => LocalizedString
+		/**
+		 * Editar critério de avaliação
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Erro ao editar o critério de avaliação. Tente de novo
+		 */
+		ToastError: () => LocalizedString
+		/**
+		 * Critério de avaliação editado com sucesso
+		 */
+		ToastSuccess: () => LocalizedString
 	}
 	Header: {
 		/**
@@ -741,6 +897,10 @@ export type TranslationFunctions = {
 	}
 	Steps: {
 		/**
+		 * Detalhes
+		 */
+		Details: () => LocalizedString
+		/**
 		 * Finalizar
 		 */
 		Finalize: () => LocalizedString
@@ -748,6 +908,10 @@ export type TranslationFunctions = {
 		 * Avançar
 		 */
 		Forward: () => LocalizedString
+		/**
+		 * Opções de classificação
+		 */
+		RatingOptions: () => LocalizedString
 		/**
 		 * Voltar
 		 */

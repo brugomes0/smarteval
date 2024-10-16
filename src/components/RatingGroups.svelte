@@ -80,7 +80,7 @@
 </script>
 
 <div class="flex flex-col gap-y-5">
-    <div class="flex flex-col lg:flex-row gap-x-10 gap-y-5 items-start justify-between">
+    <div class="flex flex-col lg:flex-row gap-x-20 gap-y-5 items-start justify-between">
         <div class="flex flex-col">
             <p class="font-semibold text-center lg:text-left text-lg text-black">{$LL.RatingGroups.Title()}</p>
             <p class="text-sm text-gray-400">{$LL.RatingGroups.Description()}</p>

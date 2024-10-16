@@ -22,6 +22,26 @@ type CreateRatingOptionTranslationData = {
     description: string
 }
 
+type EditRatingGroupData = {
+    title: string,
+    description: string
+    ratingOptions: EditRatingOptionData[]
+}
+
+type EditRatingOptionData = {
+    ratingOptionId?: string,
+    numericValue: number,
+    needComment: boolean,
+    translations: EditRatingOptionTranslationData[]
+}
+
+type EditRatingOptionTranslationData = {
+    ratingOptionTranslationId?: string,
+    language: string,
+    title: string,
+    description: string
+}
+
 type PermissionData = { 
     permissionId: number, 
     permissionType: string, 
@@ -47,6 +67,7 @@ type RatingGroupData = {
     description: string,
     createDate: string,
     createByUser: string,
+    isBeingUsed: boolean,
     ratingOptions: RatingOptionData[]
 }
 
