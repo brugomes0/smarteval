@@ -55,7 +55,16 @@
     function checkStep(step: number) {
         let message = validateRatingGroup(ratingGroup, step, languagesChoosen)
         if (message != null && message != "") { toast.error(message); return false }
-        if (step === 0) { languageShow = languagesChoosen[0] }
+        if (step === 0) {
+            languageShow = languagesChoosen[0]
+            ratingGroup.ratingOptions.forEach((_, index) => {
+                languagesChoosen.forEach(language => {
+                    const exists = ratingGroup.ratingOptions[index].translations.find(t => t.language === language)
+                    if (!exists) ratingGroup.ratingOptions[index].translations.push({ language, title: '', description: '' })
+                })
+                ratingGroup.ratingOptions[index].translations = ratingGroup.ratingOptions[index].translations.filter(t => languagesChoosen.includes(t.language))
+            })
+        }
         return true
     }
 
@@ -63,9 +72,7 @@
         if (!Array.isArray(ratingGroup.ratingOptions)) return
         if (index >= 0 && index < ratingGroup.ratingOptions.length) {
             ratingGroup.ratingOptions = ratingGroup.ratingOptions.filter((_, i) => i !== index)
-            for(let i = 0; i < ratingGroup.ratingOptions.length; i++) {
-                ratingGroup.ratingOptions[i].numericValue = i
-            }
+            for(let i = 0; i < ratingGroup.ratingOptions.length; i++) ratingGroup.ratingOptions[i].numericValue = i
         }
     }
 
@@ -89,7 +96,6 @@
         } else {
             languagesChoosen = languagesChoosen.filter(temp => temp !== language)
         }
-        ratingGroup.ratingOptions = []
     }
 </script>
 

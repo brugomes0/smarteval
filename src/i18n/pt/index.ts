@@ -36,8 +36,26 @@ const pt = {
 		}
 	},
 	EditRatingGroups: {
+		AddRatingOption: "Adicionar opção de classificação",
+		DeleteRatingOption: "Remover opção de classificação",
 		Description: "Nesta página pode realizar a edição de um critério de avaliação.",
-		Title: "Editar critério de avaliação"
+		IsBeingUsedAdd: "Não é possível adicionar uma opção de classificação pois este critério de avaliação ká está a ser usado.",
+		IsBeingUsedDelete: "Não é possível remover uma opção de classificação pois este critério de avaliação já está a ser usado.",
+		RatingGroupDescDesc: "Insira uma descrição para o critério de avaliação.",
+		RatingGroupDescTitle: "Descrição do critério de avaliação",
+		RatingGroupLangDesc: "Selecione os idiomas para os quais este critério de avaliação vai ser criado.",
+		RatingGroupLangTitle: "Idiomas do critério de avaliação",
+		RatingGroupTitleDesc: "Insira um título para identificar o critério de avaliação.",
+		RatingGroupTitleTitle: "Título do critério de avaliação",
+		RatingOptionsDesc: "Passo para editar as opções de classificação associadas ao critério de avaliação",
+		RatingOptionsTitle: "Editar opções de classificação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		SingleRatingOptionDesc: "Descrição da opção de classificação",
+		SingleRatingOptionNeedComment: "Necessita de comentário",
+		SingleRatingOptionTitle: "Título da opção de classificação",
+		Title: "Editar critério de avaliação",
+		ToastError: "Erro ao editar o critério de avaliação. Tente de novo",
+		ToastSuccess: "Critério de avaliação editado com sucesso"
 	},
 	Header: {
 		Home: "Início"
