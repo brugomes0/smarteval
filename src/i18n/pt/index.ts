@@ -9,6 +9,20 @@ const pt = {
 		NoUserProfileType: "Utilizador não tem tipo de perfil",
 		NoUserProfileTypeDesc: "O utilizador não tem nenhum tipo de perfil associado seja frontoffice ou backoffice. Tente solucionar este problema antes de acessar a página."
 	},
+	Categories: {
+		CreateButton: "Criar categoria",
+		Description: "Nesta página são listadas todas as categorias, e as suas respetivas questões, criadas e armazenadas em base de dados. Estas categorias são utilizadas na criação da avaliação/sub-avaliações para criar um formulário ao qual os utilizadores irão responder. Ao criar a avaliação puderá associar a esta as categorias e respetivas questões que desejar.",
+		Error: "Erro ao tentar listar as categorias",
+		InputText: "Filtar categorias pelo título...",
+		Loading: "A carregar...",
+		NoCategories: "Não existem categorias disponíveis de momento. Volte mais tarde ou crie uma nova categoria para começar!",
+		NoCategoriesFilter: "Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis.",
+		Preview: "Pré-Visualizar",
+		ShowingItemsLabel: "Exibindo {firstElement} até {pageSize} de {total} items",
+		Title: "Categorias e Questões",
+		ToastDelete: "Categoria removida com sucesso.",
+		ToastDeleteError: "Erro ao remover categoria. Tente de novo."
+	},
 	CreateRatingGroups: {
 		AddRatingOption: "Adicionar opção de classificação",
 		DeleteRatingOption: "Remover opção de classificação",
@@ -102,7 +116,7 @@ const pt = {
 	},
 	RatingGroups: {
 		CreateButton: "Criar critério de avaliação",
-		Description: "Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes groupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.",
+		Description: "Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes grupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.",
 		Error: "Erro ao tentar listar os critérios de avaliação",
 		InputText: "Filtrar critérios de avaliação pelo título...",
 		Loading: "A carregar...",

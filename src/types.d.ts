@@ -4,6 +4,12 @@ type AuthorizationData = {
     windowPermissions: WindowPermissionData[] 
 }
 
+type CategoryInfoData = {
+    categoryId: string,
+    title: string,
+    description: string
+}
+
 type CreateRatingGroupData = { 
     title: string, 
     description: string, 

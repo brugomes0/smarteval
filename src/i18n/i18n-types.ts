@@ -35,6 +35,59 @@ type RootTranslation = {
 		 */
 		NoUserProfileTypeDesc: string
 	}
+	Categories: {
+		/**
+		 * C​r​i​a​r​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CreateButton: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​s​ã​o​ ​l​i​s​t​a​d​a​s​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​,​ ​e​ ​a​s​ ​s​u​a​s​ ​r​e​s​p​e​t​i​v​a​s​ ​q​u​e​s​t​õ​e​s​,​ ​c​r​i​a​d​a​s​ ​e​ ​a​r​m​a​z​e​n​a​d​a​s​ ​e​m​ ​b​a​s​e​ ​d​e​ ​d​a​d​o​s​.​ ​E​s​t​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​s​ã​o​ ​u​t​i​l​i​z​a​d​a​s​ ​n​a​ ​c​r​i​a​ç​ã​o​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​/​s​u​b​-​a​v​a​l​i​a​ç​õ​e​s​ ​p​a​r​a​ ​c​r​i​a​r​ ​u​m​ ​f​o​r​m​u​l​á​r​i​o​ ​a​o​ ​q​u​a​l​ ​o​s​ ​u​t​i​l​i​z​a​d​o​r​e​s​ ​i​r​ã​o​ ​r​e​s​p​o​n​d​e​r​.​ ​A​o​ ​c​r​i​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​ ​p​u​d​e​r​á​ ​a​s​s​o​c​i​a​r​ ​a​ ​e​s​t​a​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​ ​r​e​s​p​e​t​i​v​a​s​ ​q​u​e​s​t​õ​e​s​ ​q​u​e​ ​d​e​s​e​j​a​r​.
+		 */
+		Description: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​l​i​s​t​a​r​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s
+		 */
+		Error: string
+		/**
+		 * F​i​l​t​a​r​ ​c​a​t​e​g​o​r​i​a​s​ ​p​e​l​o​ ​t​í​t​u​l​o​.​.​.
+		 */
+		InputText: string
+		/**
+		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
+		 */
+		Loading: string
+		/**
+		 * N​ã​o​ ​e​x​i​s​t​e​m​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​ ​d​e​ ​m​o​m​e​n​t​o​.​ ​V​o​l​t​e​ ​m​a​i​s​ ​t​a​r​d​e​ ​o​u​ ​c​r​i​e​ ​u​m​a​ ​n​o​v​a​ ​c​a​t​e​g​o​r​i​a​ ​p​a​r​a​ ​c​o​m​e​ç​a​r​!
+		 */
+		NoCategories: string
+		/**
+		 * N​ã​o​ ​f​o​r​a​m​ ​e​n​c​o​t​r​a​d​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​q​u​e​ ​c​o​r​r​e​s​p​o​n​d​a​m​ ​à​ ​s​u​a​ ​p​e​s​q​u​i​s​a​.​ ​T​e​n​t​e​ ​a​j​u​s​t​a​r​ ​a​s​ ​p​a​l​a​v​r​a​s​-​c​h​a​v​e​ ​o​u​ ​l​i​m​p​e​ ​o​ ​f​i​l​t​r​o​ ​p​a​r​a​ ​v​e​r​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​.
+		 */
+		NoCategoriesFilter: string
+		/**
+		 * P​r​é​-​V​i​s​u​a​l​i​z​a​r
+		 */
+		Preview: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​p​a​g​e​S​i​z​e​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {unknown} firstElement
+		 * @param {unknown} pageSize
+		 * @param {unknown} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'pageSize' | 'total'>
+		/**
+		 * C​a​t​e​g​o​r​i​a​s​ ​e​ ​Q​u​e​s​t​õ​e​s
+		 */
+		Title: string
+		/**
+		 * C​a​t​e​g​o​r​i​a​ ​r​e​m​o​v​i​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o​.
+		 */
+		ToastDelete: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​r​e​m​o​v​e​r​ ​c​a​t​e​g​o​r​i​a​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ToastDeleteError: string
+	}
 	CreateRatingGroups: {
 		/**
 		 * A​d​i​c​i​o​n​a​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
@@ -353,7 +406,7 @@ type RootTranslation = {
 		 */
 		CreateButton: string
 		/**
-		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​s​ã​o​ ​l​i​s​t​a​d​o​s​ ​t​o​d​o​s​ ​o​s​ ​g​r​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​c​r​i​a​d​o​s​ ​e​ ​a​r​m​a​z​e​n​a​d​o​s​ ​e​m​ ​b​a​s​e​ ​d​e​ ​d​a​d​o​s​.​ ​E​s​t​e​s​ ​g​r​o​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​s​e​r​v​e​m​ ​p​a​r​a​ ​o​ ​u​t​i​l​i​z​a​d​o​r​ ​r​e​s​p​o​n​d​e​r​ ​à​s​ ​p​e​r​g​u​n​t​a​s​ ​c​o​m​ ​t​i​p​o​ ​C​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.​ ​P​o​d​e​ ​a​s​s​o​c​i​a​r​ ​u​m​ ​i​t​e​m​ ​d​e​s​t​a​ ​p​á​g​i​n​a​ ​c​o​m​ ​u​m​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​,​ ​o​n​d​e​ ​d​e​s​e​j​a​ ​u​t​i​l​i​z​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​c​r​i​a​d​o​.
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​s​ã​o​ ​l​i​s​t​a​d​o​s​ ​t​o​d​o​s​ ​o​s​ ​g​r​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​c​r​i​a​d​o​s​ ​e​ ​a​r​m​a​z​e​n​a​d​o​s​ ​e​m​ ​b​a​s​e​ ​d​e​ ​d​a​d​o​s​.​ ​E​s​t​e​s​ ​g​r​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​s​e​r​v​e​m​ ​p​a​r​a​ ​o​ ​u​t​i​l​i​z​a​d​o​r​ ​r​e​s​p​o​n​d​e​r​ ​à​s​ ​p​e​r​g​u​n​t​a​s​ ​c​o​m​ ​t​i​p​o​ ​C​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.​ ​P​o​d​e​ ​a​s​s​o​c​i​a​r​ ​u​m​ ​i​t​e​m​ ​d​e​s​t​a​ ​p​á​g​i​n​a​ ​c​o​m​ ​u​m​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​,​ ​o​n​d​e​ ​d​e​s​e​j​a​ ​u​t​i​l​i​z​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​c​r​i​a​d​o​.
 		 */
 		Description: string
 		/**
@@ -490,6 +543,56 @@ export type TranslationFunctions = {
 		 * O utilizador não tem nenhum tipo de perfil associado seja frontoffice ou backoffice. Tente solucionar este problema antes de acessar a página.
 		 */
 		NoUserProfileTypeDesc: () => LocalizedString
+	}
+	Categories: {
+		/**
+		 * Criar categoria
+		 */
+		CreateButton: () => LocalizedString
+		/**
+		 * Nesta página são listadas todas as categorias, e as suas respetivas questões, criadas e armazenadas em base de dados. Estas categorias são utilizadas na criação da avaliação/sub-avaliações para criar um formulário ao qual os utilizadores irão responder. Ao criar a avaliação puderá associar a esta as categorias e respetivas questões que desejar.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Erro ao tentar listar as categorias
+		 */
+		Error: () => LocalizedString
+		/**
+		 * Filtar categorias pelo título...
+		 */
+		InputText: () => LocalizedString
+		/**
+		 * A carregar...
+		 */
+		Loading: () => LocalizedString
+		/**
+		 * Não existem categorias disponíveis de momento. Volte mais tarde ou crie uma nova categoria para começar!
+		 */
+		NoCategories: () => LocalizedString
+		/**
+		 * Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis.
+		 */
+		NoCategoriesFilter: () => LocalizedString
+		/**
+		 * Pré-Visualizar
+		 */
+		Preview: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {pageSize} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: unknown, pageSize: unknown, total: unknown }) => LocalizedString
+		/**
+		 * Categorias e Questões
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Categoria removida com sucesso.
+		 */
+		ToastDelete: () => LocalizedString
+		/**
+		 * Erro ao remover categoria. Tente de novo.
+		 */
+		ToastDeleteError: () => LocalizedString
 	}
 	CreateRatingGroups: {
 		/**
@@ -807,7 +910,7 @@ export type TranslationFunctions = {
 		 */
 		CreateButton: () => LocalizedString
 		/**
-		 * Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes groupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.
+		 * Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes grupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.
 		 */
 		Description: () => LocalizedString
 		/**
