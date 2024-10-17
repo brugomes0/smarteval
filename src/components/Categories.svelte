@@ -58,7 +58,7 @@
 
     function handleInputChanges() {
         categories = [], loading = true, total = 0
-        debounce(getCategories(), 1000)
+        debounce(getCategories, 1000)
     }
 
     onMount(async () => {

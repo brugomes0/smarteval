@@ -17,7 +17,7 @@
     let buttonEdit: boolean = false
     let error: string = ""
     let loading: boolean = true
-    let ratingGroup: RatingGroupData = { ratingGroupId: "", title: "", description: "", createDate: "", createByUser: "", ratingOptions: [] }
+    let ratingGroup: RatingGroupData = { ratingGroupId: "", title: "", description: "", createDate: "", createByUser: "", isBeingUsed: false, ratingOptions: [] }
     let selectLanguage: string = ""
 
     async function deleteRatingGroup() {

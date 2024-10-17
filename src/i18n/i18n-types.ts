@@ -88,6 +88,111 @@ type RootTranslation = {
 		 */
 		ToastDeleteError: string
 	}
+	CreateCategory: {
+		/**
+		 * A​d​i​c​i​o​n​a​r​ ​q​u​e​s​t​ã​o
+		 */
+		AddQuestion: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescDesc: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescTitle: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​i​d​e​n​t​i​f​i​c​a​r​ ​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		CategoryTitleDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryTitleTitle: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Continue: string
+		/**
+		 * R​e​m​o​v​e​r​ ​q​u​e​s​t​ã​o
+		 */
+		DeleteQuestion: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​u​m​a​ ​n​o​v​a​ ​c​a​t​e​g​o​r​i​a​ ​j​u​n​t​a​m​e​n​t​e​ ​c​o​m​ ​a​s​ ​s​u​a​s​ ​q​u​e​s​t​õ​e​s​.​ ​E​s​t​a​ ​c​a​t​e​g​o​r​i​a​ ​p​o​d​e​ ​s​e​r​ ​p​o​s​t​e​r​i​o​r​m​e​n​t​e​ ​a​s​s​o​c​i​a​d​a​ ​a​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o​ ​p​a​r​a​ ​q​u​e​ ​o​ ​u​t​i​l​i​z​a​d​o​r​ ​a​o​ ​r​e​s​p​o​n​d​e​r​ ​à​ ​a​v​a​l​i​a​ç​ã​o​,​ ​r​e​s​p​o​n​d​a​ ​á​s​ ​q​u​e​s​t​õ​e​s​ ​d​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		Description: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​p​a​r​a​ ​q​u​a​i​s​ ​i​d​i​o​m​a​s​ ​d​e​s​e​j​a​ ​c​r​i​a​r​ ​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		LanguageDesc: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​o​(​s​)​ ​i​d​i​o​m​a​(​s​)
+		 */
+		LanguageTitle: string
+		/**
+		 * (​S​e​m​ ​t​í​t​u​l​o​)
+		 */
+		NoTitle: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionTitle: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		RatingQuestionsDesc: string
+		/**
+		 * C​r​i​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingQuestionsTitle: string
+		/**
+		 * A​p​r​e​s​e​n​t​a​r​ ​n​a​ ​l​i​n​g​u​a​g​e​m​:
+		 */
+		ShowInLanguage: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		TextQuestionsDesc: string
+		/**
+		 * C​r​i​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextQuestionsTitle: string
+		/**
+		 * C​r​i​a​r​ ​c​a​t​e​g​o​r​i​a​ ​e​ ​q​u​e​s​t​õ​e​s
+		 */
+		Title: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​c​r​i​a​r​ ​c​a​t​e​g​o​r​i​a​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o
+		 */
+		ToastError: string
+		/**
+		 * C​a​t​e​g​o​r​i​a​ ​c​r​i​a​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastSuccess: string
+		ValidationError: {
+			/**
+			 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​a​ ​c​a​t​e​g​o​r​i​a​ ​e​m​ ​{​l​a​n​g​u​a​g​e​}
+			 * @param {unknown} language
+			 */
+			CategoryTitle: RequiredParams<'language'>
+			/**
+			 * S​e​l​e​c​i​o​n​e​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​l​i​n​g​u​a​g​e​m​ ​p​a​r​a​ ​a​ ​q​u​a​l​ ​s​e​r​á​ ​c​r​i​a​d​a​ ​a​ ​c​a​t​e​g​o​r​i​a
+			 */
+			NoLanguages: string
+			/**
+			 * C​a​t​e​g​o​r​i​a​ ​d​e​v​e​ ​t​e​r​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​q​u​e​s​t​ã​o
+			 */
+			NoQuestions: string
+			/**
+			 * Q​u​e​s​t​õ​e​s​ ​d​e​v​e​m​ ​t​e​r​ ​u​m​ ​t​í​t​u​l​o​ ​e​m​ ​t​o​d​a​s​ ​a​s​ ​l​i​n​g​u​a​g​e​n​s
+			 */
+			QuestionTitle: string
+		}
+	}
 	CreateRatingGroups: {
 		/**
 		 * A​d​i​c​i​o​n​a​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
@@ -515,9 +620,17 @@ type RootTranslation = {
 		 */
 		RatingOptions: string
 		/**
+		 * Q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingQuestions: string
+		/**
 		 * V​o​l​t​a​r
 		 */
 		Return: string
+		/**
+		 * Q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextQuestions: string
 	}
 }
 
@@ -593,6 +706,110 @@ export type TranslationFunctions = {
 		 * Erro ao remover categoria. Tente de novo.
 		 */
 		ToastDeleteError: () => LocalizedString
+	}
+	CreateCategory: {
+		/**
+		 * Adicionar questão
+		 */
+		AddQuestion: () => LocalizedString
+		/**
+		 * Insira uma descrição para a categoria
+		 */
+		CategoryDescDesc: () => LocalizedString
+		/**
+		 * Descrição da categoria
+		 */
+		CategoryDescTitle: () => LocalizedString
+		/**
+		 * Insira um título para identificar a categoria.
+		 */
+		CategoryTitleDesc: () => LocalizedString
+		/**
+		 * Título da categoria
+		 */
+		CategoryTitleTitle: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Continue: () => LocalizedString
+		/**
+		 * Remover questão
+		 */
+		DeleteQuestion: () => LocalizedString
+		/**
+		 * Nesta página pode realizar a criação de uma nova categoria juntamente com as suas questões. Esta categoria pode ser posteriormente associada a uma avaliação para que o utilizador ao responder à avaliação, responda ás questões da categoria.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Selecione para quais idiomas deseja criar a categoria.
+		 */
+		LanguageDesc: () => LocalizedString
+		/**
+		 * Selecione o(s) idioma(s)
+		 */
+		LanguageTitle: () => LocalizedString
+		/**
+		 * (Sem título)
+		 */
+		NoTitle: () => LocalizedString
+		/**
+		 * Descrição da questão
+		 */
+		QuestionDesc: () => LocalizedString
+		/**
+		 * Título da questão
+		 */
+		QuestionTitle: () => LocalizedString
+		/**
+		 * Passo para criação de questões de classificação associadas à categoria
+		 */
+		RatingQuestionsDesc: () => LocalizedString
+		/**
+		 * Criar questões de classificação
+		 */
+		RatingQuestionsTitle: () => LocalizedString
+		/**
+		 * Apresentar na linguagem:
+		 */
+		ShowInLanguage: () => LocalizedString
+		/**
+		 * Passo para criação de questões de texto associadas à categoria
+		 */
+		TextQuestionsDesc: () => LocalizedString
+		/**
+		 * Criar questões de texto
+		 */
+		TextQuestionsTitle: () => LocalizedString
+		/**
+		 * Criar categoria e questões
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Erro ao criar categoria. Tente de novo
+		 */
+		ToastError: () => LocalizedString
+		/**
+		 * Categoria criada com sucesso
+		 */
+		ToastSuccess: () => LocalizedString
+		ValidationError: {
+			/**
+			 * Insira um título para a categoria em {language}
+			 */
+			CategoryTitle: (arg: { language: unknown }) => LocalizedString
+			/**
+			 * Selecione pelo menos uma linguagem para a qual será criada a categoria
+			 */
+			NoLanguages: () => LocalizedString
+			/**
+			 * Categoria deve ter pelo menos uma questão
+			 */
+			NoQuestions: () => LocalizedString
+			/**
+			 * Questões devem ter um título em todas as linguagens
+			 */
+			QuestionTitle: () => LocalizedString
+		}
 	}
 	CreateRatingGroups: {
 		/**
@@ -1016,9 +1233,17 @@ export type TranslationFunctions = {
 		 */
 		RatingOptions: () => LocalizedString
 		/**
+		 * Questões de classificação
+		 */
+		RatingQuestions: () => LocalizedString
+		/**
 		 * Voltar
 		 */
 		Return: () => LocalizedString
+		/**
+		 * Questões de texto
+		 */
+		TextQuestions: () => LocalizedString
 	}
 }
 

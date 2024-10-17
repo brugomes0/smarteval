@@ -10,6 +10,16 @@ type CategoryInfoData = {
     description: string
 }
 
+type CreateCategoryData = {
+    questions: CreateQuestionData[]
+    translations: CreateTranslationData[]
+}
+
+type CreateQuestionData = {
+    type: string,
+    translations: CreateTranslationData[]
+}
+
 type CreateRatingGroupData = { 
     title: string, 
     description: string, 
@@ -19,10 +29,10 @@ type CreateRatingGroupData = {
 type CreateRatingOptionData = {
     numericValue: number,
     needComment: boolean,
-    translations: CreateRatingOptionTranslationData[]
+    translations: CreateTranslationData[]
 }
 
-type CreateRatingOptionTranslationData = {
+type CreateTranslationData = {
     language: string,
     title: string,
     description: string

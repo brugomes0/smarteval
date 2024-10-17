@@ -23,6 +23,35 @@ const pt = {
 		ToastDelete: "Categoria removida com sucesso.",
 		ToastDeleteError: "Erro ao remover categoria. Tente de novo."
 	},
+	CreateCategory: {
+		AddQuestion: "Adicionar questão",
+		CategoryDescDesc: "Insira uma descrição para a categoria",
+		CategoryDescTitle: "Descrição da categoria",
+		CategoryTitleDesc: "Insira um título para identificar a categoria.",
+		CategoryTitleTitle: "Título da categoria",
+		Continue: "Continuar",
+		DeleteQuestion: "Remover questão",
+		Description: "Nesta página pode realizar a criação de uma nova categoria juntamente com as suas questões. Esta categoria pode ser posteriormente associada a uma avaliação para que o utilizador ao responder à avaliação, responda ás questões da categoria.",
+		LanguageDesc: "Selecione para quais idiomas deseja criar a categoria.",
+		LanguageTitle: "Selecione o(s) idioma(s)",
+		NoTitle: "(Sem título)",
+		QuestionDesc: "Descrição da questão",
+		QuestionTitle: "Título da questão",
+		RatingQuestionsDesc: "Passo para criação de questões de classificação associadas à categoria",
+		RatingQuestionsTitle: "Criar questões de classificação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		TextQuestionsDesc: "Passo para criação de questões de texto associadas à categoria",
+		TextQuestionsTitle: "Criar questões de texto",
+		Title: "Criar categoria e questões",
+		ToastError: "Erro ao criar categoria. Tente de novo",
+		ToastSuccess: "Categoria criada com sucesso",
+		ValidationError: {
+			CategoryTitle: "Insira um título para a categoria em {language}",
+			NoLanguages: "Selecione pelo menos uma linguagem para a qual será criada a categoria",
+			NoQuestions: "Categoria deve ter pelo menos uma questão",
+			QuestionTitle: "Questões devem ter um título em todas as linguagens"
+		}
+	},
 	CreateRatingGroups: {
 		AddRatingOption: "Adicionar opção de classificação",
 		DeleteRatingOption: "Remover opção de classificação",
@@ -147,7 +176,9 @@ const pt = {
 		Finalize: "Finalizar",
 		Forward: "Avançar",
 		RatingOptions: "Opções de classificação",
+		RatingQuestions: "Questões de classificação",
 		Return: "Voltar",
+		TextQuestions: "Questões de texto"
 	}
 } satisfies BaseTranslation
 
