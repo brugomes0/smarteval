@@ -9,6 +9,49 @@ const pt = {
 		NoUserProfileType: "Utilizador não tem tipo de perfil",
 		NoUserProfileTypeDesc: "O utilizador não tem nenhum tipo de perfil associado seja frontoffice ou backoffice. Tente solucionar este problema antes de acessar a página."
 	},
+	Categories: {
+		CreateButton: "Criar categoria",
+		Description: "Nesta página são listadas todas as categorias, e as suas respetivas questões, criadas e armazenadas em base de dados. Estas categorias são utilizadas na criação da avaliação/sub-avaliações para criar um formulário ao qual os utilizadores irão responder. Ao criar a avaliação puderá associar a esta as categorias e respetivas questões que desejar.",
+		Error: "Erro ao tentar listar as categorias",
+		InputText: "Filtar categorias pelo título...",
+		Loading: "A carregar...",
+		NoCategories: "Não existem categorias disponíveis de momento. Volte mais tarde ou crie uma nova categoria para começar!",
+		NoCategoriesFilter: "Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.",
+		Preview: "Pré-Visualizar",
+		ShowingItemsLabel: "Exibindo {firstElement} até {pageSize} de {total} items",
+		Title: "Categorias e Questões",
+		ToastDelete: "Categoria removida com sucesso.",
+		ToastDeleteError: "Erro ao remover categoria. Tente de novo."
+	},
+	CreateCategory: {
+		AddQuestion: "Adicionar questão",
+		CategoryDescDesc: "Insira uma descrição para a categoria",
+		CategoryDescTitle: "Descrição da categoria",
+		CategoryTitleDesc: "Insira um título para identificar a categoria.",
+		CategoryTitleTitle: "Título da categoria",
+		Continue: "Continuar",
+		DeleteQuestion: "Remover questão",
+		Description: "Nesta página pode realizar a criação de uma nova categoria juntamente com as suas questões. Esta categoria pode ser posteriormente associada a uma avaliação para que o utilizador ao responder à avaliação, responda ás questões da categoria.",
+		LanguageDesc: "Selecione para quais idiomas deseja criar a categoria.",
+		LanguageTitle: "Selecione o(s) idioma(s)",
+		NoTitle: "(Sem título)",
+		QuestionDesc: "Descrição da questão",
+		QuestionTitle: "Título da questão",
+		RatingQuestionsDesc: "Passo para criação de questões de classificação associadas à categoria",
+		RatingQuestionsTitle: "Criar questões de classificação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		TextQuestionsDesc: "Passo para criação de questões de texto associadas à categoria",
+		TextQuestionsTitle: "Criar questões de texto",
+		Title: "Criar categoria e questões",
+		ToastError: "Erro ao criar categoria. Tente de novo",
+		ToastSuccess: "Categoria criada com sucesso",
+		ValidationError: {
+			CategoryTitle: "Insira um título para a categoria em {language}",
+			NoLanguages: "Selecione pelo menos uma linguagem para a qual será criada a categoria",
+			NoQuestions: "Categoria deve ter pelo menos uma questão",
+			QuestionTitle: "Questões devem ter um título em todas as linguagens"
+		}
+	},
 	CreateRatingGroups: {
 		AddRatingOption: "Adicionar opção de classificação",
 		DeleteRatingOption: "Remover opção de classificação",
@@ -34,6 +77,29 @@ const pt = {
 			RatingGroupTitle: "Insira um título para o critério de avaliação",
 			RatingOptionTitle: "Insira um título para a opção de classificação na posição {position} e idioma {language}"
 		}
+	},
+	EditCategories: {
+		AddQuestion: "Adicionar questão",
+		CategoryDescDesc: "Insira uma descrição para a categoria",
+		CategoryDescTitle: "Descrição da categoria",
+		CategoryTitleDesc: "Insira um título para identificar a categoria.",
+		CategoryTitleTitle: "Título da categoria",
+		Continue: "Continuar",
+		DeleteQuestion: "Remover questão",
+		Description: "Nesta página pode realizar a edição de uma categoria e das suas questões desde que esta não esteja a ser utilizada em avalições",
+		LanguageDesc: "Selecione para quais idiomas deseja que a categoria seja apresentada.",
+		LanguageTitle: "Selecione o(s) idioma(s)",
+		NoTitle: "(Sem título)",
+		QuestionDesc: "Descrição da questão",
+		QuestionTitle: "Título da questão",
+		RatingQuestionsDesc: "Passo para edição de questões de classificação associadas à categoria",
+		RatingQuestionsTitle: "Editar questões de classificação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		TextQuestionsDesc: "Passo para edição de questões de texto associadas à categoria",
+		TextQuestionsTitle: "Editar questões de texto",
+		Title: "Editar categoria e questões",
+		ToastError: "Erro ao editar categoria. Tente de novo",
+		ToastSuccess: "Categoria editada com sucesso"
 	},
 	EditRatingGroups: {
 		AddRatingOption: "Adicionar opção de classificação",
@@ -102,7 +168,7 @@ const pt = {
 	},
 	RatingGroups: {
 		CreateButton: "Criar critério de avaliação",
-		Description: "Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes groupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.",
+		Description: "Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes grupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.",
 		Error: "Erro ao tentar listar os critérios de avaliação",
 		InputText: "Filtrar critérios de avaliação pelo título...",
 		Loading: "A carregar...",
@@ -120,6 +186,16 @@ const pt = {
 		Hello: "Olá",
 		User: "Utilizador"
 	},
+	SingleCategories: {
+		CreateBy: "Criado por utilizador",
+		CreateDate: "Data de criação",
+		Description: "Descrição",
+		Option: "Opção",
+		Questions: "Questões",
+		QuestionsTitle: "Abaixo estão listadas as questões da categoria.",
+		TextResponse: "Resposta de texto",
+		Type: "Tipo de questão"
+	},
 	SingleRatingGroups: {
 		CreateBy: "Criado por utilizador",
 		CreateDate: "Data de criação",
@@ -133,7 +209,9 @@ const pt = {
 		Finalize: "Finalizar",
 		Forward: "Avançar",
 		RatingOptions: "Opções de classificação",
+		RatingQuestions: "Questões de classificação",
 		Return: "Voltar",
+		TextQuestions: "Questões de texto"
 	}
 } satisfies BaseTranslation
 

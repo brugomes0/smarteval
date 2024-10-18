@@ -35,6 +35,164 @@ type RootTranslation = {
 		 */
 		NoUserProfileTypeDesc: string
 	}
+	Categories: {
+		/**
+		 * C​r​i​a​r​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CreateButton: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​s​ã​o​ ​l​i​s​t​a​d​a​s​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​,​ ​e​ ​a​s​ ​s​u​a​s​ ​r​e​s​p​e​t​i​v​a​s​ ​q​u​e​s​t​õ​e​s​,​ ​c​r​i​a​d​a​s​ ​e​ ​a​r​m​a​z​e​n​a​d​a​s​ ​e​m​ ​b​a​s​e​ ​d​e​ ​d​a​d​o​s​.​ ​E​s​t​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​s​ã​o​ ​u​t​i​l​i​z​a​d​a​s​ ​n​a​ ​c​r​i​a​ç​ã​o​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​/​s​u​b​-​a​v​a​l​i​a​ç​õ​e​s​ ​p​a​r​a​ ​c​r​i​a​r​ ​u​m​ ​f​o​r​m​u​l​á​r​i​o​ ​a​o​ ​q​u​a​l​ ​o​s​ ​u​t​i​l​i​z​a​d​o​r​e​s​ ​i​r​ã​o​ ​r​e​s​p​o​n​d​e​r​.​ ​A​o​ ​c​r​i​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​ ​p​u​d​e​r​á​ ​a​s​s​o​c​i​a​r​ ​a​ ​e​s​t​a​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​ ​r​e​s​p​e​t​i​v​a​s​ ​q​u​e​s​t​õ​e​s​ ​q​u​e​ ​d​e​s​e​j​a​r​.
+		 */
+		Description: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​l​i​s​t​a​r​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s
+		 */
+		Error: string
+		/**
+		 * F​i​l​t​a​r​ ​c​a​t​e​g​o​r​i​a​s​ ​p​e​l​o​ ​t​í​t​u​l​o​.​.​.
+		 */
+		InputText: string
+		/**
+		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
+		 */
+		Loading: string
+		/**
+		 * N​ã​o​ ​e​x​i​s​t​e​m​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​ ​d​e​ ​m​o​m​e​n​t​o​.​ ​V​o​l​t​e​ ​m​a​i​s​ ​t​a​r​d​e​ ​o​u​ ​c​r​i​e​ ​u​m​a​ ​n​o​v​a​ ​c​a​t​e​g​o​r​i​a​ ​p​a​r​a​ ​c​o​m​e​ç​a​r​!
+		 */
+		NoCategories: string
+		/**
+		 * N​ã​o​ ​f​o​r​a​m​ ​e​n​c​o​t​r​a​d​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​q​u​e​ ​c​o​r​r​e​s​p​o​n​d​a​m​ ​à​ ​s​u​a​ ​p​e​s​q​u​i​s​a​.​ ​T​e​n​t​e​ ​a​j​u​s​t​a​r​ ​a​s​ ​p​a​l​a​v​r​a​s​-​c​h​a​v​e​ ​o​u​ ​l​i​m​p​e​ ​o​ ​f​i​l​t​r​o​ ​p​a​r​a​ ​v​e​r​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​ ​p​a​r​a​ ​e​s​t​e​ ​i​d​i​o​m​a​.
+		 */
+		NoCategoriesFilter: string
+		/**
+		 * P​r​é​-​V​i​s​u​a​l​i​z​a​r
+		 */
+		Preview: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​p​a​g​e​S​i​z​e​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {unknown} firstElement
+		 * @param {unknown} pageSize
+		 * @param {unknown} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'pageSize' | 'total'>
+		/**
+		 * C​a​t​e​g​o​r​i​a​s​ ​e​ ​Q​u​e​s​t​õ​e​s
+		 */
+		Title: string
+		/**
+		 * C​a​t​e​g​o​r​i​a​ ​r​e​m​o​v​i​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o​.
+		 */
+		ToastDelete: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​r​e​m​o​v​e​r​ ​c​a​t​e​g​o​r​i​a​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ToastDeleteError: string
+	}
+	CreateCategory: {
+		/**
+		 * A​d​i​c​i​o​n​a​r​ ​q​u​e​s​t​ã​o
+		 */
+		AddQuestion: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescDesc: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescTitle: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​i​d​e​n​t​i​f​i​c​a​r​ ​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		CategoryTitleDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryTitleTitle: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Continue: string
+		/**
+		 * R​e​m​o​v​e​r​ ​q​u​e​s​t​ã​o
+		 */
+		DeleteQuestion: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​u​m​a​ ​n​o​v​a​ ​c​a​t​e​g​o​r​i​a​ ​j​u​n​t​a​m​e​n​t​e​ ​c​o​m​ ​a​s​ ​s​u​a​s​ ​q​u​e​s​t​õ​e​s​.​ ​E​s​t​a​ ​c​a​t​e​g​o​r​i​a​ ​p​o​d​e​ ​s​e​r​ ​p​o​s​t​e​r​i​o​r​m​e​n​t​e​ ​a​s​s​o​c​i​a​d​a​ ​a​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o​ ​p​a​r​a​ ​q​u​e​ ​o​ ​u​t​i​l​i​z​a​d​o​r​ ​a​o​ ​r​e​s​p​o​n​d​e​r​ ​à​ ​a​v​a​l​i​a​ç​ã​o​,​ ​r​e​s​p​o​n​d​a​ ​á​s​ ​q​u​e​s​t​õ​e​s​ ​d​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		Description: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​p​a​r​a​ ​q​u​a​i​s​ ​i​d​i​o​m​a​s​ ​d​e​s​e​j​a​ ​c​r​i​a​r​ ​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		LanguageDesc: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​o​(​s​)​ ​i​d​i​o​m​a​(​s​)
+		 */
+		LanguageTitle: string
+		/**
+		 * (​S​e​m​ ​t​í​t​u​l​o​)
+		 */
+		NoTitle: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionTitle: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		RatingQuestionsDesc: string
+		/**
+		 * C​r​i​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingQuestionsTitle: string
+		/**
+		 * A​p​r​e​s​e​n​t​a​r​ ​n​a​ ​l​i​n​g​u​a​g​e​m​:
+		 */
+		ShowInLanguage: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		TextQuestionsDesc: string
+		/**
+		 * C​r​i​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextQuestionsTitle: string
+		/**
+		 * C​r​i​a​r​ ​c​a​t​e​g​o​r​i​a​ ​e​ ​q​u​e​s​t​õ​e​s
+		 */
+		Title: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​c​r​i​a​r​ ​c​a​t​e​g​o​r​i​a​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o
+		 */
+		ToastError: string
+		/**
+		 * C​a​t​e​g​o​r​i​a​ ​c​r​i​a​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastSuccess: string
+		ValidationError: {
+			/**
+			 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​a​ ​c​a​t​e​g​o​r​i​a​ ​e​m​ ​{​l​a​n​g​u​a​g​e​}
+			 * @param {unknown} language
+			 */
+			CategoryTitle: RequiredParams<'language'>
+			/**
+			 * S​e​l​e​c​i​o​n​e​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​l​i​n​g​u​a​g​e​m​ ​p​a​r​a​ ​a​ ​q​u​a​l​ ​s​e​r​á​ ​c​r​i​a​d​a​ ​a​ ​c​a​t​e​g​o​r​i​a
+			 */
+			NoLanguages: string
+			/**
+			 * C​a​t​e​g​o​r​i​a​ ​d​e​v​e​ ​t​e​r​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​q​u​e​s​t​ã​o
+			 */
+			NoQuestions: string
+			/**
+			 * Q​u​e​s​t​õ​e​s​ ​d​e​v​e​m​ ​t​e​r​ ​u​m​ ​t​í​t​u​l​o​ ​e​m​ ​t​o​d​a​s​ ​a​s​ ​l​i​n​g​u​a​g​e​n​s
+			 */
+			QuestionTitle: string
+		}
+	}
 	CreateRatingGroups: {
 		/**
 		 * A​d​i​c​i​o​n​a​r​ ​o​p​ç​ã​o​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
@@ -128,6 +286,92 @@ type RootTranslation = {
 			 */
 			RatingOptionTitle: RequiredParams<'language' | 'position'>
 		}
+	}
+	EditCategories: {
+		/**
+		 * A​d​i​c​i​o​n​a​r​ ​q​u​e​s​t​ã​o
+		 */
+		AddQuestion: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescDesc: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescTitle: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​i​d​e​n​t​i​f​i​c​a​r​ ​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		CategoryTitleDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryTitleTitle: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Continue: string
+		/**
+		 * R​e​m​o​v​e​r​ ​q​u​e​s​t​ã​o
+		 */
+		DeleteQuestion: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​u​m​a​ ​c​a​t​e​g​o​r​i​a​ ​e​ ​d​a​s​ ​s​u​a​s​ ​q​u​e​s​t​õ​e​s​ ​d​e​s​d​e​ ​q​u​e​ ​e​s​t​a​ ​n​ã​o​ ​e​s​t​e​j​a​ ​a​ ​s​e​r​ ​u​t​i​l​i​z​a​d​a​ ​e​m​ ​a​v​a​l​i​ç​õ​e​s
+		 */
+		Description: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​p​a​r​a​ ​q​u​a​i​s​ ​i​d​i​o​m​a​s​ ​d​e​s​e​j​a​ ​q​u​e​ ​a​ ​c​a​t​e​g​o​r​i​a​ ​s​e​j​a​ ​a​p​r​e​s​e​n​t​a​d​a​.
+		 */
+		LanguageDesc: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​o​(​s​)​ ​i​d​i​o​m​a​(​s​)
+		 */
+		LanguageTitle: string
+		/**
+		 * (​S​e​m​ ​t​í​t​u​l​o​)
+		 */
+		NoTitle: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionTitle: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		RatingQuestionsDesc: string
+		/**
+		 * E​d​i​t​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingQuestionsTitle: string
+		/**
+		 * A​p​r​e​s​e​n​t​a​r​ ​n​a​ ​l​i​n​g​u​a​g​e​m​:
+		 */
+		ShowInLanguage: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		TextQuestionsDesc: string
+		/**
+		 * E​d​i​t​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextQuestionsTitle: string
+		/**
+		 * E​d​i​t​a​r​ ​c​a​t​e​g​o​r​i​a​ ​e​ ​q​u​e​s​t​õ​e​s
+		 */
+		Title: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​e​d​i​t​a​r​ ​c​a​t​e​g​o​r​i​a​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o
+		 */
+		ToastError: string
+		/**
+		 * C​a​t​e​g​o​r​i​a​ ​e​d​i​t​a​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastSuccess: string
 	}
 	EditRatingGroups: {
 		/**
@@ -353,7 +597,7 @@ type RootTranslation = {
 		 */
 		CreateButton: string
 		/**
-		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​s​ã​o​ ​l​i​s​t​a​d​o​s​ ​t​o​d​o​s​ ​o​s​ ​g​r​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​c​r​i​a​d​o​s​ ​e​ ​a​r​m​a​z​e​n​a​d​o​s​ ​e​m​ ​b​a​s​e​ ​d​e​ ​d​a​d​o​s​.​ ​E​s​t​e​s​ ​g​r​o​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​s​e​r​v​e​m​ ​p​a​r​a​ ​o​ ​u​t​i​l​i​z​a​d​o​r​ ​r​e​s​p​o​n​d​e​r​ ​à​s​ ​p​e​r​g​u​n​t​a​s​ ​c​o​m​ ​t​i​p​o​ ​C​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.​ ​P​o​d​e​ ​a​s​s​o​c​i​a​r​ ​u​m​ ​i​t​e​m​ ​d​e​s​t​a​ ​p​á​g​i​n​a​ ​c​o​m​ ​u​m​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​,​ ​o​n​d​e​ ​d​e​s​e​j​a​ ​u​t​i​l​i​z​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​c​r​i​a​d​o​.
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​s​ã​o​ ​l​i​s​t​a​d​o​s​ ​t​o​d​o​s​ ​o​s​ ​g​r​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​c​r​i​a​d​o​s​ ​e​ ​a​r​m​a​z​e​n​a​d​o​s​ ​e​m​ ​b​a​s​e​ ​d​e​ ​d​a​d​o​s​.​ ​E​s​t​e​s​ ​g​r​u​p​o​s​ ​d​e​ ​o​p​ç​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​s​e​r​v​e​m​ ​p​a​r​a​ ​o​ ​u​t​i​l​i​z​a​d​o​r​ ​r​e​s​p​o​n​d​e​r​ ​à​s​ ​p​e​r​g​u​n​t​a​s​ ​c​o​m​ ​t​i​p​o​ ​C​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.​ ​P​o​d​e​ ​a​s​s​o​c​i​a​r​ ​u​m​ ​i​t​e​m​ ​d​e​s​t​a​ ​p​á​g​i​n​a​ ​c​o​m​ ​u​m​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​,​ ​o​n​d​e​ ​d​e​s​e​j​a​ ​u​t​i​l​i​z​a​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​c​r​i​a​d​o​.
 		 */
 		Description: string
 		/**
@@ -418,6 +662,40 @@ type RootTranslation = {
 		 */
 		User: string
 	}
+	SingleCategories: {
+		/**
+		 * C​r​i​a​d​o​ ​p​o​r​ ​u​t​i​l​i​z​a​d​o​r
+		 */
+		CreateBy: string
+		/**
+		 * D​a​t​a​ ​d​e​ ​c​r​i​a​ç​ã​o
+		 */
+		CreateDate: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o
+		 */
+		Description: string
+		/**
+		 * O​p​ç​ã​o
+		 */
+		Option: string
+		/**
+		 * Q​u​e​s​t​õ​e​s
+		 */
+		Questions: string
+		/**
+		 * A​b​a​i​x​o​ ​e​s​t​ã​o​ ​l​i​s​t​a​d​a​s​ ​a​s​ ​q​u​e​s​t​õ​e​s​ ​d​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		QuestionsTitle: string
+		/**
+		 * R​e​s​p​o​s​t​a​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextResponse: string
+		/**
+		 * T​i​p​o​ ​d​e​ ​q​u​e​s​t​ã​o
+		 */
+		Type: string
+	}
 	SingleRatingGroups: {
 		/**
 		 * C​r​i​a​d​o​ ​p​o​r​ ​u​t​i​l​i​z​a​d​o​r
@@ -462,9 +740,17 @@ type RootTranslation = {
 		 */
 		RatingOptions: string
 		/**
+		 * Q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingQuestions: string
+		/**
 		 * V​o​l​t​a​r
 		 */
 		Return: string
+		/**
+		 * Q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextQuestions: string
 	}
 }
 
@@ -490,6 +776,160 @@ export type TranslationFunctions = {
 		 * O utilizador não tem nenhum tipo de perfil associado seja frontoffice ou backoffice. Tente solucionar este problema antes de acessar a página.
 		 */
 		NoUserProfileTypeDesc: () => LocalizedString
+	}
+	Categories: {
+		/**
+		 * Criar categoria
+		 */
+		CreateButton: () => LocalizedString
+		/**
+		 * Nesta página são listadas todas as categorias, e as suas respetivas questões, criadas e armazenadas em base de dados. Estas categorias são utilizadas na criação da avaliação/sub-avaliações para criar um formulário ao qual os utilizadores irão responder. Ao criar a avaliação puderá associar a esta as categorias e respetivas questões que desejar.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Erro ao tentar listar as categorias
+		 */
+		Error: () => LocalizedString
+		/**
+		 * Filtar categorias pelo título...
+		 */
+		InputText: () => LocalizedString
+		/**
+		 * A carregar...
+		 */
+		Loading: () => LocalizedString
+		/**
+		 * Não existem categorias disponíveis de momento. Volte mais tarde ou crie uma nova categoria para começar!
+		 */
+		NoCategories: () => LocalizedString
+		/**
+		 * Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.
+		 */
+		NoCategoriesFilter: () => LocalizedString
+		/**
+		 * Pré-Visualizar
+		 */
+		Preview: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {pageSize} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: unknown, pageSize: unknown, total: unknown }) => LocalizedString
+		/**
+		 * Categorias e Questões
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Categoria removida com sucesso.
+		 */
+		ToastDelete: () => LocalizedString
+		/**
+		 * Erro ao remover categoria. Tente de novo.
+		 */
+		ToastDeleteError: () => LocalizedString
+	}
+	CreateCategory: {
+		/**
+		 * Adicionar questão
+		 */
+		AddQuestion: () => LocalizedString
+		/**
+		 * Insira uma descrição para a categoria
+		 */
+		CategoryDescDesc: () => LocalizedString
+		/**
+		 * Descrição da categoria
+		 */
+		CategoryDescTitle: () => LocalizedString
+		/**
+		 * Insira um título para identificar a categoria.
+		 */
+		CategoryTitleDesc: () => LocalizedString
+		/**
+		 * Título da categoria
+		 */
+		CategoryTitleTitle: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Continue: () => LocalizedString
+		/**
+		 * Remover questão
+		 */
+		DeleteQuestion: () => LocalizedString
+		/**
+		 * Nesta página pode realizar a criação de uma nova categoria juntamente com as suas questões. Esta categoria pode ser posteriormente associada a uma avaliação para que o utilizador ao responder à avaliação, responda ás questões da categoria.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Selecione para quais idiomas deseja criar a categoria.
+		 */
+		LanguageDesc: () => LocalizedString
+		/**
+		 * Selecione o(s) idioma(s)
+		 */
+		LanguageTitle: () => LocalizedString
+		/**
+		 * (Sem título)
+		 */
+		NoTitle: () => LocalizedString
+		/**
+		 * Descrição da questão
+		 */
+		QuestionDesc: () => LocalizedString
+		/**
+		 * Título da questão
+		 */
+		QuestionTitle: () => LocalizedString
+		/**
+		 * Passo para criação de questões de classificação associadas à categoria
+		 */
+		RatingQuestionsDesc: () => LocalizedString
+		/**
+		 * Criar questões de classificação
+		 */
+		RatingQuestionsTitle: () => LocalizedString
+		/**
+		 * Apresentar na linguagem:
+		 */
+		ShowInLanguage: () => LocalizedString
+		/**
+		 * Passo para criação de questões de texto associadas à categoria
+		 */
+		TextQuestionsDesc: () => LocalizedString
+		/**
+		 * Criar questões de texto
+		 */
+		TextQuestionsTitle: () => LocalizedString
+		/**
+		 * Criar categoria e questões
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Erro ao criar categoria. Tente de novo
+		 */
+		ToastError: () => LocalizedString
+		/**
+		 * Categoria criada com sucesso
+		 */
+		ToastSuccess: () => LocalizedString
+		ValidationError: {
+			/**
+			 * Insira um título para a categoria em {language}
+			 */
+			CategoryTitle: (arg: { language: unknown }) => LocalizedString
+			/**
+			 * Selecione pelo menos uma linguagem para a qual será criada a categoria
+			 */
+			NoLanguages: () => LocalizedString
+			/**
+			 * Categoria deve ter pelo menos uma questão
+			 */
+			NoQuestions: () => LocalizedString
+			/**
+			 * Questões devem ter um título em todas as linguagens
+			 */
+			QuestionTitle: () => LocalizedString
+		}
 	}
 	CreateRatingGroups: {
 		/**
@@ -582,6 +1022,92 @@ export type TranslationFunctions = {
 			 */
 			RatingOptionTitle: (arg: { language: unknown, position: unknown }) => LocalizedString
 		}
+	}
+	EditCategories: {
+		/**
+		 * Adicionar questão
+		 */
+		AddQuestion: () => LocalizedString
+		/**
+		 * Insira uma descrição para a categoria
+		 */
+		CategoryDescDesc: () => LocalizedString
+		/**
+		 * Descrição da categoria
+		 */
+		CategoryDescTitle: () => LocalizedString
+		/**
+		 * Insira um título para identificar a categoria.
+		 */
+		CategoryTitleDesc: () => LocalizedString
+		/**
+		 * Título da categoria
+		 */
+		CategoryTitleTitle: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Continue: () => LocalizedString
+		/**
+		 * Remover questão
+		 */
+		DeleteQuestion: () => LocalizedString
+		/**
+		 * Nesta página pode realizar a edição de uma categoria e das suas questões desde que esta não esteja a ser utilizada em avalições
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Selecione para quais idiomas deseja que a categoria seja apresentada.
+		 */
+		LanguageDesc: () => LocalizedString
+		/**
+		 * Selecione o(s) idioma(s)
+		 */
+		LanguageTitle: () => LocalizedString
+		/**
+		 * (Sem título)
+		 */
+		NoTitle: () => LocalizedString
+		/**
+		 * Descrição da questão
+		 */
+		QuestionDesc: () => LocalizedString
+		/**
+		 * Título da questão
+		 */
+		QuestionTitle: () => LocalizedString
+		/**
+		 * Passo para edição de questões de classificação associadas à categoria
+		 */
+		RatingQuestionsDesc: () => LocalizedString
+		/**
+		 * Editar questões de classificação
+		 */
+		RatingQuestionsTitle: () => LocalizedString
+		/**
+		 * Apresentar na linguagem:
+		 */
+		ShowInLanguage: () => LocalizedString
+		/**
+		 * Passo para edição de questões de texto associadas à categoria
+		 */
+		TextQuestionsDesc: () => LocalizedString
+		/**
+		 * Editar questões de texto
+		 */
+		TextQuestionsTitle: () => LocalizedString
+		/**
+		 * Editar categoria e questões
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Erro ao editar categoria. Tente de novo
+		 */
+		ToastError: () => LocalizedString
+		/**
+		 * Categoria editada com sucesso
+		 */
+		ToastSuccess: () => LocalizedString
 	}
 	EditRatingGroups: {
 		/**
@@ -807,7 +1333,7 @@ export type TranslationFunctions = {
 		 */
 		CreateButton: () => LocalizedString
 		/**
-		 * Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes groupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.
+		 * Nesta página são listados todos os grupos de opções de classificação criados e armazenados em base de dados. Estes grupos de opções de classificação servem para o utilizador responder às perguntas com tipo Classificação das avaliações. Pode associar um item desta página com uma sub-avaliação, onde deseja utilizar o critério de avaliação criado.
 		 */
 		Description: () => LocalizedString
 		/**
@@ -869,6 +1395,40 @@ export type TranslationFunctions = {
 		 */
 		User: () => LocalizedString
 	}
+	SingleCategories: {
+		/**
+		 * Criado por utilizador
+		 */
+		CreateBy: () => LocalizedString
+		/**
+		 * Data de criação
+		 */
+		CreateDate: () => LocalizedString
+		/**
+		 * Descrição
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Opção
+		 */
+		Option: () => LocalizedString
+		/**
+		 * Questões
+		 */
+		Questions: () => LocalizedString
+		/**
+		 * Abaixo estão listadas as questões da categoria.
+		 */
+		QuestionsTitle: () => LocalizedString
+		/**
+		 * Resposta de texto
+		 */
+		TextResponse: () => LocalizedString
+		/**
+		 * Tipo de questão
+		 */
+		Type: () => LocalizedString
+	}
 	SingleRatingGroups: {
 		/**
 		 * Criado por utilizador
@@ -913,9 +1473,17 @@ export type TranslationFunctions = {
 		 */
 		RatingOptions: () => LocalizedString
 		/**
+		 * Questões de classificação
+		 */
+		RatingQuestions: () => LocalizedString
+		/**
 		 * Voltar
 		 */
 		Return: () => LocalizedString
+		/**
+		 * Questões de texto
+		 */
+		TextQuestions: () => LocalizedString
 	}
 }
 

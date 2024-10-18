@@ -1,7 +1,35 @@
-type AuthorizationData = { 
-    moduleId: number, 
-    moduleType: string, 
-    windowPermissions: WindowPermissionData[] 
+type AuthorizationData = { moduleId: number, moduleType: string, windowPermissions: WindowPermissionData[] }
+
+type CategoryData = {
+    categoryId: string,
+    createByUser: string,
+    createDate: string,
+    isBeingUsed: boolean,
+    questions: QuestionData[],
+    translations: CategoryTranslationData[]
+}
+
+type CategoryInfoData = {
+    categoryId: string,
+    title: string,
+    description: string
+}
+
+type CategoryTranslationData = {
+    categoryTranslationId: string,
+    language: string,
+    title: string,
+    description: string
+}
+
+type CreateCategoryData = {
+    questions: CreateQuestionData[]
+    translations: CreateTranslationData[]
+}
+
+type CreateQuestionData = {
+    type: string,
+    translations: CreateTranslationData[]
 }
 
 type CreateRatingGroupData = { 
@@ -13,13 +41,24 @@ type CreateRatingGroupData = {
 type CreateRatingOptionData = {
     numericValue: number,
     needComment: boolean,
-    translations: CreateRatingOptionTranslationData[]
+    translations: CreateTranslationData[]
 }
 
-type CreateRatingOptionTranslationData = {
+type CreateTranslationData = {
     language: string,
     title: string,
     description: string
+}
+
+type EditCategoryData = {
+    questions: EditQuestionData[],
+    translations: EditTranslationData[]
+}
+
+type EditQuestionData = {
+    questionId?: string,
+    type: string,
+    translations: EditTranslationData[]
 }
 
 type EditRatingGroupData = {
@@ -32,11 +71,11 @@ type EditRatingOptionData = {
     ratingOptionId?: string,
     numericValue: number,
     needComment: boolean,
-    translations: EditRatingOptionTranslationData[]
+    translations: EditTranslationData[]
 }
 
-type EditRatingOptionTranslationData = {
-    ratingOptionTranslationId?: string,
+type EditTranslationData = {
+    translationId?: string,
     language: string,
     title: string,
     description: string
@@ -59,6 +98,19 @@ type RatingGroupInfoData = {
     title: string,
     description: string,
     createDate: string
+}
+
+type QuestionData = {
+    questionId: string,
+    type: string,
+    translations: QuestionTranslationData[]
+}
+
+type QuestionTranslationData = {
+    questionTranslationId: string,
+    language: string,
+    title: string,
+    description: string
 }
 
 type RatingGroupData = {

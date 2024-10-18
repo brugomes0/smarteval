@@ -21,6 +21,10 @@
     import SingleRatingGroupComponent from './components/SingleRatingGroup.svelte'
 	import CreateRatingGroupComponent from './components/CreateRatingGroup.svelte'
 	import EditRatingGroupComponent from './components/EditRatingGroup.svelte'
+	import CategoriesComponent from './components/Categories.svelte'
+	import CreateCategoryComponent from './components/CreateCategory.svelte'
+	import SingleCategoryComponent from './components/SingleCategory.svelte'
+	import EditCategoryComponent from './components/EditCategory.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -113,6 +117,10 @@
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-5">
 							<Route path="/" component={HomeBOComponent} />
+							<Route path="/categories" component={CategoriesComponent} {user} />
+							<Route path="/categories/createCategory" component={CreateCategoryComponent} />
+							<Route path="/categories/:categoryId" component={SingleCategoryComponent} {user} {lang} />
+							<Route path="/categories/:categoryId/edit" component={EditCategoryComponent} />
 							<Route path="/ratingGroups" component={RatingGroupsComponent} {user} />
 							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
