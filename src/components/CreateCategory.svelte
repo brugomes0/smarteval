@@ -65,6 +65,7 @@
             ...category.questions,
             { type: "Text", translations: languagesChoosen.map(language => ({ language, title: '', description: '' })) }
         ]
+        editableQuestion = category.questions[category.questions.length - 1]
     }
 
     function checkStep(step: number) {

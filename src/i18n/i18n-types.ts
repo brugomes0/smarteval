@@ -61,7 +61,7 @@ type RootTranslation = {
 		 */
 		NoCategories: string
 		/**
-		 * N​ã​o​ ​f​o​r​a​m​ ​e​n​c​o​t​r​a​d​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​q​u​e​ ​c​o​r​r​e​s​p​o​n​d​a​m​ ​à​ ​s​u​a​ ​p​e​s​q​u​i​s​a​.​ ​T​e​n​t​e​ ​a​j​u​s​t​a​r​ ​a​s​ ​p​a​l​a​v​r​a​s​-​c​h​a​v​e​ ​o​u​ ​l​i​m​p​e​ ​o​ ​f​i​l​t​r​o​ ​p​a​r​a​ ​v​e​r​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​.
+		 * N​ã​o​ ​f​o​r​a​m​ ​e​n​c​o​t​r​a​d​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​q​u​e​ ​c​o​r​r​e​s​p​o​n​d​a​m​ ​à​ ​s​u​a​ ​p​e​s​q​u​i​s​a​.​ ​T​e​n​t​e​ ​a​j​u​s​t​a​r​ ​a​s​ ​p​a​l​a​v​r​a​s​-​c​h​a​v​e​ ​o​u​ ​l​i​m​p​e​ ​o​ ​f​i​l​t​r​o​ ​p​a​r​a​ ​v​e​r​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​ ​p​a​r​a​ ​e​s​t​e​ ​i​d​i​o​m​a​.
 		 */
 		NoCategoriesFilter: string
 		/**
@@ -286,6 +286,92 @@ type RootTranslation = {
 			 */
 			RatingOptionTitle: RequiredParams<'language' | 'position'>
 		}
+	}
+	EditCategories: {
+		/**
+		 * A​d​i​c​i​o​n​a​r​ ​q​u​e​s​t​ã​o
+		 */
+		AddQuestion: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​a​ ​d​e​s​c​r​i​ç​ã​o​ ​p​a​r​a​ ​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescDesc: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryDescTitle: string
+		/**
+		 * I​n​s​i​r​a​ ​u​m​ ​t​í​t​u​l​o​ ​p​a​r​a​ ​i​d​e​n​t​i​f​i​c​a​r​ ​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		CategoryTitleDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryTitleTitle: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Continue: string
+		/**
+		 * R​e​m​o​v​e​r​ ​q​u​e​s​t​ã​o
+		 */
+		DeleteQuestion: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​u​m​a​ ​c​a​t​e​g​o​r​i​a​ ​e​ ​d​a​s​ ​s​u​a​s​ ​q​u​e​s​t​õ​e​s​ ​d​e​s​d​e​ ​q​u​e​ ​e​s​t​a​ ​n​ã​o​ ​e​s​t​e​j​a​ ​a​ ​s​e​r​ ​u​t​i​l​i​z​a​d​a​ ​e​m​ ​a​v​a​l​i​ç​õ​e​s
+		 */
+		Description: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​p​a​r​a​ ​q​u​a​i​s​ ​i​d​i​o​m​a​s​ ​d​e​s​e​j​a​ ​q​u​e​ ​a​ ​c​a​t​e​g​o​r​i​a​ ​s​e​j​a​ ​a​p​r​e​s​e​n​t​a​d​a​.
+		 */
+		LanguageDesc: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​o​(​s​)​ ​i​d​i​o​m​a​(​s​)
+		 */
+		LanguageTitle: string
+		/**
+		 * (​S​e​m​ ​t​í​t​u​l​o​)
+		 */
+		NoTitle: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionDesc: string
+		/**
+		 * T​í​t​u​l​o​ ​d​a​ ​q​u​e​s​t​ã​o
+		 */
+		QuestionTitle: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		RatingQuestionsDesc: string
+		/**
+		 * E​d​i​t​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​c​l​a​s​s​i​f​i​c​a​ç​ã​o
+		 */
+		RatingQuestionsTitle: string
+		/**
+		 * A​p​r​e​s​e​n​t​a​r​ ​n​a​ ​l​i​n​g​u​a​g​e​m​:
+		 */
+		ShowInLanguage: string
+		/**
+		 * P​a​s​s​o​ ​p​a​r​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​c​a​t​e​g​o​r​i​a
+		 */
+		TextQuestionsDesc: string
+		/**
+		 * E​d​i​t​a​r​ ​q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextQuestionsTitle: string
+		/**
+		 * E​d​i​t​a​r​ ​c​a​t​e​g​o​r​i​a​ ​e​ ​q​u​e​s​t​õ​e​s
+		 */
+		Title: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​e​d​i​t​a​r​ ​c​a​t​e​g​o​r​i​a​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o
+		 */
+		ToastError: string
+		/**
+		 * C​a​t​e​g​o​r​i​a​ ​e​d​i​t​a​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastSuccess: string
 	}
 	EditRatingGroups: {
 		/**
@@ -576,6 +662,40 @@ type RootTranslation = {
 		 */
 		User: string
 	}
+	SingleCategories: {
+		/**
+		 * C​r​i​a​d​o​ ​p​o​r​ ​u​t​i​l​i​z​a​d​o​r
+		 */
+		CreateBy: string
+		/**
+		 * D​a​t​a​ ​d​e​ ​c​r​i​a​ç​ã​o
+		 */
+		CreateDate: string
+		/**
+		 * D​e​s​c​r​i​ç​ã​o
+		 */
+		Description: string
+		/**
+		 * O​p​ç​ã​o
+		 */
+		Option: string
+		/**
+		 * Q​u​e​s​t​õ​e​s
+		 */
+		Questions: string
+		/**
+		 * A​b​a​i​x​o​ ​e​s​t​ã​o​ ​l​i​s​t​a​d​a​s​ ​a​s​ ​q​u​e​s​t​õ​e​s​ ​d​a​ ​c​a​t​e​g​o​r​i​a​.
+		 */
+		QuestionsTitle: string
+		/**
+		 * R​e​s​p​o​s​t​a​ ​d​e​ ​t​e​x​t​o
+		 */
+		TextResponse: string
+		/**
+		 * T​i​p​o​ ​d​e​ ​q​u​e​s​t​ã​o
+		 */
+		Type: string
+	}
 	SingleRatingGroups: {
 		/**
 		 * C​r​i​a​d​o​ ​p​o​r​ ​u​t​i​l​i​z​a​d​o​r
@@ -683,7 +803,7 @@ export type TranslationFunctions = {
 		 */
 		NoCategories: () => LocalizedString
 		/**
-		 * Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis.
+		 * Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.
 		 */
 		NoCategoriesFilter: () => LocalizedString
 		/**
@@ -902,6 +1022,92 @@ export type TranslationFunctions = {
 			 */
 			RatingOptionTitle: (arg: { language: unknown, position: unknown }) => LocalizedString
 		}
+	}
+	EditCategories: {
+		/**
+		 * Adicionar questão
+		 */
+		AddQuestion: () => LocalizedString
+		/**
+		 * Insira uma descrição para a categoria
+		 */
+		CategoryDescDesc: () => LocalizedString
+		/**
+		 * Descrição da categoria
+		 */
+		CategoryDescTitle: () => LocalizedString
+		/**
+		 * Insira um título para identificar a categoria.
+		 */
+		CategoryTitleDesc: () => LocalizedString
+		/**
+		 * Título da categoria
+		 */
+		CategoryTitleTitle: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Continue: () => LocalizedString
+		/**
+		 * Remover questão
+		 */
+		DeleteQuestion: () => LocalizedString
+		/**
+		 * Nesta página pode realizar a edição de uma categoria e das suas questões desde que esta não esteja a ser utilizada em avalições
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Selecione para quais idiomas deseja que a categoria seja apresentada.
+		 */
+		LanguageDesc: () => LocalizedString
+		/**
+		 * Selecione o(s) idioma(s)
+		 */
+		LanguageTitle: () => LocalizedString
+		/**
+		 * (Sem título)
+		 */
+		NoTitle: () => LocalizedString
+		/**
+		 * Descrição da questão
+		 */
+		QuestionDesc: () => LocalizedString
+		/**
+		 * Título da questão
+		 */
+		QuestionTitle: () => LocalizedString
+		/**
+		 * Passo para edição de questões de classificação associadas à categoria
+		 */
+		RatingQuestionsDesc: () => LocalizedString
+		/**
+		 * Editar questões de classificação
+		 */
+		RatingQuestionsTitle: () => LocalizedString
+		/**
+		 * Apresentar na linguagem:
+		 */
+		ShowInLanguage: () => LocalizedString
+		/**
+		 * Passo para edição de questões de texto associadas à categoria
+		 */
+		TextQuestionsDesc: () => LocalizedString
+		/**
+		 * Editar questões de texto
+		 */
+		TextQuestionsTitle: () => LocalizedString
+		/**
+		 * Editar categoria e questões
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Erro ao editar categoria. Tente de novo
+		 */
+		ToastError: () => LocalizedString
+		/**
+		 * Categoria editada com sucesso
+		 */
+		ToastSuccess: () => LocalizedString
 	}
 	EditRatingGroups: {
 		/**
@@ -1188,6 +1394,40 @@ export type TranslationFunctions = {
 		 * Utilizador
 		 */
 		User: () => LocalizedString
+	}
+	SingleCategories: {
+		/**
+		 * Criado por utilizador
+		 */
+		CreateBy: () => LocalizedString
+		/**
+		 * Data de criação
+		 */
+		CreateDate: () => LocalizedString
+		/**
+		 * Descrição
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Opção
+		 */
+		Option: () => LocalizedString
+		/**
+		 * Questões
+		 */
+		Questions: () => LocalizedString
+		/**
+		 * Abaixo estão listadas as questões da categoria.
+		 */
+		QuestionsTitle: () => LocalizedString
+		/**
+		 * Resposta de texto
+		 */
+		TextResponse: () => LocalizedString
+		/**
+		 * Tipo de questão
+		 */
+		Type: () => LocalizedString
 	}
 	SingleRatingGroups: {
 		/**

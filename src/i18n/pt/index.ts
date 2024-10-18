@@ -16,7 +16,7 @@ const pt = {
 		InputText: "Filtar categorias pelo título...",
 		Loading: "A carregar...",
 		NoCategories: "Não existem categorias disponíveis de momento. Volte mais tarde ou crie uma nova categoria para começar!",
-		NoCategoriesFilter: "Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis.",
+		NoCategoriesFilter: "Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.",
 		Preview: "Pré-Visualizar",
 		ShowingItemsLabel: "Exibindo {firstElement} até {pageSize} de {total} items",
 		Title: "Categorias e Questões",
@@ -77,6 +77,29 @@ const pt = {
 			RatingGroupTitle: "Insira um título para o critério de avaliação",
 			RatingOptionTitle: "Insira um título para a opção de classificação na posição {position} e idioma {language}"
 		}
+	},
+	EditCategories: {
+		AddQuestion: "Adicionar questão",
+		CategoryDescDesc: "Insira uma descrição para a categoria",
+		CategoryDescTitle: "Descrição da categoria",
+		CategoryTitleDesc: "Insira um título para identificar a categoria.",
+		CategoryTitleTitle: "Título da categoria",
+		Continue: "Continuar",
+		DeleteQuestion: "Remover questão",
+		Description: "Nesta página pode realizar a edição de uma categoria e das suas questões desde que esta não esteja a ser utilizada em avalições",
+		LanguageDesc: "Selecione para quais idiomas deseja que a categoria seja apresentada.",
+		LanguageTitle: "Selecione o(s) idioma(s)",
+		NoTitle: "(Sem título)",
+		QuestionDesc: "Descrição da questão",
+		QuestionTitle: "Título da questão",
+		RatingQuestionsDesc: "Passo para edição de questões de classificação associadas à categoria",
+		RatingQuestionsTitle: "Editar questões de classificação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		TextQuestionsDesc: "Passo para edição de questões de texto associadas à categoria",
+		TextQuestionsTitle: "Editar questões de texto",
+		Title: "Editar categoria e questões",
+		ToastError: "Erro ao editar categoria. Tente de novo",
+		ToastSuccess: "Categoria editada com sucesso"
 	},
 	EditRatingGroups: {
 		AddRatingOption: "Adicionar opção de classificação",
@@ -162,6 +185,16 @@ const pt = {
 		Frontoffice: "Menu Frontoffice",
 		Hello: "Olá",
 		User: "Utilizador"
+	},
+	SingleCategories: {
+		CreateBy: "Criado por utilizador",
+		CreateDate: "Data de criação",
+		Description: "Descrição",
+		Option: "Opção",
+		Questions: "Questões",
+		QuestionsTitle: "Abaixo estão listadas as questões da categoria.",
+		TextResponse: "Resposta de texto",
+		Type: "Tipo de questão"
 	},
 	SingleRatingGroups: {
 		CreateBy: "Criado por utilizador",

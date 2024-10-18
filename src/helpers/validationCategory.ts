@@ -13,7 +13,8 @@ export function validateCategory(category: CreateCategoryData, step: number) {
 
         for (let question of category.questions) {
             for (let translation of question.translations) {
-                if (translation.title === "") return message = errorMessage("questionTitle")
+                if (step === 1 && question.type === 'Rating' && translation.title === "") return message = errorMessage("questionTitle")
+                if (step === 2 && question.type === 'Text' && translation.title === "") return message = errorMessage("questionTitle")
             }
         }
     }

@@ -80,7 +80,7 @@
                 numericValue: option.numericValue,
                 needComment: option.needComment,
                 translations: option.translations.map(trans => ({
-                    ratingOptionTranslationId: trans.ratingOptionTranslationId,
+                    translationId: trans.ratingOptionTranslationId,
                     language: trans.language,
                     title: trans.title,
                     description: trans.description

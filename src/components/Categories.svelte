@@ -13,7 +13,8 @@
     let categories: CategoryInfoData[] = []
     let error: string = ""
     let firstElement: number = 0
-    let languageShowing: string = ""
+    let languages: string[] = ["PT", "EN", "ES", "FR", "PL"]
+    let languageShowing: string = "PT"
     let lastElement: number = 0
     let loading: boolean = true
     let nameInput: string = ""
@@ -80,6 +81,17 @@
 </script>
 
 <div class="flex flex-col gap-y-5">
+    <div class="border flex gap-x-1 mx-auto p-1 rounded text-xs border-gray-300 text-gray-500">
+        {#each languages as language}
+            <button
+                on:click={() => { if (languageShowing != language) { languageShowing = language, nameInput = '', handleInputChanges() }}}
+                class="py-1 px-2 rounded {language === languageShowing ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'}"
+            >
+                {language}
+            </button>
+        {/each}
+    </div>
+
     <div class="flex flex-col lg:flex-row gap-x-20 gap-y-5 items-start justify-between">
         <div class="flex flex-col">
             <p class="font-semibold text-center lg:text-left text-lg text-black">{$LL.Categories.Title()}</p>
