@@ -1,4 +1,8 @@
-type AuthorizationData = { moduleId: number, moduleType: string, windowPermissions: WindowPermissionData[] }
+type AuthorizationData = { 
+    moduleId: number,
+    moduleType: string,
+    windowPermissions: WindowPermissionData[]
+}
 
 type CategoryData = {
     categoryId: string,
@@ -137,11 +141,14 @@ type RatingOptionTranslationData = {
     description: string
 }
 
-type TemplateData = {
-    templateId: string,
+type ReviewInfoData = {
+    reviewId: string,
     title: string,
     description: string,
-    createDate: Date
+    status: string,
+    createDate: string,
+    startDate: string,
+    endDate: string
 }
 
 type UserData = {

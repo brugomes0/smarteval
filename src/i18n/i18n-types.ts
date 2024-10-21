@@ -61,7 +61,7 @@ type RootTranslation = {
 		 */
 		NoCategories: string
 		/**
-		 * N​ã​o​ ​f​o​r​a​m​ ​e​n​c​o​t​r​a​d​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​q​u​e​ ​c​o​r​r​e​s​p​o​n​d​a​m​ ​à​ ​s​u​a​ ​p​e​s​q​u​i​s​a​.​ ​T​e​n​t​e​ ​a​j​u​s​t​a​r​ ​a​s​ ​p​a​l​a​v​r​a​s​-​c​h​a​v​e​ ​o​u​ ​l​i​m​p​e​ ​o​ ​f​i​l​t​r​o​ ​p​a​r​a​ ​v​e​r​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​ ​p​a​r​a​ ​e​s​t​e​ ​i​d​i​o​m​a​.
+		 * N​ã​o​ ​f​o​r​a​m​ ​e​n​c​o​n​t​r​a​d​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​q​u​e​ ​c​o​r​r​e​s​p​o​n​d​a​m​ ​à​ ​s​u​a​ ​p​e​s​q​u​i​s​a​.​ ​T​e​n​t​e​ ​a​j​u​s​t​a​r​ ​a​s​ ​p​a​l​a​v​r​a​s​-​c​h​a​v​e​ ​o​u​ ​l​i​m​p​e​ ​o​ ​f​i​l​t​r​o​ ​p​a​r​a​ ​v​e​r​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​d​i​s​p​o​n​í​v​e​i​s​ ​p​a​r​a​ ​e​s​t​e​ ​i​d​i​o​m​a​.
 		 */
 		NoCategoriesFilter: string
 		/**
@@ -644,6 +644,77 @@ type RootTranslation = {
 		 */
 		ToastDeleteError: string
 	}
+	Reviews: {
+		/**
+		 * C​r​i​a​r​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		CreateButton: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​s​ã​o​ ​l​i​s​t​a​d​a​s​ ​t​o​d​a​s​ ​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​ ​c​r​i​a​d​a​s​ ​a​t​é​ ​a​o​ ​m​o​m​e​n​t​o​ ​d​i​v​i​d​a​s​ ​p​e​l​o​ ​s​e​u​ ​e​s​t​a​d​o​ ​a​t​u​a​l​.​ ​P​a​r​a​ ​v​e​r​ ​a​v​a​l​i​a​ç​õ​e​s​ ​e​m​ ​o​u​t​r​o​s​ ​e​s​t​a​d​o​s​ ​t​e​r​á​ ​q​u​e​ ​c​l​i​c​a​r​ ​n​o​ ​e​s​t​a​d​o​ ​q​u​e​ ​d​e​s​e​j​a​ ​p​a​r​a​ ​e​s​s​a​ ​f​i​n​a​l​i​d​a​d​e​.​ ​C​a​s​o​ ​t​e​n​h​a​ ​p​e​r​m​i​s​s​ã​o​ ​p​a​r​a​ ​t​a​l​,​ ​p​u​d​e​r​á​ ​c​r​i​a​r​ ​e​ ​r​e​m​o​v​e​r​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o​ ​c​l​i​c​a​n​d​o​ ​n​o​s​ ​r​e​s​p​e​t​i​v​o​s​ ​b​o​t​õ​e​s​ ​p​a​r​a​ ​e​s​s​e​ ​e​f​e​i​t​o​.
+		 */
+		Description: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​l​i​s​t​a​r​ ​a​s​ ​a​v​a​l​i​a​ç​õ​e​s
+		 */
+		Error: string
+		/**
+		 * F​i​l​t​r​a​r​ ​a​v​a​l​i​a​ç​õ​e​s​ ​p​e​l​o​ ​t​í​t​u​l​o​.​.​.
+		 */
+		InputText: string
+		/**
+		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
+		 */
+		Loading: string
+		/**
+		 * N​ã​o​ ​e​x​i​s​t​e​m​ ​a​v​a​l​i​a​ç​õ​e​s​ ​c​o​m​ ​e​s​t​e​ ​e​s​t​a​d​o​ ​d​i​s​p​o​n​í​v​e​i​s​ ​n​e​s​t​e​ ​m​o​m​e​n​t​o​.​ ​V​o​l​t​e​ ​m​a​i​s​ ​t​a​r​d​e​ ​o​u​ ​c​r​i​e​ ​u​m​a​ ​n​o​v​a​ ​a​v​a​l​i​a​ç​ã​o​ ​p​a​r​a​ ​c​o​m​e​ç​a​r​!
+		 */
+		NoReviews: string
+		/**
+		 * N​ã​o​ ​f​o​r​a​m​ ​e​n​c​o​n​t​r​a​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​ ​q​u​e​ ​c​o​r​r​e​s​p​o​n​d​a​m​ ​à​ ​s​u​a​ ​p​e​s​q​u​i​s​a​.​ ​T​e​n​t​e​ ​a​l​t​e​r​a​r​ ​o​ ​e​s​t​a​d​o​ ​o​u​ ​l​i​m​p​e​ ​o​ ​f​i​l​t​r​o​ ​p​a​r​a​ ​v​e​r​ ​p​o​s​s​í​v​e​i​s​ ​a​v​a​l​i​a​ç​õ​e​s​ ​d​i​s​p​o​n​í​v​e​i​s​.
+		 */
+		NoReviewsFilter: string
+		/**
+		 * P​r​é​-​V​i​s​u​a​l​i​z​a​r
+		 */
+		Preview: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​p​a​g​e​S​i​z​e​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {number} firstElement
+		 * @param {number} pageSize
+		 * @param {number} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'pageSize' | 'total'>
+		/**
+		 * A​v​a​l​i​a​ç​õ​e​s
+		 */
+		Title: string
+		/**
+		 * A​v​a​l​i​a​ç​ã​o​ ​r​e​m​o​v​i​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o​.
+		 */
+		ToastDelete: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​r​e​m​o​v​e​r​ ​a​v​a​l​i​a​ç​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ToastDeleteError: string
+	}
+	ReviewStatus: {
+		/**
+		 * A​t​i​v​a​s
+		 */
+		Active: string
+		/**
+		 * C​a​n​c​e​l​a​d​a​s
+		 */
+		Canceled: string
+		/**
+		 * C​o​m​p​l​e​t​a​s
+		 */
+		Completed: string
+		/**
+		 * N​ã​o​ ​i​n​i​c​i​a​d​a​s
+		 */
+		NotStarted: string
+	}
 	Sidebar: {
 		/**
 		 * M​e​n​u​ ​B​a​c​k​o​f​f​i​c​e
@@ -803,7 +874,7 @@ export type TranslationFunctions = {
 		 */
 		NoCategories: () => LocalizedString
 		/**
-		 * Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.
+		 * Não foram encontradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.
 		 */
 		NoCategoriesFilter: () => LocalizedString
 		/**
@@ -1376,6 +1447,74 @@ export type TranslationFunctions = {
 		 * Erro ao remover critério de avaliação. Tente de novo.
 		 */
 		ToastDeleteError: () => LocalizedString
+	}
+	Reviews: {
+		/**
+		 * Criar avaliação
+		 */
+		CreateButton: () => LocalizedString
+		/**
+		 * Nesta página são listadas todas as avaliações criadas até ao momento dividas pelo seu estado atual. Para ver avaliações em outros estados terá que clicar no estado que deseja para essa finalidade. Caso tenha permissão para tal, puderá criar e remover uma avaliação clicando nos respetivos botões para esse efeito.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Erro ao tentar listar as avaliações
+		 */
+		Error: () => LocalizedString
+		/**
+		 * Filtrar avaliações pelo título...
+		 */
+		InputText: () => LocalizedString
+		/**
+		 * A carregar...
+		 */
+		Loading: () => LocalizedString
+		/**
+		 * Não existem avaliações com este estado disponíveis neste momento. Volte mais tarde ou crie uma nova avaliação para começar!
+		 */
+		NoReviews: () => LocalizedString
+		/**
+		 * Não foram encontradas avaliações que correspondam à sua pesquisa. Tente alterar o estado ou limpe o filtro para ver possíveis avaliações disponíveis.
+		 */
+		NoReviewsFilter: () => LocalizedString
+		/**
+		 * Pré-Visualizar
+		 */
+		Preview: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {pageSize} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: number, pageSize: number, total: number }) => LocalizedString
+		/**
+		 * Avaliações
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Avaliação removida com sucesso.
+		 */
+		ToastDelete: () => LocalizedString
+		/**
+		 * Erro ao remover avaliação. Tente de novo.
+		 */
+		ToastDeleteError: () => LocalizedString
+	}
+	ReviewStatus: {
+		/**
+		 * Ativas
+		 */
+		Active: () => LocalizedString
+		/**
+		 * Canceladas
+		 */
+		Canceled: () => LocalizedString
+		/**
+		 * Completas
+		 */
+		Completed: () => LocalizedString
+		/**
+		 * Não iniciadas
+		 */
+		NotStarted: () => LocalizedString
 	}
 	Sidebar: {
 		/**

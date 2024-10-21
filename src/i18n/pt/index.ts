@@ -16,7 +16,7 @@ const pt = {
 		InputText: "Filtar categorias pelo título...",
 		Loading: "A carregar...",
 		NoCategories: "Não existem categorias disponíveis de momento. Volte mais tarde ou crie uma nova categoria para começar!",
-		NoCategoriesFilter: "Não foram encotradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.",
+		NoCategoriesFilter: "Não foram encontradas categorias que correspondam à sua pesquisa. Tente ajustar as palavras-chave ou limpe o filtro para ver todas as categorias disponíveis para este idioma.",
 		Preview: "Pré-Visualizar",
 		ShowingItemsLabel: "Exibindo {firstElement} até {pageSize} de {total} items",
 		Title: "Categorias e Questões",
@@ -179,6 +179,26 @@ const pt = {
 		Title: "Critérios de avaliação",
 		ToastDelete: "Critério de avaliação removido com sucesso.",
 		ToastDeleteError: "Erro ao remover critério de avaliação. Tente de novo."
+	},
+	Reviews: {
+		CreateButton: "Criar avaliação",
+		Description: "Nesta página são listadas todas as avaliações criadas até ao momento dividas pelo seu estado atual. Para ver avaliações em outros estados terá que clicar no estado que deseja para essa finalidade. Caso tenha permissão para tal, puderá criar e remover uma avaliação clicando nos respetivos botões para esse efeito.",
+		Error: "Erro ao tentar listar as avaliações",
+		InputText: "Filtrar avaliações pelo título...",
+		Loading: "A carregar...",
+		NoReviews: "Não existem avaliações com este estado disponíveis neste momento. Volte mais tarde ou crie uma nova avaliação para começar!",
+		NoReviewsFilter: "Não foram encontradas avaliações que correspondam à sua pesquisa. Tente alterar o estado ou limpe o filtro para ver possíveis avaliações disponíveis.",
+		Preview: "Pré-Visualizar",
+		ShowingItemsLabel: "Exibindo {firstElement: number} até {pageSize: number} de {total: number} items",
+		Title: "Avaliações",
+		ToastDelete: "Avaliação removida com sucesso.",
+		ToastDeleteError: "Erro ao remover avaliação. Tente de novo."
+	},
+	ReviewStatus: {
+		Active: "Ativas",
+		Canceled: "Canceladas",
+		Completed: "Completas",
+		NotStarted: "Não iniciadas"
 	},
 	Sidebar: {
 		Backoffice: "Menu Backoffice",

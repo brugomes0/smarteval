@@ -29,3 +29,29 @@ export function getFullLanguageText(langAbbrev: string): string {
     subscription()
     return text
 }
+
+export function getFullReviewStatusText(status: string): string {
+    let text: string = ""
+    let subscription = LL.subscribe(l => {
+        switch(status) {
+            case "Active":
+                text = l.ReviewStatus.Active()
+                break
+            case "NotStarted":
+                text = l.ReviewStatus.NotStarted()
+                break
+            case "Canceled":
+                text = l.ReviewStatus.Canceled()
+                break
+            case "Completed":
+                text = l.ReviewStatus.Completed()
+                break
+            default:
+                text = "Error"
+                break
+        }
+    })
+
+    subscription()
+    return text
+}

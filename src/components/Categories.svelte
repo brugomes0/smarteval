@@ -47,7 +47,7 @@
         if (change === 'increment' && page < Math.ceil(total / pageSize)) {
             page++
         } else if (change === 'decrement' && page > 1) {
-            page --
+            page--
         }
         debounce(getCategories, 500)
     }
@@ -152,7 +152,7 @@
                     {/each}
                 {:else}
                     <div class="flex justify-center items-center">
-                        <div class="flex flex-col items-center w-[400px] text-gray-400 p-5 gap-y-2">
+                        <div class="flex flex-col items-center lg:w-[400px] text-gray-400 p-5 gap-y-2">
                             <svelte:component this={AlertCircleIcon} size={50} strokeWidth={1.5} />
                             <p class="text-xs md:text-sm text-center">{nameInput != "" ? $LL.Categories.NoCategoriesFilter() : $LL.Categories.NoCategories() }</p>
                         </div>
