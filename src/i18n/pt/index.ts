@@ -78,6 +78,37 @@ const pt = {
 			RatingOptionTitle: "Insira um título para a opção de classificação na posição {position} e idioma {language}"
 		}
 	},
+	CreateReviews: {
+		CategoryDivDesc: "Passo para associar categorias, e suas questões, criadas anteriormente, com a sub-avaliação",
+		CategoryDivTitle: "Associar categorias e questões",
+		Continue: "Continuar",
+		Description: "Nesta página pode realizar a criação de uma avaliação. Cada avaliação é criada com um grupo de sub-avaliações. Para cada sub-avaliação deverá especificar o template com as categorias e questões às quais os utilizadores irão responder, o critério de avaliação a utilizar e o valor da avaliação.",
+		LanguageDesc: "Selecione para quais idiomas deseja criar a categoria.",
+		LanguageTitle: "Selecione o(s) idioma(s)",
+		RatingGroupDivDesc: "Passo para associar um critério de avaliação à sub-avaliação",
+		RatingGroupDivTitle: "Associar critério de avaliação",
+		ReviewDescDesc: "Insira uma descrição para identificar a avaliação.",
+		ReviewDescTitle: "Descrição da avaliação",
+		ReviewTitleDesc: "Insira um título para identificar a avaliação.",
+		ReviewTitleTitle: "Título da avaliação",
+		ShowInLanguage: "Apresentar na linguagem:",
+		Title: "Criar avaliação",
+		ToastError: "Erro ao criar avaliação. Tente de novo",
+		ToastSuccess: "Avaliação criada com sucesso",
+		TotalValueDesc: "Insira um valor total para a sub-avaliação",
+		TotalValueTitle: "Valor total da sub-avaliação",
+		ValidationError: {
+			NoCategories: "Não existem categorias na base de dados com os idiomas que deseja",
+			NoCategoryQuestion: "As categorias devem ter pelo menos uma questão",
+			NoCategoryValue: "Insira um valor válido para a categoria",
+			NoEvaluationTemplate: "Avaliação não pode ser criada sem pelo menos uma categoria e uma questão",
+			NoEvaluationValue: "Insira um valor válido para a avaliação",
+			NoRatingGroups: "Não existem critérios de avaliação na base de dados com os idiomas que deseja",
+			NoSelectionLanguages: "Selecione pelo menos uma linguagem para a qual será criada a avaliação",
+			NoSelectionRatingGroup: "Selecione um critério de avaliação para a sub-avaliação",
+			NoTitle: "Insira um título para a avaliação"
+		}
+	},
 	EditCategories: {
 		AddQuestion: "Adicionar questão",
 		CategoryDescDesc: "Insira uma descrição para a categoria",
@@ -123,12 +154,21 @@ const pt = {
 		ToastError: "Erro ao editar o critério de avaliação. Tente de novo",
 		ToastSuccess: "Critério de avaliação editado com sucesso"
 	},
+	EvaluationTypes: {
+		BottomUp: "BottomUp",
+		Departmental: "Departamental",
+		Interdepartmental: "Interdepartamental",
+		SelfEvaluation: "Auto-avaliação",
+		TopDown: "TopDown"
+	},
 	Header: {
 		Home: "Início"
 	},
 	HomeBackoffice: {
 		ActiveReviews: "Avaliações Ativas",
+		Categories: "Categorias",
 		CompletedReviews: "Avaliações Completas",
+		RatingGroups: "Critérios de avaliação",
 		Reviews: "Avaliações",
 		Templates: "Modelos"
 	},
@@ -226,6 +266,7 @@ const pt = {
 	},
 	Steps: {
 		Details: "Detalhes",
+		Employees: "Funcionários",
 		Finalize: "Finalizar",
 		Forward: "Avançar",
 		RatingOptions: "Opções de classificação",

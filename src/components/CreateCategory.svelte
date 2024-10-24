@@ -114,8 +114,6 @@
             page++
         }
     }
-
-    $: console.log(category)
 </script>
 
 <div class="flex flex-col gap-y-5">
@@ -165,7 +163,7 @@
                     <p class="text-xs text-gray-400">{$LL.CreateCategory.CategoryTitleDesc()}</p>
                     {#each category.translations as translation}
                         {#if translation.language === languageShow}
-                            <input bind:value={translation.title} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="75" name="titleCategory" />
+                            <input bind:value={translation.title} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="100" name="titleCategory" />
                         {/if}
                     {/each}
                 </div>
@@ -174,7 +172,7 @@
                     <p class="text-xs text-gray-400">{$LL.CreateCategory.CategoryDescDesc()}</p>
                     {#each category.translations as translation}
                         {#if translation.language === languageShow}
-                            <textarea bind:value={translation.description} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="250" name="descCategory" rows="4" />
+                            <textarea bind:value={translation.description} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="300" name="descCategory" rows="4" />
                         {/if}
                     {/each}
                 </div>
@@ -203,11 +201,11 @@
                                             <div class="flex flex-col flex-grow">
                                                 <label class="flex flex-col font-medium rounded text-xs w-full text-gray-900">
                                                     {$LL.CreateCategory.QuestionTitle()}
-                                                    <input bind:value={rtoTranslation.title} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="75" type="text" />
+                                                    <input bind:value={rtoTranslation.title} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="100" type="text" />
                                                 </label>
                                                 <label class="flex flex-col font-medium rounded text-xs w-full text-gray-900">
                                                     {$LL.CreateCategory.QuestionDesc()}
-                                                    <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="250" rows="2" />
+                                                    <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="300" rows="2" />
                                                 </label>
                                             </div>
                                             <button on:click={() => deleteQuestion(index)} class="hover:text-red-500 text-gray-400" title={$LL.CreateCategory.DeleteQuestion()}>
@@ -254,11 +252,11 @@
                                             <div class="flex flex-col flex-grow">
                                                 <label class="flex flex-col font-medium rounded text-xs w-full text-gray-900">
                                                     {$LL.CreateCategory.QuestionTitle()}
-                                                    <input bind:value={rtoTranslation.title} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="75" type="text" />
+                                                    <input bind:value={rtoTranslation.title} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="100" type="text" />
                                                 </label>
                                                 <label class="flex flex-col font-medium rounded text-xs w-full text-gray-900">
                                                     {$LL.CreateCategory.QuestionDesc()}
-                                                    <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="250" rows="2" />
+                                                    <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="300" rows="2" />
                                                 </label>
                                             </div>
                                             <button on:click={() => deleteQuestion(index)} class="hover:text-red-500 text-gray-400" title={$LL.CreateCategory.DeleteQuestion()}>

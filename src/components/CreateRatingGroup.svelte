@@ -122,12 +122,12 @@
             <div class="flex flex-col">
                 <p class="font-semibold text-base text-black">{$LL.CreateRatingGroups.RatingGroupTitleTitle()}</p>
                 <p class="text-xs text-gray-400">{$LL.CreateRatingGroups.RatingGroupTitleDesc()}</p>
-                <input bind:value={ratingGroup.title} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="75" name="titleRatingGroup" />
+                <input bind:value={ratingGroup.title} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="100" name="titleRatingGroup" />
             </div>
             <div class="flex flex-col">
                 <p class="font-semibold text-base text-black">{$LL.CreateRatingGroups.RatingGroupDescTitle()}</p>
                 <p class="text-xs text-gray-400">{$LL.CreateRatingGroups.RatingGroupDescDesc()}</p>
-                <textarea bind:value={ratingGroup.description} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="250" name="descRatingGroup" rows="4" />
+                <textarea bind:value={ratingGroup.description} class="border my-1 p-2 peer rounded text-xs w-auto text-black" maxlength="300" name="descRatingGroup" rows="4" />
             </div>
             <div class="flex flex-col">
                 <p class="font-semibold text-base text-black">{$LL.CreateRatingGroups.RatingGroupLangTitle()}</p>
@@ -168,11 +168,11 @@
                                     <div class="flex flex-col flex-grow">
                                         <label class="flex flex-col font-medium rounded text-xs w-full text-gray-900">
                                             {$LL.CreateRatingGroups.SingleRatingOptionTitle()}
-                                            <input bind:value={rtoTranslation.title} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="75" type="text" />
+                                            <input bind:value={rtoTranslation.title} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="100" type="text" />
                                         </label>
                                         <label class="flex flex-col font-medium rounded text-xs w-full text-gray-900">
                                             {$LL.CreateRatingGroups.SingleRatingOptionDesc()}
-                                            <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="250" rows="2" />
+                                            <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="300" rows="2" />
                                         </label>
                                         <label class="flex font-medium gap-x-2 rounded text-xs w-full text-gray-900">
                                             {$LL.CreateRatingGroups.SingleRatingOptionNeedComment()}

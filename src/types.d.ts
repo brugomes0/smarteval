@@ -19,6 +19,11 @@ type CategoryInfoData = {
     description: string
 }
 
+type CategoryInfo2Data = {
+    categoryId: string,
+    translations: { language: string, title: string }[]
+}
+
 type CategoryTranslationData = {
     categoryTranslationId: string,
     language: string,
@@ -45,6 +50,40 @@ type CreateRatingGroupData = {
 type CreateRatingOptionData = {
     numericValue: number,
     needComment: boolean,
+    translations: CreateTranslationData[]
+}
+
+type CreateReviewCategoryData = {
+    id: number,
+    categoryId: string,
+    position: number,
+    value: number,
+    questions: CreateReviewQuestionData[]
+    translations: CreateTranslationData[]
+}
+
+type CreateReviewData = {
+    title: string,
+    description: string,
+    endDate: string,
+    status: string,
+    departments: number[],
+    employees: number[],
+    evaluations: CreateReviewEvaluationData[]
+}
+
+type CreateReviewEvaluationData = {
+    type: string,
+    totalValue: number,
+    ratingGroupId: string,
+    template: CreateReviewCategoryData[]
+}
+
+type CreateReviewQuestionData = {
+    questionId: string,
+    position: number,
+    value: number,
+    isRequired: boolean,
     translations: CreateTranslationData[]
 }
 
@@ -102,6 +141,11 @@ type RatingGroupInfoData = {
     title: string,
     description: string,
     createDate: string
+}
+
+type RatingGroupInfo2Data = {
+    ratingGroupId: string,
+    title: string
 }
 
 type QuestionData = {
