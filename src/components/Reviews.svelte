@@ -114,7 +114,7 @@
         <div class="border flex flex-col lg:flex-row overflow-hidden rounded border-gray-300">
             {#each statusList as status, i}
                 <button class="flex-1 py-[5px] text-sm {status === statusChoosen ? 'font-semibold bg-gray-100' : 'hover:bg-gray-100'} {i !== 0 ? 'lg:border-l border-gray-300': ''}" on:click={() => { if (statusChoosen != status) { statusChoosen = status; handleInputChanges() }}}>
-                    {getFullReviewStatusText(status)}
+                    {getFullReviewStatusText(status, "plural")}
                 </button>
             {/each} 
         </div>

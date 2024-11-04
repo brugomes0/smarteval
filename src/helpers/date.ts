@@ -10,3 +10,13 @@ export function convertLocalToUtcDate(inputDate: string) {
     
     return userTime.toISOString()
 }
+
+export function isDateAfter(firstDate: string, secondDate?: string) {
+    let date1 = new Date(firstDate)
+    let date2: Date
+    if (secondDate) { 
+        date2 = new Date(secondDate)
+    } else date2 = new Date()
+
+    return date1 > date2
+}

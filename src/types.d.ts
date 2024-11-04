@@ -65,7 +65,7 @@ type CreateReviewCategoryData = {
 type CreateReviewData = {
     title: string,
     description: string,
-    endDate: string,
+    endDate: string | undefined,
     status: string,
     departments: number[],
     employees: number[],
@@ -80,7 +80,9 @@ type CreateReviewEvaluationData = {
 }
 
 type CreateReviewQuestionData = {
+    id: number,
     questionId: string,
+    type: string,
     position: number,
     value: number,
     isRequired: boolean,
@@ -91,6 +93,15 @@ type CreateTranslationData = {
     language: string,
     title: string,
     description: string
+}
+
+type DepartmentData = {
+    departmentId: number,
+    departmentDescription: string,
+    departmentParentId: number,
+    employees: EmployeeData[],
+    totalEmployees: number | null,
+    isOpen: boolean
 }
 
 type EditCategoryData = {
@@ -124,6 +135,28 @@ type EditTranslationData = {
     description: string
 }
 
+type EmployeeData = {
+    employeeId: number,
+    employeeName: string,
+    employeeEmail: string,
+    departmentId: number
+}
+
+type EvaluationData = {
+    availableInLanguages: string[],
+    ratingOptions: EvaluationRatingOptionData[],
+    template: TemplateCategoryData[],
+    totalValue: number,
+    type: string
+}
+
+type EvaluationRatingOptionData = {
+    ratingOptionId: string,
+    numericValue: number,
+    needComment: boolean,
+    translations: { language: string, title: string, description: string }[]
+}
+
 type PermissionData = { 
     permissionId: number, 
     permissionType: string, 
@@ -145,7 +178,8 @@ type RatingGroupInfoData = {
 
 type RatingGroupInfo2Data = {
     ratingGroupId: string,
-    title: string
+    title: string,
+    description: string
 }
 
 type QuestionData = {
@@ -185,6 +219,19 @@ type RatingOptionTranslationData = {
     description: string
 }
 
+type ReviewData = {
+    reviewId: string,
+    title: string,
+    description: string,
+    createByUser: string
+    createDate: string,
+    startDate: string,
+    endDate: string,
+    status: string,
+    evaluationsAvailable: string[],
+    evaluations: EvaluationData[]
+}
+
 type ReviewInfoData = {
     reviewId: string,
     title: string,
@@ -193,6 +240,23 @@ type ReviewInfoData = {
     createDate: string,
     startDate: string,
     endDate: string
+}
+
+type TemplateCategoryData = {
+    categoryId: string,
+    position: number,
+    questions: TemplateQuestionData[],
+    translations: { language: string, title: string, description: string }[],
+    value: number
+}
+
+type TemplateQuestionData = {
+    questionId: string,
+    position: number,
+    isRequired: boolean,
+    type: string
+    translations: { language: string, title: string, description: string }[],
+    value: number
 }
 
 type UserData = {

@@ -26,6 +26,8 @@
 	import SingleCategoryComponent from './components/SingleCategory.svelte'
 	import EditCategoryComponent from './components/EditCategory.svelte'
 	import ReviewsComponent from './components/Reviews.svelte'
+	import CreateReviewComponent from './components/CreateReview.svelte'
+	import SingleReviewComponent from './components/SingleReview.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -119,6 +121,8 @@
 						<div class="max-w-[1400px] w-full p-5">
 							<Route path="/" component={HomeBOComponent} />
 							<Route path="/reviews" component={ReviewsComponent} {user} />
+							<Route path="/reviews/createReview" component={CreateReviewComponent} />
+							<Route path="/reviews/:reviewId" component={SingleReviewComponent} {user} {lang} />
 							<Route path="/categories" component={CategoriesComponent} {user} />
 							<Route path="/categories/createCategory" component={CreateCategoryComponent} />
 							<Route path="/categories/:categoryId" component={SingleCategoryComponent} {user} {lang} />

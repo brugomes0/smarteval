@@ -30,22 +30,22 @@ export function getFullLanguageText(langAbbrev: string): string {
     return text
 }
 
-export function getFullReviewStatusText(status: string): string {
+export function getFullReviewStatusText(status: string, noun: string): string {
     let text: string = ""
     let subscription = LL.subscribe(l => {
         switch(status) {
             case "Active":
-                text = l.ReviewStatus.Active()
-                break
+                if (noun === "plural") { text = l.ReviewStatus.Active(); break; }
+                else { text = l.ReviewStatus.SingleActive(); break; }
             case "NotStarted":
-                text = l.ReviewStatus.NotStarted()
-                break
+                if (noun === "plural") { text = l.ReviewStatus.NotStarted(); break; }
+                else { text = l.ReviewStatus.SingleNotStarted(); break; }
             case "Canceled":
-                text = l.ReviewStatus.Canceled()
-                break
+                if (noun === "plural") { text = l.ReviewStatus.Canceled(); break; }
+                else { text = l.ReviewStatus.SingleCanceled(); break; }
             case "Completed":
-                text = l.ReviewStatus.Completed()
-                break
+                if (noun === "plural") { text = l.ReviewStatus.Completed(); break; }
+                else { text = l.ReviewStatus.SingleCompleted(); break; }
             default:
                 text = "Error"
                 break
