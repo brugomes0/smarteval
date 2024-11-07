@@ -55,3 +55,32 @@ export function getFullReviewStatusText(status: string, noun: string): string {
     subscription()
     return text
 }
+
+export function getEvaluationTypeText(type: string): string {
+    let text: string = ""
+    let subscription = LL.subscribe(l => {
+        switch(type) {
+            case "TopDown":
+                text = l.EvaluationTypes.TopDown()
+                break
+            case "BottomUp":
+                text = l.EvaluationTypes.BottomUp()
+                break
+            case "SelfEvaluation":
+                text = l.EvaluationTypes.SelfEvaluation()
+                break
+            case "Interdepartamental":
+                text = l.EvaluationTypes.Interdepartmental()
+                break
+            case "TeamEvaluation":
+                text = l.EvaluationTypes.Departmental()
+                break
+            default:
+                text = "Error"
+                break
+        }
+    })
+    
+    subscription()
+    return text
+}

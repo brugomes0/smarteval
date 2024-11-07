@@ -645,7 +645,7 @@ type RootTranslation = {
 		 */
 		BottomUp: string
 		/**
-		 * D​e​p​a​r​t​a​m​e​n​t​a​l
+		 * E​q​u​i​p​a
 		 */
 		Departmental: string
 		/**
@@ -1041,6 +1041,10 @@ type RootTranslation = {
 		 */
 		ActionsActivateDesc: string
 		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​a​t​i​v​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?​ ​P​a​r​a​ ​i​s​s​o​,​ ​t​e​r​á​ ​d​e​ ​e​s​p​e​c​i​f​i​c​a​r​ ​u​m​a​ ​d​a​t​a​ ​d​e​ ​f​i​m​ ​p​a​r​a​ ​a​ ​a​v​a​l​i​a​ç​ã​o​,​ ​l​i​m​i​t​e​ ​a​t​é​ ​a​o​ ​q​u​a​l​ ​a​s​ ​p​e​s​s​o​a​s​ ​p​u​d​e​r​ã​o​ ​e​n​v​i​a​r​ ​a​s​ ​r​e​s​p​o​s​t​a​s​ ​a​o​ ​f​o​r​m​u​l​á​r​i​o​.
+		 */
+		ActionsActivateModal: string
+		/**
 		 * C​a​n​c​e​l​a​r​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		ActionsCancel: string
@@ -1052,6 +1056,10 @@ type RootTranslation = {
 		 * C​a​n​c​e​l​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​.​ ​O​ ​e​s​t​a​d​o​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​ ​p​a​s​s​a​r​á​ ​a​ ​C​a​n​c​e​l​a​d​a​ ​i​m​p​o​s​s​i​b​i​l​i​t​a​n​d​o​ ​a​s​ ​p​e​s​s​o​a​s​ ​a​s​s​o​c​i​a​d​a​s​ ​á​ ​a​v​a​l​i​a​ç​ã​o​ ​d​e​ ​p​u​d​e​r​ ​r​e​s​p​o​n​d​e​r​ ​a​o​ ​q​u​e​s​t​i​o​n​á​r​i​o​.
 		 */
 		ActionsCancelDesc: string
+		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​c​a​n​c​e​l​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?
+		 */
+		ActionsCancelModal: string
 		/**
 		 * F​i​n​a​l​i​z​a​r​ ​a​v​a​l​i​a​ç​ã​o
 		 */
@@ -1065,6 +1073,10 @@ type RootTranslation = {
 		 */
 		ActionsCompleteDesc: string
 		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​f​i​n​a​l​i​z​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?
+		 */
+		ActionsCompleteModal: string
+		/**
 		 * R​e​m​o​v​e​r​ ​A​v​a​l​i​a​ç​ã​o
 		 */
 		ActionsDelete: string
@@ -1076,6 +1088,10 @@ type RootTranslation = {
 		 * U​m​a​ ​v​e​z​ ​r​e​m​o​v​i​d​a​ ​a​ ​a​v​a​l​i​a​ç​ã​o​,​ ​n​ã​o​ ​p​o​d​e​r​á​ ​v​o​l​t​a​r​ ​a​t​r​á​s​.​ ​P​o​r​ ​f​a​v​o​r​ ​t​e​n​h​a​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​é​ ​i​s​t​o​ ​q​u​e​ ​d​e​s​e​j​a​ ​f​a​z​e​r​.
 		 */
 		ActionsDeleteDesc: string
+		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​r​e​m​o​v​e​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?​ ​E​s​t​a​ ​a​ç​ã​o​ ​n​ã​o​ ​p​o​d​e​ ​s​e​r​ ​r​e​v​e​r​t​i​d​a​.
+		 */
+		ActionsDeleteModal: string
 		/**
 		 * E​d​i​t​a​r​ ​a​v​a​l​i​a​ç​ã​o
 		 */
@@ -1089,6 +1105,10 @@ type RootTranslation = {
 		 */
 		ActionsEditDesc: string
 		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​e​d​i​t​a​r​ ​a​ ​r​e​v​i​s​ã​o​?
+		 */
+		ActionsEditModal: string
+		/**
 		 * E​x​t​e​n​d​e​r​ ​d​a​t​a​ ​f​i​n​a​l​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		ActionsExtend: string
@@ -1100,6 +1120,14 @@ type RootTranslation = {
 		 * A​o​ ​e​x​t​e​n​d​e​r​ ​a​ ​d​a​t​a​ ​f​i​n​a​l​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​,​ ​p​e​r​m​i​t​e​ ​à​s​ ​p​e​s​s​o​a​s​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​a​v​a​l​i​a​ç​ã​o​ ​d​e​ ​p​u​d​e​r​e​m​ ​r​e​s​p​o​n​d​e​r​ ​a​o​ ​q​u​e​s​t​i​o​n​á​r​i​o​.
 		 */
 		ActionsExtendDesc: string
+		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​e​x​t​e​n​d​e​r​ ​a​ ​d​a​t​a​ ​d​e​ ​f​i​m​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​,​ ​d​a​n​d​o​ ​a​s​s​i​m​ ​o​p​o​r​t​u​n​i​d​a​d​e​ ​p​a​r​a​ ​a​s​ ​p​e​s​s​o​a​s​ ​a​s​s​o​c​i​a​d​a​s​ ​à​ ​a​v​a​l​i​a​ç​ã​o​,​ ​q​u​e​ ​n​ã​o​ ​r​e​s​p​o​n​d​e​r​a​m​ ​a​o​ ​f​o​r​m​u​l​á​r​i​o​ ​q​u​e​ ​o​ ​f​a​ç​a​m​?​ ​P​a​r​a​ ​i​s​s​o​ ​t​e​r​á​ ​d​e​ ​e​s​p​e​c​i​f​i​c​a​r​ ​u​m​a​ ​n​o​v​a​ ​d​a​t​a​ ​p​a​r​a​ ​o​ ​f​i​m​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		ActionsExtendModal: string
+		/**
+		 * C​o​n​f​i​r​m​a​r
+		 */
+		Confirm: string
 		/**
 		 * C​r​i​a​d​a​ ​p​o​r
 		 */
@@ -1129,13 +1157,33 @@ type RootTranslation = {
 		 */
 		ErrorQuestionType: string
 		/**
+		 * F​o​r​m​u​l​á​r​i​o​ ​d​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o
+		 */
+		FormEvaluation: string
+		/**
 		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
 		 */
 		Loading: string
 		/**
+		 * N​ã​o​ ​e​x​i​s​t​e​m​ ​a​ç​õ​e​s​ ​d​i​s​p​o​n​í​v​e​i​s​.
+		 */
+		NoActionsAvailable: string
+		/**
 		 * S​e​m​ ​d​e​s​c​r​i​ç​ã​o​.​.​.
 		 */
 		NoDescription: string
+		/**
+		 * P​r​o​g​r​e​s​s​o
+		 */
+		Progress: string
+		/**
+		 * S​u​b​m​i​s​s​õ​e​s​ ​C​o​m​p​l​e​t​a​s
+		 */
+		ProgressComplete: string
+		/**
+		 * S​u​b​m​i​s​s​õ​e​s​ ​T​o​t​a​i​s
+		 */
+		ProgressTotal: string
 		/**
 		 * A​p​r​e​s​e​n​t​a​r​ ​n​o​ ​i​d​i​o​m​a​:​ 
 		 */
@@ -1144,6 +1192,18 @@ type RootTranslation = {
 		 * E​s​t​a​d​o​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		Status: string
+		/**
+		 * S​u​b​m​i​s​s​õ​e​s
+		 */
+		Submissions: string
+		/**
+		 * E​s​t​a​d​o​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​ ​a​l​t​e​r​a​d​o​ ​c​o​m​ ​s​u​c​c​e​s​s​o​.
+		 */
+		ToastChangeStatus: string
+		/**
+		 * N​ã​o​ ​f​o​i​ ​p​o​s​s​í​v​e​l​ ​a​l​t​e​r​a​r​ ​o​ ​e​s​t​a​d​o​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		ToastChangeStatusError: string
 	}
 	Steps: {
 		/**
@@ -1178,6 +1238,75 @@ type RootTranslation = {
 		 * Q​u​e​s​t​õ​e​s​ ​d​e​ ​t​e​x​t​o
 		 */
 		TextQuestions: string
+	}
+	SubmissionModal: {
+		/**
+		 * C​r​i​a​r​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		CreateSubmission: string
+		/**
+		 * D​a​t​a
+		 */
+		Date: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​r​e​t​o​r​n​a​r​ ​a​s​ ​s​u​b​m​i​s​s​õ​e​s
+		 */
+		Error: string
+		/**
+		 * A​v​a​l​i​a​d​o
+		 */
+		Evaluated: string
+		/**
+		 * A​v​a​l​i​a​d​o​r
+		 */
+		Evaluator: string
+		/**
+		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
+		 */
+		Loading: string
+		/**
+		 * S​e​m​ ​s​u​b​m​i​s​s​õ​e​s​ ​p​a​r​a​ ​m​o​s​t​r​a​r
+		 */
+		NoSubmissions: string
+		/**
+		 * R​e​m​o​v​e​r
+		 */
+		Remove: string
+		/**
+		 * P​r​o​c​u​r​a​r
+		 */
+		Search: string
+		/**
+		 * T​o​d​a​s
+		 */
+		SelectAll: string
+		/**
+		 * A​p​e​n​a​s​ ​n​ã​o​ ​s​u​b​m​e​t​i​d​a​s
+		 */
+		SelectNo: string
+		/**
+		 * A​p​e​n​a​s​ ​s​u​b​m​e​t​i​d​a​s
+		 */
+		SelectYes: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​p​a​g​e​S​i​z​e​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {number} firstElement
+		 * @param {number} pageSize
+		 * @param {number} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'pageSize' | 'total'>
+		/**
+		 * S​u​b​m​e​t​i​d​o
+		 */
+		Submitted: string
+		/**
+		 * S​u​b​m​i​s​s​ã​o​ ​r​e​m​o​v​i​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastDelete: string
+		/**
+		 * O​c​o​r​r​e​u​ ​u​m​ ​e​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​r​e​m​o​v​e​r​ ​a​ ​s​u​b​m​i​s​s​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ToastDeleteError: string
 	}
 }
 
@@ -1808,7 +1937,7 @@ export type TranslationFunctions = {
 		 */
 		BottomUp: () => LocalizedString
 		/**
-		 * Departamental
+		 * Equipa
 		 */
 		Departmental: () => LocalizedString
 		/**
@@ -2198,6 +2327,10 @@ export type TranslationFunctions = {
 		 */
 		ActionsActivateDesc: () => LocalizedString
 		/**
+		 * Tem a certeza que pretende ativar a avaliação? Para isso, terá de especificar uma data de fim para a avaliação, limite até ao qual as pessoas puderão enviar as respostas ao formulário.
+		 */
+		ActionsActivateModal: () => LocalizedString
+		/**
 		 * Cancelar avaliação
 		 */
 		ActionsCancel: () => LocalizedString
@@ -2209,6 +2342,10 @@ export type TranslationFunctions = {
 		 * Cancelar a avaliação. O estado da avaliação passará a Cancelada impossibilitando as pessoas associadas á avaliação de puder responder ao questionário.
 		 */
 		ActionsCancelDesc: () => LocalizedString
+		/**
+		 * Tem a certeza que pretende cancelar a avaliação?
+		 */
+		ActionsCancelModal: () => LocalizedString
 		/**
 		 * Finalizar avaliação
 		 */
@@ -2222,6 +2359,10 @@ export type TranslationFunctions = {
 		 */
 		ActionsCompleteDesc: () => LocalizedString
 		/**
+		 * Tem a certeza que pretende finalizar a avaliação?
+		 */
+		ActionsCompleteModal: () => LocalizedString
+		/**
 		 * Remover Avaliação
 		 */
 		ActionsDelete: () => LocalizedString
@@ -2233,6 +2374,10 @@ export type TranslationFunctions = {
 		 * Uma vez removida a avaliação, não poderá voltar atrás. Por favor tenha a certeza que é isto que deseja fazer.
 		 */
 		ActionsDeleteDesc: () => LocalizedString
+		/**
+		 * Tem a certeza que pretende remover a avaliação? Esta ação não pode ser revertida.
+		 */
+		ActionsDeleteModal: () => LocalizedString
 		/**
 		 * Editar avaliação
 		 */
@@ -2246,6 +2391,10 @@ export type TranslationFunctions = {
 		 */
 		ActionsEditDesc: () => LocalizedString
 		/**
+		 * Tem a certeza que pretende editar a revisão?
+		 */
+		ActionsEditModal: () => LocalizedString
+		/**
 		 * Extender data final da avaliação
 		 */
 		ActionsExtend: () => LocalizedString
@@ -2257,6 +2406,14 @@ export type TranslationFunctions = {
 		 * Ao extender a data final da avaliação, permite às pessoas associadas à avaliação de puderem responder ao questionário.
 		 */
 		ActionsExtendDesc: () => LocalizedString
+		/**
+		 * Tem a certeza que pretende extender a data de fim da avaliação, dando assim oportunidade para as pessoas associadas à avaliação, que não responderam ao formulário que o façam? Para isso terá de especificar uma nova data para o fim da avaliação.
+		 */
+		ActionsExtendModal: () => LocalizedString
+		/**
+		 * Confirmar
+		 */
+		Confirm: () => LocalizedString
 		/**
 		 * Criada por
 		 */
@@ -2286,13 +2443,33 @@ export type TranslationFunctions = {
 		 */
 		ErrorQuestionType: () => LocalizedString
 		/**
+		 * Formulário da sub-avaliação
+		 */
+		FormEvaluation: () => LocalizedString
+		/**
 		 * A carregar...
 		 */
 		Loading: () => LocalizedString
 		/**
+		 * Não existem ações disponíveis.
+		 */
+		NoActionsAvailable: () => LocalizedString
+		/**
 		 * Sem descrição...
 		 */
 		NoDescription: () => LocalizedString
+		/**
+		 * Progresso
+		 */
+		Progress: () => LocalizedString
+		/**
+		 * Submissões Completas
+		 */
+		ProgressComplete: () => LocalizedString
+		/**
+		 * Submissões Totais
+		 */
+		ProgressTotal: () => LocalizedString
 		/**
 		 * Apresentar no idioma: 
 		 */
@@ -2301,6 +2478,18 @@ export type TranslationFunctions = {
 		 * Estado da avaliação
 		 */
 		Status: () => LocalizedString
+		/**
+		 * Submissões
+		 */
+		Submissions: () => LocalizedString
+		/**
+		 * Estado da avaliação alterado com successo.
+		 */
+		ToastChangeStatus: () => LocalizedString
+		/**
+		 * Não foi possível alterar o estado da avaliação.
+		 */
+		ToastChangeStatusError: () => LocalizedString
 	}
 	Steps: {
 		/**
@@ -2335,6 +2524,72 @@ export type TranslationFunctions = {
 		 * Questões de texto
 		 */
 		TextQuestions: () => LocalizedString
+	}
+	SubmissionModal: {
+		/**
+		 * Criar submissão
+		 */
+		CreateSubmission: () => LocalizedString
+		/**
+		 * Data
+		 */
+		Date: () => LocalizedString
+		/**
+		 * Erro ao tentar retornar as submissões
+		 */
+		Error: () => LocalizedString
+		/**
+		 * Avaliado
+		 */
+		Evaluated: () => LocalizedString
+		/**
+		 * Avaliador
+		 */
+		Evaluator: () => LocalizedString
+		/**
+		 * A carregar...
+		 */
+		Loading: () => LocalizedString
+		/**
+		 * Sem submissões para mostrar
+		 */
+		NoSubmissions: () => LocalizedString
+		/**
+		 * Remover
+		 */
+		Remove: () => LocalizedString
+		/**
+		 * Procurar
+		 */
+		Search: () => LocalizedString
+		/**
+		 * Todas
+		 */
+		SelectAll: () => LocalizedString
+		/**
+		 * Apenas não submetidas
+		 */
+		SelectNo: () => LocalizedString
+		/**
+		 * Apenas submetidas
+		 */
+		SelectYes: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {pageSize} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: number, pageSize: number, total: number }) => LocalizedString
+		/**
+		 * Submetido
+		 */
+		Submitted: () => LocalizedString
+		/**
+		 * Submissão removida com sucesso
+		 */
+		ToastDelete: () => LocalizedString
+		/**
+		 * Ocorreu um erro ao tentar remover a submissão. Tente de novo.
+		 */
+		ToastDeleteError: () => LocalizedString
 	}
 }
 

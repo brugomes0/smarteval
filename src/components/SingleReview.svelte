@@ -1,25 +1,39 @@
 <script lang="ts">
     import LL from "../i18n/i18n-svelte"
+    import ModalActionReviewComponent from "./helpers/ModalActionReviewComponent.svelte"
     import toast from "svelte-french-toast"
-    import { CalendarCheck2Icon, CalendarClockIcon, CalendarDaysIcon, CalendarPlusIcon, CalendarX2Icon, HourglassIcon, PencilIcon, Trash2Icon, UserIcon } from "lucide-svelte"
-    import { convertUtcToLocalDate, isDateAfter } from "../helpers/date"
-    import { getFullLanguageText, getFullReviewStatusText } from "../helpers/action"
+    import SubmissionsComponent from "./helpers/SubmissionsComponent.svelte"
+    import SveltyPicker from "svelty-picker"
+    import { CalendarCheck2Icon, CalendarClockIcon, CalendarDaysIcon, CalendarPlusIcon, CalendarX2Icon, HourglassIcon, PencilIcon, Trash2Icon, UserIcon, XIcon } from "lucide-svelte"
+    import { convertLocalToUtcDate, convertUtcToLocalDate, isDateAfter } from "../helpers/date"
+    import { getEvaluationTypeText, getFullLanguageText, getFullReviewStatusText } from "../helpers/action"
     import { Link, navigate } from "svelte-routing"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
+    import ProgressBarComponent from "./helpers/ProgressBarComponent.svelte";
 
     export let lang: string
     export let reviewId: string
     export let user: UserData
 
+    // action buttons to open modal
+    let buttonActivateIsOpen: boolean = false
+    let buttonExtendIsOpen: boolean = false
+    let buttonCancelIsOpen: boolean = false
+    let buttonCompleteIsOpen: boolean = false
+    let buttonEditIsOpen: boolean = false
+    let buttonDeleteIsOpen: boolean = false
+
     let buttonDelete: boolean = false
     let buttonEdit: boolean = false
     let buttonPatch: boolean = false
+    let evalProgressBar: { completedSubmissions: number, totalSubmissions: number } = { completedSubmissions: 0, totalSubmissions: 0 }
     let evaluationActive: string = ""
     let isReviewUpToDate: boolean = false
     let languageSelected: string = ""
     let loading: boolean = true
     let loadingEval: boolean = true
+    let reloadProgressBar: boolean = false
     let review: ReviewData = { reviewId: "", title: "", description: "", createByUser: "", createDate: "", startDate: "", endDate: "", status: "", evaluationsAvailable: [], evaluations: [] }
     let reviewPatch: { startDate: string | undefined, endDate: string | undefined, status: string } = { status: "", startDate: undefined, endDate: undefined }
     let reviewStatus: string = ""
@@ -27,13 +41,29 @@
 
     async function changeReviewStatus(newStatus: string) {
         reviewPatch.status = newStatus
+        if (reviewPatch.endDate) reviewPatch.endDate = convertLocalToUtcDate(reviewPatch.endDate)
         let response = await requestToApi("PATCH", `SmartEval/Reviews/${reviewId}/ChangeStatus`, reviewPatch)
         if (response.statusCode == 200) {
-            toast.success("Review changed status successfully.")
+            toast.success($LL.SingleReview.ToastChangeStatus())
             navigate("/reviews")
         } else {
-            toast.error("Cannot change status of review")
+            toast.error($LL.SingleReview.ToastChangeStatusError())
         }
+    }
+
+    async function deleteReview() {
+        let response = await requestToApi("DELETE", `SmartEval/Reviews/${reviewId}`)
+        if (response.statusCode === 200) {
+            toast.success($LL.Reviews.ToastDelete())
+            navigate("/reviews")
+        } else {
+            toast.error($LL.Reviews.ToastDeleteError())
+        }
+    }
+
+    async function getEvalProgressBar(id: string) {
+        let response = await requestToApi("GET", `SmartEval/Submissions/EvalProgressBar?evaluationId=${id}`)
+        if (response.statusCode === 200) { evalProgressBar = response.data }
     }
 
     async function getEvaluation() {
@@ -41,11 +71,19 @@
 
         if (review.evaluations.length > 0) {
             const evaluationExist = review.evaluations.find((temp: any) => temp.type === evaluationActive)
-            if (evaluationExist) { languageSelected = evaluationExist.availableInLanguages[0]; loadingEval = false; return; }
+            if (evaluationExist) {
+                languageSelected = evaluationExist.availableInLanguages[0]
+                await getEvalProgressBar(evaluationExist.evaluationId)
+                loadingEval = false
+                return
+            }
         }
 
         let response = await requestToApi("GET", `SmartEval/Reviews/${reviewId}/Evaluation?evaluationType=${evaluationActive}`)
-        if (response.statusCode === 200) review.evaluations = [...review.evaluations, response.data]
+        if (response.statusCode === 200) {
+            review.evaluations = [...review.evaluations, response.data]
+            await getEvalProgressBar(response.data.evaluationId)
+        }
 
         languageSelected = response.data.availableInLanguages[0]
         loadingEval = false
@@ -61,6 +99,31 @@
             if (review.createDate) review.createDate = convertUtcToLocalDate(review.createDate, lang)
             if (review.startDate) review.startDate = convertUtcToLocalDate(review.startDate, lang)
             if (review.endDate) review.endDate = convertUtcToLocalDate(review.endDate, lang)
+        }
+    }
+
+    function exitModal(action: string) {
+        switch(action) {
+            case "Activate":
+                buttonActivateIsOpen = false
+                reviewPatch.endDate = undefined
+                break
+            case "Extend":
+                buttonExtendIsOpen = false
+                reviewPatch.endDate = undefined
+                break
+            case "Cancel":
+                buttonCancelIsOpen = false
+                break
+            case "Complete":
+                buttonCompleteIsOpen = false
+                break
+            case "Edit":
+                buttonEditIsOpen = false
+                break
+            case "Delete":
+                buttonDeleteIsOpen = false
+                break
         }
     }
 
@@ -93,8 +156,119 @@
         await getEvaluation()
         loading = false
     })
+
+    $: if (reloadProgressBar) {
+        const evaluationInUsed = review.evaluations.find(temp => temp.type === evaluationActive)
+        if (evaluationInUsed) { getEvalProgressBar(evaluationInUsed?.evaluationId) }
+        reloadProgressBar = false
+    }
 </script>
 
+<!-- MODAL FOR ACTIVATE REVIEW -->
+{#if buttonActivateIsOpen}
+    <ModalActionReviewComponent on:save={() => changeReviewStatus("Active")}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsActivate()}</span>
+            <button on:click={() => exitModal("Activate")} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsActivateModal()}</span>
+            <div class="flex flex-col">
+                <span class="font-medium text-xs">{$LL.SingleReview.DateEnd()}</span>
+                <div class="flex gap-x-2 items-center">
+                    <svelte:component this={CalendarDaysIcon} size={20} />
+                    <SveltyPicker bind:value={reviewPatch.endDate} format="yyyy-mm-dd hh:ii" inputClasses="border p-1 rounded bg-gray-100 border-gray-300" />
+                </div>
+            </div>
+        </div>
+    </ModalActionReviewComponent>
+{/if}
+
+<!-- MODAL FOR EXTEND REVIEW END DATE -->
+{#if buttonExtendIsOpen}
+    <ModalActionReviewComponent on:save={() => changeReviewStatus("Active")}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsExtend()}</span>
+            <button on:click={() => exitModal("Extend")} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsExtendModal()}</span>
+            <div class="flex flex-col">
+                <span class="font-medium text-xs">{$LL.SingleReview.DateEnd()}</span>
+                <div class="flex gap-x-2 items-center">
+                    <svelte:component this={CalendarDaysIcon} size={20} />
+                    <SveltyPicker bind:value={reviewPatch.endDate} format="yyyy-mm-dd hh:ii" inputClasses="border p-1 rounded bg-gray-100 border-gray-300" />
+                </div>
+            </div>
+        </div>
+    </ModalActionReviewComponent>
+{/if}
+
+<!-- MODAL FOR CANCEL REVIEW -->
+{#if buttonCancelIsOpen}
+    <ModalActionReviewComponent on:save={() => changeReviewStatus("Canceled")}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsCancel()}</span>
+            <button on:click={() => exitModal("Cancel")} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsCancelModal()}</span>
+        </div>
+    </ModalActionReviewComponent>
+{/if}
+
+<!-- MODAL FOR COMPLETE REVIEW -->
+{#if buttonCompleteIsOpen}
+    <ModalActionReviewComponent on:save={() => changeReviewStatus("Completed")}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsComplete()}</span>
+            <button on:click={() => exitModal("Complete")} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsCompleteModal()}</span>
+        </div>
+    </ModalActionReviewComponent>
+{/if}
+
+<!-- MODAL TO EDIT REVIEW -->
+{#if buttonEditIsOpen}
+    <ModalActionReviewComponent on:save={() => navigate(`/reviews/${reviewId}/edit`)}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsEdit()}</span>
+            <button on:click={() => exitModal("Edit")} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsEditModal()}</span>
+        </div>
+    </ModalActionReviewComponent>
+{/if}
+
+<!-- MODAL TO DELETE REVIEW -->
+{#if buttonDeleteIsOpen}
+    <ModalActionReviewComponent on:save={() => deleteReview()}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsDelete()}</span>
+            <button on:click={() => exitModal("Delete")} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsDeleteModal()}</span>
+        </div>
+    </ModalActionReviewComponent>
+{/if}
+
+<!-- PAGE ELEMENTS -->
 {#if !loading}
     <div class="flex flex-col gap-y-2">
         <!-- DETAILS TABLE -->
@@ -192,17 +366,21 @@
         <div class="flex flex-col gap-y-2">
             <div class="border-b flex border-gray-300">
                 {#each review.evaluationsAvailable as evaluation}
-                    <button on:click={() => handleEvalChange(evaluation)} class="font-medium p-2 {evaluationActive === evaluation ? 'border-b-2 border-blue-500 text-gray-800' : 'text-gray-400'}">{evaluation}</button>
+                    <button on:click={() => handleEvalChange(evaluation)} class="font-medium p-2 {evaluationActive === evaluation ? 'border-b-2 border-blue-500 text-gray-800' : 'text-gray-400'}">{getEvaluationTypeText(evaluation)}</button>
                 {/each}
             </div>
 
-            <div class="flex flex-col gap-y-4 mx-5 my-2">
+            <div class="flex flex-col gap-y-4 p-2">
                 {#if loadingEval}
                     <p>{$LL.SingleReview.Loading()}</p>
                 {:else}
                     {#if review.evaluations.length > 0 && review.evaluations.find(temp => temp.type === evaluationActive)}
                         {#each review.evaluations as evaluation}
                             {#if evaluation.type === evaluationActive}
+                                <div class="flex flex-col gap-y-1">
+                                    <li class="font-medium text-base">{$LL.SingleReview.Progress()}</li>
+                                    <ProgressBarComponent bind:actual={evalProgressBar.completedSubmissions} bind:total={evalProgressBar.totalSubmissions} />
+                                </div>
                                 {#if evaluation.availableInLanguages.length > 1}
                                     <div class="flex gap-x-2 items-center">
                                         <p class="font-semibold text-base text-black">{$LL.SingleReview.ShowInLanguage()}</p>
@@ -213,36 +391,43 @@
                                         </select>
                                     </div>
                                 {/if}
-                                {#each evaluation.template as category}
-                                    <div class="flex flex-col gap-y-2">
-                                        <div class="flex flex-col">
-                                            <span class="font-medium text-gray-800">{category.position}. {getTranslation(category.translations, languageSelected)?.title} ({category.value}%)</span>
-                                            <span class="font-normal text-xs text-gray-400">{getTranslation(category.translations, languageSelected)?.description}</span>
-                                        </div>
+                                <div class="flex flex-col gap-y-1">
+                                    <li class="font-medium text-base">{$LL.SingleReview.FormEvaluation()}</li>
+                                    {#each evaluation.template as category}
                                         <div class="flex flex-col gap-y-2 mx-5">
-                                            {#each category.questions as question}
-                                                <div class="flex flex-col">
-                                                    <span class="font-normal text-sm text-gray-800">{question.position}. {getTranslation(question.translations, languageSelected)?.title}{question.isRequired ? '*': ''} ({question.value}%)</span>
-                                                    <span class="font-normal text-xs text-gray-400">{getTranslation(question.translations, languageSelected)?.description ? getTranslation(question.translations, languageSelected)?.description : $LL.SingleReview.NoDescription()}</span>
-                                                    <div class="flex flex-col md:flex-row md:flex-wrap gap-x-2 gap-y-1 m-1">
-                                                        {#if question.type === "Rating"}
-                                                            {#each evaluation.ratingOptions as ratingOption}
-                                                                <label class="flex gap-x-1 items-center">
-                                                                    <input class="w-3 h-3" disabled type="radio" />
-                                                                    <span class="text-xs text-gray-800">{getTranslation(ratingOption.translations, languageSelected)?.title}</span>
-                                                                </label>
-                                                            {/each}
-                                                        {:else if question.type === "Text"}
-                                                            <textarea class="border p-1 resize-none rounded text-xs w-full bg-gray-100 border-gray-300" disabled rows={2} />
-                                                        {:else}
-                                                            <p>{$LL.SingleReview.ErrorQuestionType()}</p>
-                                                        {/if}
+                                            <div class="flex flex-col">
+                                                <span class="font-medium text-sm text-gray-800">{category.position}. {getTranslation(category.translations, languageSelected)?.title} ({category.value}%)</span>
+                                                <span class="font-normal text-xs text-gray-400">{getTranslation(category.translations, languageSelected)?.description}</span>
+                                            </div>
+                                            <div class="flex flex-col gap-y-2 mx-5">
+                                                {#each category.questions as question}
+                                                    <div class="flex flex-col">
+                                                        <span class="font-normal text-sm text-gray-800">{question.position}. {getTranslation(question.translations, languageSelected)?.title}{question.isRequired ? '*': ''} ({question.value}%)</span>
+                                                        <span class="font-normal text-xs text-gray-400">{getTranslation(question.translations, languageSelected)?.description ? getTranslation(question.translations, languageSelected)?.description : $LL.SingleReview.NoDescription()}</span>
+                                                        <div class="flex flex-col md:flex-row md:flex-wrap gap-x-2 gap-y-1 m-1">
+                                                            {#if question.type === "Rating"}
+                                                                {#each evaluation.ratingOptions as ratingOption}
+                                                                    <label class="flex gap-x-1 items-center">
+                                                                        <input class="w-3 h-3" disabled type="radio" />
+                                                                        <span class="text-xs text-gray-800">{getTranslation(ratingOption.translations, languageSelected)?.title}</span>
+                                                                    </label>
+                                                                {/each}
+                                                            {:else if question.type === "Text"}
+                                                                <textarea class="border p-1 resize-none rounded text-xs w-full bg-gray-100 border-gray-300" disabled rows={2} />
+                                                            {:else}
+                                                                <p>{$LL.SingleReview.ErrorQuestionType()}</p>
+                                                            {/if}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            {/each}
+                                                {/each}
+                                            </div>
                                         </div>
-                                    </div>
-                                {/each}
+                                    {/each}
+                                </div>
+                                <div class="flex flex-col gap-y-1">
+                                    <li class="font-medium text-base">{$LL.SingleReview.Submissions()}</li>
+                                    <SubmissionsComponent bind:evaluationId={evaluation.evaluationId} bind:lang bind:reloadProgressBar />
+                                </div>
                             {/if}
                         {/each}
                     {:else}
@@ -264,7 +449,7 @@
                             <span class="text-sm">{$LL.SingleReview.ActionsActivate()}</span>
                             <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsActivateDesc()}</span>
                         </div>
-                        <button class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
+                        <button on:click={() => buttonActivateIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarClockIcon} size={20} />
                             <span>{$LL.SingleReview.ActionsActivateButton()}</span>
                         </button>
@@ -276,7 +461,7 @@
                             <span class="text-sm">{$LL.SingleReview.ActionsExtend()}</span>
                             <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsExtendDesc()}</span>
                         </div>
-                        <button class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
+                        <button on:click={() => buttonExtendIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarPlusIcon} size={20} />
                             <span>{$LL.SingleReview.ActionsExtendButton()}</span>
                         </button>
@@ -288,7 +473,7 @@
                             <span class="text-sm">{$LL.SingleReview.ActionsCancel()}</span>
                             <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsCancelDesc()}</span>
                         </div>
-                        <button on:click={() => changeReviewStatus("Canceled")} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
+                        <button on:click={() => buttonCancelIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarX2Icon} size={20} />
                             <span>{$LL.SingleReview.ActionsCancelButton()}</span>
                         </button>
@@ -298,7 +483,7 @@
                             <span class="text-sm">{$LL.SingleReview.ActionsComplete()}</span>
                             <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsCompleteDesc()}</span>
                         </div>
-                        <button on:click={() => changeReviewStatus("Completed")} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
+                        <button on:click={() => buttonCompleteIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarCheck2Icon} size={20} />
                             <span>{$LL.SingleReview.ActionsCompleteButton()}</span>
                         </button>
@@ -310,7 +495,7 @@
                             <span class="text-sm">{$LL.SingleReview.ActionsEdit()}</span>
                             <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsEditDesc()}</span>
                         </div>
-                        <button class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
+                        <button on:click={() => buttonEditIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={PencilIcon} size={20} />
                             <span>{$LL.SingleReview.ActionsEditButton()}</span>
                         </button>
@@ -322,10 +507,18 @@
                             <span class="text-sm">{$LL.SingleReview.ActionsDelete()}</span>
                             <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsDeleteDesc()}</span>
                         </div>
-                        <button class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
+                        <button on:click={() => buttonDeleteIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={Trash2Icon} size={20} />
                             <span>{$LL.SingleReview.ActionsDeleteButton()}</span>
                         </button>
+                    </div>
+                {/if}
+
+                {#if !(review.status === "NotStarted" && buttonPatch) && !(review.status === "Active" && !isReviewUpToDate && buttonPatch) &&
+                    !(review.status === "Active" && buttonPatch) && !(review.status === "NotStarted" && buttonEdit) && !(review.status !== "Active" && buttonDelete)
+                }
+                    <div class="flex text-gray-800">
+                        <span class="text-sm">{$LL.SingleReview.NoActionsAvailable()}</span>
                     </div>
                 {/if}
             </div>

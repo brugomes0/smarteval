@@ -143,6 +143,7 @@ type EmployeeData = {
 }
 
 type EvaluationData = {
+    evaluationId: string,
     availableInLanguages: string[],
     ratingOptions: EvaluationRatingOptionData[],
     template: TemplateCategoryData[],
@@ -240,6 +241,16 @@ type ReviewInfoData = {
     createDate: string,
     startDate: string,
     endDate: string
+}
+
+type SubmissionData = {
+    submissionId: string,
+    isAnswered: boolean,
+    submissionDate: string,
+    evaluatedEmployee: string,
+    evaluatorEmployee: string,
+    evaluatedDepartment: string,
+    evaluatorDepartment: string
 }
 
 type TemplateCategoryData = {
