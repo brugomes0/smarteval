@@ -50,8 +50,6 @@
 
         getCategory()
     })
-
-    $: console.log(category)
 </script>
 
 {#if !loading}

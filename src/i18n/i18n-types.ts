@@ -639,6 +639,55 @@ type RootTranslation = {
 		 */
 		ToastSuccess: string
 	}
+	EmployeesDepartments: {
+		/**
+		 * E​s​c​o​l​h​a​ ​o​ ​f​u​n​c​i​o​n​á​r​i​o​ ​q​u​e​ ​i​r​á​ ​s​e​r​ ​o​ ​a​v​a​l​i​a​d​o​ ​n​e​s​t​a​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		ChooseEvaluated: string
+		/**
+		 * E​s​c​o​l​h​a​ ​o​ ​d​e​p​a​r​t​a​m​e​n​t​o​ ​q​u​e​ ​i​r​á​ ​s​e​r​ ​a​v​a​l​i​a​d​o​ ​n​e​s​t​a​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		ChooseEvaluatedDep: string
+		/**
+		 * E​s​c​o​l​h​a​ ​o​ ​f​u​n​c​i​o​n​á​r​i​o​ ​q​u​e​ ​i​r​á​ ​s​e​r​ ​o​ ​a​v​a​l​i​a​d​o​r​ ​n​e​s​t​a​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		ChooseEvaluator: string
+		/**
+		 * E​s​c​o​l​h​a​ ​o​ ​d​e​p​a​r​t​a​m​e​n​t​o​ ​q​u​e​ ​i​r​á​ ​a​v​a​l​i​a​r​ ​n​e​s​t​a​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		ChooseEvaluatorDep: string
+		/**
+		 * E​s​c​o​l​h​a​ ​a​ ​c​h​e​f​i​a​ ​q​u​e​ ​i​r​á​ ​a​v​a​l​i​a​r​ ​n​e​s​t​a​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		ChooseSupervisor: string
+		/**
+		 * V​o​l​t​a​r
+		 */
+		GoBack: string
+		/**
+		 * A​v​a​n​ç​a​r
+		 */
+		Next: string
+		/**
+		 * G​u​a​r​d​a​r
+		 */
+		Save: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​p​a​g​e​S​i​z​e​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {unknown} firstElement
+		 * @param {unknown} pageSize
+		 * @param {unknown} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'pageSize' | 'total'>
+		/**
+		 * N​o​v​a​ ​s​u​b​m​i​s​s​ã​o​ ​c​r​i​a​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastCreate: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​c​r​i​a​r​ ​u​m​a​ ​n​o​v​a​ ​s​u​b​m​i​s​s​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ToastCreateError: string
+	}
 	EvaluationTypes: {
 		/**
 		 * B​o​t​t​o​m​U​p
@@ -673,6 +722,10 @@ type RootTranslation = {
 		 */
 		ActiveReviews: string
 		/**
+		 * A​n​t​e​r​i​o​r
+		 */
+		Back: string
+		/**
 		 * C​a​t​e​g​o​r​i​a​s
 		 */
 		Categories: string
@@ -681,13 +734,73 @@ type RootTranslation = {
 		 */
 		CompletedReviews: string
 		/**
+		 * C​r​i​a​r
+		 */
+		Create: string
+		/**
+		 * C​r​i​a​r​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CreateCategory: string
+		/**
+		 * C​r​i​a​r​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		CreateRatingGroup: string
+		/**
+		 * C​r​i​a​r​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		CreateReview: string
+		/**
+		 * D​a​t​a​ ​d​e​ ​f​i​m
+		 */
+		EndDate: string
+		/**
+		 * N​ã​o​ ​f​o​i​ ​p​o​s​s​í​v​e​l​ ​a​p​r​e​s​e​n​t​a​r​ ​a​s​ ​ú​l​t​i​m​a​s​ ​a​ç​õ​e​s​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ErrorActions: string
+		/**
+		 * N​ã​o​ ​f​o​i​ ​p​o​s​s​í​v​e​l​ ​a​p​r​e​s​e​n​t​a​r​ ​a​s​ ​a​v​a​l​i​a​ç​ã​o​ ​a​t​i​v​a​s​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ErrorActiveReviewsList: string
+		/**
+		 * N​ã​o​ ​f​o​i​ ​p​o​s​s​í​v​e​l​ ​a​p​r​e​s​e​n​t​a​r​ ​o​ ​g​r​á​f​i​c​o​.​ ​T​e​n​t​e​ ​m​a​i​s​ ​t​a​r​d​e​.
+		 */
+		ErrorCountReviewsEachStatus: string
+		/**
+		 * Ú​l​t​i​m​a​s​ ​a​ç​õ​e​s
+		 */
+		LastActions: string
+		/**
+		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
+		 */
+		Loading: string
+		/**
+		 * P​r​ó​x​i​m​a
+		 */
+		Next: string
+		/**
+		 * S​e​m​ ​a​ç​õ​e​s​ ​p​a​r​a​ ​a​p​r​e​s​e​n​t​a​r​.
+		 */
+		NoActions: string
+		/**
+		 * S​e​m​ ​a​v​a​l​i​a​ç​ã​o​ ​a​t​i​v​a​s​ ​n​e​s​t​e​ ​m​o​m​e​n​t​o​.
+		 */
+		NoActiveReviews: string
+		/**
 		 * C​r​i​t​é​r​i​o​s​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		RatingGroups: string
 		/**
+		 * A​v​a​l​i​a​ç​ã​o
+		 */
+		Review: string
+		/**
 		 * A​v​a​l​i​a​ç​õ​e​s
 		 */
 		Reviews: string
+		/**
+		 * A​t​a​l​h​o​s​ ​d​e​ ​c​r​i​a​ç​ã​o
+		 */
+		ShortCuts: string
 		/**
 		 * M​o​d​e​l​o​s
 		 */
@@ -880,6 +993,10 @@ type RootTranslation = {
 		 */
 		Loading: string
 		/**
+		 * P​a​r​a​ ​c​r​i​a​r​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o​,​ ​s​ã​o​ ​n​e​c​e​s​s​a​r​i​a​s​ ​p​e​r​m​i​s​s​õ​e​s​ ​p​a​r​a​ ​a​c​e​s​s​a​r​ ​c​a​t​e​g​o​r​i​a​s​ ​e​ ​c​r​i​t​é​r​i​o​s​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​.​ ​A​p​ó​s​ ​r​e​c​e​b​e​r​ ​e​s​s​a​s​ ​p​e​r​m​i​s​s​õ​e​s​ ​t​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		NeedAuths: string
+		/**
 		 * N​ã​o​ ​e​x​i​s​t​e​m​ ​a​v​a​l​i​a​ç​õ​e​s​ ​c​o​m​ ​e​s​t​e​ ​e​s​t​a​d​o​ ​d​i​s​p​o​n​í​v​e​i​s​ ​n​e​s​t​e​ ​m​o​m​e​n​t​o​.​ ​V​o​l​t​e​ ​m​a​i​s​ ​t​a​r​d​e​ ​o​u​ ​c​r​i​e​ ​u​m​a​ ​n​o​v​a​ ​a​v​a​l​i​a​ç​ã​o​ ​p​a​r​a​ ​c​o​m​e​ç​a​r​!
 		 */
 		NoReviews: string
@@ -928,6 +1045,10 @@ type RootTranslation = {
 		 * N​ã​o​ ​i​n​i​c​i​a​d​a​s
 		 */
 		NotStarted: string
+		/**
+		 * N​º​ ​d​e​ ​A​v​a​l​i​a​ç​õ​e​s
+		 */
+		NumberReviews: string
 		/**
 		 * A​t​i​v​a
 		 */
@@ -1241,6 +1362,14 @@ type RootTranslation = {
 	}
 	SubmissionModal: {
 		/**
+		 * E​s​c​o​l​h​a​ ​u​m​ ​d​e​p​a​r​t​a​m​e​n​t​o
+		 */
+		ChooseDepartment: string
+		/**
+		 * E​s​c​o​l​h​a​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o
+		 */
+		ChooseEmployee: string
+		/**
 		 * C​r​i​a​r​ ​s​u​b​m​i​s​s​ã​o
 		 */
 		CreateSubmission: string
@@ -1248,6 +1377,10 @@ type RootTranslation = {
 		 * D​a​t​a
 		 */
 		Date: string
+		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​r​e​m​o​v​e​r​ ​a​ ​s​u​b​m​i​s​s​ã​o​?​ ​E​s​t​e​ ​p​a​s​s​o​ ​é​ ​i​r​r​e​v​e​r​s​í​v​e​l​.
+		 */
+		Description: string
 		/**
 		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​r​e​t​o​r​n​a​r​ ​a​s​ ​s​u​b​m​i​s​s​õ​e​s
 		 */
@@ -1257,9 +1390,17 @@ type RootTranslation = {
 		 */
 		Evaluated: string
 		/**
+		 * D​e​p​a​r​t​a​m​e​n​t​o​ ​A​v​a​l​i​a​d​o
+		 */
+		EvaluatedDep: string
+		/**
 		 * A​v​a​l​i​a​d​o​r
 		 */
 		Evaluator: string
+		/**
+		 * D​e​p​a​r​t​a​m​e​n​t​o​ ​A​v​a​l​i​a​d​o​r
+		 */
+		EvaluatorDep: string
 		/**
 		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
 		 */
@@ -1300,6 +1441,18 @@ type RootTranslation = {
 		 */
 		Submitted: string
 		/**
+		 * R​e​m​o​v​e​r​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		Title: string
+		/**
+		 * N​o​v​a​ ​s​u​b​m​i​s​s​ã​o​ ​c​r​i​a​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastCreate: string
+		/**
+		 * O​c​o​r​r​e​u​ ​u​m​ ​e​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​c​r​i​a​r​ ​u​m​a​ ​s​u​b​m​i​s​s​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
+		 */
+		ToastCreateError: string
+		/**
 		 * S​u​b​m​i​s​s​ã​o​ ​r​e​m​o​v​i​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
 		 */
 		ToastDelete: string
@@ -1307,6 +1460,56 @@ type RootTranslation = {
 		 * O​c​o​r​r​e​u​ ​u​m​ ​e​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​r​e​m​o​v​e​r​ ​a​ ​s​u​b​m​i​s​s​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o​.
 		 */
 		ToastDeleteError: string
+	}
+	Submissions: {
+		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​a​l​t​e​r​a​r​ ​a​ ​s​u​b​m​i​s​s​ã​o​?
+		 */
+		AlterSubmissionDesc: string
+		/**
+		 * A​l​t​e​r​a​r​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		AlterSubmissionTitle: string
+		/**
+		 * N​e​s​t​a​ ​s​e​c​ç​ã​o​,​ ​e​n​c​o​n​t​r​a​ ​u​m​a​ ​v​i​s​ã​o​ ​g​e​r​a​l​ ​d​e​ ​t​o​d​a​s​ ​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​,​ ​s​u​b​-​a​v​a​l​i​a​ç​õ​e​s​ ​e​ ​s​u​b​m​i​s​s​õ​e​s​ ​q​u​e​ ​p​r​e​c​i​s​a​ ​d​e​ ​r​e​a​l​i​z​a​r​.​ ​P​o​d​e​ ​c​o​n​s​u​l​t​a​r​ ​a​v​a​l​i​a​ç​õ​e​s​ ​a​t​i​v​a​s​,​ ​o​n​d​e​ ​e​x​i​s​t​e​ ​a​ ​s​u​a​ ​p​a​r​t​i​c​i​p​a​ç​ã​o​ ​p​a​r​a​ ​r​e​s​p​o​n​d​e​r​ ​a​o​ ​q​u​e​s​t​i​o​n​á​r​i​o​ ​e​ ​a​c​e​d​e​r​ ​a​o​ ​h​i​s​t​ó​r​i​c​o​ ​d​e​ ​s​u​b​m​i​s​s​õ​e​s​ ​q​u​e​ ​r​e​a​l​i​z​o​u​.​ ​M​a​n​t​e​n​h​a​-​s​e​ ​a​t​u​a​l​i​z​a​d​o​ ​c​o​m​ ​o​s​ ​p​r​a​z​o​s​ ​e​ ​a​s​s​e​g​u​r​e​-​s​e​ ​q​u​e​ ​r​e​a​l​i​z​a​ ​a​s​ ​s​u​a​s​ ​s​u​b​m​i​s​s​õ​e​s​ ​d​e​n​t​r​o​ ​d​o​ ​p​r​a​z​o​.
+		 */
+		Description: string
+		/**
+		 * A​ ​c​a​r​r​e​g​a​r​.​.​.
+		 */
+		Loading: string
+		/**
+		 * N​o​ ​m​o​m​e​n​t​o​,​ ​n​ã​o​ ​e​x​i​s​t​e​m​ ​s​u​b​m​i​s​s​õ​e​s​ ​p​a​r​a​ ​m​o​s​t​r​a​r​.
+		 */
+		NoReviews: string
+		/**
+		 * A​t​i​v​a​s
+		 */
+		TabActive: string
+		/**
+		 * H​i​s​t​ó​r​i​c​o
+		 */
+		TabHistory: string
+		/**
+		 * S​u​b​m​i​s​s​õ​e​s
+		 */
+		Title: string
+		/**
+		 * S​u​b​m​i​s​s​ã​o​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​u​m​ ​d​e​p​a​r​t​a​m​e​n​t​o​ ​s​o​b​r​e​ ​o​ ​q​u​a​l​ ​s​e​r​á​ ​f​e​i​t​a​ ​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		ValidationEvaluatedDepartmentError: string
+		/**
+		 * S​u​b​m​i​s​s​ã​o​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​u​m​ ​d​e​p​a​r​t​a​m​e​n​t​o​ ​a​o​ ​q​u​a​l​ ​p​e​r​t​e​n​c​e​ ​o​ ​f​u​n​c​i​o​n​á​r​i​o​ ​q​u​e​ ​r​e​a​l​i​z​a​r​á​ ​e​s​t​a​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		ValidationEvaluatorDepartmentError: string
+		/**
+		 * S​u​b​m​i​s​s​ã​o​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o​ ​s​o​b​r​e​ ​o​ ​q​u​a​l​ ​s​e​r​á​ ​f​e​i​t​a​ ​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		ValidationEvaluatedEmployeeError: string
+		/**
+		 * S​u​b​m​i​s​s​ã​o​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o​ ​q​u​e​ ​a​ ​r​e​a​l​i​z​e
+		 */
+		ValidationEvaluatorEmployeeError: string
 	}
 }
 
@@ -1931,6 +2134,52 @@ export type TranslationFunctions = {
 		 */
 		ToastSuccess: () => LocalizedString
 	}
+	EmployeesDepartments: {
+		/**
+		 * Escolha o funcionário que irá ser o avaliado nesta submissão
+		 */
+		ChooseEvaluated: () => LocalizedString
+		/**
+		 * Escolha o departamento que irá ser avaliado nesta submissão
+		 */
+		ChooseEvaluatedDep: () => LocalizedString
+		/**
+		 * Escolha o funcionário que irá ser o avaliador nesta submissão
+		 */
+		ChooseEvaluator: () => LocalizedString
+		/**
+		 * Escolha o departamento que irá avaliar nesta submissão
+		 */
+		ChooseEvaluatorDep: () => LocalizedString
+		/**
+		 * Escolha a chefia que irá avaliar nesta submissão
+		 */
+		ChooseSupervisor: () => LocalizedString
+		/**
+		 * Voltar
+		 */
+		GoBack: () => LocalizedString
+		/**
+		 * Avançar
+		 */
+		Next: () => LocalizedString
+		/**
+		 * Guardar
+		 */
+		Save: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {pageSize} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: unknown, pageSize: unknown, total: unknown }) => LocalizedString
+		/**
+		 * Nova submissão criada com sucesso
+		 */
+		ToastCreate: () => LocalizedString
+		/**
+		 * Erro ao tentar criar uma nova submissão. Tente de novo.
+		 */
+		ToastCreateError: () => LocalizedString
+	}
 	EvaluationTypes: {
 		/**
 		 * BottomUp
@@ -1965,6 +2214,10 @@ export type TranslationFunctions = {
 		 */
 		ActiveReviews: () => LocalizedString
 		/**
+		 * Anterior
+		 */
+		Back: () => LocalizedString
+		/**
 		 * Categorias
 		 */
 		Categories: () => LocalizedString
@@ -1973,13 +2226,73 @@ export type TranslationFunctions = {
 		 */
 		CompletedReviews: () => LocalizedString
 		/**
+		 * Criar
+		 */
+		Create: () => LocalizedString
+		/**
+		 * Criar categoria
+		 */
+		CreateCategory: () => LocalizedString
+		/**
+		 * Criar critério de avaliação
+		 */
+		CreateRatingGroup: () => LocalizedString
+		/**
+		 * Criar avaliação
+		 */
+		CreateReview: () => LocalizedString
+		/**
+		 * Data de fim
+		 */
+		EndDate: () => LocalizedString
+		/**
+		 * Não foi possível apresentar as últimas ações. Tente de novo.
+		 */
+		ErrorActions: () => LocalizedString
+		/**
+		 * Não foi possível apresentar as avaliação ativas. Tente de novo.
+		 */
+		ErrorActiveReviewsList: () => LocalizedString
+		/**
+		 * Não foi possível apresentar o gráfico. Tente mais tarde.
+		 */
+		ErrorCountReviewsEachStatus: () => LocalizedString
+		/**
+		 * Últimas ações
+		 */
+		LastActions: () => LocalizedString
+		/**
+		 * A carregar...
+		 */
+		Loading: () => LocalizedString
+		/**
+		 * Próxima
+		 */
+		Next: () => LocalizedString
+		/**
+		 * Sem ações para apresentar.
+		 */
+		NoActions: () => LocalizedString
+		/**
+		 * Sem avaliação ativas neste momento.
+		 */
+		NoActiveReviews: () => LocalizedString
+		/**
 		 * Critérios de avaliação
 		 */
 		RatingGroups: () => LocalizedString
 		/**
+		 * Avaliação
+		 */
+		Review: () => LocalizedString
+		/**
 		 * Avaliações
 		 */
 		Reviews: () => LocalizedString
+		/**
+		 * Atalhos de criação
+		 */
+		ShortCuts: () => LocalizedString
 		/**
 		 * Modelos
 		 */
@@ -2169,6 +2482,10 @@ export type TranslationFunctions = {
 		 */
 		Loading: () => LocalizedString
 		/**
+		 * Para criar uma avaliação, são necessarias permissões para acessar categorias e critérios de avaliação. Após receber essas permissões tente de novo.
+		 */
+		NeedAuths: () => LocalizedString
+		/**
 		 * Não existem avaliações com este estado disponíveis neste momento. Volte mais tarde ou crie uma nova avaliação para começar!
 		 */
 		NoReviews: () => LocalizedString
@@ -2214,6 +2531,10 @@ export type TranslationFunctions = {
 		 * Não iniciadas
 		 */
 		NotStarted: () => LocalizedString
+		/**
+		 * Nº de Avaliações
+		 */
+		NumberReviews: () => LocalizedString
 		/**
 		 * Ativa
 		 */
@@ -2527,6 +2848,14 @@ export type TranslationFunctions = {
 	}
 	SubmissionModal: {
 		/**
+		 * Escolha um departamento
+		 */
+		ChooseDepartment: () => LocalizedString
+		/**
+		 * Escolha um funcionário
+		 */
+		ChooseEmployee: () => LocalizedString
+		/**
 		 * Criar submissão
 		 */
 		CreateSubmission: () => LocalizedString
@@ -2534,6 +2863,10 @@ export type TranslationFunctions = {
 		 * Data
 		 */
 		Date: () => LocalizedString
+		/**
+		 * Tem a certeza que pretende remover a submissão? Este passo é irreversível.
+		 */
+		Description: () => LocalizedString
 		/**
 		 * Erro ao tentar retornar as submissões
 		 */
@@ -2543,9 +2876,17 @@ export type TranslationFunctions = {
 		 */
 		Evaluated: () => LocalizedString
 		/**
+		 * Departamento Avaliado
+		 */
+		EvaluatedDep: () => LocalizedString
+		/**
 		 * Avaliador
 		 */
 		Evaluator: () => LocalizedString
+		/**
+		 * Departamento Avaliador
+		 */
+		EvaluatorDep: () => LocalizedString
 		/**
 		 * A carregar...
 		 */
@@ -2583,6 +2924,18 @@ export type TranslationFunctions = {
 		 */
 		Submitted: () => LocalizedString
 		/**
+		 * Remover submissão
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Nova submissão criada com sucesso
+		 */
+		ToastCreate: () => LocalizedString
+		/**
+		 * Ocorreu um erro ao tentar criar uma submissão. Tente de novo.
+		 */
+		ToastCreateError: () => LocalizedString
+		/**
 		 * Submissão removida com sucesso
 		 */
 		ToastDelete: () => LocalizedString
@@ -2590,6 +2943,56 @@ export type TranslationFunctions = {
 		 * Ocorreu um erro ao tentar remover a submissão. Tente de novo.
 		 */
 		ToastDeleteError: () => LocalizedString
+	}
+	Submissions: {
+		/**
+		 * Tem a certeza que pretende alterar a submissão?
+		 */
+		AlterSubmissionDesc: () => LocalizedString
+		/**
+		 * Alterar submissão
+		 */
+		AlterSubmissionTitle: () => LocalizedString
+		/**
+		 * Nesta secção, encontra uma visão geral de todas as avaliações, sub-avaliações e submissões que precisa de realizar. Pode consultar avaliações ativas, onde existe a sua participação para responder ao questionário e aceder ao histórico de submissões que realizou. Mantenha-se atualizado com os prazos e assegure-se que realiza as suas submissões dentro do prazo.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * A carregar...
+		 */
+		Loading: () => LocalizedString
+		/**
+		 * No momento, não existem submissões para mostrar.
+		 */
+		NoReviews: () => LocalizedString
+		/**
+		 * Ativas
+		 */
+		TabActive: () => LocalizedString
+		/**
+		 * Histórico
+		 */
+		TabHistory: () => LocalizedString
+		/**
+		 * Submissões
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Submissão necessita de um departamento sobre o qual será feita a avaliação
+		 */
+		ValidationEvaluatedDepartmentError: () => LocalizedString
+		/**
+		 * Submissão necessita de um departamento ao qual pertence o funcionário que realizará esta submissão
+		 */
+		ValidationEvaluatorDepartmentError: () => LocalizedString
+		/**
+		 * Submissão necessita de um funcionário sobre o qual será feita a avaliação
+		 */
+		ValidationEvaluatedEmployeeError: () => LocalizedString
+		/**
+		 * Submissão necessita de um funcionário que a realize
+		 */
+		ValidationEvaluatorEmployeeError: () => LocalizedString
 	}
 }
 

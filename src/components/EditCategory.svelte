@@ -158,9 +158,6 @@
     }
 
     onMount(async () => { getCategory() })
-
-    $: console.log(category)
-    $: console.log(editCategory)
 </script>
 
 {#if !loading}

@@ -2,7 +2,7 @@
     import LL from "../i18n/i18n-svelte"
     import toast from "svelte-french-toast"
     import { AlertCircleIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon, SearchIcon, Trash2Icon } from "lucide-svelte"
-    import { Link } from "svelte-routing"
+    import { Link, navigate } from "svelte-routing"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
     import { getFullReviewStatusText } from "../helpers/action"
@@ -58,6 +58,16 @@
         timeoutId = setTimeout(func, delay)
     }
 
+    function goToCreatePage() {
+        const module = user.authorizations.find(temp => temp.moduleType === "SmartEval")
+        const permissionToReadCategory = module?.windowPermissions.find(temp => temp.windowType === "Categories")?.permissions.find(temp => temp.permissionType === "Read")?.hasPermission
+        const permissionToReadRatingGroup = module?.windowPermissions.find(temp => temp.windowType === "RatingGroups")?.permissions.find(temp => temp.permissionType === "Read")?.hasPermission
+
+        if (permissionToReadCategory && permissionToReadRatingGroup) {
+            navigate("/reviews/createReview")
+        } else { toast.error($LL.Reviews.NeedAuths()) }
+    }
+
     function handleInputChanges() {
         reviews = [], loading = true, total = 0
         debounce(getReviews, 1000)
@@ -89,10 +99,10 @@
         </div>
         {#if buttonCreate}
             <div class="flex">
-                <Link class="flex font-semibold gap-x-[5px] items-center justify-center px-[10px] py-[5px] rounded text-sm w-max bg-blue-500 hover:bg-blue-600 text-white" to="/reviews/createReview">
+                <button on:click={goToCreatePage} class="flex font-semibold gap-x-[5px] items-center justify-center px-[10px] py-[5px] rounded text-sm w-max bg-blue-500 hover:bg-blue-600 text-white">
                     <svelte:component this={PlusIcon} />
                     <span class="text-center">{$LL.Reviews.CreateButton()}</span>
-                </Link>
+                </button>
             </div>
         {/if}
     </div>

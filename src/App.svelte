@@ -28,6 +28,9 @@
 	import ReviewsComponent from './components/Reviews.svelte'
 	import CreateReviewComponent from './components/CreateReview.svelte'
 	import SingleReviewComponent from './components/SingleReview.svelte'
+	import HomeFOComponent from './components/HomeFrontoffice.svelte'
+	import SubmissionsComponent from './components/Submissions.svelte'
+	import SingleSubmissionComponent from './components/SingleSubmission.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -119,7 +122,7 @@
 					<Header bind:sidebar />
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-5">
-							<Route path="/" component={HomeBOComponent} />
+							<Route path="/" component={HomeBOComponent} {user} {lang} />
 							<Route path="/reviews" component={ReviewsComponent} {user} />
 							<Route path="/reviews/createReview" component={CreateReviewComponent} />
 							<Route path="/reviews/:reviewId" component={SingleReviewComponent} {user} {lang} />
@@ -149,6 +152,9 @@
 					<Header bind:sidebar />
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-5">
+							<Route path="/" component={HomeFOComponent} />
+							<Route path="/submissions" component={SubmissionsComponent} {lang} />
+							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route component={NotFoundComponent} />
 						</div>
 					</div>

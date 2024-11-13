@@ -89,6 +89,13 @@ type CreateReviewQuestionData = {
     translations: CreateTranslationData[]
 }
 
+type CreateSubmissionData = {
+    evaluatedEmployeeId: number | null,
+    evaluatorEmployeeId: number | null,
+    evaluatedDepartmentId: number | null,
+    evaluatorDepartmentId: number | null
+}
+
 type CreateTranslationData = {
     language: string,
     title: string,
@@ -158,6 +165,12 @@ type EvaluationRatingOptionData = {
     translations: { language: string, title: string, description: string }[]
 }
 
+type InfoEmployeeData = {
+    employeeId: number,
+    employeeName: string,
+    departmentName: string
+}
+
 type PermissionData = { 
     permissionId: number, 
     permissionType: string, 
@@ -168,19 +181,6 @@ type ProfileData = {
     idperfil: number,
     nome: string,
     portalColaborador: int
-}
-
-type RatingGroupInfoData = {
-    ratingGroupId: string,
-    title: string,
-    description: string,
-    createDate: string
-}
-
-type RatingGroupInfo2Data = {
-    ratingGroupId: string,
-    title: string,
-    description: string
 }
 
 type QuestionData = {
@@ -204,6 +204,19 @@ type RatingGroupData = {
     createByUser: string,
     isBeingUsed: boolean,
     ratingOptions: RatingOptionData[]
+}
+
+type RatingGroupInfoData = {
+    ratingGroupId: string,
+    title: string,
+    description: string,
+    createDate: string
+}
+
+type RatingGroupInfo2Data = {
+    ratingGroupId: string,
+    title: string,
+    description: string
 }
 
 type RatingOptionData = {
@@ -251,6 +264,22 @@ type SubmissionData = {
     evaluatorEmployee: string,
     evaluatedDepartment: string,
     evaluatorDepartment: string
+}
+
+type SubmissionsEvaluationData = {
+    evaluationId: string,
+    type: string,
+    submissions: SubmissionData[]
+}
+
+type SubmissionsReviewData = {
+    reviewId: string,
+    title: string,
+    description: string,
+    endDate: string,
+    status: string,
+    username: string,
+    evaluations: SubmissionsEvaluationData[]
 }
 
 type TemplateCategoryData = {

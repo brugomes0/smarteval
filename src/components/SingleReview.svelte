@@ -1,6 +1,6 @@
 <script lang="ts">
     import LL from "../i18n/i18n-svelte"
-    import ModalActionReviewComponent from "./helpers/ModalActionReviewComponent.svelte"
+    import ModalComponent from "./helpers/ModalComponent.svelte"
     import toast from "svelte-french-toast"
     import SubmissionsComponent from "./helpers/SubmissionsComponent.svelte"
     import SveltyPicker from "svelty-picker"
@@ -23,6 +23,11 @@
     let buttonCompleteIsOpen: boolean = false
     let buttonEditIsOpen: boolean = false
     let buttonDeleteIsOpen: boolean = false
+
+    // permissions for submissions
+    let allowAddSubmission: boolean = false
+    let allowDeleteSubmission: boolean = false
+    let allowReadSubmission: boolean = false
 
     let buttonDelete: boolean = false
     let buttonEdit: boolean = false
@@ -151,6 +156,15 @@
         if (permissionToDelete?.hasPermission) buttonDelete = true
         if (permissionToEdit?.hasPermission) buttonEdit = true
         if (permissionToPatch?.hasPermission) buttonPatch = true
+        
+        const submissionsPermissions = module?.windowPermissions.find(temp => temp.windowType === "Submissions")
+        const subPermissionToRead = submissionsPermissions?.permissions.find(temp => temp.permissionType === "Read")
+        const subPermissionToAdd = submissionsPermissions?.permissions.find(temp => temp.permissionType === "Create")
+        const subPermissionToDelete = submissionsPermissions?.permissions.find(temp => temp.permissionType === "Delete")
+
+        if (subPermissionToRead?.hasPermission) allowReadSubmission = true
+        if (subPermissionToAdd?.hasPermission) allowAddSubmission = true
+        if (subPermissionToDelete?.hasPermission) allowDeleteSubmission = true 
 
         await getReview()
         await getEvaluation()
@@ -166,7 +180,7 @@
 
 <!-- MODAL FOR ACTIVATE REVIEW -->
 {#if buttonActivateIsOpen}
-    <ModalActionReviewComponent on:save={() => changeReviewStatus("Active")}>
+    <ModalComponent on:save={() => changeReviewStatus("Active")}>
         <div class="flex items-center justify-between" slot="header">
             <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsActivate()}</span>
             <button on:click={() => exitModal("Activate")} class="p-2 rounded hover:bg-gray-200">
@@ -183,12 +197,12 @@
                 </div>
             </div>
         </div>
-    </ModalActionReviewComponent>
+    </ModalComponent>
 {/if}
 
 <!-- MODAL FOR EXTEND REVIEW END DATE -->
 {#if buttonExtendIsOpen}
-    <ModalActionReviewComponent on:save={() => changeReviewStatus("Active")}>
+    <ModalComponent on:save={() => changeReviewStatus("Active")}>
         <div class="flex items-center justify-between" slot="header">
             <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsExtend()}</span>
             <button on:click={() => exitModal("Extend")} class="p-2 rounded hover:bg-gray-200">
@@ -205,12 +219,12 @@
                 </div>
             </div>
         </div>
-    </ModalActionReviewComponent>
+    </ModalComponent>
 {/if}
 
 <!-- MODAL FOR CANCEL REVIEW -->
 {#if buttonCancelIsOpen}
-    <ModalActionReviewComponent on:save={() => changeReviewStatus("Canceled")}>
+    <ModalComponent on:save={() => changeReviewStatus("Canceled")}>
         <div class="flex items-center justify-between" slot="header">
             <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsCancel()}</span>
             <button on:click={() => exitModal("Cancel")} class="p-2 rounded hover:bg-gray-200">
@@ -220,12 +234,12 @@
         <div class="flex flex-col gap-y-2" slot="content">
             <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsCancelModal()}</span>
         </div>
-    </ModalActionReviewComponent>
+    </ModalComponent>
 {/if}
 
 <!-- MODAL FOR COMPLETE REVIEW -->
 {#if buttonCompleteIsOpen}
-    <ModalActionReviewComponent on:save={() => changeReviewStatus("Completed")}>
+    <ModalComponent on:save={() => changeReviewStatus("Completed")}>
         <div class="flex items-center justify-between" slot="header">
             <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsComplete()}</span>
             <button on:click={() => exitModal("Complete")} class="p-2 rounded hover:bg-gray-200">
@@ -235,12 +249,12 @@
         <div class="flex flex-col gap-y-2" slot="content">
             <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsCompleteModal()}</span>
         </div>
-    </ModalActionReviewComponent>
+    </ModalComponent>
 {/if}
 
 <!-- MODAL TO EDIT REVIEW -->
 {#if buttonEditIsOpen}
-    <ModalActionReviewComponent on:save={() => navigate(`/reviews/${reviewId}/edit`)}>
+    <ModalComponent on:save={() => navigate(`/reviews/${reviewId}/edit`)}>
         <div class="flex items-center justify-between" slot="header">
             <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsEdit()}</span>
             <button on:click={() => exitModal("Edit")} class="p-2 rounded hover:bg-gray-200">
@@ -250,12 +264,12 @@
         <div class="flex flex-col gap-y-2" slot="content">
             <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsEditModal()}</span>
         </div>
-    </ModalActionReviewComponent>
+    </ModalComponent>
 {/if}
 
 <!-- MODAL TO DELETE REVIEW -->
 {#if buttonDeleteIsOpen}
-    <ModalActionReviewComponent on:save={() => deleteReview()}>
+    <ModalComponent on:save={() => deleteReview()}>
         <div class="flex items-center justify-between" slot="header">
             <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsDelete()}</span>
             <button on:click={() => exitModal("Delete")} class="p-2 rounded hover:bg-gray-200">
@@ -265,7 +279,7 @@
         <div class="flex flex-col gap-y-2" slot="content">
             <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsDeleteModal()}</span>
         </div>
-    </ModalActionReviewComponent>
+    </ModalComponent>
 {/if}
 
 <!-- PAGE ELEMENTS -->
@@ -364,7 +378,7 @@
 
         <!-- EVALUATIONS OF REVIEW -->
         <div class="flex flex-col gap-y-2">
-            <div class="border-b flex border-gray-300">
+            <div class="border-b flex overflow-x-auto whitespace-nowrap border-gray-300">
                 {#each review.evaluationsAvailable as evaluation}
                     <button on:click={() => handleEvalChange(evaluation)} class="font-medium p-2 {evaluationActive === evaluation ? 'border-b-2 border-blue-500 text-gray-800' : 'text-gray-400'}">{getEvaluationTypeText(evaluation)}</button>
                 {/each}
@@ -377,10 +391,12 @@
                     {#if review.evaluations.length > 0 && review.evaluations.find(temp => temp.type === evaluationActive)}
                         {#each review.evaluations as evaluation}
                             {#if evaluation.type === evaluationActive}
-                                <div class="flex flex-col gap-y-1">
-                                    <li class="font-medium text-base">{$LL.SingleReview.Progress()}</li>
-                                    <ProgressBarComponent bind:actual={evalProgressBar.completedSubmissions} bind:total={evalProgressBar.totalSubmissions} />
-                                </div>
+                                {#if review.status === "Active"}
+                                    <div class="flex flex-col gap-y-1">
+                                        <li class="font-medium text-base">{$LL.SingleReview.Progress()}</li>
+                                        <ProgressBarComponent bind:actual={evalProgressBar.completedSubmissions} bind:total={evalProgressBar.totalSubmissions} />
+                                    </div>
+                                {/if}
                                 {#if evaluation.availableInLanguages.length > 1}
                                     <div class="flex gap-x-2 items-center">
                                         <p class="font-semibold text-base text-black">{$LL.SingleReview.ShowInLanguage()}</p>
@@ -424,10 +440,12 @@
                                         </div>
                                     {/each}
                                 </div>
-                                <div class="flex flex-col gap-y-1">
-                                    <li class="font-medium text-base">{$LL.SingleReview.Submissions()}</li>
-                                    <SubmissionsComponent bind:evaluationId={evaluation.evaluationId} bind:lang bind:reloadProgressBar />
-                                </div>
+                                {#if allowReadSubmission && review.status !== "NotStarted"}
+                                    <div class="flex flex-col gap-y-1">
+                                        <li class="font-medium text-base">{$LL.SingleReview.Submissions()}</li>
+                                        <SubmissionsComponent bind:evaluationId={evaluation.evaluationId} bind:evaluationType={evaluation.type} bind:lang bind:reloadProgressBar bind:allowAddSubmission bind:allowDeleteSubmission />
+                                    </div>
+                                {/if}
                             {/if}
                         {/each}
                     {:else}

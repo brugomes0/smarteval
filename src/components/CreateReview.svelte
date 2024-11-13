@@ -64,7 +64,6 @@
     }
 
     async function saveReview() {
-        console.log(review.endDate)
         if (review.endDate) {
             review.endDate = convertLocalToUtcDate(review.endDate)
             review.status = "Active"
@@ -241,7 +240,6 @@
     }
 
     $: { if (current >= 1 && current <= 5) accValue = review.evaluations[current - 1]?.template.reduce((acc, item) => acc + item.value, 0) }
-    $: console.log(review)
 </script>
 
 {#if categoriesEditModal}

@@ -14,7 +14,7 @@
             <div class="flex rounded-lg select-none text-transparent {parseFloat(percentage) == 0 ? '': 'bg-blue-500'}" style="width: {percentage}%;">percentage</div>
         </div>
         <svelte:component this={parseFloat(percentage) == 100 ? CircleCheckIcon : CircleXIcon} class="w-4 h-4 {parseFloat(percentage) == 100 ? 'text-green-500' : 'text-red-500'}" />
-        <p>{percentage}/100%</p>
+        <p>{percentage}/100.0%</p>
     </div>
     <div class="flex flex-col mx-4">
         <span class="flex gap-x-[5px]">
