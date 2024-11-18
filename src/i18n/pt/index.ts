@@ -86,12 +86,18 @@ const pt = {
 		CategoryDivDesc: "Passo para associar categorias, e suas questões, criadas anteriormente, com a sub-avaliação",
 		CategoryDivPlaceholder: "Neste momento não existem categorias associadas à sub-avaliação. Duplo-clique na categoria para associá-la à sub-avaliação.",
 		CategoryDivTitle: "Associar categorias e questões",
+		CategoryPercentage: "Percentagem da categoria",
 		Continue: "Continuar",
+		CopyEvaluation: "Copiar sub-avaliação",
+		CreateEvaluation: "Deseja adicionar esta sub-avaliação à avaliação?",
+		CreateEvaluationDesc: "Nesta página pode adicionar e criar a sub-avaliação para esta avaliação. Pode criar a sub-avaliação do zero, clicando no botão de criar ou pode desejar copiar as propriedades de outra sub-avaliação criada nesta avaliação. Se pretende não criar a sub-avaliação basta avançar.",
 		DeleteCategory: "Remover categoria",
+		DeleteEvaluation: "Remover sub-avaliação",
 		Description: "Nesta página pode realizar a criação de uma avaliação. Cada avaliação é criada com um grupo de sub-avaliações. Para cada sub-avaliação deverá especificar o template com as categorias e questões às quais os utilizadores irão responder, o critério de avaliação a utilizar e o valor da avaliação.",
 		EditCategory: "Editar categoria",
 		LanguageDesc: "Selecione para quais idiomas deseja criar a categoria.",
 		LanguageTitle: "Selecione o(s) idioma(s)",
+		Mandatory: "Obrigatório",
 		Questions: "Questões",
 		QuestionsOfRating: "Questões de classificação",
 		QuestionsOfText: "Questões de texto",
@@ -125,7 +131,8 @@ const pt = {
 			NoSelectionRatingGroup: "Selecione um critério de avaliação para a sub-avaliação",
 			NoTitle: "Insira um título para a avaliação",
 			RepeatCategory: "A categoria já existe no modelo da sub-avaliação",
-		}
+		},
+		Value: "Valor"
 	},
 	EditCategories: {
 		AddQuestion: "Adicionar questão",
@@ -212,7 +219,7 @@ const pt = {
 		Loading: "A carregar...",
 		Next: "Próxima",
 		NoActions: "Sem ações para apresentar.",
-		NoActiveReviews: "Sem avaliação ativas neste momento.",
+		NoActiveReviews: "Sem avaliações ativas neste momento.",
 		RatingGroups: "Critérios de avaliação",
 		Review: "Avaliação",
 		Reviews: "Avaliações",
@@ -363,6 +370,22 @@ const pt = {
 		Submissions: "Submissões",
 		ToastChangeStatus: "Estado da avaliação alterado com successo.",
 		ToastChangeStatusError: "Não foi possível alterar o estado da avaliação."
+	},
+	SingleSubmission: {
+		EndDate: "Submeter até",
+		EvaluatedDepartment: "Departamento a avaliar",
+		EvaluatedEmployee: "Funcionário a avaliar",
+		EvaluationType: "Sub-avaliação",
+		InfoSubmission: "Informação da submissão",
+		ReviewName: "Nome da avaliação",
+		SubmissionForm: "Formulário",
+		Submit: "Submeter",
+		ToastNeedCommentError: "Questões com a caixa de comentário visível, necessitam de ser preenchidas",
+		ToastSubmission: "Resposta enviada com sucesso",
+		ToastSubmissionError: "Não foi possível enviar resposta."
+	},
+	Statistics: {
+		NoReviews: "No momento, não existem revisões completas. Tente mais tarde.",
 	},
 	Steps: {
 		Details: "Detalhes",

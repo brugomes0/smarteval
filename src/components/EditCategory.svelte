@@ -255,9 +255,11 @@
                                                         <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="300" rows="2" />
                                                     </label>
                                                 </div>
-                                                <button on:click={() => deleteQuestion(index)} class="hover:text-red-500 text-gray-400" title={$LL.EditCategories.DeleteQuestion()}>
-                                                    <svelte:component this={Trash2Icon} size={20} />
-                                                </button>
+                                                {#if !category.isBeingUsed || (!question.questionId && category.isBeingUsed)}
+                                                    <button on:click={() => deleteQuestion(index)} class="hover:text-red-500 text-gray-400" title={$LL.EditCategories.DeleteQuestion()}>
+                                                        <svelte:component this={Trash2Icon} size={20} />
+                                                    </button>
+                                                {/if}
                                             {:else}
                                                 <div class="flex flex-col flex-grow">
                                                     <p class="font-medium text-base text-gray-900">{rtoTranslation.title ? rtoTranslation.title : $LL.EditCategories.NoTitle()}</p>
@@ -306,9 +308,11 @@
                                                         <textarea bind:value={rtoTranslation.description} class="border font-normal px-2 py-1 rounded text-sm border-gray-300" maxlength="300" rows="2" />
                                                     </label>
                                                 </div>
-                                                <button on:click={() => deleteQuestion(index)} class="hover:text-red-500 text-gray-400" title={$LL.EditCategories.DeleteQuestion()}>
-                                                    <svelte:component this={Trash2Icon} size={20} />
-                                                </button>
+                                                {#if !category.isBeingUsed || (!category.categoryId && category.isBeingUsed)}
+                                                    <button on:click={() => deleteQuestion(index)} class="hover:text-red-500 text-gray-400" title={$LL.EditCategories.DeleteQuestion()}>
+                                                        <svelte:component this={Trash2Icon} size={20} />
+                                                    </button>
+                                                {/if}
                                             {:else}
                                                 <div class="flex flex-col flex-grow">
                                                     <p class="font-medium text-base text-gray-900">{rtoTranslation.title}</p>

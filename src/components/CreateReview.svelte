@@ -1,10 +1,10 @@
 <script lang="ts">
     import LL from "../i18n/i18n-svelte"
     import toast from "svelte-french-toast"
-    import { CalendarDaysIcon, ChevronLeftIcon, ChevronRightIcon, CircleCheckIcon, CirclePlusIcon, CircleXIcon, FilePlus2Icon, PencilIcon, Trash2Icon } from "lucide-svelte"
+    import { CalendarDaysIcon, ChevronLeftIcon, ChevronRightIcon, CircleCheckIcon, CirclePlusIcon, CircleXIcon, CopyIcon, FilePlus2Icon, PencilIcon, Trash2Icon, XIcon } from "lucide-svelte"
     import { dndzone } from "svelte-dnd-action"
     import { flip } from "svelte/animate"
-    import { getFullLanguageText } from "../helpers/action"
+    import { getEvaluationTypeText, getFullLanguageText } from "../helpers/action"
     import { navigate } from "svelte-routing"
     import { requestToApi } from "../helpers/api"
     import { Steps } from "svelte-steps"
@@ -183,9 +183,18 @@
         categoriesEditModal = false
     }
 
+    function copyEvaluation(step: number, evaluationToCopy: CreateReviewEvaluationData) {
+        const evaluationType = evaluationTypes[step]
+        review.evaluations = [...review.evaluations, { type: evaluationType, totalValue: evaluationToCopy.totalValue, ratingGroupId: evaluationToCopy.ratingGroupId, template: evaluationToCopy.template }]
+    }
+
     // Function to remove category from evaluation template when clicking button
     function deleteCategory(id: number, index: number) {
         review.evaluations[index].template = review.evaluations[index].template.filter(cat => cat.id !== id)
+    }
+
+    function deleteEvaluation(type: string) {
+        review.evaluations = review.evaluations.filter(temp => temp.type !== type)
     }
 
     // Function to change steps in evaluation when clicking step-bar
@@ -239,7 +248,14 @@
         }
     }
 
-    $: { if (current >= 1 && current <= 5) accValue = review.evaluations[current - 1]?.template.reduce((acc, item) => acc + item.value, 0) }
+    $: { 
+        if (current >= 1 && current <= 5) {
+            let evaluationIndex = review.evaluations.findIndex(temp => temp.type === evaluationTypes[current])
+            if (evaluationIndex != -1) {
+                accValue = review.evaluations[evaluationIndex].template.reduce((acc, item) => acc + item.value, 0)
+            }
+        }
+    }
 </script>
 
 {#if categoriesEditModal}
@@ -295,13 +311,18 @@
             {:else if current >= 1 && current <= 5}
                 {#each review.evaluations as evaluation}
                     {#if evaluation.type === evaluationTypes[current]}
-                        <div class="flex gap-x-2">
-                            <p class="font-semibold text-base text-black">{$LL.CreateReviews.ShowInLanguage()}</p>
-                            <select bind:value={languageShow} class="border p-[5px] rounded border-gray-300 bg-gray-100 text-gray-900">
-                                {#each languageChoosen as lang}
-                                    <option value={lang}>{getFullLanguageText(lang)}</option>
-                                {/each}
-                            </select>
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-x-2">
+                                <p class="font-semibold text-base text-black">{$LL.CreateReviews.ShowInLanguage()}</p>
+                                <select bind:value={languageShow} class="border p-[5px] rounded border-gray-300 bg-gray-100 text-gray-900">
+                                    {#each languageChoosen as lang}
+                                        <option value={lang}>{getFullLanguageText(lang)}</option>
+                                    {/each}
+                                </select>
+                            </div>
+                            <button on:click={() => deleteEvaluation(evaluation.type)} class="border rounded border-gray-300 hover:bg-gray-100" title={$LL.CreateReviews.DeleteEvaluation()}>
+                                <svelte:component this={XIcon} />
+                            </button>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-base text-black">{$LL.CreateReviews.TotalValueTitle()}</p>
@@ -328,7 +349,7 @@
                                                 </div>
                                             {:else}
                                                 <section
-                                                    use:dndzone={{ items: evaluation.template, flipDurationMs, dropTargetStyle: {} }}
+                                                    use:dndzone={{ items: evaluation.template, flipDurationMs, dropTargetStyle: {}, type: "categoriesDndZone" }}
                                                     on:consider={(e) => handleSort(e, index)}
                                                     on:finalize={(e) => handleSort(e, index)}
                                                     class="flex flex-col gap-y-1 p-1 w-full"
@@ -372,7 +393,7 @@
                                     {/each}
                                 </div>
                                 <div class="border flex flex-col p-1 rounded w-1/4 bg-gray-100 border-gray-300">
-                                    <p class="font-medium my-2 text-base text-center text-gray-800">Categorias</p>
+                                    <p class="font-medium my-2 text-base text-center text-gray-800">Categories</p>
                                     {#each categoriesInfo as category}
                                         <button on:dblclick={() => selectCategory(category, current)} class="p-2 rounded text-left w-full hover:bg-gray-200">
                                             {#each category.translations as translation}
@@ -389,11 +410,28 @@
                     {/if}
                 {/each}
                 {#if !review.evaluations.find(temp => temp.type === evaluationTypes[current])}
-                    <div class="mt-2">
+                    <div class="flex flex-col gap-y-2">
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-base text-black">{$LL.CreateReviews.CreateEvaluation()}</span>
+                            <span class="text-xs text-gray-400">{$LL.CreateReviews.CreateEvaluationDesc()}</span>
+                        </div>
                         <button on:click={() => addEvaluation(current)} class="flex gap-x-2 items-center p-2">
                             <svelte:component this={CirclePlusIcon} />
                             <span>{$LL.CreateReviews.AddEvaluation()}</span>
                         </button>
+                        <span class="font-semibold text-base text-black">{$LL.CreateReviews.CopyEvaluation()}</span>
+                        <div class="flex flex-col px-2">
+                            {#each review.evaluations as evaluation}
+                                {#if evaluation.type !== evaluationTypes[current]}
+                                    <div class="flex items-center">
+                                        <span class="text-xs w-[120px]">{getEvaluationTypeText(evaluation.type)}</span>
+                                        <button on:click={() => copyEvaluation(current, evaluation)} class="p-1 rounded hover:bg-gray-100">
+                                            <svelte:component this={CopyIcon} size={20} />
+                                        </button>
+                                    </div>
+                                {/if}
+                            {/each}
+                        </div>
                     </div>
                 {/if}
             {:else if current == 6}

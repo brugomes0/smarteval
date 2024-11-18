@@ -1,6 +1,8 @@
 <script lang="ts">
     import { ChevronRightIcon, CircleCheckIcon, CircleXIcon, Trash2Icon, XIcon } from "lucide-svelte"
     import { createEventDispatcher } from "svelte"
+    import { dndzone } from "svelte-dnd-action"
+    import { flip } from "svelte/animate"
     import { getFullLanguageText } from "../helpers/action"
     import LL from "../i18n/i18n-svelte"
     import toast from "svelte-french-toast"
@@ -11,6 +13,9 @@
     export let newCategory: boolean
 
     let accValue: number = editableCategory.questions.reduce((acc, item) => acc + item.value, 0)
+    let flipDurationMs: number = 200
+
+    console.log(editableCategory)
 
     const dispatch = createEventDispatcher()
     const closeModal = () => { dispatch('close') }
@@ -18,6 +23,11 @@
         if (editableCategory.value == 0 || editableCategory.value == null || editableCategory.value > 100) { toast.error("Category needs a percentage value"); return }
         if (accValue != 100) { toast.error("Total percentage of questions must be 100%"); return }
         dispatch('save')
+    }
+
+    const handleQuestionSort = (event: any) => {
+        const newArrayQuestions = event.detail.items.map((item: any, index: number) => ({ ...item, position: index + 1 }))
+        editableCategory.questions = [...newArrayQuestions]
     }
 
     function changeQuestionValue(index: number) {
@@ -30,7 +40,10 @@
         return true
     }
 
-    function deleteQuestion(id: number) { editableCategory.questions = editableCategory.questions.filter(question => question.id !== id) }
+    function deleteQuestion(id: number) { 
+        editableCategory.questions = editableCategory.questions.filter(question => question.id !== id)
+        accValue = editableCategory.questions.reduce((acc, item) => acc + item.value, 0)
+    }
 
     function handleBlurQuestion(index: number) {
         accValue = editableCategory.questions.reduce((acc, item) => acc + item.value, 0)
@@ -64,7 +77,7 @@
         {/each}
         <div class="border-b border-gray-300" />
         <div class="flex flex-col gap-y-1">
-            <p class="font-semibold text-base text-black">Percentagem da categoria</p>
+            <p class="font-semibold text-base text-black">{$LL.CreateReviews.CategoryPercentage()}</p>
             <input bind:value={editableCategory.value} class="p-2 rounded text-xs" min="0" max="100" type="number" />
         </div>
         <div class="flex flex-col gap-y-2">
@@ -78,33 +91,37 @@
                     <p>{accValue}/100%</p>
                 </div>
             </div>
-            <div class="flex flex-col">
-                {#each editableCategory.questions as question, index}
-                    {#each question.translations as translation}
-                        {#if translation.language === languageShow}
-                            <div class="flex flex-col px-5 py-[10px] hover:bg-gray-200 relative group rounded">
-                                <button on:click={() => deleteQuestion(question.id)} class="hidden group-hover:inline absolute top-1 right-1">
-                                    <svelte:component this={Trash2Icon} class="w-4 h-4 text-gray-400 hover:text-red-500" />
-                                </button>
-                                <span class="text-sm text-black">{index + 1}. {translation.title}</span>
-                                <span class="text-xs text-gray-400">{translation.description}</span>
-                                {#if question.type === "Rating"}
-                                    <div class="flex gap-x-5 mt-2 ml-2">
-                                        <div class="flex gap-x-1 text-xs">
-                                            <span class="text-gray-400">IsRequired: </span>
-                                            <input bind:checked={question.isRequired} on:change={() => changeQuestionValue(index)} type="checkbox" />
-                                        </div>
-                                        <div class="flex gap-x-1 text-xs">
-                                            <span class="text-gray-400">Value: </span>
-                                            <input bind:value={question.value} class="border px-2 rounded border-gray-300" on:blur={() => handleBlurQuestion(index)} disabled={!question.isRequired} type="number" />
-                                        </div>
+            {#if editableCategory.questions.length > 0}
+                <section use:dndzone={{ items: editableCategory.questions, flipDurationMs, dropTargetStyle: {}, type: "questionsDndZone"}} on:consider={(e) => handleQuestionSort(e)} on:finalize={(e) => handleQuestionSort(e)} class="flex flex-col">
+                    {#each editableCategory.questions as question (question.id)}
+                        <div class="flex flex-col px-5 py-[10px] hover:bg-gray-200 relative group rounded" animate:flip={{ duration: flipDurationMs }}>
+                            {#each question.translations as translation}
+                                {#if translation.language === languageShow}
+                                    <div class="flex flex-col flex-grow">
+                                        <button on:click={() => deleteQuestion(question.id)} class="hidden group-hover:inline absolute top-1 right-1">
+                                            <svelte:component this={Trash2Icon} class="w-4 h-4 text-gray-400 hover:text-red-500" />
+                                        </button>
+                                        <span class="text-sm text-black">{question.position}. {translation.title}</span>
+                                        <span class="text-xs text-gray-400">{translation.description}</span>
+                                        {#if question.type === "Rating"}
+                                            <div class="flex gap-x-5 mt-2 ml-2">
+                                                <div class="flex gap-x-1 text-xs">
+                                                    <span class="text-gray-400">{$LL.CreateReviews.Mandatory()}: </span>
+                                                    <input bind:checked={question.isRequired} on:change={() => changeQuestionValue(question.position - 1)} type="checkbox" />
+                                                </div>
+                                                <div class="flex gap-x-1 text-xs">
+                                                    <span class="text-gray-400">{$LL.CreateReviews.Value()}: </span>
+                                                    <input bind:value={question.value} class="border px-2 rounded border-gray-300" on:blur={() => handleBlurQuestion(question.position - 1)} disabled={!question.isRequired} type="number" />
+                                                </div>
+                                            </div>
+                                        {/if}
                                     </div>
                                 {/if}
-                            </div>
-                        {/if}
+                            {/each}
+                        </div>
                     {/each}
-                {/each}
-            </div>
+                </section>
+            {/if}
         </div>
         <div class="border-b border-gray-300" />
         <div class="flex justify-end">

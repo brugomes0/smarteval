@@ -266,6 +266,25 @@ type SubmissionData = {
     evaluatorDepartment: string
 }
 
+type SingleSubmissionData = {
+    submissionId: string,
+    evaluatedDepartment: string,
+    evaluatedEmployee: string,
+    review: string,
+    type: string,
+    endDate: string,
+    template: TemplateCategoryData[],
+    ratingOptions: RatingOptionData[],
+    answers: SubmissionPatchData[]
+}
+
+type SubmissionPatchData = {
+    questionId: string,
+    textResponse: string|null,
+    ratingValueResponse: number|null,
+    ratingValueComment: string|null
+}
+
 type SubmissionsEvaluationData = {
     evaluationId: string,
     type: string,
@@ -279,6 +298,7 @@ type SubmissionsReviewData = {
     endDate: string,
     status: string,
     username: string,
+    isOpen: boolean = false,
     evaluations: SubmissionsEvaluationData[]
 }
 

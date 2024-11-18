@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { MenuIcon, PanelLeftCloseIcon, PanelLeftOpenIcon } from "lucide-svelte"
+    import { CircleUserRoundIcon, MenuIcon, PanelLeftCloseIcon, PanelLeftOpenIcon } from "lucide-svelte"
     import LL from "../i18n/i18n-svelte"
 
     export let sidebar: boolean
+    export let user: UserData
 </script>
 
 <div class="flex gap-x-5 items-center justify-between h-12 w-full px-2 lg:px-5 border-b border-gray-300">
@@ -17,6 +18,10 @@
             <a class="text-sm hover:underline text-gray-400" href="/">{$LL.Header.Home()}</a>
         </div>
     </div>
-    <p class="font-semibold text-xl">SmartEval</p>
-    <div class="w-[100px]"></div>
+    <p class="font-semibold hidden 2xl:inline text-xl">SmartEval</p>
+    <div class="hidden 2xl:flex"></div>
+    <div class="flex gap-x-2 items-center 2xl:hidden">
+        <span class="font-semibold text-sm">{user.userName}</span>
+        <svelte:component this={CircleUserRoundIcon} />
+    </div>
 </div>

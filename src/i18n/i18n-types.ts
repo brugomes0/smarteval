@@ -317,13 +317,33 @@ type RootTranslation = {
 		 */
 		CategoryDivTitle: string
 		/**
+		 * P​e​r​c​e​n​t​a​g​e​m​ ​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		CategoryPercentage: string
+		/**
 		 * C​o​n​t​i​n​u​a​r
 		 */
 		Continue: string
 		/**
+		 * C​o​p​i​a​r​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o
+		 */
+		CopyEvaluation: string
+		/**
+		 * D​e​s​e​j​a​ ​a​d​i​c​i​o​n​a​r​ ​e​s​t​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​à​ ​a​v​a​l​i​a​ç​ã​o​?
+		 */
+		CreateEvaluation: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​a​d​i​c​i​o​n​a​r​ ​e​ ​c​r​i​a​r​ ​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​p​a​r​a​ ​e​s​t​a​ ​a​v​a​l​i​a​ç​ã​o​.​ ​P​o​d​e​ ​c​r​i​a​r​ ​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​d​o​ ​z​e​r​o​,​ ​c​l​i​c​a​n​d​o​ ​n​o​ ​b​o​t​ã​o​ ​d​e​ ​c​r​i​a​r​ ​o​u​ ​p​o​d​e​ ​d​e​s​e​j​a​r​ ​c​o​p​i​a​r​ ​a​s​ ​p​r​o​p​r​i​e​d​a​d​e​s​ ​d​e​ ​o​u​t​r​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​c​r​i​a​d​a​ ​n​e​s​t​a​ ​a​v​a​l​i​a​ç​ã​o​.​ ​S​e​ ​p​r​e​t​e​n​d​e​ ​n​ã​o​ ​c​r​i​a​r​ ​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​b​a​s​t​a​ ​a​v​a​n​ç​a​r​.
+		 */
+		CreateEvaluationDesc: string
+		/**
 		 * R​e​m​o​v​e​r​ ​c​a​t​e​g​o​r​i​a
 		 */
 		DeleteCategory: string
+		/**
+		 * R​e​m​o​v​e​r​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o
+		 */
+		DeleteEvaluation: string
 		/**
 		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​a​r​ ​a​ ​c​r​i​a​ç​ã​o​ ​d​e​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o​.​ ​C​a​d​a​ ​a​v​a​l​i​a​ç​ã​o​ ​é​ ​c​r​i​a​d​a​ ​c​o​m​ ​u​m​ ​g​r​u​p​o​ ​d​e​ ​s​u​b​-​a​v​a​l​i​a​ç​õ​e​s​.​ ​P​a​r​a​ ​c​a​d​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​d​e​v​e​r​á​ ​e​s​p​e​c​i​f​i​c​a​r​ ​o​ ​t​e​m​p​l​a​t​e​ ​c​o​m​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​ ​q​u​e​s​t​õ​e​s​ ​à​s​ ​q​u​a​i​s​ ​o​s​ ​u​t​i​l​i​z​a​d​o​r​e​s​ ​i​r​ã​o​ ​r​e​s​p​o​n​d​e​r​,​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​a​ ​u​t​i​l​i​z​a​r​ ​e​ ​o​ ​v​a​l​o​r​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o​.
 		 */
@@ -340,6 +360,10 @@ type RootTranslation = {
 		 * S​e​l​e​c​i​o​n​e​ ​o​(​s​)​ ​i​d​i​o​m​a​(​s​)
 		 */
 		LanguageTitle: string
+		/**
+		 * O​b​r​i​g​a​t​ó​r​i​o
+		 */
+		Mandatory: string
 		/**
 		 * Q​u​e​s​t​õ​e​s
 		 */
@@ -470,6 +494,10 @@ type RootTranslation = {
 			 */
 			RepeatCategory: string
 		}
+		/**
+		 * V​a​l​o​r
+		 */
+		Value: string
 	}
 	EditCategories: {
 		/**
@@ -782,7 +810,7 @@ type RootTranslation = {
 		 */
 		NoActions: string
 		/**
-		 * S​e​m​ ​a​v​a​l​i​a​ç​ã​o​ ​a​t​i​v​a​s​ ​n​e​s​t​e​ ​m​o​m​e​n​t​o​.
+		 * S​e​m​ ​a​v​a​l​i​a​ç​õ​e​s​ ​a​t​i​v​a​s​ ​n​e​s​t​e​ ​m​o​m​e​n​t​o​.
 		 */
 		NoActiveReviews: string
 		/**
@@ -1326,6 +1354,58 @@ type RootTranslation = {
 		 */
 		ToastChangeStatusError: string
 	}
+	SingleSubmission: {
+		/**
+		 * S​u​b​m​e​t​e​r​ ​a​t​é
+		 */
+		EndDate: string
+		/**
+		 * D​e​p​a​r​t​a​m​e​n​t​o​ ​a​ ​a​v​a​l​i​a​r
+		 */
+		EvaluatedDepartment: string
+		/**
+		 * F​u​n​c​i​o​n​á​r​i​o​ ​a​ ​a​v​a​l​i​a​r
+		 */
+		EvaluatedEmployee: string
+		/**
+		 * S​u​b​-​a​v​a​l​i​a​ç​ã​o
+		 */
+		EvaluationType: string
+		/**
+		 * I​n​f​o​r​m​a​ç​ã​o​ ​d​a​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		InfoSubmission: string
+		/**
+		 * N​o​m​e​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		ReviewName: string
+		/**
+		 * F​o​r​m​u​l​á​r​i​o
+		 */
+		SubmissionForm: string
+		/**
+		 * S​u​b​m​e​t​e​r
+		 */
+		Submit: string
+		/**
+		 * Q​u​e​s​t​õ​e​s​ ​c​o​m​ ​a​ ​c​a​i​x​a​ ​d​e​ ​c​o​m​e​n​t​á​r​i​o​ ​v​i​s​í​v​e​l​,​ ​n​e​c​e​s​s​i​t​a​m​ ​d​e​ ​s​e​r​ ​p​r​e​e​n​c​h​i​d​a​s
+		 */
+		ToastNeedCommentError: string
+		/**
+		 * R​e​s​p​o​s​t​a​ ​e​n​v​i​a​d​a​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		ToastSubmission: string
+		/**
+		 * N​ã​o​ ​f​o​i​ ​p​o​s​s​í​v​e​l​ ​e​n​v​i​a​r​ ​r​e​s​p​o​s​t​a​.
+		 */
+		ToastSubmissionError: string
+	}
+	Statistics: {
+		/**
+		 * N​o​ ​m​o​m​e​n​t​o​,​ ​n​ã​o​ ​e​x​i​s​t​e​m​ ​r​e​v​i​s​õ​e​s​ ​c​o​m​p​l​e​t​a​s​.​ ​T​e​n​t​e​ ​m​a​i​s​ ​t​a​r​d​e​.
+		 */
+		NoReviews: string
+	}
 	Steps: {
 		/**
 		 * D​e​t​a​l​h​e​s
@@ -1812,13 +1892,33 @@ export type TranslationFunctions = {
 		 */
 		CategoryDivTitle: () => LocalizedString
 		/**
+		 * Percentagem da categoria
+		 */
+		CategoryPercentage: () => LocalizedString
+		/**
 		 * Continuar
 		 */
 		Continue: () => LocalizedString
 		/**
+		 * Copiar sub-avaliação
+		 */
+		CopyEvaluation: () => LocalizedString
+		/**
+		 * Deseja adicionar esta sub-avaliação à avaliação?
+		 */
+		CreateEvaluation: () => LocalizedString
+		/**
+		 * Nesta página pode adicionar e criar a sub-avaliação para esta avaliação. Pode criar a sub-avaliação do zero, clicando no botão de criar ou pode desejar copiar as propriedades de outra sub-avaliação criada nesta avaliação. Se pretende não criar a sub-avaliação basta avançar.
+		 */
+		CreateEvaluationDesc: () => LocalizedString
+		/**
 		 * Remover categoria
 		 */
 		DeleteCategory: () => LocalizedString
+		/**
+		 * Remover sub-avaliação
+		 */
+		DeleteEvaluation: () => LocalizedString
 		/**
 		 * Nesta página pode realizar a criação de uma avaliação. Cada avaliação é criada com um grupo de sub-avaliações. Para cada sub-avaliação deverá especificar o template com as categorias e questões às quais os utilizadores irão responder, o critério de avaliação a utilizar e o valor da avaliação.
 		 */
@@ -1835,6 +1935,10 @@ export type TranslationFunctions = {
 		 * Selecione o(s) idioma(s)
 		 */
 		LanguageTitle: () => LocalizedString
+		/**
+		 * Obrigatório
+		 */
+		Mandatory: () => LocalizedString
 		/**
 		 * Questões
 		 */
@@ -1965,6 +2069,10 @@ export type TranslationFunctions = {
 			 */
 			RepeatCategory: () => LocalizedString
 		}
+		/**
+		 * Valor
+		 */
+		Value: () => LocalizedString
 	}
 	EditCategories: {
 		/**
@@ -2274,7 +2382,7 @@ export type TranslationFunctions = {
 		 */
 		NoActions: () => LocalizedString
 		/**
-		 * Sem avaliação ativas neste momento.
+		 * Sem avaliações ativas neste momento.
 		 */
 		NoActiveReviews: () => LocalizedString
 		/**
@@ -2811,6 +2919,58 @@ export type TranslationFunctions = {
 		 * Não foi possível alterar o estado da avaliação.
 		 */
 		ToastChangeStatusError: () => LocalizedString
+	}
+	SingleSubmission: {
+		/**
+		 * Submeter até
+		 */
+		EndDate: () => LocalizedString
+		/**
+		 * Departamento a avaliar
+		 */
+		EvaluatedDepartment: () => LocalizedString
+		/**
+		 * Funcionário a avaliar
+		 */
+		EvaluatedEmployee: () => LocalizedString
+		/**
+		 * Sub-avaliação
+		 */
+		EvaluationType: () => LocalizedString
+		/**
+		 * Informação da submissão
+		 */
+		InfoSubmission: () => LocalizedString
+		/**
+		 * Nome da avaliação
+		 */
+		ReviewName: () => LocalizedString
+		/**
+		 * Formulário
+		 */
+		SubmissionForm: () => LocalizedString
+		/**
+		 * Submeter
+		 */
+		Submit: () => LocalizedString
+		/**
+		 * Questões com a caixa de comentário visível, necessitam de ser preenchidas
+		 */
+		ToastNeedCommentError: () => LocalizedString
+		/**
+		 * Resposta enviada com sucesso
+		 */
+		ToastSubmission: () => LocalizedString
+		/**
+		 * Não foi possível enviar resposta.
+		 */
+		ToastSubmissionError: () => LocalizedString
+	}
+	Statistics: {
+		/**
+		 * No momento, não existem revisões completas. Tente mais tarde.
+		 */
+		NoReviews: () => LocalizedString
 	}
 	Steps: {
 		/**

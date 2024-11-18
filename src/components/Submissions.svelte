@@ -1,7 +1,7 @@
 <script lang="ts">
     import LL from "../i18n/i18n-svelte"
     import ModalComponent from "./helpers/ModalComponent.svelte"
-    import { CalendarIcon, CheckIcon, UserIcon, XIcon } from "lucide-svelte"
+    import { CalendarIcon, CheckIcon, ChevronDownIcon, ChevronUpIcon, UserIcon, XIcon } from "lucide-svelte"
     import { Link, navigate } from "svelte-routing"
     import { convertUtcToLocalDate } from "../helpers/date"
     import { getEvaluationTypeText, getFullReviewStatusText } from "../helpers/action"
@@ -39,8 +39,8 @@
         timeoutId = setTimeout(func, delay)
     }
 
-    function goToSubmission(submission: SubmissionData) {
-        if (submission.isAnswered && status == "Active") {
+    function goToSubmission(submission: SubmissionData, review: SubmissionsReviewData) {
+        if (submission.isAnswered && review.status == "Active") {
             openModal = true
             openModalForId = submission.submissionId
         } else { navigate(`/submissions/${submission.submissionId}`) }
@@ -81,12 +81,19 @@
             {/if}
             {#each reviews as review}
                 <div class="border flex flex-col gap-y-2 px-5 py-2 rounded border-gray-300">
-                    <div class="flex flex-col">
-                        <span class="flex font-semibold gap-x-2 items-center text-lg">
-                            {review.title}
-                            <div class="border font-medium px-1 rounded text-xs bg-blue-100 border-blue-300 text-gray-600">{getFullReviewStatusText(review.status, "singular")}</div>
-                        </span>
-                        <span class="font-medium text-sm text-gray-400">{review.description}</span> 
+                    <div class="flex items-start">
+                        <div class="flex flex-col flex-grow">
+                            <span class="flex font-semibold gap-x-2 items-center text-lg">
+                                {review.title}
+                                <div class="border font-medium px-1 rounded text-xs bg-blue-100 border-blue-300 text-gray-600">{getFullReviewStatusText(review.status, "singular")}</div>
+                            </span>
+                            <span class="font-medium text-sm text-gray-400">{review.description}</span> 
+                        </div>
+                        <div class="flex">
+                            <button on:click={() => review.isOpen = !review.isOpen} class="p-1 rounded hover:bg-gray-100">
+                                <svelte:component this={review.isOpen ? ChevronDownIcon : ChevronUpIcon} />
+                            </button>
+                        </div>
                     </div>
                     <div class="flex gap-x-4 items-center">
                         <span class="flex font-medium gap-x-2 items-center text-sm text-gray-400">
@@ -98,22 +105,24 @@
                             {review.username}
                         </span>
                     </div>
-                    <hr>
-                    <div class="flex flex-col gap-y-2">
-                        {#each review.evaluations as evaluation}
-                            <div class="flex flex-col">
-                                <span class="flex font-medium text-sm text-gray-800">{getEvaluationTypeText(evaluation.type)}</span>
-                                <div class="flex flex-col mx-5 my-1">
-                                    {#each evaluation.submissions as submission}
-                                        <button on:click={() => goToSubmission(submission)} class="flex items-center justify-between list-disc px-2 py-1 rounded text-sm hover:bg-gray-100">
-                                            <li>{evaluation.type != "Interdepartamental" ? submission.evaluatedEmployee : submission.evaluatedDepartment}</li>
-                                            {#if submission.isAnswered && status == "Active"}<svelte:component class="text-green-500" this={CheckIcon} size={16} />{/if}
-                                        </button>
-                                    {/each}
+                    {#if review.isOpen}
+                        <hr>
+                        <div class="flex flex-col gap-y-2">
+                            {#each review.evaluations as evaluation}
+                                <div class="flex flex-col">
+                                    <span class="flex font-medium text-sm text-gray-800">{getEvaluationTypeText(evaluation.type)}</span>
+                                    <div class="flex flex-col mx-5 my-1">
+                                        {#each evaluation.submissions as submission}
+                                            <button on:click={() => goToSubmission(submission, review)} class="flex items-center justify-between list-disc px-2 py-1 rounded text-sm hover:bg-gray-100">
+                                                <li class="overflow-hidden text-ellipsis whitespace-nowrap">{evaluation.type != "Interdepartamental" ? submission.evaluatedEmployee : submission.evaluatedDepartment}</li>
+                                                {#if submission.isAnswered && status == "Active"}<svelte:component class="text-green-500" this={CheckIcon} size={16} />{/if}
+                                            </button>
+                                        {/each}
+                                    </div>
                                 </div>
-                            </div>
-                        {/each}
-                    </div>
+                            {/each}
+                        </div>
+                    {/if}
                 </div>
             {/each} 
         {/if}

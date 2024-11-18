@@ -78,7 +78,7 @@
             const evaluationExist = review.evaluations.find((temp: any) => temp.type === evaluationActive)
             if (evaluationExist) {
                 languageSelected = evaluationExist.availableInLanguages[0]
-                await getEvalProgressBar(evaluationExist.evaluationId)
+                if (review.status == "Active") await getEvalProgressBar(evaluationExist.evaluationId)
                 loadingEval = false
                 return
             }
@@ -87,7 +87,7 @@
         let response = await requestToApi("GET", `SmartEval/Reviews/${reviewId}/Evaluation?evaluationType=${evaluationActive}`)
         if (response.statusCode === 200) {
             review.evaluations = [...review.evaluations, response.data]
-            await getEvalProgressBar(response.data.evaluationId)
+            if (review.status == "Active") await getEvalProgressBar(response.data.evaluationId)
         }
 
         languageSelected = response.data.availableInLanguages[0]
@@ -173,7 +173,7 @@
 
     $: if (reloadProgressBar) {
         const evaluationInUsed = review.evaluations.find(temp => temp.type === evaluationActive)
-        if (evaluationInUsed) { getEvalProgressBar(evaluationInUsed?.evaluationId) }
+        if (evaluationInUsed && review.status == "Active") { getEvalProgressBar(evaluationInUsed?.evaluationId) }
         reloadProgressBar = false
     }
 </script>

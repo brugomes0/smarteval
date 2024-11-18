@@ -31,6 +31,7 @@
 	import HomeFOComponent from './components/HomeFrontoffice.svelte'
 	import SubmissionsComponent from './components/Submissions.svelte'
 	import SingleSubmissionComponent from './components/SingleSubmission.svelte'
+    import StatisticsComponent from './components/Statistics.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -119,9 +120,9 @@
 					<Sidebar bind:sidebar {user} menu={menuBackoffice} />
 				{/if}
 				<div class="flex flex-col flex-1 items-center {sidebar ? '2xl:ml-[250px]' : ''}">
-					<Header bind:sidebar />
+					<Header bind:sidebar bind:user />
 					<div class="flex justify-center w-full">
-						<div class="max-w-[1400px] w-full p-5">
+						<div class="max-w-[1400px] w-full p-[10px] lg:p-5">
 							<Route path="/" component={HomeBOComponent} {user} {lang} />
 							<Route path="/reviews" component={ReviewsComponent} {user} />
 							<Route path="/reviews/createReview" component={CreateReviewComponent} />
@@ -134,6 +135,7 @@
 							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/ratingGroups/:ratingGroupId/edit" component={EditRatingGroupComponent} />
+							<Route path="/statistics" component={StatisticsComponent} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
@@ -149,9 +151,9 @@
 					<Sidebar bind:sidebar {user} menu={menuFrontoffice} />
 				{/if}
 				<div class="flex flex-col flex-1 items-center {sidebar ? '2xl:ml-[250px]' : ''}">
-					<Header bind:sidebar />
+					<Header bind:sidebar bind:user />
 					<div class="flex justify-center w-full">
-						<div class="max-w-[1400px] w-full p-5">
+						<div class="max-w-[1400px] w-full p-[10px] lg:p-5">
 							<Route path="/" component={HomeFOComponent} />
 							<Route path="/submissions" component={SubmissionsComponent} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
