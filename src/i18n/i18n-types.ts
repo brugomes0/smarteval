@@ -898,6 +898,28 @@ type RootTranslation = {
 		 */
 		Templates: string
 	}
+	Performance: {
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​c​o​n​s​u​l​t​a​r​ ​o​ ​s​e​u​ ​d​e​s​e​m​p​e​n​h​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.
+		 */
+		Description: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Next: string
+		/**
+		 * N​o​ ​m​o​m​e​n​t​o​,​ ​n​ã​o​ ​e​x​i​s​t​e​m​ ​a​v​a​l​i​a​ç​õ​e​s​ ​s​o​b​r​e​ ​s​i​.​ ​T​e​n​t​e​ ​m​a​i​s​ ​t​a​r​d​e​.
+		 */
+		NoReviews: string
+		/**
+		 * D​e​s​e​m​p​e​n​h​o
+		 */
+		Title: string
+		/**
+		 * P​a​r​a​ ​a​v​a​n​ç​a​r​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​s​e​l​e​c​i​o​n​a​r​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		ToastSelectReviewError: string
+	}
 	Permissions: {
 		/**
 		 * S​e​l​e​c​i​o​n​a​r​ ​p​e​r​f​i​l
@@ -1376,6 +1398,10 @@ type RootTranslation = {
 		 */
 		InfoSubmission: string
 		/**
+		 * O​b​r​i​g​a​t​ó​r​i​o
+		 */
+		Required: string
+		/**
 		 * N​o​m​e​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		ReviewName: string
@@ -1402,9 +1428,32 @@ type RootTranslation = {
 	}
 	Statistics: {
 		/**
-		 * N​o​ ​m​o​m​e​n​t​o​,​ ​n​ã​o​ ​e​x​i​s​t​e​m​ ​r​e​v​i​s​õ​e​s​ ​c​o​m​p​l​e​t​a​s​.​ ​T​e​n​t​e​ ​m​a​i​s​ ​t​a​r​d​e​.
+		 * C​o​n​s​u​l​t​e​ ​d​a​d​o​s​ ​e​ ​t​e​n​d​ê​n​c​i​a​s​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​ ​d​o​s​ ​f​u​n​c​i​o​n​á​r​i​o​s​.​ ​A​n​a​l​i​s​e​ ​f​e​e​d​b​a​c​k​,​ ​a​c​o​m​p​a​n​h​e​ ​o​ ​d​e​s​e​m​p​e​n​h​o​ ​e​ ​o​b​s​e​r​v​e​ ​a​ ​e​v​o​l​u​ç​ã​o​ ​d​o​s​ ​f​u​n​c​i​o​n​á​r​i​o​ ​a​o​ ​l​o​n​g​o​ ​d​o​ ​t​e​m​p​o​.​ ​A​p​e​n​a​s​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​s​e​l​e​c​i​o​n​a​r​ ​u​m​a​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​ ​j​á​ ​c​o​m​p​l​e​t​a​s​ ​l​i​s​t​a​d​a​s​ ​a​b​a​i​x​o​,​ ​c​a​s​o​ ​j​á​ ​e​x​i​s​t​a​ ​a​l​g​u​m​a​ ​a​v​a​l​i​ç​ã​o​ ​c​o​m​p​l​e​t​a​.
+		 */
+		Description: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Next: string
+		/**
+		 * N​o​ ​m​o​m​e​n​t​o​,​ ​n​ã​o​ ​e​x​i​s​t​e​m​ ​a​v​a​l​i​a​ç​õ​e​s​ ​c​o​m​p​l​e​t​a​s​.​ ​T​e​n​t​e​ ​m​a​i​s​ ​t​a​r​d​e​.
 		 */
 		NoReviews: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​l​a​s​t​E​l​e​m​e​n​t​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {number} firstElement
+		 * @param {number} lastElement
+		 * @param {number} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'lastElement' | 'total'>
+		/**
+		 * E​s​t​a​t​í​s​t​i​c​a​s
+		 */
+		Title: string
+		/**
+		 * P​a​r​a​ ​a​v​a​n​ç​a​r​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​e​s​c​o​l​h​e​r​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		ToastSelectReviewError: string
 	}
 	Steps: {
 		/**
@@ -2470,6 +2519,28 @@ export type TranslationFunctions = {
 		 */
 		Templates: () => LocalizedString
 	}
+	Performance: {
+		/**
+		 * Nesta página pode consultar o seu desempenho nas diversas avaliações.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Next: () => LocalizedString
+		/**
+		 * No momento, não existem avaliações sobre si. Tente mais tarde.
+		 */
+		NoReviews: () => LocalizedString
+		/**
+		 * Desempenho
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Para avançar necessita de selecionar uma avaliação
+		 */
+		ToastSelectReviewError: () => LocalizedString
+	}
 	Permissions: {
 		/**
 		 * Selecionar perfil
@@ -2942,6 +3013,10 @@ export type TranslationFunctions = {
 		 */
 		InfoSubmission: () => LocalizedString
 		/**
+		 * Obrigatório
+		 */
+		Required: () => LocalizedString
+		/**
 		 * Nome da avaliação
 		 */
 		ReviewName: () => LocalizedString
@@ -2968,9 +3043,29 @@ export type TranslationFunctions = {
 	}
 	Statistics: {
 		/**
-		 * No momento, não existem revisões completas. Tente mais tarde.
+		 * Consulte dados e tendências das avaliações dos funcionários. Analise feedback, acompanhe o desempenho e observe a evolução dos funcionário ao longo do tempo. Apenas necessita de selecionar uma das avaliações já completas listadas abaixo, caso já exista alguma avalição completa.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Next: () => LocalizedString
+		/**
+		 * No momento, não existem avaliações completas. Tente mais tarde.
 		 */
 		NoReviews: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {lastElement} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: number, lastElement: number, total: number }) => LocalizedString
+		/**
+		 * Estatísticas
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Para avançar necessita de escolher uma avaliação
+		 */
+		ToastSelectReviewError: () => LocalizedString
 	}
 	Steps: {
 		/**

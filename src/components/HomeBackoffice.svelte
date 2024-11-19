@@ -113,7 +113,7 @@
             <div class="border flex flex-col gap-y-2 p-4 rounded bg-gray-50 border-gray-300">
                 <span class="font-medium text-xl text-gray-800">{$LL.HomeBackoffice.ActiveReviews()}</span>
                 <div class="flex flex-col gap-y-1">
-                    <div class="border-b flex justify-between border-gray-300">
+                    <div class="border-b flex justify-between px-2 border-gray-300">
                         <span class="text-xs text-gray-400">{$LL.HomeBackoffice.Review()}</span>
                         <span class="text-xs text-gray-400">{$LL.HomeBackoffice.EndDate()}</span>
                     </div>

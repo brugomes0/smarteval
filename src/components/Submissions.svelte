@@ -18,7 +18,6 @@
     let reviews: SubmissionsReviewData[] = []
     let timeoutId: any
     let status: string = "Active"
-    let widthModal = 1000
 
     async function getSubmissions() {
         let response = await requestToApi("GET", `SmartEval/Submissions/MadeByEmployee?page=${page}&pageSize=${pageSize}&status=${status}`)

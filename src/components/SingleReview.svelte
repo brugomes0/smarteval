@@ -443,7 +443,7 @@
                                 {#if allowReadSubmission && review.status !== "NotStarted"}
                                     <div class="flex flex-col gap-y-1">
                                         <li class="font-medium text-base">{$LL.SingleReview.Submissions()}</li>
-                                        <SubmissionsComponent bind:evaluationId={evaluation.evaluationId} bind:evaluationType={evaluation.type} bind:lang bind:reloadProgressBar bind:allowAddSubmission bind:allowDeleteSubmission />
+                                        <SubmissionsComponent bind:reviewStatus={review.status} bind:evaluationId={evaluation.evaluationId} bind:evaluationType={evaluation.type} bind:lang bind:reloadProgressBar bind:allowAddSubmission bind:allowDeleteSubmission />
                                     </div>
                                 {/if}
                             {/if}

@@ -16,13 +16,13 @@
     let reviews: ReviewInfoData[] = []
     let reviewsChoosen: ReviewInfoData|null = null
     let reviewsPage: number = 1
-    let reviewsSize: number = 5
+    let reviewsSize: number = 10
     let reviewsTotal: number = 0
+    let submissions: SubmissionsReviewData
     let timeoutId: any
 
-    // get reviews completed
-    async function getCompletedReviews() {
-        let response = await requestToApi("GET", `SmartEval/Reviews?page=${reviewsPage}&pageSize=${reviewsSize}&status=Completed`)
+    async function getReviews() {
+        let response = await requestToApi("GET", `SmartEval/Reviews/MadeAboutEmployee?page=${reviewsPage}&pageSize=${reviewsSize}`)
         if (response.statusCode === 200) {
             reviews = response.data
             reviewsTotal = response.totalCount
@@ -32,15 +32,23 @@
         loaded = true
     }
 
+    async function getSubmissionsOfEmployee() {
+        let response = await requestToApi("GET", `SmartEval/Submissions/MadeAboutEmployee?reviewId=${reviewsChoosen!.reviewId}`)
+        if (response.statusCode === 200) {
+            submissions = response.data
+            console.log(submissions)
+        }
+    }
+
     function changeReviewPage(change: string) {
-        if (change === 'increment' && reviewsPage < Math.ceil(reviewsTotal / reviewsSize)) {
+        if (change == 'increment' && reviewsPage < Math.ceil(reviewsTotal / reviewsSize)) {
             loaded = false, reviews = []
             reviewsPage++
-            debounce(getCompletedReviews, 500)
+            debounce(getReviews, 500)
         } else if (change === 'decrement' && reviewsPage > 1) {
             loaded = false, reviews = []
             reviewsPage--
-            debounce(getCompletedReviews, 500)
+            debounce(getReviews, 500)
         }
     }
 
@@ -50,21 +58,20 @@
     }
 
     function nextPage() {
-        if (reviewsChoosen == null) { toast.error($LL.Statistics.ToastSelectReviewError()); return }
+        if (reviewsChoosen == null) { toast.error($LL.Performance.ToastSelectReviewError()); return }
         page++
+        getSubmissionsOfEmployee()
     }
 
-    onMount(async () => { 
-        getCompletedReviews()
-    })
+    onMount(async () => { getReviews() })
 </script>
 
 <div class="flex flex-col gap-y-5">
     {#if page == 1}
         <div class="flex flex-col gap-y-5">
             <div class="flex flex-col">
-                <span class="font-semibold text-center lg:text-left text-lg text-black">{$LL.Statistics.Title()}</span>
-                <span class="hidden md:inline text-sm text-gray-400">{$LL.Statistics.Description()}</span>
+                <span class="font-semibold text-center lg:text-left text-xl text-black">{$LL.Performance.Title()}</span>
+                <span class="hidden md:inline text-sm text-gray-400">{$LL.Performance.Description()}</span>
             </div>
             {#if loaded && reviews.length > 0}
                 <div class="flex flex-col gap-y-1">
@@ -94,9 +101,9 @@
                         {/if}
                     </div>
                 </div>
-                <button on:click={nextPage} class="font-semibold mx-auto px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white">{$LL.Statistics.Next()}</button>
+                <button on:click={nextPage} class="font-semibold mx-auto px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white">{$LL.Performance.Next()}</button>
             {:else if loaded}
-                <span>{$LL.Statistics.NoReviews()}</span>
+                <span>{$LL.Performance.NoReviews()}</span>
             {/if}
         </div>
     {:else if page == 2}

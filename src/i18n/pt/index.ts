@@ -245,6 +245,13 @@ const pt = {
 		TeamPerformance: "Desempenho Equipa",
 		Templates: "Modelos"
 	},
+	Performance: {
+		Description: "Nesta página pode consultar o seu desempenho nas diversas avaliações.",
+		Next: "Continuar",
+		NoReviews: "No momento, não existem avaliações sobre si. Tente mais tarde.",
+		Title: "Desempenho",
+		ToastSelectReviewError: "Para avançar necessita de selecionar uma avaliação"
+	},
 	Permissions: {
 		ChooseProfile: "Selecionar perfil",
 		ChooseProfileDesc: "Selecione o perfil ao qual deseja alterar as permissões",
@@ -377,6 +384,7 @@ const pt = {
 		EvaluatedEmployee: "Funcionário a avaliar",
 		EvaluationType: "Sub-avaliação",
 		InfoSubmission: "Informação da submissão",
+		Required: "Obrigatório",
 		ReviewName: "Nome da avaliação",
 		SubmissionForm: "Formulário",
 		Submit: "Submeter",
@@ -385,7 +393,12 @@ const pt = {
 		ToastSubmissionError: "Não foi possível enviar resposta."
 	},
 	Statistics: {
-		NoReviews: "No momento, não existem revisões completas. Tente mais tarde.",
+		Description: "Consulte dados e tendências das avaliações dos funcionários. Analise feedback, acompanhe o desempenho e observe a evolução dos funcionário ao longo do tempo. Apenas necessita de selecionar uma das avaliações já completas listadas abaixo, caso já exista alguma avalição completa.",
+		Next: "Continuar",
+		NoReviews: "No momento, não existem avaliações completas. Tente mais tarde.",
+		ShowingItemsLabel: "Exibindo {firstElement: number} até {lastElement: number} de {total: number} items",
+		Title: "Estatísticas",
+		ToastSelectReviewError: "Para avançar necessita de escolher uma avaliação"
 	},
 	Steps: {
 		Details: "Detalhes",

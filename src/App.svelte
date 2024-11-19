@@ -32,6 +32,7 @@
 	import SubmissionsComponent from './components/Submissions.svelte'
 	import SingleSubmissionComponent from './components/SingleSubmission.svelte'
     import StatisticsComponent from './components/Statistics.svelte'
+	import PerformanceComponent from './components/Performance.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -135,7 +136,7 @@
 							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/ratingGroups/:ratingGroupId/edit" component={EditRatingGroupComponent} />
-							<Route path="/statistics" component={StatisticsComponent} />
+							<Route path="/statistics" component={StatisticsComponent} {lang} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
@@ -157,6 +158,7 @@
 							<Route path="/" component={HomeFOComponent} />
 							<Route path="/submissions" component={SubmissionsComponent} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
+							<Route path="/performance" component={PerformanceComponent} {lang} />
 							<Route component={NotFoundComponent} />
 						</div>
 					</div>

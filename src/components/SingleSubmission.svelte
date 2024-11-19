@@ -2,7 +2,7 @@
     import { convertUtcToLocalDate, isDateAfter } from "../helpers/date"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
-    import { CalendarIcon, ClipboardIcon, ClipboardListIcon, FolderIcon, HourglassIcon, SendIcon, UserIcon } from "lucide-svelte"
+    import { AsteriskIcon, CalendarIcon, ClipboardIcon, ClipboardListIcon, FolderIcon, HourglassIcon, SendIcon, UserIcon } from "lucide-svelte"
     import LL from "../i18n/i18n-svelte"
     import { getEvaluationTypeText } from "../helpers/action"
     import toast, { Toaster } from "svelte-french-toast"
@@ -115,11 +115,17 @@
             </div>
         </div>
         <div class="flex flex-col gap-y-2">
-            <span class="font-semibold text-lg text-gray-800">{$LL.SingleSubmission.SubmissionForm()}</span>
+            <div class="flex flex-col">
+                <span class="font-semibold text-lg text-gray-800">{$LL.SingleSubmission.SubmissionForm()}</span>
+                <div class="flex items-center justify-end">
+                    <svelte:component this={AsteriskIcon} size={14} />
+                    <span class="text-xs">{$LL.SingleSubmission.Required()}</span>
+                </div>
+            </div>
             <div class="flex flex-col gap-y-4">
                 {#each submission.template as category}
                     <div class="flex flex-col">
-                        <span class="font-medium text-base text-gray-800">
+                        <span class="font-medium text-lg text-gray-800">
                             {#if category.translations.find(trans => trans.language == lang)}
                                 {category.position} - {category.translations.find(trans => trans.language == lang)?.title}
                             {:else}
@@ -136,13 +142,16 @@
                         <div class="flex flex-col gap-y-2 px-2">
                             {#each category.questions as question}
                                 <div class="flex flex-col">
-                                    <span class="text-sm text-gray-800">
-                                        {#if question.translations.find(trans => trans.language == lang)}
-                                            {question.position} - {question.translations.find(trans => trans.language == lang)?.title}
-                                        {:else}
-                                            {question.position} - {question.translations[0].title}
-                                        {/if}
-                                    </span>
+                                    <div class="flex items-center gap-x-1">
+                                        <span class="text-base text-gray-800">
+                                            {#if question.translations.find(trans => trans.language == lang)}
+                                                {question.position} - {question.translations.find(trans => trans.language == lang)?.title}
+                                            {:else}
+                                                {question.position} - {question.translations[0].title}
+                                            {/if}
+                                        </span>
+                                        <svelte:component this={AsteriskIcon} size={14} />
+                                    </div>
                                     <span class="hidden lg:inline text-xs text-gray-400">
                                         {#if question.translations.find(trans => trans.language == lang)}
                                             {question.translations.find(trans => trans.language == lang)?.description}
@@ -153,13 +162,13 @@
                                     {#if question.type == "Rating"}
                                         <div class="flex flex-wrap gap-x-2 gap-y-2 p-2">
                                             {#each submission.ratingOptions as ratingOption}
-                                                <label class="flex gap-x-1 items-center">
+                                                <label class="flex gap-x-1 items-center px-2 py-1 rounded {disableAnswers ? '' : 'cursor-pointer hover:bg-gray-100'}">
                                                     <input
                                                         bind:group={answers[findQuestionIndex(question.questionId)].ratingValueResponse}
                                                         on:change={() => answerNeedsComment(question.questionId, ratingOption)}
                                                         disabled={disableAnswers} type="radio" value={ratingOption.numericValue}
                                                     />
-                                                    <span class="font-medium text-xs text-gray-800">
+                                                    <span class="font-normal text-sm text-gray-800">
                                                         {#if ratingOption.translations.find(trans => trans.language == lang)}
                                                             {ratingOption.translations.find(trans => trans.language == lang)?.title}
                                                         {:else}

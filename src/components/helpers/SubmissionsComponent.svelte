@@ -15,6 +15,7 @@
     export let evaluationType: string
     export let lang: string
     export let reloadProgressBar: boolean
+    export let reviewStatus: string
 
     let deleteSubmissionId: string = ""
     let departments: DepartmentData[] = []
@@ -113,11 +114,6 @@
         debounce(getSubmissions, 500)
     }
 
-    function closeCreateModal() {
-        modalCreateIsOpen = false
-        employeesSearchInput = ""
-    }
-
     function debounce(func: any, delay: number) {
         clearTimeout(timeoutId)
         timeoutId = setTimeout(func, delay)
@@ -186,7 +182,7 @@
                         <option value="yes">{$LL.SubmissionModal.SelectYes()}</option>
                         <option value="no">{$LL.SubmissionModal.SelectNo()}</option>
                     </select>
-                    {#if allowAddSubmission}
+                    {#if allowAddSubmission && reviewStatus == "Active"}
                         <button on:click={() => openModalCreate()} class="font-medium px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">{$LL.SubmissionModal.CreateSubmission()}</button>
                     {/if}
                 </div>
