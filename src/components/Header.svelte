@@ -19,7 +19,7 @@
         </div>
     </div>
     <p class="font-semibold hidden 2xl:inline text-xl">SmartEval</p>
-    <div class="hidden 2xl:flex"></div>
+    <div class="hidden 2xl:flex w-[100px]"></div>
     <div class="flex gap-x-2 items-center 2xl:hidden">
         <span class="font-semibold text-sm">{user.userName}</span>
         <svelte:component this={CircleUserRoundIcon} />

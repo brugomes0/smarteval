@@ -900,9 +900,21 @@ type RootTranslation = {
 	}
 	Performance: {
 		/**
+		 * M​é​d​i​a​ ​d​a​ ​C​a​t​e​g​o​r​i​a
+		 */
+		AverageCategory: string
+		/**
+		 * C​o​m​p​a​r​a​r​ ​c​o​m​ ​o​u​t​r​a​ ​r​e​v​i​s​ã​o
+		 */
+		CompareOtherReview: string
+		/**
 		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​c​o​n​s​u​l​t​a​r​ ​o​ ​s​e​u​ ​d​e​s​e​m​p​e​n​h​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.
 		 */
 		Description: string
+		/**
+		 * O​ ​m​e​u​ ​d​e​s​e​m​p​e​n​h​o
+		 */
+		MyPerformance: string
 		/**
 		 * C​o​n​t​i​n​u​a​r
 		 */
@@ -919,6 +931,10 @@ type RootTranslation = {
 		 * P​a​r​a​ ​a​v​a​n​ç​a​r​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​s​e​l​e​c​i​o​n​a​r​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		ToastSelectReviewError: string
+		/**
+		 * T​o​t​a​l
+		 */
+		Total: string
 	}
 	Permissions: {
 		/**
@@ -2521,9 +2537,21 @@ export type TranslationFunctions = {
 	}
 	Performance: {
 		/**
+		 * Média da Categoria
+		 */
+		AverageCategory: () => LocalizedString
+		/**
+		 * Comparar com outra revisão
+		 */
+		CompareOtherReview: () => LocalizedString
+		/**
 		 * Nesta página pode consultar o seu desempenho nas diversas avaliações.
 		 */
 		Description: () => LocalizedString
+		/**
+		 * O meu desempenho
+		 */
+		MyPerformance: () => LocalizedString
 		/**
 		 * Continuar
 		 */
@@ -2540,6 +2568,10 @@ export type TranslationFunctions = {
 		 * Para avançar necessita de selecionar uma avaliação
 		 */
 		ToastSelectReviewError: () => LocalizedString
+		/**
+		 * Total
+		 */
+		Total: () => LocalizedString
 	}
 	Permissions: {
 		/**

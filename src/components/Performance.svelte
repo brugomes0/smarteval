@@ -1,6 +1,7 @@
 <script lang="ts">
     import { ChevronLeftIcon, ChevronRightIcon } from "lucide-svelte"
     import { convertUtcToLocalDateShort } from "../helpers/date"
+    import { getEvaluationTypeText } from "../helpers/action"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
     import LL from "../i18n/i18n-svelte"
@@ -18,7 +19,7 @@
     let reviewsPage: number = 1
     let reviewsSize: number = 10
     let reviewsTotal: number = 0
-    let submissions: SubmissionsReviewData
+    let tableData: any = []
     let timeoutId: any
 
     async function getReviews() {
@@ -33,11 +34,13 @@
     }
 
     async function getSubmissionsOfEmployee() {
-        let response = await requestToApi("GET", `SmartEval/Submissions/MadeAboutEmployee?reviewId=${reviewsChoosen!.reviewId}`)
+        let response = await requestToApi("GET", `SmartEval/Performance?reviewId=${reviewsChoosen?.reviewId}`)
+        console.log(response)
         if (response.statusCode === 200) {
-            submissions = response.data
-            console.log(submissions)
+            tableData = response.data
+            tableData.categories = tableData.categories.map((cat: any) => { cat.isOpen = false; return cat })
         }
+        loaded = true
     }
 
     function changeReviewPage(change: string) {
@@ -59,6 +62,7 @@
 
     function nextPage() {
         if (reviewsChoosen == null) { toast.error($LL.Performance.ToastSelectReviewError()); return }
+        loaded = false
         page++
         getSubmissionsOfEmployee()
     }
@@ -107,6 +111,59 @@
             {/if}
         </div>
     {:else if page == 2}
-        <span>Page: {page}</span>
+        {#if loaded}
+            <span class="font-semibold text-xl text-black">{reviewsChoosen?.title}</span>
+            <div class="flex flex-col gap-y-2">
+                <li class="font-semibold text-lg text-black">{$LL.Performance.MyPerformance()}</li>
+                <span>tabela da avaliação</span>
+                <div class="flex flex-col px-4 py-2">
+                    <div class="flex font-medium items-center bg-blue-400 text-white">
+                        <span class="flex flex-grow"></span>
+                        {#each tableData.categories[0].averages as item}
+                            <span class="w-20 text-center text-sm">{getEvaluationTypeText(item.type)}</span>
+                            <span class="w-10 text-center text-sm">%</span>
+                        {/each}
+                    </div>
+                    {#each tableData.categories as category, index}
+                        <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 bg-blue-100 hover:bg-blue-200">
+                            <span class="flex flex-grow font-medium pl-2 text-base">{index + 1}. {category.title}</span>
+                            {#each category.averagesWithPercentages as item}
+                                <span class="flex-shrink-0 font-medium text-center text-sm w-20">{item.value ?? '-'}</span>
+                                <span class="flex-shrink-0 font-medium text-center text-sm w-10">{item.percentageCategory}%</span>
+                            {/each}
+                        </button>
+                        {#if category.isOpen}
+                            {#each category.questions as question}
+                                <div class="flex items-center">
+                                    <div class="flex flex-col flex-grow pl-5 py-1">
+                                        <span class="text-base text-black">{question.title}</span>
+                                        <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                                    </div>
+                                    {#each question.answers as item}
+                                        <span class="flex-shrink-0 text-center text-xs w-20">{item.value ?? '-'}</span>
+                                        <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion}%</span>
+                                    {/each}
+                                </div>
+                            {/each}
+                        {/if}
+                    {/each}
+                    <div class="border-b-2 border-t-2 flex items-center py-2 border-blue-400">
+                        <span class="flex flex-grow font-medium pl-2 text-lg">{$LL.Performance.Total()}</span>
+                        {#each tableData.total as item}
+                            <span class="flex-shrink-0 font-medium text-center text-base w-20"></span>
+                            <span class="flex-shrink-0 font-medium text-center text-base w-10">{item.value}</span>
+                        {/each}
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <li class="font-semibold text-lg text-black">Detalhes Por Submissão</li>
+                <span>ver cada submissão feita para ele</span>
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <li class="font-semibold text-lg text-black">{$LL.Performance.CompareOtherReview()}</li>
+                <span>Comparar sub-avaliação atual com sub-avaliação do mesmo tipo de uma avaliação anterior</span>
+            </div>
+        {/if}
     {/if}
 </div>

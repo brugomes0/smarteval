@@ -246,11 +246,15 @@ const pt = {
 		Templates: "Modelos"
 	},
 	Performance: {
+		AverageCategory: "Média da Categoria",
+		CompareOtherReview: "Comparar com outra revisão",
 		Description: "Nesta página pode consultar o seu desempenho nas diversas avaliações.",
+		MyPerformance: "O meu desempenho",
 		Next: "Continuar",
 		NoReviews: "No momento, não existem avaliações sobre si. Tente mais tarde.",
 		Title: "Desempenho",
-		ToastSelectReviewError: "Para avançar necessita de selecionar uma avaliação"
+		ToastSelectReviewError: "Para avançar necessita de selecionar uma avaliação",
+		Total: "Total"
 	},
 	Permissions: {
 		ChooseProfile: "Selecionar perfil",
