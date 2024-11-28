@@ -2,6 +2,7 @@
     import { ChevronLeftIcon, ChevronRightIcon } from "lucide-svelte"
     import { convertUtcToLocalDateShort } from "../helpers/date"
     import { getEvaluationTypeText } from "../helpers/action"
+    import { navigate } from "svelte-routing"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
     import LL from "../i18n/i18n-svelte"
@@ -9,6 +10,7 @@
 
     export let lang: string
 
+    let compareReviewsPage: number = 1
     let error: string = ""
     let firstElement: number = 0
     let lastElement: number = 0
@@ -19,6 +21,8 @@
     let reviewsPage: number = 1
     let reviewsSize: number = 10
     let reviewsTotal: number = 0
+    let status: string = "MyPerformance"
+    let submissionsOfEvaluations: any = []
     let tableData: any = []
     let timeoutId: any
 
@@ -33,14 +37,29 @@
         loaded = true
     }
 
+    async function getSubmissionsFromReview() {
+        let response = await requestToApi("GET", `SmartEval/Submissions/MadeAboutEmployee?reviewId=${reviewsChoosen?.reviewId}`)
+        if (response.statusCode === 200) { submissionsOfEvaluations = response.data.evaluations }
+    }
+
     async function getSubmissionsOfEmployee() {
-        let response = await requestToApi("GET", `SmartEval/Performance?reviewId=${reviewsChoosen?.reviewId}`)
-        console.log(response)
+        let response = await requestToApi("GET", `SmartEval/Performance/Employees?reviewId=${reviewsChoosen?.reviewId}`)
         if (response.statusCode === 200) {
             tableData = response.data
             tableData.categories = tableData.categories.map((cat: any) => { cat.isOpen = false; return cat })
         }
         loaded = true
+    }
+
+    function alterTab(tab: string) {
+        if (tab == 'MyPerformance') {
+            status = tab
+        } else if (tab == 'SubmissionDetails') {
+            status = tab
+        } else if (tab == 'CompareReviews') {
+            compareReviewsPage = 1
+            status = tab
+        }
     }
 
     function changeReviewPage(change: string) {
@@ -65,6 +84,7 @@
         loaded = false
         page++
         getSubmissionsOfEmployee()
+        getSubmissionsFromReview()
     }
 
     onMount(async () => { getReviews() })
@@ -78,7 +98,7 @@
                 <span class="hidden md:inline text-sm text-gray-400">{$LL.Performance.Description()}</span>
             </div>
             {#if loaded && reviews.length > 0}
-                <div class="flex flex-col gap-y-1">
+                <div class="flex flex-col">
                     {#each reviews as review, index}
                         <label class="border-b cursor-pointer flex items-start justify-between px-4 py-2 border-gray-300 hover:bg-gray-100 {index == 0 ? 'rounded-t' : ''}">
                             <div class="flex gap-x-4 items-center">
@@ -113,9 +133,11 @@
     {:else if page == 2}
         {#if loaded}
             <span class="font-semibold text-xl text-black">{reviewsChoosen?.title}</span>
-            <div class="flex flex-col gap-y-2">
-                <li class="font-semibold text-lg text-black">{$LL.Performance.MyPerformance()}</li>
-                <span>tabela da avaliação</span>
+            <div class="border-b flex border-gray-300">
+                <button on:click={() => alterTab('MyPerformance')} class="font-medium px-4 py-2 text-sm {status == 'MyPerformance' ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Performance.MyPerformance()}</button>
+                <button on:click={() => alterTab('SubmissionDetails')} class="font-medium px-4 py-2 text-sm {status == 'SubmissionDetails' ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Performance.SubmissionDetails()}</button>
+            </div>
+            {#if status == "MyPerformance"}
                 <div class="flex flex-col px-4 py-2">
                     <div class="flex font-medium items-center bg-blue-400 text-white">
                         <span class="flex flex-grow"></span>
@@ -154,16 +176,37 @@
                             <span class="flex-shrink-0 font-medium text-center text-base w-10">{item.value}</span>
                         {/each}
                     </div>
+                    <span class="font-medium mt-4 mb-1 text-sm text-gray-800">{$LL.Performance.Scale()}</span>
+                    <div class="flex flex-col px-4">
+                        {#each tableData.ratingGroups as ratingGroup}
+                            <div class="flex flex-wrap gap-x-1">
+                                <span class="font-medium text-xs text-gray-800">{getEvaluationTypeText(ratingGroup.type)}:</span>
+                                {#each ratingGroup.ratingOptions as ratingOption}
+                                    <div class="flex">
+                                        <span class="font-medium text-xs text-gray-400">{ratingOption.numericValue}</span>
+                                        <span class="text-xs text-gray-400">- {ratingOption.title};</span>
+                                    </div>
+                                {/each}
+                            </div>
+                        {/each}
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col gap-y-2">
-                <li class="font-semibold text-lg text-black">Detalhes Por Submissão</li>
-                <span>ver cada submissão feita para ele</span>
-            </div>
-            <div class="flex flex-col gap-y-2">
-                <li class="font-semibold text-lg text-black">{$LL.Performance.CompareOtherReview()}</li>
-                <span>Comparar sub-avaliação atual com sub-avaliação do mesmo tipo de uma avaliação anterior</span>
-            </div>
+            {:else if status == "SubmissionDetails"}
+                <div class="flex flex-col gap-y-2 px-4">
+                    {#each submissionsOfEvaluations as evaluation}
+                        <div class="flex flex-col">
+                            <span class="flex font-medium text-sm text-gray-800">{getEvaluationTypeText(evaluation.type)}</span>
+                            <div class="flex flex-col mx-5 my-1">
+                                {#each evaluation.submissions as submission}
+                                    <button on:click={() => navigate(`/submissions/${submission.submissionId}`)} class="flex items-center justify-between list-dic px-2 py-1 rounded text-sm hover:bg-gray-100">
+                                        <li class="overflow-hidden text-ellipsis whitespace-nowrap">{submission.evaluatorEmployee}</li>
+                                    </button>
+                                {/each}
+                            </div>
+                        </div>
+                    {/each}
+                </div>
+            {/if}
         {/if}
     {/if}
 </div>

@@ -924,6 +924,14 @@ type RootTranslation = {
 		 */
 		NoReviews: string
 		/**
+		 * E​s​c​a​l​a
+		 */
+		Scale: string
+		/**
+		 * D​e​t​a​l​h​e​s​ ​P​o​r​ ​S​u​b​m​i​s​s​ã​o
+		 */
+		SubmissionDetails: string
+		/**
 		 * D​e​s​e​m​p​e​n​h​o
 		 */
 		Title: string
@@ -1444,9 +1452,37 @@ type RootTranslation = {
 	}
 	Statistics: {
 		/**
+		 * M​é​d​i​a​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		Average: string
+		/**
+		 * M​é​d​i​a​ ​p​o​r​ ​f​u​n​c​i​o​n​á​r​i​o
+		 */
+		AverageByEmployee: string
+		/**
+		 * E​s​c​o​l​h​a​ ​o​ ​d​e​p​a​r​t​a​m​e​n​t​o
+		 */
+		ChooseDepartment: string
+		/**
+		 * A​b​a​i​x​o​ ​e​s​t​ã​o​ ​l​i​s​t​a​d​o​s​ ​o​s​ ​d​e​p​a​r​t​a​m​e​n​t​o​s​ ​a​v​a​l​i​a​d​o​s​ ​n​a​ ​a​v​a​l​i​a​ç​ã​o​.​ ​E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​o​p​ç​õ​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​ ​e​m​ ​c​a​d​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		ChooseDepartmentDesc: string
+		/**
+		 * E​s​c​o​l​h​a​ ​o​ ​f​u​n​c​i​o​n​á​r​i​o
+		 */
+		ChooseEmployee: string
+		/**
+		 * A​b​a​i​x​o​ ​e​s​t​ã​o​ ​l​i​s​t​a​d​o​s​ ​o​s​ ​f​u​n​c​i​o​n​á​r​i​o​s​ ​a​v​a​l​i​a​d​o​s​ ​n​a​ ​a​v​a​l​i​a​ç​ã​o​.​ ​E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​o​p​ç​õ​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​ ​e​m​ ​c​a​d​a​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		ChooseEmployeeDesc: string
+		/**
 		 * C​o​n​s​u​l​t​e​ ​d​a​d​o​s​ ​e​ ​t​e​n​d​ê​n​c​i​a​s​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​ ​d​o​s​ ​f​u​n​c​i​o​n​á​r​i​o​s​.​ ​A​n​a​l​i​s​e​ ​f​e​e​d​b​a​c​k​,​ ​a​c​o​m​p​a​n​h​e​ ​o​ ​d​e​s​e​m​p​e​n​h​o​ ​e​ ​o​b​s​e​r​v​e​ ​a​ ​e​v​o​l​u​ç​ã​o​ ​d​o​s​ ​f​u​n​c​i​o​n​á​r​i​o​ ​a​o​ ​l​o​n​g​o​ ​d​o​ ​t​e​m​p​o​.​ ​A​p​e​n​a​s​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​s​e​l​e​c​i​o​n​a​r​ ​u​m​a​ ​d​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​ ​j​á​ ​c​o​m​p​l​e​t​a​s​ ​l​i​s​t​a​d​a​s​ ​a​b​a​i​x​o​,​ ​c​a​s​o​ ​j​á​ ​e​x​i​s​t​a​ ​a​l​g​u​m​a​ ​a​v​a​l​i​ç​ã​o​ ​c​o​m​p​l​e​t​a​.
 		 */
 		Description: string
+		/**
+		 * S​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​i​n​t​e​r​d​e​p​a​r​t​a​m​e​n​t​a​l
+		 */
+		Interdepartamental: string
 		/**
 		 * C​o​n​t​i​n​u​a​r
 		 */
@@ -1455,6 +1491,10 @@ type RootTranslation = {
 		 * N​o​ ​m​o​m​e​n​t​o​,​ ​n​ã​o​ ​e​x​i​s​t​e​m​ ​a​v​a​l​i​a​ç​õ​e​s​ ​c​o​m​p​l​e​t​a​s​.​ ​T​e​n​t​e​ ​m​a​i​s​ ​t​a​r​d​e​.
 		 */
 		NoReviews: string
+		/**
+		 * E​s​c​a​l​a
+		 */
+		Scale: string
 		/**
 		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​l​a​s​t​E​l​e​m​e​n​t​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
 		 * @param {number} firstElement
@@ -1470,6 +1510,10 @@ type RootTranslation = {
 		 * P​a​r​a​ ​a​v​a​n​ç​a​r​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​e​s​c​o​l​h​e​r​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o
 		 */
 		ToastSelectReviewError: string
+		/**
+		 * T​o​t​a​l
+		 */
+		Total: string
 	}
 	Steps: {
 		/**
@@ -2561,6 +2605,14 @@ export type TranslationFunctions = {
 		 */
 		NoReviews: () => LocalizedString
 		/**
+		 * Escala
+		 */
+		Scale: () => LocalizedString
+		/**
+		 * Detalhes Por Submissão
+		 */
+		SubmissionDetails: () => LocalizedString
+		/**
 		 * Desempenho
 		 */
 		Title: () => LocalizedString
@@ -3075,9 +3127,37 @@ export type TranslationFunctions = {
 	}
 	Statistics: {
 		/**
+		 * Média da avaliação
+		 */
+		Average: () => LocalizedString
+		/**
+		 * Média por funcionário
+		 */
+		AverageByEmployee: () => LocalizedString
+		/**
+		 * Escolha o departamento
+		 */
+		ChooseDepartment: () => LocalizedString
+		/**
+		 * Abaixo estão listados os departamentos avaliados na avaliação. Escolha entre as opções para ver a avaliação em cada sub-avaliação.
+		 */
+		ChooseDepartmentDesc: () => LocalizedString
+		/**
+		 * Escolha o funcionário
+		 */
+		ChooseEmployee: () => LocalizedString
+		/**
+		 * Abaixo estão listados os funcionários avaliados na avaliação. Escolha entre as opções para ver a avaliação em cada sub-avaliação.
+		 */
+		ChooseEmployeeDesc: () => LocalizedString
+		/**
 		 * Consulte dados e tendências das avaliações dos funcionários. Analise feedback, acompanhe o desempenho e observe a evolução dos funcionário ao longo do tempo. Apenas necessita de selecionar uma das avaliações já completas listadas abaixo, caso já exista alguma avalição completa.
 		 */
 		Description: () => LocalizedString
+		/**
+		 * Sub-avaliação interdepartamental
+		 */
+		Interdepartamental: () => LocalizedString
 		/**
 		 * Continuar
 		 */
@@ -3086,6 +3166,10 @@ export type TranslationFunctions = {
 		 * No momento, não existem avaliações completas. Tente mais tarde.
 		 */
 		NoReviews: () => LocalizedString
+		/**
+		 * Escala
+		 */
+		Scale: () => LocalizedString
 		/**
 		 * Exibindo {firstElement} até {lastElement} de {total} items
 		 */
@@ -3098,6 +3182,10 @@ export type TranslationFunctions = {
 		 * Para avançar necessita de escolher uma avaliação
 		 */
 		ToastSelectReviewError: () => LocalizedString
+		/**
+		 * Total
+		 */
+		Total: () => LocalizedString
 	}
 	Steps: {
 		/**

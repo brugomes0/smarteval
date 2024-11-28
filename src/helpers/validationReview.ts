@@ -12,7 +12,7 @@ export function validateReview(review: CreateReviewData, step: number) {
             if (evaluation.type === evaluationType) {
                 let accValue = 0
                 if (evaluation.ratingGroupId === "") return message = errorMessage("noRatingGroup")
-                if (evaluation.totalValue === 0) return message = errorMessage("noEvaluationValue")
+                //if (evaluation.totalValue === 0) return message = errorMessage("noEvaluationValue")
                 if (evaluation.template.length === 0) return message = errorMessage("noEvaluationTemplate")
                 for (let category of evaluation.template) {
                     accValue += category.value

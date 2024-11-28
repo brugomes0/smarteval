@@ -66,7 +66,6 @@
         else if (orientation === "back" && current == 2 && evaluationType == "Interdepartamental") { getChefias(); current-- }
         else if (orientation === "next" && current == 1 && evaluationType == "Interdepartamental") { departmentsPage = 1; getDepartments(); current++ }
         else if (orientation === "next" && current == 0 && evaluationType == "Interdepartamental") {
-            console.log(newSubmission)
             if (newSubmission.evaluatorDepartmentId == null) { return -1 }
             else { getChefias(); current++ }
         }

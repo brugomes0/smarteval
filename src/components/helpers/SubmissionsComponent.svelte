@@ -8,6 +8,7 @@
     import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CircleCheckIcon, CircleXIcon, FolderIcon, SearchIcon, Trash2Icon, UserCircleIcon, UserIcon, XIcon } from "lucide-svelte"
     import EmployeesDepartmentsComponent from "./Employees&DepartmentsComponent.svelte";
     import { validateSubmission } from "../../helpers/validationSubmission";
+    import { navigate } from "svelte-routing";
 
     export let allowAddSubmission: boolean
     export let allowDeleteSubmission: boolean
@@ -167,7 +168,7 @@
 {/if}
 
 {#if !error}
-    <div class="flex flex-col">
+    <div class="flex flex-col w-full">
         <div class="border flex flex-col mx-5 my-2 rounded border-gray-300">
             <div class="border-b rounded-t bg-gray-100 border-gray-300">
                 <div class="border-b flex gap-x-2 h-12 items-center justify-end px-3 border-gray-300">
@@ -200,23 +201,23 @@
                 {:else}
                     {#if submissions.length > 0}
                         {#each submissions as submission, index}
-                            <div class="flex h-10 items-center justify-between px-2 py-1 {index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} {submissions.length == index + 1 ? 'rounded-b' : ''}">
+                            <div class="flex h-10 items-center justify-between px-2 py-1 hover:bg-gray-100 {index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} {submissions.length == index + 1 ? 'rounded-b' : ''}">
                                 <p class="flex gap-x-[5px] items-center text-xs w-[120px] xl:w-[200px] 2xl:w-[300px]">
                                     <svelte:component this={UserIcon} class="w-5 h-5" />
-                                    <span class="w-[95px] xl:w-[175px] 2xl:w-[275px] line-clamp-2 overflow-ellipsis" title={submission.evaluatorEmployee}>{submission.evaluatorEmployee}</span>
+                                    <span class="w-[95px] xl:w-[175px] 2xl:w-[275px] line-clamp-2 overflow-ellipsis text-left" title={submission.evaluatorEmployee}>{submission.evaluatorEmployee}</span>
                                 </p>
                                 <p class="flex gap-x-[5px] items-center text-xs w-[120px] xl:w-[200px] 2xl:w-[300px]">
                                     <svelte:component this={submission.evaluatedEmployee ? UserIcon : FolderIcon} class="w-5 h-5" />
-                                    <span class="w-[95px] xl:w-[175px] 2xl:w-[275px] line-clamp-2 overflow-ellipsis" title={submission.evaluatedEmployee || submission.evaluatedDepartment}>{submission.evaluatedEmployee || submission.evaluatedDepartment}</span>
+                                    <span class="w-[95px] xl:w-[175px] 2xl:w-[275px] line-clamp-2 overflow-ellipsis text-left" title={submission.evaluatedEmployee || submission.evaluatedDepartment}>{submission.evaluatedEmployee || submission.evaluatedDepartment}</span>
                                 </p>
-                                <p class="flex items-center text-xs w-[120px] xl:w-[200px] 2xl:w-[300px]">
+                                <p class="flex items-center text-left text-xs w-[120px] xl:w-[200px] 2xl:w-[300px]">
                                     <span>{submission.isAnswered ? convertUtcToLocalDate(submission.submissionDate, lang) : '-'}</span>
                                 </p>
                                 <span class="flex items-center justify-center w-20 {submission.isAnswered ? 'text-green-500' : 'text-red-500'}">
                                     <svelte:component this={submission.isAnswered ? CircleCheckIcon : CircleXIcon} size={20} />
                                 </span>
                                 {#if allowDeleteSubmission}
-                                    <button on:click={() => openModalDelete(submission.submissionId)} class="flex items-center w-5 h-5 hover:text-red-500" title={$LL.SubmissionModal.Remove()}>
+                                    <button on:click={(e) => { e.stopPropagation(); openModalDelete(submission.submissionId)}} class="flex items-center w-5 h-5 hover:text-red-500" title={$LL.SubmissionModal.Remove()}>
                                         <svelte:component this={Trash2Icon} size={20} />
                                     </button>
                                 {/if}

@@ -15,8 +15,6 @@
     let accValue: number = editableCategory.questions.reduce((acc, item) => acc + item.value, 0)
     let flipDurationMs: number = 200
 
-    console.log(editableCategory)
-
     const dispatch = createEventDispatcher()
     const closeModal = () => { dispatch('close') }
     const confirmChanges = () => {
@@ -41,7 +39,8 @@
     }
 
     function deleteQuestion(id: number) { 
-        editableCategory.questions = editableCategory.questions.filter(question => question.id !== id)
+        editableCategory.questions = editableCategory.questions.filter(q => q.id !== id)
+        editableCategory.questions = editableCategory.questions.map((question, index) => ({ ...question, position: index + 1 }))
         accValue = editableCategory.questions.reduce((acc, item) => acc + item.value, 0)
     }
 

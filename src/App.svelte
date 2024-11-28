@@ -51,7 +51,7 @@
 		{ name: "Home", endpoint: '/', icon: HomeIcon, permission: true },
 		{ name: "Submissions", endpoint: '/submissions', icon: PenSquareIcon, permission: true },
 		{ name: "Performance", endpoint: '/performance', icon: ActivityIcon, permission: true },
-		{ name: "TeamPerformance", endpoint: '/teamPerformance', icon: UsersIcon, permission: true }
+		{ name: "TeamPerformance", endpoint: '/teamPerformance', icon: UsersIcon, permission: false }
 	]
 	let sidebar: boolean = false
 	let token: {accessToken: string, refreshToken: string} = { accessToken: '', refreshToken: '' }
@@ -95,6 +95,8 @@
 				const permission = windowPermission?.permissions.find(temp => temp.permissionType === 'Read')
 				if (permission?.hasPermission) item.permission = true
 			})
+		} else if (user && user.profileType === 'Frontoffice' && user.isSuperior == true) {
+			menuFrontoffice = menuFrontoffice.map(item => item.name === "TeamPerformance" ? {...item, permission: true} : item)
 		}
 
 		// change loading after all process, to show page in dom
@@ -137,6 +139,7 @@
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/ratingGroups/:ratingGroupId/edit" component={EditRatingGroupComponent} />
 							<Route path="/statistics" component={StatisticsComponent} {lang} />
+							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>

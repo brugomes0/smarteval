@@ -252,6 +252,8 @@ const pt = {
 		MyPerformance: "O meu desempenho",
 		Next: "Continuar",
 		NoReviews: "No momento, não existem avaliações sobre si. Tente mais tarde.",
+		Scale: "Escala",
+		SubmissionDetails: "Detalhes Por Submissão",
 		Title: "Desempenho",
 		ToastSelectReviewError: "Para avançar necessita de selecionar uma avaliação",
 		Total: "Total"
@@ -397,12 +399,21 @@ const pt = {
 		ToastSubmissionError: "Não foi possível enviar resposta."
 	},
 	Statistics: {
+		Average: "Média da avaliação",
+		AverageByEmployee: "Média por funcionário",
+		ChooseDepartment: "Escolha o departamento",
+		ChooseDepartmentDesc: "Abaixo estão listados os departamentos avaliados na avaliação. Escolha entre as opções para ver a avaliação em cada sub-avaliação.",
+		ChooseEmployee: "Escolha o funcionário",
+		ChooseEmployeeDesc: "Abaixo estão listados os funcionários avaliados na avaliação. Escolha entre as opções para ver a avaliação em cada sub-avaliação.",
 		Description: "Consulte dados e tendências das avaliações dos funcionários. Analise feedback, acompanhe o desempenho e observe a evolução dos funcionário ao longo do tempo. Apenas necessita de selecionar uma das avaliações já completas listadas abaixo, caso já exista alguma avalição completa.",
+		Interdepartamental: "Sub-avaliação interdepartamental",
 		Next: "Continuar",
 		NoReviews: "No momento, não existem avaliações completas. Tente mais tarde.",
+		Scale: "Escala",
 		ShowingItemsLabel: "Exibindo {firstElement: number} até {lastElement: number} de {total: number} items",
 		Title: "Estatísticas",
-		ToastSelectReviewError: "Para avançar necessita de escolher uma avaliação"
+		ToastSelectReviewError: "Para avançar necessita de escolher uma avaliação",
+		Total: "Total"
 	},
 	Steps: {
 		Details: "Detalhes",

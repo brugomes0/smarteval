@@ -465,7 +465,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-sm">{$LL.SingleReview.ActionsActivate()}</span>
-                            <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsActivateDesc()}</span>
+                            <span class="hidden md:inline text-xs text-gray-400">{$LL.SingleReview.ActionsActivateDesc()}</span>
                         </div>
                         <button on:click={() => buttonActivateIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarClockIcon} size={20} />
@@ -477,7 +477,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-sm">{$LL.SingleReview.ActionsExtend()}</span>
-                            <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsExtendDesc()}</span>
+                            <span class="hidden md:inline text-xs text-gray-400">{$LL.SingleReview.ActionsExtendDesc()}</span>
                         </div>
                         <button on:click={() => buttonExtendIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarPlusIcon} size={20} />
@@ -489,7 +489,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-sm">{$LL.SingleReview.ActionsCancel()}</span>
-                            <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsCancelDesc()}</span>
+                            <span class="hidden md:inline text-xs text-gray-400">{$LL.SingleReview.ActionsCancelDesc()}</span>
                         </div>
                         <button on:click={() => buttonCancelIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarX2Icon} size={20} />
@@ -499,7 +499,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-sm">{$LL.SingleReview.ActionsComplete()}</span>
-                            <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsCompleteDesc()}</span>
+                            <span class="hidden md:inline text-xs text-gray-400">{$LL.SingleReview.ActionsCompleteDesc()}</span>
                         </div>
                         <button on:click={() => buttonCompleteIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={CalendarCheck2Icon} size={20} />
@@ -511,7 +511,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-sm">{$LL.SingleReview.ActionsEdit()}</span>
-                            <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsEditDesc()}</span>
+                            <span class="hidden md:inline text-xs text-gray-400">{$LL.SingleReview.ActionsEditDesc()}</span>
                         </div>
                         <button on:click={() => buttonEditIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={PencilIcon} size={20} />
@@ -523,7 +523,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-sm">{$LL.SingleReview.ActionsDelete()}</span>
-                            <span class="text-xs text-gray-400">{$LL.SingleReview.ActionsDeleteDesc()}</span>
+                            <span class="hidden md:inline text-xs text-gray-400">{$LL.SingleReview.ActionsDeleteDesc()}</span>
                         </div>
                         <button on:click={() => buttonDeleteIsOpen = true} class="flex font-semibold gap-x-2 items-center px-2 py-1 rounded text-sm bg-blue-500 hover:bg-blue-600 text-white">
                             <svelte:component this={Trash2Icon} size={20} />

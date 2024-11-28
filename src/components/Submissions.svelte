@@ -113,7 +113,9 @@
                                     <div class="flex flex-col mx-5 my-1">
                                         {#each evaluation.submissions as submission}
                                             <button on:click={() => goToSubmission(submission, review)} class="flex items-center justify-between list-disc px-2 py-1 rounded text-sm hover:bg-gray-100">
-                                                <li class="overflow-hidden text-ellipsis whitespace-nowrap">{evaluation.type != "Interdepartamental" ? submission.evaluatedEmployee : submission.evaluatedDepartment}</li>
+                                                <li class="overflow-hidden text-ellipsis whitespace-nowrap">
+                                                    {evaluation.type != "Interdepartamental" ? submission.evaluatedEmployee : submission.evaluatedDepartment}
+                                                </li>
                                                 {#if submission.isAnswered && status == "Active"}<svelte:component class="text-green-500" this={CheckIcon} size={16} />{/if}
                                             </button>
                                         {/each}

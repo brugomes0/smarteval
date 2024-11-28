@@ -254,6 +254,7 @@ type ReviewInfoData = {
     createDate: string,
     startDate: string,
     endDate: string
+    evaluationsAvailable: string[]|undefined
 }
 
 type SubmissionData = {
@@ -326,6 +327,7 @@ type UserData = {
     userEmail: string | undefined,
     profileDescription: string,
     profileType: string,
+    isSuperior: boolean,
     authorizations: AuthorizationData[]
 }
 
