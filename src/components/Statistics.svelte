@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { ChevronLeftIcon, ChevronRightIcon } from "lucide-svelte"
-    import { convertUtcToLocalDateShort } from "../helpers/date"
+    import { CalendarDaysIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-svelte"
+    import { convertUtcToLocalDate, convertUtcToLocalDateShort } from "../helpers/date"
     import { getEvaluationTypeText } from "../helpers/action"
     import { onDestroy, onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
@@ -30,7 +30,7 @@
     let loaded: boolean = false
     let page: number = 1
     let reviews: ReviewInfoData[] = []
-    let reviewsChoosen: ReviewInfoData|null = null
+    let reviewsChoosen: ReviewInfoData
     let reviewsPage: number = 1
     let reviewsSize: number = 5
     let reviewsTotal: number = 0
@@ -111,6 +111,9 @@
         if (reviewsChoosen == null) { toast.error($LL.Statistics.ToastSelectReviewError()); return }
         
         await getAverageReview()
+        if (reviewsChoosen.createDate) reviewsChoosen.createDate = convertUtcToLocalDate(reviewsChoosen.createDate, lang)
+        if (reviewsChoosen.startDate) reviewsChoosen.startDate = convertUtcToLocalDate(reviewsChoosen.startDate, lang)
+        if (reviewsChoosen.endDate) reviewsChoosen.endDate = convertUtcToLocalDate(reviewsChoosen.endDate, lang)
         if (reviewsChoosen.evaluationsAvailable && reviewsChoosen.evaluationsAvailable.find(e => e == "Interdepartamental")) { await getDepartments() }
         if (reviewsChoosen.evaluationsAvailable && reviewsChoosen.evaluationsAvailable.find(e => e != "Interdepartamental")) { await getEmployees() }
         page++
@@ -136,8 +139,6 @@
     }
 
     onMount(async () => { getCompletedReviews() })
-
-    $: console.log(reviews)
 </script>
 
 <div class="flex flex-col gap-y-5">
@@ -182,19 +183,82 @@
         </div>
     {:else if page == 2}
         <div class="flex flex-col gap-y-5">
-            <span class="font-semibold text-xl text-black">{reviewsChoosen?.title}</span>
+            <span class="font-semibold text-xl text-black">{reviewsChoosen.title}</span>
+            <div class="border flex flex-col rounded border-gray-300">
+                <div class="border-b flex justify-between px-4 py-2 rounded-t bg-gray-100 border-gray-300">
+                    <span class="font-medium text-base">{$LL.Statistics.Details()}</span>
+                </div>
+                <div class="flex flex-col gap-y-2 px-4 py-2">
+                    <label>
+                        <span class="font-medium text-xs">{$LL.SingleReview.Description()}</span>
+                        <div class="flex gap-x-2 items-center pl-2 w-full">
+                            <textarea
+                                bind:value={reviewsChoosen.description}
+                                class="border flex flex-grow px-2 py-1 rounded text-sm lg:text-base resize-none border-gray-300 text-gray-400"
+                                disabled
+                                id="reviewDescription"
+                                rows={2}
+                            />
+                        </div>
+                    </label>
+                    <div class="flex flex-col lg:flex-row gap-x-4 gap-y-2">
+                        {#if reviewsChoosen.createDate}
+                            <label class="flex flex-col w-full">
+                                <span class="font-medium text-xs">{$LL.SingleReview.DateCreate()}</span>
+                                <div class="flex gap-x-2 items-center pl-2 w-full">
+                                    <svelte:component this={CalendarDaysIcon} />
+                                    <input
+                                        bind:value={reviewsChoosen.createDate}
+                                        class="border flex flex-grow px-2 py-1 rounded text-sm lg:text-base border-gray-300 text-gray-400"
+                                        disabled
+                                        id="reviewCreateDate"
+                                    />
+                                </div>
+                            </label>
+                        {/if}
+                        {#if reviewsChoosen.startDate}
+                            <label class="flex flex-col w-full">
+                                <span class="font-medium text-xs">{$LL.SingleReview.DateStart()}</span>
+                                <div class="flex gap-x-2 items-center pl-2 w-full">
+                                    <svelte:component this={CalendarDaysIcon} />
+                                    <input
+                                        bind:value={reviewsChoosen.startDate}
+                                        class="border flex flex-grow px-2 py-1 rounded text-sm lg:text-base border-gray-300 text-gray-400"
+                                        disabled
+                                        id="reviewStartDate"
+                                    />
+                                </div>
+                            </label>
+                        {/if}
+                        {#if reviewsChoosen.endDate}
+                            <label class="flex flex-col w-full">
+                                <span class="font-medium text-xs">{$LL.SingleReview.DateEnd()}</span>
+                                <div class="flex gap-x-2 items-center pl-2 w-full">
+                                    <svelte:component this={CalendarDaysIcon} />
+                                    <input
+                                        bind:value={reviewsChoosen.endDate}
+                                        class="border flex flex-grow px-2 py-1 rounded text-sm lg:text-base border-gray-300 text-gray-400"
+                                        disabled
+                                        id="reviewEndDate"
+                                    />
+                                </div>
+                            </label>
+                        {/if}
+                    </div>
+                </div>
+            </div>
             <div class="border-b flex border-gray-300">
                 <button on:click={() => { if (choosedTab != 1) choosedTab = 1 }} class="font-medium px-4 py-2 text-sm {choosedTab == 1 ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Statistics.Average()}</button>
-                {#if reviewsChoosen?.evaluationsAvailable && reviewsChoosen?.evaluationsAvailable.find(e => e != "Interdepartamental")}
+                {#if reviewsChoosen.evaluationsAvailable && reviewsChoosen.evaluationsAvailable.find(e => e != "Interdepartamental")}
                     <button on:click={() => { if (choosedTab != 2) choosedTab = 2 }} class="font-medium px-4 py-2 text-sm {choosedTab == 2 ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Statistics.AverageByEmployee()}</button>
                 {/if}
-                {#if reviewsChoosen?.evaluationsAvailable && reviewsChoosen?.evaluationsAvailable.find(e => e == "Interdepartamental")}
+                {#if reviewsChoosen.evaluationsAvailable && reviewsChoosen.evaluationsAvailable.find(e => e == "Interdepartamental")}
                     <button on:click={() => { if (choosedTab != 3) choosedTab = 3 }} class="font-medium px-4 py-2 text-sm {choosedTab == 3 ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Statistics.Interdepartamental()}</button>
                 {/if}
             </div>
             {#if choosedTab == 1}
                 <div class="flex flex-col px-4 py-2">
-                    <div class="flex font-medium items-center bg-blue-400 text-white">
+                    <div class="flex font-medium h-10 items-center bg-blue-400 text-white">
                         <span class="flex flex-grow"></span>
                         {#each tableOfAveragesData.total as item}
                             <span class="w-20 text-center text-sm">{getEvaluationTypeText(item.type)}</span>
@@ -258,7 +322,7 @@
 
                     {#if employeesTableLoaded}
                         <div class="flex flex-col px-4 py-2">
-                            <div class="flex font-medium items-center bg-blue-400 text-white">
+                            <div class="flex font-medium h-10 items-center bg-blue-400 text-white">
                                 <span class="flex flex-grow"></span>
                                 {#each employeesTable.categories[0].averages as item}
                                     <span class="w-20 text-center text-sm">{getEvaluationTypeText(item.type)}</span>
@@ -324,7 +388,7 @@
 
                     {#if departmentsTableLoaded}
                         <div class="flex flex-col px-4 py-2">
-                            <div class="flex font-medium items-center bg-blue-400 text-white">
+                            <div class="flex font-medium h-10 items-center bg-blue-400 text-white">
                                 <span class="flex flex-grow"></span>
                                 {#each departmentsTable.total as item}
                                     <span class="w-[120px] text-center text-sm">{getEvaluationTypeText(item.type)}</span>

@@ -64,7 +64,7 @@
 
 <div class="flex flex-col gap-y-5">
     <div class="flex flex-col">
-        <span class="font-semibold text-xl text-black">{$LL.Submissions.Title()}</span>
+        <span class="font-semibold text-center md:text-left text-xl text-black">{$LL.Submissions.Title()}</span>
         <span class="text-sm text-gray-400">{$LL.Submissions.Description()}</span>
     </div>
     <div class="border-b flex border-gray-300">

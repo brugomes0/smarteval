@@ -235,6 +235,7 @@ const pt = {
 	},
 	Menu: {
 		Categories: "Categorias",
+		Competencies: "Competências",
 		Home: "Início",
 		Performance: "Desempenho",
 		Permissions: "Permissões",
@@ -406,6 +407,7 @@ const pt = {
 		ChooseEmployee: "Escolha o funcionário",
 		ChooseEmployeeDesc: "Abaixo estão listados os funcionários avaliados na avaliação. Escolha entre as opções para ver a avaliação em cada sub-avaliação.",
 		Description: "Consulte dados e tendências das avaliações dos funcionários. Analise feedback, acompanhe o desempenho e observe a evolução dos funcionário ao longo do tempo. Apenas necessita de selecionar uma das avaliações já completas listadas abaixo, caso já exista alguma avalição completa.",
+		Details: "Detalhes da avaliação",
 		Interdepartamental: "Sub-avaliação interdepartamental",
 		Next: "Continuar",
 		NoReviews: "No momento, não existem avaliações completas. Tente mais tarde.",
@@ -464,6 +466,19 @@ const pt = {
 		ValidationEvaluatorDepartmentError: "Submissão necessita de um departamento ao qual pertence o funcionário que realizará esta submissão",
 		ValidationEvaluatedEmployeeError: "Submissão necessita de um funcionário sobre o qual será feita a avaliação",
 		ValidationEvaluatorEmployeeError: "Submissão necessita de um funcionário que a realize",
+	},
+	TeamPerformance: {
+		ChooseEmployeeTitle: "Selecione um funcionário",
+		ChooseEmployeeDesc: "Selecione um funcionário para mostrar a avaliação.",
+		Description: "Nesta página pode consultar o desempenho dos seus funcionários nas diversas avaliações.",
+		EmployeePerformance: "Desempenho funcionário",
+		Next: "Continuar",
+		NoReviews: "No momento, não existem avaliações sobre si. Tente mais tarde.",
+		ShowingItemsLabel: "Exibindo {firstElement: number} até {pageSize: number} de {total: number} items",
+		SubmissionDetails: "Detalhes por submissão",
+		Title: "Desempenho da Equipa",
+		ToastSelectReviewError: "Para avançar necessita de selecionar uma avaliação",
+		Total: "Total"
 	}
 } satisfies BaseTranslation
 

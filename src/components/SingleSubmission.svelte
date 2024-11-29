@@ -150,7 +150,9 @@
                                                 {question.position} - {question.translations[0].title}
                                             {/if}
                                         </span>
-                                        <svelte:component this={AsteriskIcon} size={14} />
+                                        {#if question.isRequired}
+                                            <svelte:component this={AsteriskIcon} size={14} />
+                                        {/if}
                                     </div>
                                     <span class="hidden lg:inline text-xs text-gray-400">
                                         {#if question.translations.find(trans => trans.language == lang)}

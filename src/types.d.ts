@@ -257,6 +257,17 @@ type ReviewInfoData = {
     evaluationsAvailable: string[]|undefined
 }
 
+type ReviewInfo2Data = {
+    reviewId: string,
+    title: string,
+    description: string,
+    status: string,
+    createDate: string,
+    startDate: string,
+    endDate: string,
+    employees: int[]
+}
+
 type SubmissionData = {
     submissionId: string,
     isAnswered: boolean,

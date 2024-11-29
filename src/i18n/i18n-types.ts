@@ -862,6 +862,10 @@ type RootTranslation = {
 		 */
 		Categories: string
 		/**
+		 * C​o​m​p​e​t​ê​n​c​i​a​s
+		 */
+		Competencies: string
+		/**
 		 * I​n​í​c​i​o
 		 */
 		Home: string
@@ -1480,6 +1484,10 @@ type RootTranslation = {
 		 */
 		Description: string
 		/**
+		 * D​e​t​a​l​h​e​s​ ​d​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		Details: string
+		/**
 		 * S​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​i​n​t​e​r​d​e​p​a​r​t​a​m​e​n​t​a​l
 		 */
 		Interdepartamental: string
@@ -1699,6 +1707,55 @@ type RootTranslation = {
 		 * S​u​b​m​i​s​s​ã​o​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o​ ​q​u​e​ ​a​ ​r​e​a​l​i​z​e
 		 */
 		ValidationEvaluatorEmployeeError: string
+	}
+	TeamPerformance: {
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o
+		 */
+		ChooseEmployeeTitle: string
+		/**
+		 * S​e​l​e​c​i​o​n​e​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o​ ​p​a​r​a​ ​m​o​s​t​r​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		ChooseEmployeeDesc: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​c​o​n​s​u​l​t​a​r​ ​o​ ​d​e​s​e​m​p​e​n​h​o​ ​d​o​s​ ​s​e​u​s​ ​f​u​n​c​i​o​n​á​r​i​o​s​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.
+		 */
+		Description: string
+		/**
+		 * D​e​s​e​m​p​e​n​h​o​ ​f​u​n​c​i​o​n​á​r​i​o
+		 */
+		EmployeePerformance: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Next: string
+		/**
+		 * N​o​ ​m​o​m​e​n​t​o​,​ ​n​ã​o​ ​e​x​i​s​t​e​m​ ​a​v​a​l​i​a​ç​õ​e​s​ ​s​o​b​r​e​ ​s​i​.​ ​T​e​n​t​e​ ​m​a​i​s​ ​t​a​r​d​e​.
+		 */
+		NoReviews: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​p​a​g​e​S​i​z​e​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {number} firstElement
+		 * @param {number} pageSize
+		 * @param {number} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'pageSize' | 'total'>
+		/**
+		 * D​e​t​a​l​h​e​s​ ​p​o​r​ ​s​u​b​m​i​s​s​ã​o
+		 */
+		SubmissionDetails: string
+		/**
+		 * D​e​s​e​m​p​e​n​h​o​ ​d​a​ ​E​q​u​i​p​a
+		 */
+		Title: string
+		/**
+		 * P​a​r​a​ ​a​v​a​n​ç​a​r​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​s​e​l​e​c​i​o​n​a​r​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		ToastSelectReviewError: string
+		/**
+		 * T​o​t​a​l
+		 */
+		Total: string
 	}
 }
 
@@ -2543,6 +2600,10 @@ export type TranslationFunctions = {
 		 */
 		Categories: () => LocalizedString
 		/**
+		 * Competências
+		 */
+		Competencies: () => LocalizedString
+		/**
 		 * Início
 		 */
 		Home: () => LocalizedString
@@ -3155,6 +3216,10 @@ export type TranslationFunctions = {
 		 */
 		Description: () => LocalizedString
 		/**
+		 * Detalhes da avaliação
+		 */
+		Details: () => LocalizedString
+		/**
 		 * Sub-avaliação interdepartamental
 		 */
 		Interdepartamental: () => LocalizedString
@@ -3368,6 +3433,52 @@ export type TranslationFunctions = {
 		 * Submissão necessita de um funcionário que a realize
 		 */
 		ValidationEvaluatorEmployeeError: () => LocalizedString
+	}
+	TeamPerformance: {
+		/**
+		 * Selecione um funcionário
+		 */
+		ChooseEmployeeTitle: () => LocalizedString
+		/**
+		 * Selecione um funcionário para mostrar a avaliação.
+		 */
+		ChooseEmployeeDesc: () => LocalizedString
+		/**
+		 * Nesta página pode consultar o desempenho dos seus funcionários nas diversas avaliações.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Desempenho funcionário
+		 */
+		EmployeePerformance: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Next: () => LocalizedString
+		/**
+		 * No momento, não existem avaliações sobre si. Tente mais tarde.
+		 */
+		NoReviews: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {pageSize} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: number, pageSize: number, total: number }) => LocalizedString
+		/**
+		 * Detalhes por submissão
+		 */
+		SubmissionDetails: () => LocalizedString
+		/**
+		 * Desempenho da Equipa
+		 */
+		Title: () => LocalizedString
+		/**
+		 * Para avançar necessita de selecionar uma avaliação
+		 */
+		ToastSelectReviewError: () => LocalizedString
+		/**
+		 * Total
+		 */
+		Total: () => LocalizedString
 	}
 }
 

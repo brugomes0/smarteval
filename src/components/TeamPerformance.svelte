@@ -1,35 +1,37 @@
 <script lang="ts">
-    import { ChevronLeftIcon, ChevronRightIcon } from "lucide-svelte"
+    import LL from "../i18n/i18n-svelte"
     import { convertUtcToLocalDateShort } from "../helpers/date"
     import { getEvaluationTypeText } from "../helpers/action"
     import { navigate } from "svelte-routing"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
-    import LL from "../i18n/i18n-svelte"
+    import { ChevronLeftIcon, ChevronRightIcon } from "lucide-svelte"
     import toast from "svelte-french-toast"
 
     export let lang: string
 
-    let compareReviewsPage: number = 1
+    let employees: InfoEmployeeData[]
+    let employeesChoosen: InfoEmployeeData
     let error: string = ""
     let firstElement: number = 0
     let lastElement: number = 0
     let loaded: boolean = false
     let page: number = 1
     let reviews: ReviewInfoData[] = []
-    let reviewsChoosen: ReviewInfoData|null = null
+    let reviewsChoosen: ReviewInfoData
     let reviewsPage: number = 1
     let reviewsSize: number = 10
     let reviewsTotal: number = 0
-    let status: string = "MyPerformance"
+    let selectTab: number = 1
     let submissionsOfEvaluations: any = []
     let tableData: any = []
     let timeoutId: any
 
     async function getReviews() {
-        let response = await requestToApi("GET", `SmartEval/Reviews/MadeAboutEmployee?page=${reviewsPage}&pageSize=${reviewsSize}`)
+        let response = await requestToApi("GET", `SmartEval/Reviews/MadeAboutEmployeesOfSuperior?page=${reviewsPage}&pageSize=${reviewsSize}`)
         if (response.statusCode === 200) {
             reviews = response.data
+            reviewsTotal = response.totalCount
             reviewsTotal = response.totalCount
             firstElement = Math.min((reviewsPage - 1) * reviewsSize + 1, reviewsTotal)
             lastElement = Math.min(reviewsPage * reviewsSize, reviewsTotal)
@@ -37,29 +39,35 @@
         loaded = true
     }
 
+    async function getEmployeesOfSuperiorInReview() {
+        let response = await requestToApi("GET", `SmartEval/Reviews/${reviewsChoosen.reviewId}/EmployeesOfSuperior`)
+        if (response.statusCode === 200) { 
+            employees = response.data
+            employeesChoosen = employees[0]
+        }
+    }
+
     async function getSubmissionsFromReview() {
-        let response = await requestToApi("GET", `SmartEval/Submissions/MadeAboutEmployee?reviewId=${reviewsChoosen?.reviewId}`)
+        let response = await requestToApi("GET", `SmartEval/Submissions/MadeAboutEmployee?reviewId=${reviewsChoosen.reviewId}&employeeId=${employeesChoosen.employeeId}`)
         if (response.statusCode === 200) { submissionsOfEvaluations = response.data.evaluations }
     }
 
-    async function getSubmissionsOfEmployee() {
-        let response = await requestToApi("GET", `SmartEval/Performance/Employees?reviewId=${reviewsChoosen?.reviewId}&language=${lang}`)
+    async function getTablePerformanceEmployee() {
+        let response = await requestToApi("GET", `SmartEval/Performance/Employees?reviewId=${reviewsChoosen.reviewId}&employeeId=${employeesChoosen.employeeId}&language=${lang}`)
         if (response.statusCode === 200) {
             tableData = response.data
-            tableData.categories = tableData.categories.map((cat: any) => { cat.isOpen = false; return cat })
+            tableData.categories = tableData.categories.map((cat: any) => { cat.isOpen = true; return cat })
         }
         loaded = true
     }
 
-    function alterTab(tab: string) {
-        if (tab == 'MyPerformance') {
-            status = tab
-        } else if (tab == 'SubmissionDetails') {
-            status = tab
-        } else if (tab == 'CompareReviews') {
-            compareReviewsPage = 1
-            status = tab
-        }
+    async function nextPage() {
+        if (reviewsChoosen == null) { toast.error($LL.TeamPerformance.ToastSelectReviewError()); return }
+        loaded = false
+        await getEmployeesOfSuperiorInReview()
+        await getTablePerformanceEmployee()
+        await getSubmissionsFromReview()
+        page++
     }
 
     function changeReviewPage(change: string) {
@@ -67,7 +75,7 @@
             loaded = false, reviews = []
             reviewsPage++
             debounce(getReviews, 500)
-        } else if (change === 'decrement' && reviewsPage > 1) {
+        } else if (change == 'decrement' && reviewsPage > 1) {
             loaded = false, reviews = []
             reviewsPage--
             debounce(getReviews, 500)
@@ -79,14 +87,6 @@
         timeoutId = setTimeout(func, delay)
     }
 
-    function nextPage() {
-        if (reviewsChoosen == null) { toast.error($LL.Performance.ToastSelectReviewError()); return }
-        loaded = false
-        page++
-        getSubmissionsOfEmployee()
-        getSubmissionsFromReview()
-    }
-
     onMount(async () => { getReviews() })
 </script>
 
@@ -94,8 +94,8 @@
     {#if page == 1}
         <div class="flex flex-col gap-y-5">
             <div class="flex flex-col">
-                <span class="font-semibold text-center lg:text-left text-xl text-black">{$LL.Performance.Title()}</span>
-                <span class="hidden md:inline text-sm text-gray-400">{$LL.Performance.Description()}</span>
+                <span class="font-semibold text-center lg:text-left text-xl text-black">{$LL.TeamPerformance.Title()}</span>
+                <span class="hidden md:inline text-sm text-gray-400">{$LL.TeamPerformance.Description()}</span>
             </div>
             {#if loaded && reviews.length > 0}
                 <div class="flex flex-col">
@@ -112,7 +112,7 @@
                         </label>
                     {/each}
                     <div class="flex items-center justify-between px-5 py-2">
-                        <span class="text-sm">{$LL.Statistics.ShowingItemsLabel({ firstElement, lastElement, total: reviewsTotal })}</span>
+                        <span class="text-sm">{$LL.TeamPerformance.ShowingItemsLabel({ firstElement, pageSize: lastElement, total: reviewsTotal })}</span>
                         {#if reviewsTotal > reviewsSize}
                             <div class="flex gap-x-2">
                                 <button on:click={() => changeReviewPage('decrement')} class="border mx-auto rounded shadow border-gray-300 hover:bg-gray-100">
@@ -125,25 +125,36 @@
                         {/if}
                     </div>
                 </div>
-                <button on:click={nextPage} class="font-semibold mx-auto px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white">{$LL.Performance.Next()}</button>
+                <button on:click={nextPage} class="font-semibold mx-auto px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white">{$LL.TeamPerformance.Next()}</button>
             {:else if loaded}
-                <span>{$LL.Performance.NoReviews()}</span>
+                <span>{$LL.TeamPerformance.NoReviews()}</span>
             {:else}
                 <span>{$LL.App.Loading()}...</span>
             {/if}
         </div>
     {:else if page == 2}
         {#if loaded}
-            <span class="font-semibold text-xl text-black">{reviewsChoosen?.title}</span>
-            <div class="border-b flex border-gray-300">
-                <button on:click={() => alterTab('MyPerformance')} class="font-medium px-4 py-2 text-sm {status == 'MyPerformance' ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Performance.MyPerformance()}</button>
-                <button on:click={() => alterTab('SubmissionDetails')} class="font-medium px-4 py-2 text-sm {status == 'SubmissionDetails' ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Performance.SubmissionDetails()}</button>
+            <span class="font-semibold text-xl text-black">{reviewsChoosen.title}</span>
+            <div class="flex flex-col gap-y-1">
+                <div class="flex flex-col">
+                    <p class="font-semibold text-base text-black">{$LL.TeamPerformance.ChooseEmployeeTitle()}</p>
+                    <p class="text-xs text-gray-400">{$LL.TeamPerformance.ChooseEmployeeDesc()}</p>
+                </div>
+                <select bind:value={employeesChoosen} on:change={() => { getTablePerformanceEmployee(); getSubmissionsFromReview(); }} class="border focus:outline-none my-2 p-2 rounded text-sm border-gray-300 bg-gray-100">
+                    {#each employees as employee}
+                        <option value={employee}>{employee.employeeName}</option>
+                    {/each}
+                </select>
             </div>
-            {#if status == "MyPerformance"}
+            <div class="border-b flex border-gray-300">
+                <button on:click={() => selectTab = 1} class="font-medium px-4 py-2 text-sm {selectTab == 1 ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.TeamPerformance.EmployeePerformance()}</button>
+                <button on:click={() => selectTab = 2} class="font-medium px-4 py-2 text-sm {selectTab == 2 ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.TeamPerformance.SubmissionDetails()}</button>
+            </div>
+            {#if selectTab == 1}
                 <div class="flex flex-col px-4 py-2">
                     <div class="flex font-medium h-10 items-center bg-blue-400 text-white">
                         <span class="flex flex-grow"></span>
-                        {#each tableData.categories[0].averages as item}
+                        {#each tableData.total as item}
                             <span class="w-20 text-center text-sm">{getEvaluationTypeText(item.type)}</span>
                             <span class="w-10 text-center text-sm">%</span>
                         {/each}
@@ -172,28 +183,14 @@
                         {/if}
                     {/each}
                     <div class="border-b-2 border-t-2 flex items-center py-2 border-blue-400">
-                        <span class="flex flex-grow font-medium pl-2 text-lg">{$LL.Performance.Total()}</span>
+                        <span class="flex flex-grow font-medium pl-2 text-lg">{$LL.TeamPerformance.Total()}</span>
                         {#each tableData.total as item}
                             <span class="flex-shrink-0 font-medium text-center text-base w-20"></span>
                             <span class="flex-shrink-0 font-medium text-center text-base w-10">{item.value}</span>
                         {/each}
                     </div>
-                    <span class="font-medium mt-4 mb-1 text-sm text-gray-800">{$LL.Performance.Scale()}</span>
-                    <div class="flex flex-col px-4">
-                        {#each tableData.ratingGroups as ratingGroup}
-                            <div class="flex flex-wrap gap-x-1">
-                                <span class="font-medium text-xs text-gray-800">{getEvaluationTypeText(ratingGroup.type)}:</span>
-                                {#each ratingGroup.ratingOptions as ratingOption}
-                                    <div class="flex">
-                                        <span class="font-medium text-xs text-gray-400">{ratingOption.numericValue}</span>
-                                        <span class="text-xs text-gray-400">- {ratingOption.title};</span>
-                                    </div>
-                                {/each}
-                            </div>
-                        {/each}
-                    </div>
                 </div>
-            {:else if status == "SubmissionDetails"}
+            {:else if selectTab == 2}
                 <div class="flex flex-col gap-y-2 px-4">
                     {#each submissionsOfEvaluations as evaluation}
                         <div class="flex flex-col">

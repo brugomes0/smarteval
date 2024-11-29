@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { API_URL } from './stores/apiStore'
-	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutListIcon, ListIcon, PenSquareIcon, ShieldIcon, UsersIcon } from 'lucide-svelte'
+	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutListIcon, ListIcon, PenSquareIcon, ShieldIcon, StarIcon, UsersIcon } from 'lucide-svelte'
 	import { deleteCookie, getCookie, setCookie } from './helpers/cookie'
 	import { Route, Router } from 'svelte-routing'
 	import { loadAllLocales } from './i18n/i18n-util.sync'
@@ -33,6 +33,7 @@
 	import SingleSubmissionComponent from './components/SingleSubmission.svelte'
     import StatisticsComponent from './components/Statistics.svelte'
 	import PerformanceComponent from './components/Performance.svelte'
+	import TeamPerformanceComponent from './components/TeamPerformance.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -50,6 +51,7 @@
 	let menuFrontoffice = [
 		{ name: "Home", endpoint: '/', icon: HomeIcon, permission: true },
 		{ name: "Submissions", endpoint: '/submissions', icon: PenSquareIcon, permission: true },
+		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: true },
 		{ name: "Performance", endpoint: '/performance', icon: ActivityIcon, permission: true },
 		{ name: "TeamPerformance", endpoint: '/teamPerformance', icon: UsersIcon, permission: false }
 	]
@@ -162,6 +164,7 @@
 							<Route path="/submissions" component={SubmissionsComponent} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route path="/performance" component={PerformanceComponent} {lang} />
+							<Route path="/teamPerformance" component={TeamPerformanceComponent} {lang} />
 							<Route component={NotFoundComponent} />
 						</div>
 					</div>
