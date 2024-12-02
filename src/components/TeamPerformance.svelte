@@ -56,7 +56,7 @@
         let response = await requestToApi("GET", `SmartEval/Performance/Employees?reviewId=${reviewsChoosen.reviewId}&employeeId=${employeesChoosen.employeeId}&language=${lang}`)
         if (response.statusCode === 200) {
             tableData = response.data
-            tableData.categories = tableData.categories.map((cat: any) => { cat.isOpen = true; return cat })
+            tableData.categories = tableData.categories.map((cat: any) => { cat.isOpen = false; return cat })
         }
         loaded = true
     }

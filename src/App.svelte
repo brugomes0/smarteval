@@ -34,6 +34,7 @@
     import StatisticsComponent from './components/Statistics.svelte'
 	import PerformanceComponent from './components/Performance.svelte'
 	import TeamPerformanceComponent from './components/TeamPerformance.svelte'
+	import CompetenciesComponent from './components/Competencies.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -163,6 +164,7 @@
 							<Route path="/" component={HomeFOComponent} />
 							<Route path="/submissions" component={SubmissionsComponent} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
+							<Route path="/competencies" component={CompetenciesComponent} {lang} />
 							<Route path="/performance" component={PerformanceComponent} {lang} />
 							<Route path="/teamPerformance" component={TeamPerformanceComponent} {lang} />
 							<Route component={NotFoundComponent} />

@@ -23,6 +23,10 @@ const pt = {
 		ToastDelete: "Categoria removida com sucesso.",
 		ToastDeleteError: "Erro ao remover categoria. Tente de novo."
 	},
+	Competencies: {
+		Description: "Escolha entre as categorias existentes para ver a sua evolução nas diversas avaliações",
+		Title: "Competências"
+	},
 	CreateCategory: {
 		AddQuestion: "Adicionar questão",
 		CategoryDescDesc: "Insira uma descrição para a categoria",

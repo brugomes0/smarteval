@@ -88,6 +88,16 @@ type RootTranslation = {
 		 */
 		ToastDeleteError: string
 	}
+	Competencies: {
+		/**
+		 * E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​x​i​s​t​e​n​t​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​s​u​a​ ​e​v​o​l​u​ç​ã​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s
+		 */
+		Description: string
+		/**
+		 * C​o​m​p​e​t​ê​n​c​i​a​s
+		 */
+		Title: string
+	}
 	CreateCategory: {
 		/**
 		 * A​d​i​c​i​o​n​a​r​ ​q​u​e​s​t​ã​o
@@ -1831,6 +1841,16 @@ export type TranslationFunctions = {
 		 * Erro ao remover categoria. Tente de novo.
 		 */
 		ToastDeleteError: () => LocalizedString
+	}
+	Competencies: {
+		/**
+		 * Escolha entre as categorias existentes para ver a sua evolução nas diversas avaliações
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Competências
+		 */
+		Title: () => LocalizedString
 	}
 	CreateCategory: {
 		/**
