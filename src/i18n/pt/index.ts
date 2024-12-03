@@ -25,6 +25,7 @@ const pt = {
 	},
 	Competencies: {
 		Description: "Escolha entre as categorias existentes para ver a sua evolução nas diversas avaliações",
+		NoCategory: "Não foi escolhida nenhuma categoria",
 		Title: "Competências"
 	},
 	CreateCategory: {
@@ -412,6 +413,7 @@ const pt = {
 		ChooseEmployeeDesc: "Abaixo estão listados os funcionários avaliados na avaliação. Escolha entre as opções para ver a avaliação em cada sub-avaliação.",
 		Description: "Consulte dados e tendências das avaliações dos funcionários. Analise feedback, acompanhe o desempenho e observe a evolução dos funcionário ao longo do tempo. Apenas necessita de selecionar uma das avaliações já completas listadas abaixo, caso já exista alguma avalição completa.",
 		Details: "Detalhes da avaliação",
+		ExcelFiles: "Mapa de sub-avaliação",
 		Interdepartamental: "Sub-avaliação interdepartamental",
 		Next: "Continuar",
 		NoReviews: "No momento, não existem avaliações completas. Tente mais tarde.",

@@ -94,6 +94,10 @@ type RootTranslation = {
 		 */
 		Description: string
 		/**
+		 * N​ã​o​ ​f​o​i​ ​e​s​c​o​l​h​i​d​a​ ​n​e​n​h​u​m​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		NoCategory: string
+		/**
 		 * C​o​m​p​e​t​ê​n​c​i​a​s
 		 */
 		Title: string
@@ -1498,6 +1502,10 @@ type RootTranslation = {
 		 */
 		Details: string
 		/**
+		 * M​a​p​a​ ​d​e​ ​s​u​b​-​a​v​a​l​i​a​ç​ã​o
+		 */
+		ExcelFiles: string
+		/**
 		 * S​u​b​-​a​v​a​l​i​a​ç​ã​o​ ​i​n​t​e​r​d​e​p​a​r​t​a​m​e​n​t​a​l
 		 */
 		Interdepartamental: string
@@ -1847,6 +1855,10 @@ export type TranslationFunctions = {
 		 * Escolha entre as categorias existentes para ver a sua evolução nas diversas avaliações
 		 */
 		Description: () => LocalizedString
+		/**
+		 * Não foi escolhida nenhuma categoria
+		 */
+		NoCategory: () => LocalizedString
 		/**
 		 * Competências
 		 */
@@ -3239,6 +3251,10 @@ export type TranslationFunctions = {
 		 * Detalhes da avaliação
 		 */
 		Details: () => LocalizedString
+		/**
+		 * Mapa de sub-avaliação
+		 */
+		ExcelFiles: () => LocalizedString
 		/**
 		 * Sub-avaliação interdepartamental
 		 */
