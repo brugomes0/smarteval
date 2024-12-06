@@ -14,11 +14,17 @@
 
     let accValue: number = editableCategory.questions.reduce((acc, item) => acc + item.value, 0)
     let flipDurationMs: number = 200
+    let requiredQuestionsHavePercentage: boolean = true
 
     const dispatch = createEventDispatcher()
     const closeModal = () => { dispatch('close') }
     const confirmChanges = () => {
+        editableCategory.questions.forEach(question => {
+            if (question.isRequired && question.value == 0) requiredQuestionsHavePercentage = false 
+        })
+
         if (editableCategory.value == 0 || editableCategory.value == null || editableCategory.value > 100) { toast.error("Category needs a percentage value"); return }
+        if (!requiredQuestionsHavePercentage) { toast.error("Required questions must have a percentage"); return }        
         if (accValue != 100) { toast.error("Total percentage of questions must be 100%"); return }
         dispatch('save')
     }

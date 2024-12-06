@@ -61,7 +61,6 @@
             categories = response.data
             categoryTotal = response.totalCount
             getCompetency(categories[0].categoryId)
-
         }
     }
 
@@ -69,6 +68,7 @@
         if (categoryChoosen && categoryChoosen.categoryId == categoryId) return;
 
         let response = await requestToApi("GET", `SmartEval/Categories/${categoryId}/Competency?language=${lang}`)
+        console.log(response)
         if (response.statusCode === 200) { 
             categoryChoosen = categories.find(c => c.categoryId == categoryId)!
             data.labels = response.data.reviewTitles.map((r: any) => {
@@ -97,9 +97,7 @@
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: function (context) {
-                                return context.dataset.label + ": " + context.raw + "%"
-                            }
+                            label: function (context) { return context.dataset.label + ": " + context.raw + "%" }
                         }
                     }
                 },

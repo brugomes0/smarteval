@@ -327,11 +327,6 @@
                                 <svelte:component this={XIcon} />
                             </button>
                         </div>
-                        <!-- <div class="flex flex-col">
-                            <p class="font-semibold text-base text-black">{$LL.CreateReviews.TotalValueTitle()}</p>
-                            <p class="text-xs text-gray-400">{$LL.CreateReviews.TotalValueDesc()}</p>
-                            <input bind:value={evaluation.totalValue} class="border my-1 p-2 peer rounded text-xs w-auto text-black" type="number" />
-                        </div> -->
                         <div class="flex flex-col">
                             <p class="font-semibold text-base text-black">{$LL.CreateReviews.CategoryDivTitle()}</p>
                             <p class="text-xs text-gray-400">{$LL.CreateReviews.CategoryDivDesc()}</p>
@@ -342,7 +337,7 @@
                                 <svelte:component this={accValue == 100 ? CircleCheckIcon : CircleXIcon} class="w-4 h-4 {accValue == 100 ? 'text-green-500' : 'text-red-500'}" />
                                 <p>{accValue}/100%</p>
                             </div>
-                            <div class="flex gap-x-5 h-[200px] my-1 w-full">
+                            <div class="flex gap-x-5 my-1 w-full">
                                 <div class="border flex rounded w-3/4 bg-gray-100 border-gray-300">
                                     {#each review.evaluations as evaluation, index}
                                         {#if evaluation.type === evaluationTypes[current]}
@@ -395,7 +390,7 @@
                                         {/if}
                                     {/each}
                                 </div>
-                                <div class="border flex flex-col p-1 rounded w-1/4 bg-gray-100 border-gray-300">
+                                <div class="border flex flex-col p-1 overflow-y-scroll rounded w-1/4 bg-gray-100 border-gray-300">
                                     <p class="font-medium my-2 text-base text-center text-gray-800">Categories</p>
                                     {#each categoriesInfo as category}
                                         <button on:dblclick={() => selectCategory(category, current)} class="p-2 rounded text-left w-full hover:bg-gray-200">

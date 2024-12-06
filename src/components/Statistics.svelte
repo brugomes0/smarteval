@@ -6,8 +6,10 @@
     import { requestToApi } from "../helpers/api"
     import LL from "../i18n/i18n-svelte"
     import toast from "svelte-french-toast"
+    import { generateInterdepartamentalExcel } from "../helpers/generateExcel"
 
     export let lang: string
+    export let user: UserData
 
     let choosedTab: number = 1
     let departments: { departmentId: number, departmentName: string }[] = []
@@ -94,7 +96,6 @@
     async function getTableDepartment() {
         departmentsTableLoaded = false
         let response = await requestToApi("GET", `SmartEval/Performance/Departments?reviewId=${reviewsChoosen?.reviewId}&departmentId=${departmentsChoosed.departmentId}&language=${lang}`)
-        console.log(response)
         if (response.statusCode === 200) { departmentsTable = response.data }
         departmentsTableLoaded = true
     }
@@ -104,6 +105,16 @@
         let response = await requestToApi("GET", `SmartEval/Performance/Employees?reviewId=${reviewsChoosen?.reviewId}&employeeId=${employeesChoosed.employeeId}&language=${lang}`)
         if (response.statusCode === 200) { employeesTable = response.data }
         employeesTableLoaded = true
+    }
+
+    async function getExcelInterdepartmental() {
+        let response = await requestToApi("GET", `SmartEval/Reviews/${reviewsChoosen.reviewId}/ExcelInterdepartamental?language=${lang}`)
+        console.log(response.data)
+        if (response.statusCode === 200) {
+            let averageTotal = response.data.averageTotal
+            let departments = response.data.departments
+            generateInterdepartamentalExcel(user.userName, reviewsChoosen.title, departmentsTable.ratingGroups[0].ratingOptions, departments, averageTotal)
+        }
     }
 
     // INITIALIZE SECOND PAGE
@@ -324,7 +335,7 @@
                             {#if reviewsChoosen.evaluationsAvailable?.some(evaluation => evaluation === 'Interdepartamental')}
                                 <li class="flex items-center gap-x-1">
                                     {$LL.EvaluationTypes.Interdepartmental()}: 
-                                    <button class="flex font-medium gap-x-1 items-center px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
+                                    <button on:click={() => getExcelInterdepartmental()} class="flex font-medium gap-x-1 items-center px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
                                         <svelte:component this={UploadIcon} size={18} strokeWidth={2} />
                                         Download
                                     </button>

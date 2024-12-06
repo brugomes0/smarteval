@@ -35,6 +35,7 @@
 	import PerformanceComponent from './components/Performance.svelte'
 	import TeamPerformanceComponent from './components/TeamPerformance.svelte'
 	import CompetenciesComponent from './components/Competencies.svelte'
+	import EditReviewComponent from './components/EditReview.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -133,6 +134,7 @@
 							<Route path="/reviews" component={ReviewsComponent} {user} />
 							<Route path="/reviews/createReview" component={CreateReviewComponent} />
 							<Route path="/reviews/:reviewId" component={SingleReviewComponent} {user} {lang} />
+							<Route path="/reviews/:reviewId/edit" component={EditReviewComponent} />
 							<Route path="/categories" component={CategoriesComponent} {user} />
 							<Route path="/categories/createCategory" component={CreateCategoryComponent} />
 							<Route path="/categories/:categoryId" component={SingleCategoryComponent} {user} {lang} />
@@ -141,7 +143,7 @@
 							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/ratingGroups/:ratingGroupId/edit" component={EditRatingGroupComponent} />
-							<Route path="/statistics" component={StatisticsComponent} {lang} />
+							<Route path="/statistics" component={StatisticsComponent} {user} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />

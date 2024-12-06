@@ -681,6 +681,20 @@ type RootTranslation = {
 		 */
 		ToastSuccess: string
 	}
+	EditReviews: {
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Continue: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​r​e​a​l​i​z​e​r​ ​a​ ​e​d​i​ç​ã​o​ ​d​e​ ​u​m​a​ ​a​v​a​l​i​a​ç​ã​o​.
+		 */
+		Description: string
+		/**
+		 * E​d​i​t​a​r​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		Title: string
+	}
 	EmployeesDepartments: {
 		/**
 		 * E​s​c​o​l​h​a​ ​o​ ​f​u​n​c​i​o​n​á​r​i​o​ ​q​u​e​ ​i​r​á​ ​s​e​r​ ​o​ ​a​v​a​l​i​a​d​o​ ​n​e​s​t​a​ ​s​u​b​m​i​s​s​ã​o
@@ -751,6 +765,24 @@ type RootTranslation = {
 		 * T​o​p​D​o​w​n
 		 */
 		TopDown: string
+	}
+	Excel: {
+		/**
+		 * M​é​d​i​a
+		 */
+		Average: string
+		/**
+		 * C​o​m​p​i​l​a​ç​ã​o
+		 */
+		Compilation: string
+		/**
+		 * E​s​c​a​l​a
+		 */
+		Scale: string
+		/**
+		 * T​o​t​a​l
+		 */
+		Total: string
 	}
 	Header: {
 		/**
@@ -2440,6 +2472,20 @@ export type TranslationFunctions = {
 		 */
 		ToastSuccess: () => LocalizedString
 	}
+	EditReviews: {
+		/**
+		 * Continuar
+		 */
+		Continue: () => LocalizedString
+		/**
+		 * Nesta página pode realizer a edição de uma avaliação.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Editar avaliação
+		 */
+		Title: () => LocalizedString
+	}
 	EmployeesDepartments: {
 		/**
 		 * Escolha o funcionário que irá ser o avaliado nesta submissão
@@ -2507,6 +2553,24 @@ export type TranslationFunctions = {
 		 * TopDown
 		 */
 		TopDown: () => LocalizedString
+	}
+	Excel: {
+		/**
+		 * Média
+		 */
+		Average: () => LocalizedString
+		/**
+		 * Compilação
+		 */
+		Compilation: () => LocalizedString
+		/**
+		 * Escala
+		 */
+		Scale: () => LocalizedString
+		/**
+		 * Total
+		 */
+		Total: () => LocalizedString
 	}
 	Header: {
 		/**

@@ -256,7 +256,7 @@
     #numbers {
         background-color: var(--backgroundColor);
         border: 1px solid #000;
-        border-radius: 10px;
+        border-radius: 5px;
         color: var(--textColor);
         display: inline-block;
         height: 75px;

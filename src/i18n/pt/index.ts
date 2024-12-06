@@ -184,6 +184,11 @@ const pt = {
 		ToastError: "Erro ao editar o critério de avaliação. Tente de novo",
 		ToastSuccess: "Critério de avaliação editado com sucesso"
 	},
+	EditReviews: {
+		Continue: "Continuar",
+		Description: "Nesta página pode realizer a edição de uma avaliação.",
+		Title: "Editar avaliação"
+	},
 	EmployeesDepartments: {
 		ChooseEvaluated: "Escolha o funcionário que irá ser o avaliado nesta submissão",
 		ChooseEvaluatedDep: "Escolha o departamento que irá ser avaliado nesta submissão",
@@ -203,6 +208,12 @@ const pt = {
 		Interdepartmental: "Interdepartamental",
 		SelfEvaluation: "Auto-avaliação",
 		TopDown: "TopDown"
+	},
+	Excel: {
+		Average: "Média",
+		Compilation: "Compilação",
+		Scale: "Escala",
+		Total: "Total"
 	},
 	Header: {
 		Home: "Início"
