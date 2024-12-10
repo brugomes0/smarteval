@@ -1,17 +1,20 @@
 <script lang="ts">
-    import { afterUpdate, onMount } from "svelte";
-    import { requestToApi } from "../helpers/api";
     import LL from "../i18n/i18n-svelte"
-    import { Chart } from "chart.js";
-    import { convertUtcToLocalDateShort } from "../helpers/date";
+    import { afterUpdate, onMount } from "svelte"
+    import { convertUtcToLocalDateShort } from "../helpers/date"
+    import { requestToApi } from "../helpers/api"
+    import { Chart } from "chart.js"
 
     export let lang: string
+    export let user: UserData
 
     let categories: CategoryInfoData[] = []
     let categoryChoosen: CategoryInfoData|undefined
     let categoryPage: number = 1
     let categorySize: number = 10
     let categoryTotal: number = 0
+    let employees: InfoEmployeeData[] = []
+    let employeeChoosen: InfoEmployeeData
     let loading: boolean = false
 
     // variables for chart
@@ -22,7 +25,7 @@
 
     async function getCategories() {
         let response = await requestToApi("GET", `SmartEval/Categories/AllCategories?page=${categoryPage}&pageSize=${categorySize}&language=${lang}`)
-        if (response.statusCode === 200) {
+        if (response.statusCode == 200) {
             categories = response.data
             categoryTotal = response.totalCount
             getCompetency(categories[0].categoryId)
@@ -32,7 +35,7 @@
     async function getCompetency(categoryId: string) {
         if (categoryChoosen && categoryChoosen.categoryId == categoryId) return;
 
-        let response = await requestToApi("GET", `SmartEval/Categories/${categoryId}/Competency?language=${lang}`)
+        let response = await requestToApi("GET", `SmartEval/Categories/${categoryId}/Competency?employeeId=${employeeChoosen.employeeId}&language=${lang}`)
         if (response.statusCode === 200) {
             categoryChoosen = categories.find(c => c.categoryId == categoryId)
             labels = response.data.reviewTitles.map((r: any) => { return r.title && r.title.trim() !== "" ? r.title : convertUtcToLocalDateShort(r.endDate, lang) })
@@ -45,6 +48,15 @@
         }
         loading = true
         createChart()
+    }
+
+    async function getEmployeesOfSupervisor() {
+        let response = await requestToApi("GET", `Employees/SubordinatesList?chefiaId=${user.employeeId}`)
+        if (response.statusCode === 200) { 
+            employees = response.data
+            employeeChoosen = employees[0]
+            console.log(employeeChoosen)
+        }
     }
 
     function createChart() {
@@ -67,7 +79,6 @@
                     tooltip: {
                         callbacks: { label: function (context) { return context.dataset.label + ": " + context.raw + "%" } }
                     }
-
                 },
                 scales: {
                     x: { type: 'category', offset: true },
@@ -77,14 +88,17 @@
         })
     }
 
-    afterUpdate(() => { if (categoryChoosen) createChart() })
-    onMount(() => getCategories())
+    afterUpdate(() => { if (categoryChoosen && employeeChoosen) createChart() })
+    onMount(async () => {
+        await getEmployeesOfSupervisor()
+        await getCategories()
+    })
 </script>
 
 <div class="flex flex-col gap-y-5">
     <div class="flex flex-col">
-        <span class="font-semibold text-center lg:text-left text-xl">{$LL.Competencies.Title()}</span>
-        <span class="hidden md:inline text-sm text-gray-400">{$LL.Competencies.Description()}</span>
+        <span class="font-semibold text-center lg:text-left text-xl">{$LL.TeamCompetency.Title()}</span>
+        <span class="hidden md:inline text-sm text-gray-400">{$LL.TeamCompetency.Description()}</span>
     </div>
 
     <div class="flex gap-x-[10px] items-start w-full">

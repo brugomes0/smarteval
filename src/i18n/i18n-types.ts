@@ -940,7 +940,15 @@ type RootTranslation = {
 		 */
 		Submissions: string
 		/**
-		 * D​e​s​e​m​p​e​n​h​o​ ​E​q​u​i​p​a
+		 * E​q​u​i​p​a
+		 */
+		Team: string
+		/**
+		 * C​o​m​p​e​t​ê​n​c​i​a​s​ ​d​a​ ​E​q​u​i​p​a
+		 */
+		TeamCompetency: string
+		/**
+		 * D​e​s​e​m​p​e​n​h​o​ ​d​a​ ​E​q​u​i​p​a
 		 */
 		TeamPerformance: string
 		/**
@@ -1757,6 +1765,22 @@ type RootTranslation = {
 		 * S​u​b​m​i​s​s​ã​o​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o​ ​q​u​e​ ​a​ ​r​e​a​l​i​z​e
 		 */
 		ValidationEvaluatorEmployeeError: string
+	}
+	Team: {
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Continue: string
+	}
+	TeamCompetency: {
+		/**
+		 * E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​x​i​s​t​e​n​t​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​e​v​o​l​u​ç​ã​o​ ​d​o​ ​s​e​u​ ​f​u​n​c​i​o​n​á​r​i​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s
+		 */
+		Description: string
+		/**
+		 * C​o​m​p​e​t​ê​n​c​i​a​s
+		 */
+		Title: string
 	}
 	TeamPerformance: {
 		/**
@@ -2728,7 +2752,15 @@ export type TranslationFunctions = {
 		 */
 		Submissions: () => LocalizedString
 		/**
-		 * Desempenho Equipa
+		 * Equipa
+		 */
+		Team: () => LocalizedString
+		/**
+		 * Competências da Equipa
+		 */
+		TeamCompetency: () => LocalizedString
+		/**
+		 * Desempenho da Equipa
 		 */
 		TeamPerformance: () => LocalizedString
 		/**
@@ -3533,6 +3565,22 @@ export type TranslationFunctions = {
 		 * Submissão necessita de um funcionário que a realize
 		 */
 		ValidationEvaluatorEmployeeError: () => LocalizedString
+	}
+	Team: {
+		/**
+		 * Continuar
+		 */
+		Continue: () => LocalizedString
+	}
+	TeamCompetency: {
+		/**
+		 * Escolha entre as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Competências
+		 */
+		Title: () => LocalizedString
 	}
 	TeamPerformance: {
 		/**

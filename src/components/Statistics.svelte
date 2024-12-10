@@ -1,12 +1,12 @@
 <script lang="ts">
+    import LL from "../i18n/i18n-svelte"
+    import toast from "svelte-french-toast"
     import { CalendarDaysIcon, ChevronLeftIcon, ChevronRightIcon, UploadIcon } from "lucide-svelte"
     import { convertUtcToLocalDate, convertUtcToLocalDateShort } from "../helpers/date"
     import { getEvaluationTypeText } from "../helpers/action"
-    import { onDestroy, onMount } from "svelte"
+    import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
-    import LL from "../i18n/i18n-svelte"
-    import toast from "svelte-french-toast"
-    import { generateInterdepartamentalExcel } from "../helpers/generateExcel"
+    import { generateBottomUp, generateInterdepartamentalExcel } from "../helpers/generateExcel"
 
     export let lang: string
     export let user: UserData
@@ -107,9 +107,17 @@
         employeesTableLoaded = true
     }
 
+    async function getExcelBottomUp() {
+        let response = await requestToApi("GET", `SmartEval/Reviews/${reviewsChoosen.reviewId}/ExcelBottomUp?language=${lang}`)
+        if (response.statusCode === 200) {
+            let data = response.data
+            let ratingOptions = tableOfAveragesData.ratingGroups.find((rg: any) => rg.type == "BottomUp").ratingOptions
+            generateBottomUp(user.userName, reviewsChoosen.title, ratingOptions, data)
+        }
+    }
+
     async function getExcelInterdepartmental() {
         let response = await requestToApi("GET", `SmartEval/Reviews/${reviewsChoosen.reviewId}/ExcelInterdepartamental?language=${lang}`)
-        console.log(response.data)
         if (response.statusCode === 200) {
             let averageTotal = response.data.averageTotal
             let departments = response.data.departments
@@ -326,7 +334,7 @@
                             {#if reviewsChoosen.evaluationsAvailable?.some(evaluation => evaluation === 'BottomUp')}
                                 <li class="flex gap-x-1 items-center">
                                     {$LL.EvaluationTypes.BottomUp()}: 
-                                    <button class="flex font-medium items-center gap-x-1 px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
+                                    <button on:click={() => getExcelBottomUp()} class="flex font-medium items-center gap-x-1 px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
                                         <svelte:component this={UploadIcon} size={18} strokeWidth={2} />
                                         Download
                                     </button>

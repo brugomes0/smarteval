@@ -20,6 +20,7 @@
             "RatingGroups": $LL.Menu.RatingGroups,
             "Statistics": $LL.Menu.Statistics,
             "Submissions": $LL.Menu.Submissions,
+            "Team": $LL.Menu.Team,
             "TeamPerformance": $LL.Menu.TeamPerformance,
             "Templates": $LL.Menu.Templates,
         }

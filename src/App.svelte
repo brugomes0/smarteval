@@ -36,6 +36,8 @@
 	import TeamPerformanceComponent from './components/TeamPerformance.svelte'
 	import CompetenciesComponent from './components/Competencies.svelte'
 	import EditReviewComponent from './components/EditReview.svelte'
+	import TeamComponent from './components/Team.svelte'
+    import TeamCompetenciesComponent from './components/TeamCompetencies.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -55,7 +57,7 @@
 		{ name: "Submissions", endpoint: '/submissions', icon: PenSquareIcon, permission: true },
 		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: true },
 		{ name: "Performance", endpoint: '/performance', icon: ActivityIcon, permission: true },
-		{ name: "TeamPerformance", endpoint: '/teamPerformance', icon: UsersIcon, permission: false }
+		{ name: "Team", endpoint: '/team', icon: UsersIcon, permission: false }
 	]
 	let sidebar: boolean = false
 	let token: {accessToken: string, refreshToken: string} = { accessToken: '', refreshToken: '' }
@@ -100,7 +102,7 @@
 				if (permission?.hasPermission) item.permission = true
 			})
 		} else if (user && user.profileType === 'Frontoffice' && user.isSuperior == true) {
-			menuFrontoffice = menuFrontoffice.map(item => item.name === "TeamPerformance" ? {...item, permission: true} : item)
+			menuFrontoffice = menuFrontoffice.map(item => item.name === "Team" ? {...item, permission: true} : item)
 		}
 
 		// change loading after all process, to show page in dom
@@ -168,6 +170,8 @@
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route path="/competencies" component={CompetenciesComponent} {lang} />
 							<Route path="/performance" component={PerformanceComponent} {lang} />
+							<Route path="/team" component={TeamComponent} />
+							<Route path="/teamCompetencies" component={TeamCompetenciesComponent} {lang} {user} />
 							<Route path="/teamPerformance" component={TeamPerformanceComponent} {lang} />
 							<Route component={NotFoundComponent} />
 						</div>

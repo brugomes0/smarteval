@@ -259,7 +259,9 @@ const pt = {
 		Reviews: "Avaliações",
 		Statistics: "Estatísticas",
 		Submissions: "Submissões",
-		TeamPerformance: "Desempenho Equipa",
+		Team: "Equipa",
+		TeamCompetency: "Competências da Equipa",
+		TeamPerformance: "Desempenho da Equipa",
 		Templates: "Modelos"
 	},
 	Performance: {
@@ -483,6 +485,13 @@ const pt = {
 		ValidationEvaluatorDepartmentError: "Submissão necessita de um departamento ao qual pertence o funcionário que realizará esta submissão",
 		ValidationEvaluatedEmployeeError: "Submissão necessita de um funcionário sobre o qual será feita a avaliação",
 		ValidationEvaluatorEmployeeError: "Submissão necessita de um funcionário que a realize",
+	},
+	Team: {
+		Continue: "Continuar"
+	},
+	TeamCompetency: {
+		Description: "Escolha entre as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações",
+		Title: "Competências"
 	},
 	TeamPerformance: {
 		ChooseEmployeeTitle: "Selecione um funcionário",
