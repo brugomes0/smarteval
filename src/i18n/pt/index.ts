@@ -264,6 +264,11 @@ const pt = {
 		TeamPerformance: "Desempenho da Equipa",
 		Templates: "Modelos"
 	},
+	ModalEditCategory: {
+		CategoryPercentageValueRequired: "Categoria necessita de um valor válido para a sua percentagem na avaliação",
+		RequiredQuestionsNeedPercentage: "Questões obrigatórias devem ter um valor para percentagem na categoria",
+		SumQuestionsPercentage: "Soma das percentagens das questões obrigatórias deve ser 100%"
+	},
 	Performance: {
 		AverageCategory: "Média da Categoria",
 		CompareOtherReview: "Comparar com outra revisão",
@@ -487,10 +492,14 @@ const pt = {
 		ValidationEvaluatorEmployeeError: "Submissão necessita de um funcionário que a realize",
 	},
 	Team: {
-		Continue: "Continuar"
+		Continue: "Continuar",
+		Description: "Página da sua equipa. Escolha entre as opções, a que deseja visualizar sobre os seus funcionários",
+		TeamCompetencyDesc: "Nesta página pode consultar as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações.",
+		TeamPerformanceDesc: "Nesta página pode consultar o desempenho dos seus funcionários nas diversas avaliações.",
+		Title: "Equipa"
 	},
 	TeamCompetency: {
-		Description: "Escolha entre as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações",
+		Description: "Escolha entre as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações.",
 		Title: "Competências"
 	},
 	TeamPerformance: {

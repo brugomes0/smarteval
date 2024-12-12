@@ -956,6 +956,20 @@ type RootTranslation = {
 		 */
 		Templates: string
 	}
+	ModalEditCategory: {
+		/**
+		 * C​a​t​e​g​o​r​i​a​ ​n​e​c​e​s​s​i​t​a​ ​d​e​ ​u​m​ ​v​a​l​o​r​ ​v​á​l​i​d​o​ ​p​a​r​a​ ​a​ ​s​u​a​ ​p​e​r​c​e​n​t​a​g​e​m​ ​n​a​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		CategoryPercentageValueRequired: string
+		/**
+		 * Q​u​e​s​t​õ​e​s​ ​o​b​r​i​g​a​t​ó​r​i​a​s​ ​d​e​v​e​m​ ​t​e​r​ ​u​m​ ​v​a​l​o​r​ ​p​a​r​a​ ​p​e​r​c​e​n​t​a​g​e​m​ ​n​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		RequiredQuestionsNeedPercentage: string
+		/**
+		 * S​o​m​a​ ​d​a​s​ ​p​e​r​c​e​n​t​a​g​e​n​s​ ​d​a​s​ ​q​u​e​s​t​õ​e​s​ ​o​b​r​i​g​a​t​ó​r​i​a​s​ ​d​e​v​e​ ​s​e​r​ ​1​0​0​%
+		 */
+		SumQuestionsPercentage: string
+	}
 	Performance: {
 		/**
 		 * M​é​d​i​a​ ​d​a​ ​C​a​t​e​g​o​r​i​a
@@ -1771,10 +1785,26 @@ type RootTranslation = {
 		 * C​o​n​t​i​n​u​a​r
 		 */
 		Continue: string
+		/**
+		 * P​á​g​i​n​a​ ​d​a​ ​s​u​a​ ​e​q​u​i​p​a​.​ ​E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​o​p​ç​õ​e​s​,​ ​a​ ​q​u​e​ ​d​e​s​e​j​a​ ​v​i​s​u​a​l​i​z​a​r​ ​s​o​b​r​e​ ​o​s​ ​s​e​u​s​ ​f​u​n​c​i​o​n​á​r​i​o​s
+		 */
+		Description: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​c​o​n​s​u​l​t​a​r​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​x​i​s​t​e​n​t​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​e​v​o​l​u​ç​ã​o​ ​d​o​ ​s​e​u​ ​f​u​n​c​i​o​n​á​r​i​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.
+		 */
+		TeamCompetencyDesc: string
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​c​o​n​s​u​l​t​a​r​ ​o​ ​d​e​s​e​m​p​e​n​h​o​ ​d​o​s​ ​s​e​u​s​ ​f​u​n​c​i​o​n​á​r​i​o​s​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.
+		 */
+		TeamPerformanceDesc: string
+		/**
+		 * E​q​u​i​p​a
+		 */
+		Title: string
 	}
 	TeamCompetency: {
 		/**
-		 * E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​x​i​s​t​e​n​t​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​e​v​o​l​u​ç​ã​o​ ​d​o​ ​s​e​u​ ​f​u​n​c​i​o​n​á​r​i​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s
+		 * E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​x​i​s​t​e​n​t​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​e​v​o​l​u​ç​ã​o​ ​d​o​ ​s​e​u​ ​f​u​n​c​i​o​n​á​r​i​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​.
 		 */
 		Description: string
 		/**
@@ -2768,6 +2798,20 @@ export type TranslationFunctions = {
 		 */
 		Templates: () => LocalizedString
 	}
+	ModalEditCategory: {
+		/**
+		 * Categoria necessita de um valor válido para a sua percentagem na avaliação
+		 */
+		CategoryPercentageValueRequired: () => LocalizedString
+		/**
+		 * Questões obrigatórias devem ter um valor para percentagem na categoria
+		 */
+		RequiredQuestionsNeedPercentage: () => LocalizedString
+		/**
+		 * Soma das percentagens das questões obrigatórias deve ser 100%
+		 */
+		SumQuestionsPercentage: () => LocalizedString
+	}
 	Performance: {
 		/**
 		 * Média da Categoria
@@ -3571,10 +3615,26 @@ export type TranslationFunctions = {
 		 * Continuar
 		 */
 		Continue: () => LocalizedString
+		/**
+		 * Página da sua equipa. Escolha entre as opções, a que deseja visualizar sobre os seus funcionários
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Nesta página pode consultar as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações.
+		 */
+		TeamCompetencyDesc: () => LocalizedString
+		/**
+		 * Nesta página pode consultar o desempenho dos seus funcionários nas diversas avaliações.
+		 */
+		TeamPerformanceDesc: () => LocalizedString
+		/**
+		 * Equipa
+		 */
+		Title: () => LocalizedString
 	}
 	TeamCompetency: {
 		/**
-		 * Escolha entre as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações
+		 * Escolha entre as categorias existentes para ver a evolução do seu funcionário nas diversas avaliações.
 		 */
 		Description: () => LocalizedString
 		/**

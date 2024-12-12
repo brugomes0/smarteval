@@ -9,7 +9,7 @@
     export let user: UserData
 
     let categories: CategoryInfoData[] = []
-    let categoryChoosen: CategoryInfoData|undefined
+    let categoryChoosen: CategoryInfoData
     let categoryPage: number = 1
     let categorySize: number = 10
     let categoryTotal: number = 0
@@ -28,16 +28,17 @@
         if (response.statusCode == 200) {
             categories = response.data
             categoryTotal = response.totalCount
-            getCompetency(categories[0].categoryId)
+            getCompetency(categories[0].categoryId, false)
         }
     }
 
-    async function getCompetency(categoryId: string) {
-        if (categoryChoosen && categoryChoosen.categoryId == categoryId) return;
+    async function getCompetency(categoryId: string, allowUpdate: boolean) {
+        if (categoryChoosen && categoryChoosen.categoryId == categoryId && !allowUpdate) return;
 
         let response = await requestToApi("GET", `SmartEval/Categories/${categoryId}/Competency?employeeId=${employeeChoosen.employeeId}&language=${lang}`)
+        console.log(response)
         if (response.statusCode === 200) {
-            categoryChoosen = categories.find(c => c.categoryId == categoryId)
+            categoryChoosen = categories.find(c => c.categoryId == categoryId)!
             labels = response.data.reviewTitles.map((r: any) => { return r.title && r.title.trim() !== "" ? r.title : convertUtcToLocalDateShort(r.endDate, lang) })
             max = labels.length - 1
             value = max
@@ -54,8 +55,8 @@
         let response = await requestToApi("GET", `Employees/SubordinatesList?chefiaId=${user.employeeId}`)
         if (response.statusCode === 200) { 
             employees = response.data
+            employees = employees.filter(emp => emp.employeeId != user.employeeId)
             employeeChoosen = employees[0]
-            console.log(employeeChoosen)
         }
     }
 
@@ -101,10 +102,16 @@
         <span class="hidden md:inline text-sm text-gray-400">{$LL.TeamCompetency.Description()}</span>
     </div>
 
+    <select bind:value={employeeChoosen} on:change={() => getCompetency(categoryChoosen.categoryId, true)} class="border font-medium px-2 py-1 rounded text-sm bg-gray-100 border-gray-300 text-gray-800">
+        {#each employees as employee}
+            <option value={employee}>{employee.employeeName}</option>
+        {/each}
+    </select>
+
     <div class="flex gap-x-[10px] items-start w-full">
         <div class="flex flex-col gap-y-[5px] w-80">
             {#each categories as category}
-                <button on:click={() => getCompetency(category.categoryId)} class="border px-2 py-1 rounded shadow text-left text-sm border-gray-300 {categoryChoosen == category ? 'bg-gray-200' : 'hover:bg-gray-100'}">
+                <button on:click={() => getCompetency(category.categoryId, false)} class="border px-2 py-1 rounded shadow text-left text-sm border-gray-300 {categoryChoosen == category ? 'bg-gray-200' : 'hover:bg-gray-100'}">
                     {category.title}
                 </button>
             {/each}

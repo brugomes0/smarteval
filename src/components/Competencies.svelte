@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { afterUpdate, onMount } from "svelte";
-    import { requestToApi } from "../helpers/api";
     import LL from "../i18n/i18n-svelte"
-    import { Chart } from "chart.js";
-    import { convertUtcToLocalDateShort } from "../helpers/date";
+    import { afterUpdate, onMount } from "svelte"
+    import { convertUtcToLocalDateShort } from "../helpers/date"
+    import { requestToApi } from "../helpers/api"
+    import { Chart } from "chart.js"
 
     export let lang: string
 
     let categories: CategoryInfoData[] = []
-    let categoryChoosen: CategoryInfoData|undefined
+    let categoryChoosen: CategoryInfoData
     let categoryPage: number = 1
     let categorySize: number = 10
     let categoryTotal: number = 0
@@ -34,7 +34,7 @@
 
         let response = await requestToApi("GET", `SmartEval/Categories/${categoryId}/Competency?language=${lang}`)
         if (response.statusCode === 200) {
-            categoryChoosen = categories.find(c => c.categoryId == categoryId)
+            categoryChoosen = categories.find(c => c.categoryId == categoryId)!
             labels = response.data.reviewTitles.map((r: any) => { return r.title && r.title.trim() !== "" ? r.title : convertUtcToLocalDateShort(r.endDate, lang) })
             max = labels.length - 1
             value = max
@@ -67,7 +67,6 @@
                     tooltip: {
                         callbacks: { label: function (context) { return context.dataset.label + ": " + context.raw + "%" } }
                     }
-
                 },
                 scales: {
                     x: { type: 'category', offset: true },
@@ -87,10 +86,10 @@
         <span class="hidden md:inline text-sm text-gray-400">{$LL.Competencies.Description()}</span>
     </div>
 
-    <div class="flex gap-x-[10px] items-start w-full">
-        <div class="flex flex-col gap-y-[5px] w-80">
+    <div class="flex gap-x-[10px]">
+        <div class="flex flex-col flex-shrink-0 gap-y-2 h-[395px] overflow-y-auto pr-[5px] w-80">
             {#each categories as category}
-                <button on:click={() => getCompetency(category.categoryId)} class="border px-2 py-1 rounded shadow text-left text-sm border-gray-300 {categoryChoosen == category ? 'bg-gray-200' : 'hover:bg-gray-100'}">
+                <button on:click={() => getCompetency(category.categoryId)} class="border py-[10px] px-4 rounded shadow text-left text-sm border-gray-300 {categoryChoosen == category ? 'bg-gray-200' : 'hover:bg-gray-100'}">
                     {category.title}
                 </button>
             {/each}
@@ -100,7 +99,7 @@
                 <div class="flex flex-col flex-grow">
                     <span class="font-medium text-base">{categoryChoosen.title}</span>
                     <span class="text-xs text-gray-400">{categoryChoosen.description}</span>
-                    <div class="flex flex-col h-[350px] mt-[10px] w-[600px]">
+                    <div class="flex flex-col mt-[10px] w-[600px]">
                         {#if labels.length > 1}
                             <div class="flex items-center mx-10">
                                 <input bind:value class="cursor-pointer flex flex-grow" type="range" {min} {max} />

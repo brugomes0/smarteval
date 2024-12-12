@@ -2,7 +2,6 @@ import ExcelJS from 'exceljs'
 import LL from '../i18n/i18n-svelte'
 
 export async function generateBottomUp(username: string, title: string, ratingOptions: any, data: any) {
-    console.log(data)
     // ----------------------------------------------------------------------------------
     // Create workbook
     // ----------------------------------------------------------------------------------

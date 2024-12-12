@@ -19,13 +19,11 @@
     const dispatch = createEventDispatcher()
     const closeModal = () => { dispatch('close') }
     const confirmChanges = () => {
-        editableCategory.questions.forEach(question => {
-            if (question.isRequired && question.value == 0) requiredQuestionsHavePercentage = false 
-        })
+        requiredQuestionsHavePercentage = !editableCategory.questions.some(question => question.isRequired && question.value == 0)
 
-        if (editableCategory.value == 0 || editableCategory.value == null || editableCategory.value > 100) { toast.error("Category needs a percentage value"); return }
-        if (!requiredQuestionsHavePercentage) { toast.error("Required questions must have a percentage"); return }        
-        if (accValue != 100) { toast.error("Total percentage of questions must be 100%"); return }
+        if (editableCategory.value == 0 || editableCategory.value == null || editableCategory.value > 100) { toast.error($LL.ModalEditCategory.CategoryPercentageValueRequired()); return }
+        if (!requiredQuestionsHavePercentage) { toast.error($LL.ModalEditCategory.RequiredQuestionsNeedPercentage()); return }
+        if (accValue != 100) { toast.error($LL.ModalEditCategory.SumQuestionsPercentage()); return }
         dispatch('save')
     }
 
