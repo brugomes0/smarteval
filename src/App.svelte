@@ -38,6 +38,8 @@
 	import EditReviewComponent from './components/EditReview.svelte'
 	import TeamComponent from './components/Team.svelte'
     import TeamCompetenciesComponent from './components/TeamCompetencies.svelte'
+	import CompetencyComponent from './components/Competency.svelte'
+    import TeamCompetency from './components/TeamCompetency.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -49,6 +51,7 @@
 		{ name: "Reviews", endpoint: '/reviews', icon: ClipboardIcon, permission: false },
 		{ name: "Categories", endpoint: '/categories', icon: LayoutListIcon, permission: false },
 		{ name: "RatingGroups", endpoint: '/ratingGroups', icon: ListIcon, permission: false },
+		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: true },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
 		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
 	]
@@ -145,6 +148,7 @@
 							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/ratingGroups/:ratingGroupId/edit" component={EditRatingGroupComponent} />
+							<Route path="/competencies" component={TeamCompetenciesComponent} {lang} />
 							<Route path="/statistics" component={StatisticsComponent} {user} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
@@ -168,10 +172,10 @@
 							<Route path="/" component={HomeFOComponent} />
 							<Route path="/submissions" component={SubmissionsComponent} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
-							<Route path="/competencies" component={CompetenciesComponent} {lang} />
+							<Route path="/competencies" component={CompetencyComponent} {lang} />
 							<Route path="/performance" component={PerformanceComponent} {lang} />
 							<Route path="/team" component={TeamComponent} />
-							<Route path="/teamCompetencies" component={TeamCompetenciesComponent} {lang} {user} />
+							<Route path="/teamCompetencies" component={TeamCompetency} {lang} {user} />
 							<Route path="/teamPerformance" component={TeamPerformanceComponent} {lang} />
 							<Route component={NotFoundComponent} />
 						</div>

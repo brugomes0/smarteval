@@ -4,6 +4,7 @@
     import { convertUtcToLocalDateShort } from "../helpers/date"
     import { requestToApi } from "../helpers/api"
     import { Chart } from "chart.js"
+    import { ChevronLeftCircleIcon, ChevronRightCircleIcon } from "lucide-svelte"
 
     export let lang: string
 
@@ -76,6 +77,11 @@
         })
     }
 
+    function handleValueChart(action: string) {
+        if (action == "back" && value != min) value--
+        if (action == "next" && value != max) value++
+    }
+
     afterUpdate(() => { if (categoryChoosen) createChart() })
     onMount(() => getCategories())
 </script>
@@ -101,8 +107,14 @@
                     <span class="text-xs text-gray-400">{categoryChoosen.description}</span>
                     <div class="flex flex-col mt-[10px] w-[600px]">
                         {#if labels.length > 1}
-                            <div class="flex items-center mx-10">
+                            <div class="flex gap-x-2 items-center mx-10">
+                                <button on:click={() => handleValueChart("back")} class="text-gray-300 hover:text-gray-800">
+                                    <svelte:component this={ChevronLeftCircleIcon} />
+                                </button>
                                 <input bind:value class="cursor-pointer flex flex-grow" type="range" {min} {max} />
+                                <button on:click={() => handleValueChart("next")} class="text-gray-300 hover:text-gray-800">
+                                    <svelte:component this={ChevronRightCircleIcon} />
+                                </button>
                             </div>
                         {/if}
                         <canvas id="myChart"></canvas>
