@@ -187,12 +187,12 @@
     });
 </script>
 
-<div>
+<div class="flex flex-col gap-y-5">
     <div class="flex flex-col">
         <span class="font-semibold text-center lg:text-left text-xl">{$LL.Competencies.Title()}</span>
         <span class="hidden md:inline text-sm text-gray-400">{$LL.Competencies.Description()}</span>
     </div>
-    <div class="flex flex-col lg:flex-row gap-x-5 gap-y-5 p-5">
+    <div class="flex flex-col lg:flex-row gap-x-5 gap-y-5 px-5">
         <div class="categories">
             {#if categories.length > 0}
                 {#each categories as category}

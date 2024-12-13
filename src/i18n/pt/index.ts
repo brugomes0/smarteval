@@ -24,8 +24,15 @@ const pt = {
 		ToastDeleteError: "Erro ao remover categoria. Tente de novo."
 	},
 	Competencies: {
+		ChooseEmployee: "Escolha um funcionário:",
 		Description: "Escolha entre as categorias existentes para ver a sua evolução nas diversas avaliações",
+		DescriptionBO: "Acompanhe a evolução, entre as diversas avaliações, de um funcionário em cada categoria",
+		GoBack: "Voltar",
+		InputText: "Filtrar funcionários pelo nome...",
+		Next: "Continuar",
+		NoEmployeeChoosed: "Não pode continuar sem escolher um funcionário",
 		NoCategory: "Não foi escolhida nenhuma categoria",
+		ShowingItemsLabel: "Exibindo {firstElement} até {pageSize} de {total} items",
 		Title: "Competências"
 	},
 	CreateCategory: {

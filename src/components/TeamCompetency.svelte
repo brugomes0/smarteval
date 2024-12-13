@@ -43,12 +43,12 @@
                 const lastCategory = entries[0];
                 if (!lastCategory.isIntersecting) return;
 
-                categoriesPage++;
-                await loadCategories();
-
                 if (categories.length == categoriesTotal) {
                     lastCategoryObserver.disconnect();
                 } else {
+                    categoriesPage++;
+                    await loadCategories();
+
                     lastCategoryObserver.unobserve(lastCategory.target);
                     lastCategoryObserver.observe(
                         document.querySelector(".category:last-child")!,
@@ -122,6 +122,7 @@
     async function loadEmployees() {
         const response = await requestToApi("GET", `Employees/SubordinatesList?chefiaId=${user.employeeId}`)
         if (response.statusCode === 200) {
+            response.data = response.data.filter((employee: InfoEmployeeData) => employee.employeeId != user.employeeId)
             employees = response.data
             selectedEmployee = employees[0]
         }
@@ -196,17 +197,21 @@
     });
 </script>
 
-<div>
+<div class="flex flex-col gap-y-5">
     <div class="flex flex-col">
         <span class="font-semibold text-center lg:text-left text-xl">{$LL.Competencies.Title()}</span>
         <span class="hidden md:inline text-sm text-gray-400">{$LL.Competencies.Description()}</span>
     </div>
-    <select bind:value={selectedEmployee} on:change={() => loadChartData(selectedCategory)} class="border px-4 py-2 bg-gray-100 border-gray-300">
+    <select 
+        bind:value={selectedEmployee}
+        on:change={() => loadChartData(selectedCategory)} 
+        class="border mx-5 px-4 py-2 rounded bg-gray-100 border-gray-300"
+    >
         {#each employees as employee}
             <option value={employee}>{employee.employeeName}</option>
         {/each}
     </select>
-    <div class="flex flex-col lg:flex-row gap-x-5 gap-y-5 p-5">
+    <div class="flex flex-col lg:flex-row gap-5 px-5">
         <div class="categories">
             {#if categories.length > 0}
                 {#each categories as category}
@@ -227,9 +232,7 @@
                 <span>{$LL.App.Loading()}</span>
             {/if}
         </div>
-        <div
-            class="border flex flex-col flex-grow h-[420px] px-5 py-[10px] rounded border-gray-300"
-        >
+        <div class="border flex flex-col flex-grow h-[420px] px-5 py-[10px] rounded border-gray-300">
             {#if selectedCategory.categoryId != ""}
                 <div class="flex flex-col flex-grow">
                     <span class="font-medium text-base">{selectedCategory.title}</span>

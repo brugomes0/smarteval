@@ -90,13 +90,44 @@ type RootTranslation = {
 	}
 	Competencies: {
 		/**
+		 * E​s​c​o​l​h​a​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o​:
+		 */
+		ChooseEmployee: string
+		/**
 		 * E​s​c​o​l​h​a​ ​e​n​t​r​e​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​e​x​i​s​t​e​n​t​e​s​ ​p​a​r​a​ ​v​e​r​ ​a​ ​s​u​a​ ​e​v​o​l​u​ç​ã​o​ ​n​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s
 		 */
 		Description: string
 		/**
+		 * A​c​o​m​p​a​n​h​e​ ​a​ ​e​v​o​l​u​ç​ã​o​,​ ​e​n​t​r​e​ ​a​s​ ​d​i​v​e​r​s​a​s​ ​a​v​a​l​i​a​ç​õ​e​s​,​ ​d​e​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o​ ​e​m​ ​c​a​d​a​ ​c​a​t​e​g​o​r​i​a
+		 */
+		DescriptionBO: string
+		/**
+		 * V​o​l​t​a​r
+		 */
+		GoBack: string
+		/**
+		 * F​i​l​t​r​a​r​ ​f​u​n​c​i​o​n​á​r​i​o​s​ ​p​e​l​o​ ​n​o​m​e​.​.​.
+		 */
+		InputText: string
+		/**
+		 * C​o​n​t​i​n​u​a​r
+		 */
+		Next: string
+		/**
+		 * N​ã​o​ ​p​o​d​e​ ​c​o​n​t​i​n​u​a​r​ ​s​e​m​ ​e​s​c​o​l​h​e​r​ ​u​m​ ​f​u​n​c​i​o​n​á​r​i​o
+		 */
+		NoEmployeeChoosed: string
+		/**
 		 * N​ã​o​ ​f​o​i​ ​e​s​c​o​l​h​i​d​a​ ​n​e​n​h​u​m​a​ ​c​a​t​e​g​o​r​i​a
 		 */
 		NoCategory: string
+		/**
+		 * E​x​i​b​i​n​d​o​ ​{​f​i​r​s​t​E​l​e​m​e​n​t​}​ ​a​t​é​ ​{​p​a​g​e​S​i​z​e​}​ ​d​e​ ​{​t​o​t​a​l​}​ ​i​t​e​m​s
+		 * @param {unknown} firstElement
+		 * @param {unknown} pageSize
+		 * @param {unknown} total
+		 */
+		ShowingItemsLabel: RequiredParams<'firstElement' | 'pageSize' | 'total'>
 		/**
 		 * C​o​m​p​e​t​ê​n​c​i​a​s
 		 */
@@ -1938,13 +1969,41 @@ export type TranslationFunctions = {
 	}
 	Competencies: {
 		/**
+		 * Escolha um funcionário:
+		 */
+		ChooseEmployee: () => LocalizedString
+		/**
 		 * Escolha entre as categorias existentes para ver a sua evolução nas diversas avaliações
 		 */
 		Description: () => LocalizedString
 		/**
+		 * Acompanhe a evolução, entre as diversas avaliações, de um funcionário em cada categoria
+		 */
+		DescriptionBO: () => LocalizedString
+		/**
+		 * Voltar
+		 */
+		GoBack: () => LocalizedString
+		/**
+		 * Filtrar funcionários pelo nome...
+		 */
+		InputText: () => LocalizedString
+		/**
+		 * Continuar
+		 */
+		Next: () => LocalizedString
+		/**
+		 * Não pode continuar sem escolher um funcionário
+		 */
+		NoEmployeeChoosed: () => LocalizedString
+		/**
 		 * Não foi escolhida nenhuma categoria
 		 */
 		NoCategory: () => LocalizedString
+		/**
+		 * Exibindo {firstElement} até {pageSize} de {total} items
+		 */
+		ShowingItemsLabel: (arg: { firstElement: unknown, pageSize: unknown, total: unknown }) => LocalizedString
 		/**
 		 * Competências
 		 */
