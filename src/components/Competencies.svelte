@@ -234,10 +234,10 @@
                     <div class="flex items-center justify-between">
                         <span class="text-xs text-gray-500">{$LL.Competencies.ShowingItemsLabel({ firstElement, pageSize: lastElement, total: employeesTotal })}</span>
                         <div class="flex gap-x-2 items-center">
-                            <button on:click={() => changeEmployeePage("decrement")} class="shadow text-gray-500 hover:text-gray-800">
+                            <button on:click={() => changeEmployeePage("decrement")} class="text-gray-500 hover:text-gray-800">
                                 <svelte:component this={ChevronLeftSquareIcon} />
                             </button>
-                            <button on:click={() => changeEmployeePage("increment")} class="shadow text-gray-500 hover:text-gray-800">
+                            <button on:click={() => changeEmployeePage("increment")} class="text-gray-500 hover:text-gray-800">
                                 <svelte:component this={ChevronRightSquareIcon} />
                             </button>
                         </div>

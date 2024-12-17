@@ -1,11 +1,12 @@
 <script lang="ts">
     import LL from "../i18n/i18n-svelte"
     import toast from "svelte-french-toast"
-    import { AlertCircleIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon, SearchIcon, Trash2Icon } from "lucide-svelte"
+    import { AlertCircleIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon, SearchIcon, Trash2Icon, XIcon } from "lucide-svelte"
     import { Link, navigate } from "svelte-routing"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
     import { getFullReviewStatusText } from "../helpers/action"
+    import ModalComponent from "./helpers/ModalComponent.svelte"
 
     export let user: UserData
 
@@ -15,6 +16,7 @@
     let firstElement: number = 0
     let lastElement: number = 0
     let loading: boolean = true
+    let modalDeleteIsOpen: [boolean, string] = [false, ""]
     let nameInput: string = ""
     let page: number = 1
     let pageSize: number = 5
@@ -32,6 +34,7 @@
         } else { toast.error($LL.Reviews.ToastDeleteError()) }
         page = 1
         debounce(getReviews, 500)
+        exitModal()
     }
 
     async function getReviews() {
@@ -56,6 +59,10 @@
     function debounce(func: any, delay: number) {
         clearTimeout(timeoutId)
         timeoutId = setTimeout(func, delay)
+    }
+
+    function exitModal() {
+        modalDeleteIsOpen = [false, ""]
     }
 
     function goToCreatePage() {
@@ -90,6 +97,20 @@
         lastElement = Math.min(page * pageSize, total)
     }
 </script>
+
+{#if modalDeleteIsOpen[0]}
+    <ModalComponent on:save={() => deleteReview(modalDeleteIsOpen[1])}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleReview.ActionsDelete()}</span>
+            <button on:click={exitModal} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleReview.ActionsDeleteModal()}</span>
+        </div>
+    </ModalComponent>
+{/if}
 
 <div class="flex flex-col gap-y-5">
     <div class="flex flex-col lg:flex-row gap-x-20 gap-y-5 items-start justify-between">
@@ -138,7 +159,6 @@
                     <p>{$LL.Reviews.Error()}</p>
                 </div>
             {:else}
-                <!-- TODO: list of reviews -->
                 {#if reviews.length > 0}
                     {#each reviews as review}
                         <div class="flex gap-x-5 items-center justify-between md:h-[80px] p-[10px] border-b border-gray-300">
@@ -150,8 +170,8 @@
                             </div>
                             <div class="flex gap-x-2">
                                 <Link class="text-xs md:text-sm font-semibold px-2 py-1 rounded-lg cursor-pointer whitespace-nowrap bg-blue-500 hover:bg-blue-600 text-white" to="/reviews/{review.reviewId}">{$LL.Reviews.Preview()}</Link>
-                                {#if buttonDelete}
-                                    <button on:click={() => deleteReview(review.reviewId)}>
+                                {#if buttonDelete && review.status != "Active"}
+                                    <button on:click={() => modalDeleteIsOpen = [true, review.reviewId]}>
                                         <svelte:component this={Trash2Icon} class="w-5 h-5 lg:w-6 lg:h-6 hover:text-gray-500" />
                                     </button>
                                 {/if}

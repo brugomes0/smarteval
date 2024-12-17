@@ -1,6 +1,7 @@
 <script lang="ts">
     import { ChevronLeftIcon, ChevronRightIcon } from "lucide-svelte"
     import { convertUtcToLocalDateShort } from "../helpers/date"
+    import { fly } from "svelte/transition"
     import { getEvaluationTypeText } from "../helpers/action"
     import { navigate } from "svelte-routing"
     import { onMount } from "svelte"
@@ -149,7 +150,7 @@
                         {/each}
                     </div>
                     {#each tableData.categories as category, index}
-                        <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 bg-blue-100 hover:bg-blue-200">
+                        <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 z-20 bg-blue-100 hover:bg-blue-200">
                             <span class="flex flex-grow font-medium pl-2 text-base">{index + 1}. {category.title}</span>
                             {#each category.averagesWithPercentages as item}
                                 <span class="flex-shrink-0 font-medium text-center text-sm w-20">{item.value ?? '-'}</span>
@@ -157,18 +158,20 @@
                             {/each}
                         </button>
                         {#if category.isOpen}
-                            {#each category.questions as question}
-                                <div class="flex items-center">
-                                    <div class="flex flex-col flex-grow pl-5 py-1">
-                                        <span class="text-base text-black">{question.title}</span>
-                                        <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                            <div transition:fly={{ duration: 200, y: -20 }} class="flex flex-col z-10">
+                                {#each category.questions as question}
+                                    <div class="flex items-center">
+                                        <div class="flex flex-col flex-grow pl-5 py-1">
+                                            <span class="text-base text-black">{question.title}</span>
+                                            <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                                        </div>
+                                        {#each question.answers as item}
+                                            <span class="flex-shrink-0 text-center text-xs w-20">{item.value != 0 ? `${item.value}` : '-'}</span>
+                                            <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : '-'}</span>
+                                        {/each}
                                     </div>
-                                    {#each question.answers as item}
-                                        <span class="flex-shrink-0 text-center text-xs w-20">{item.value != 0 ? `${item.value}` : '-'}</span>
-                                        <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : '-'}</span>
-                                    {/each}
-                                </div>
-                            {/each}
+                                {/each}
+                            </div>
                         {/if}
                     {/each}
                     <div class="border-b-2 border-t-2 flex items-center py-2 border-blue-400">

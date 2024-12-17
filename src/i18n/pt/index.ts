@@ -84,7 +84,7 @@ const pt = {
 		ToastError: "Erro ao criar o critério de avaliação. Tente de novo",
 		ToastSuccess: "Critério de avaliação criado com sucesso",
 		ValidationError: {
-			NoLanguages: "Selecione pelo menos uma linguagem para a qual será criado o critério de avlaiação",
+			NoLanguages: "Selecione pelo menos uma linguagem para a qual será criado o critério de avaliação",
 			NoRatingOptions: "Critério de avaliação deve ter pelo menos duas opções de classificação",
 			RatingGroupTitle: "Insira um título para o critério de avaliação",
 			RatingOptionTitle: "Insira um título para a opção de classificação na posição {position} e idioma {language}"
@@ -249,6 +249,16 @@ const pt = {
 		ShortCuts: "Atalhos de criação",
 		Templates: "Modelos"
 	},
+	HomeFrontoffice: {
+		AvgRatingBottomUp: "Valor da última avaliação (BottomUp)",
+		AvgRatingTopDown: "Valor da última avaliação (TopDown)",
+		Dashboard: "Dashboard",
+		NoSubmissions: "Não tem nenhuma submissão para realizar",
+		Percentile: "Percentagem",
+		SeeAllCompetencies: "ver página de competências",
+		SeeAllSubmissions: "ver página de submissões",
+		TaskList: "Lista de tarefas"
+	},
 	Languages: {
 		EN: "Inglês",
 		ES: "Espanhol",
@@ -351,6 +361,8 @@ const pt = {
 		User: "Utilizador"
 	},
 	SingleCategories: {
+		ActionsDelete: "Remover categoria",
+		ActionsDeleteModal: "Tem a certeza que pretende remover a categoria? Esta ação não pode ser revertida.",
 		CreateBy: "Criado por utilizador",
 		CreateDate: "Data de criação",
 		Description: "Descrição",
@@ -361,6 +373,8 @@ const pt = {
 		Type: "Tipo de questão"
 	},
 	SingleRatingGroups: {
+		ActionsDelete: "Remover critério de avaliação",
+		ActionsDeleteModal: "Tem a certeza que pretende remover o critério de avaliação? Esta ação não pode ser revertida.",
 		CreateBy: "Criado por utilizador",
 		CreateDate: "Data de criação",
 		Description: "Descrição",

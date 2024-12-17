@@ -1,13 +1,10 @@
 <script lang="ts">
-    import { convertUtcToLocalDateShort } from "../helpers/date";
-    import { onMount } from "svelte";
-    import { requestToApi } from "../helpers/api";
-    import { Chart } from "chart.js";
-    import {
-        ChevronLeftCircleIcon,
-        ChevronRightCircleIcon,
-    } from "lucide-svelte";
-    import LL from "../i18n/i18n-svelte";
+    import { convertUtcToLocalDateShort } from "../helpers/date"
+    import { onMount } from "svelte"
+    import { requestToApi } from "../helpers/api"
+    import { Chart } from "chart.js"
+    import { ChevronLeftCircleIcon, ChevronRightCircleIcon } from "lucide-svelte"
+    import LL from "../i18n/i18n-svelte"
 
     export let lang: string;
 
@@ -128,9 +125,7 @@
 
     function renderChart() {
         if (!ctx) return;
-        if (myChart) {
-            myChart.destroy();
-        }
+        if (myChart) { myChart.destroy() }
 
         myChart = new Chart(ctx, {
             type: "line",
@@ -160,12 +155,7 @@
                     tooltip: {
                         callbacks: {
                             label: function (context) {
-                                return (
-                                    context.dataset.label +
-                                    ": " +
-                                    context.raw +
-                                    "%"
-                                );
+                                return (context.dataset.label + ": " + context.raw + "%")
                             },
                         },
                     },

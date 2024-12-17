@@ -1,12 +1,13 @@
 <script lang="ts">
     import LL from "../i18n/i18n-svelte"
-    import { CalendarDaysIcon, PencilIcon, Trash2Icon, UserIcon } from "lucide-svelte"
+    import { CalendarDaysIcon, PencilIcon, Trash2Icon, UserIcon, XIcon } from "lucide-svelte"
     import { convertUtcToLocalDate } from "../helpers/date"
     import { getFullLanguageText } from "../helpers/action"
     import { Link, navigate } from "svelte-routing"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
     import { toast } from "svelte-french-toast"
+    import ModalComponent from "./helpers/ModalComponent.svelte";
 
     export let lang: string
     export let ratingGroupId: string
@@ -17,6 +18,7 @@
     let buttonEdit: boolean = false
     let error: string = ""
     let loading: boolean = true
+    let modalDeleteIsOpen: boolean = false
     let ratingGroup: RatingGroupData = { ratingGroupId: "", title: "", description: "", createDate: "", createByUser: "", isBeingUsed: false, ratingOptions: [] }
     let selectLanguage: string = ""
 
@@ -25,6 +27,7 @@
         if (response.statusCode === 200) {
             toast.success($LL.RatingGroups.ToastDelete())
             navigate("/ratingGroups")
+            exitModal()
         } else { toast.error($LL.RatingGroups.ToastDeleteError()) }
     }
 
@@ -39,6 +42,8 @@
         } else { error = response.error }
     }
 
+    function exitModal() { modalDeleteIsOpen = false }
+
     onMount(async () => {
         const module = user.authorizations.find(temp => temp.moduleType === "SmartEval")
         const windowPermission = module?.windowPermissions.find(temp => temp.windowType === "RatingGroups")
@@ -52,6 +57,20 @@
     })
 </script>
 
+{#if modalDeleteIsOpen}
+    <ModalComponent on:save={() => deleteRatingGroup()}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleRatingGroups.ActionsDelete()}</span>
+            <button on:click={exitModal} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleRatingGroups.ActionsDeleteModal()}</span>
+        </div>
+    </ModalComponent>
+{/if}
+
 {#if !loading}
     <div class="flex flex-col gap-y-5">
         <div class="border flex flex-col rounded overflow-hidden border-gray-300">
@@ -64,7 +83,7 @@
                         </Link>
                     {/if}
                     {#if buttonDelete}
-                        <button on:click={deleteRatingGroup} class="p-[5px] rounded hover:bg-gray-200">
+                        <button on:click={() => modalDeleteIsOpen = true} class="p-[5px] rounded hover:bg-gray-200">
                             <svelte:component this={Trash2Icon} size={20} />
                         </button>
                     {/if}

@@ -313,7 +313,7 @@ type RootTranslation = {
 		ToastSuccess: string
 		ValidationError: {
 			/**
-			 * S​e​l​e​c​i​o​n​e​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​l​i​n​g​u​a​g​e​m​ ​p​a​r​a​ ​a​ ​q​u​a​l​ ​s​e​r​á​ ​c​r​i​a​d​o​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​l​a​i​a​ç​ã​o
+			 * S​e​l​e​c​i​o​n​e​ ​p​e​l​o​ ​m​e​n​o​s​ ​u​m​a​ ​l​i​n​g​u​a​g​e​m​ ​p​a​r​a​ ​a​ ​q​u​a​l​ ​s​e​r​á​ ​c​r​i​a​d​o​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
 			 */
 			NoLanguages: string
 			/**
@@ -911,6 +911,40 @@ type RootTranslation = {
 		 */
 		Templates: string
 	}
+	HomeFrontoffice: {
+		/**
+		 * V​a​l​o​r​ ​d​a​ ​ú​l​t​i​m​a​ ​a​v​a​l​i​a​ç​ã​o​ ​(​B​o​t​t​o​m​U​p​)
+		 */
+		AvgRatingBottomUp: string
+		/**
+		 * V​a​l​o​r​ ​d​a​ ​ú​l​t​i​m​a​ ​a​v​a​l​i​a​ç​ã​o​ ​(​T​o​p​D​o​w​n​)
+		 */
+		AvgRatingTopDown: string
+		/**
+		 * D​a​s​h​b​o​a​r​d
+		 */
+		Dashboard: string
+		/**
+		 * N​ã​o​ ​t​e​m​ ​n​e​n​h​u​m​a​ ​s​u​b​m​i​s​s​ã​o​ ​p​a​r​a​ ​r​e​a​l​i​z​a​r
+		 */
+		NoSubmissions: string
+		/**
+		 * P​e​r​c​e​n​t​a​g​e​m
+		 */
+		Percentile: string
+		/**
+		 * v​e​r​ ​p​á​g​i​n​a​ ​d​e​ ​c​o​m​p​e​t​ê​n​c​i​a​s
+		 */
+		SeeAllCompetencies: string
+		/**
+		 * v​e​r​ ​p​á​g​i​n​a​ ​d​e​ ​s​u​b​m​i​s​s​õ​e​s
+		 */
+		SeeAllSubmissions: string
+		/**
+		 * L​i​s​t​a​ ​d​e​ ​t​a​r​e​f​a​s
+		 */
+		TaskList: string
+	}
 	Languages: {
 		/**
 		 * I​n​g​l​ê​s
@@ -1263,6 +1297,14 @@ type RootTranslation = {
 	}
 	SingleCategories: {
 		/**
+		 * R​e​m​o​v​e​r​ ​c​a​t​e​g​o​r​i​a
+		 */
+		ActionsDelete: string
+		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​r​e​m​o​v​e​r​ ​a​ ​c​a​t​e​g​o​r​i​a​?​ ​E​s​t​a​ ​a​ç​ã​o​ ​n​ã​o​ ​p​o​d​e​ ​s​e​r​ ​r​e​v​e​r​t​i​d​a​.
+		 */
+		ActionsDeleteModal: string
+		/**
 		 * C​r​i​a​d​o​ ​p​o​r​ ​u​t​i​l​i​z​a​d​o​r
 		 */
 		CreateBy: string
@@ -1296,6 +1338,14 @@ type RootTranslation = {
 		Type: string
 	}
 	SingleRatingGroups: {
+		/**
+		 * R​e​m​o​v​e​r​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o
+		 */
+		ActionsDelete: string
+		/**
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​r​e​m​o​v​e​r​ ​o​ ​c​r​i​t​é​r​i​o​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​?​ ​E​s​t​a​ ​a​ç​ã​o​ ​n​ã​o​ ​p​o​d​e​ ​s​e​r​ ​r​e​v​e​r​t​i​d​a​.
+		 */
+		ActionsDeleteModal: string
 		/**
 		 * C​r​i​a​d​o​ ​p​o​r​ ​u​t​i​l​i​z​a​d​o​r
 		 */
@@ -2188,7 +2238,7 @@ export type TranslationFunctions = {
 		ToastSuccess: () => LocalizedString
 		ValidationError: {
 			/**
-			 * Selecione pelo menos uma linguagem para a qual será criado o critério de avlaiação
+			 * Selecione pelo menos uma linguagem para a qual será criado o critério de avaliação
 			 */
 			NoLanguages: () => LocalizedString
 			/**
@@ -2781,6 +2831,40 @@ export type TranslationFunctions = {
 		 */
 		Templates: () => LocalizedString
 	}
+	HomeFrontoffice: {
+		/**
+		 * Valor da última avaliação (BottomUp)
+		 */
+		AvgRatingBottomUp: () => LocalizedString
+		/**
+		 * Valor da última avaliação (TopDown)
+		 */
+		AvgRatingTopDown: () => LocalizedString
+		/**
+		 * Dashboard
+		 */
+		Dashboard: () => LocalizedString
+		/**
+		 * Não tem nenhuma submissão para realizar
+		 */
+		NoSubmissions: () => LocalizedString
+		/**
+		 * Percentagem
+		 */
+		Percentile: () => LocalizedString
+		/**
+		 * ver página de competências
+		 */
+		SeeAllCompetencies: () => LocalizedString
+		/**
+		 * ver página de submissões
+		 */
+		SeeAllSubmissions: () => LocalizedString
+		/**
+		 * Lista de tarefas
+		 */
+		TaskList: () => LocalizedString
+	}
 	Languages: {
 		/**
 		 * Inglês
@@ -3127,6 +3211,14 @@ export type TranslationFunctions = {
 	}
 	SingleCategories: {
 		/**
+		 * Remover categoria
+		 */
+		ActionsDelete: () => LocalizedString
+		/**
+		 * Tem a certeza que pretende remover a categoria? Esta ação não pode ser revertida.
+		 */
+		ActionsDeleteModal: () => LocalizedString
+		/**
 		 * Criado por utilizador
 		 */
 		CreateBy: () => LocalizedString
@@ -3160,6 +3252,14 @@ export type TranslationFunctions = {
 		Type: () => LocalizedString
 	}
 	SingleRatingGroups: {
+		/**
+		 * Remover critério de avaliação
+		 */
+		ActionsDelete: () => LocalizedString
+		/**
+		 * Tem a certeza que pretende remover o critério de avaliação? Esta ação não pode ser revertida.
+		 */
+		ActionsDeleteModal: () => LocalizedString
 		/**
 		 * Criado por utilizador
 		 */

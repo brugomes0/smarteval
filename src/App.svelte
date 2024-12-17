@@ -50,8 +50,8 @@
 		{ name: "Reviews", endpoint: '/reviews', icon: ClipboardIcon, permission: false },
 		{ name: "Categories", endpoint: '/categories', icon: LayoutListIcon, permission: false },
 		{ name: "RatingGroups", endpoint: '/ratingGroups', icon: ListIcon, permission: false },
-		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: false },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
+		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: false },
 		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
 	]
 	let menuFrontoffice = [
@@ -168,7 +168,7 @@
 					<Header bind:sidebar bind:user />
 					<div class="flex justify-center w-full">
 						<div class="max-w-[1400px] w-full p-[10px] lg:p-5">
-							<Route path="/" component={HomeFOComponent} />
+							<Route path="/" component={HomeFOComponent} {user} />
 							<Route path="/submissions" component={SubmissionsComponent} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route path="/competencies" component={CompetencyComponent} {lang} />

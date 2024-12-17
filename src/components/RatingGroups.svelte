@@ -1,11 +1,12 @@
 <script lang="ts">
     import LL from "../i18n/i18n-svelte"
     import toast from "svelte-french-toast"
-    import { AlertCircleIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon, Trash2Icon } from "lucide-svelte"
+    import { AlertCircleIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon, Trash2Icon, XIcon } from "lucide-svelte"
     import { Link } from "svelte-routing"
     import { onMount } from "svelte"
     import { PlusIcon } from "lucide-svelte"
     import { requestToApi } from "../helpers/api"
+    import ModalComponent from "./helpers/ModalComponent.svelte";
 
     export let user: UserData
 
@@ -15,6 +16,7 @@
     let firstElement: number = 0
     let lastElement: number = 0
     let loading: boolean = true
+    let modalDeleteIsOpen: [boolean, string] = [false, ""]
     let nameInput: string = ""
     let page: number = 1
     let pageSize: number = 5
@@ -30,6 +32,7 @@
         } else { toast.error($LL.RatingGroups.ToastDeleteError()) }
         page = 1
         debounce(getRatingGroups, 500)
+        exitModal()
     }
 
     async function getRatingGroups() {
@@ -56,6 +59,10 @@
         timeoutId = setTimeout(func, delay)
     }
 
+    function exitModal() {
+        modalDeleteIsOpen = [false, ""]
+    }
+
     function handleInputChanges() {
         loading = true, ratingGroups = [], total = 0
         debounce(getRatingGroups, 1000)
@@ -78,6 +85,20 @@
         lastElement = Math.min(page * pageSize, total)
     }
 </script>
+
+{#if modalDeleteIsOpen[0]}
+    <ModalComponent on:save={() => deleteRatingGroup(modalDeleteIsOpen[1])}>
+        <div class="flex items-center justify-between" slot="header">
+            <span class="font-medium text-base text-gray-800">{$LL.SingleRatingGroups.ActionsDelete()}</span>
+            <button on:click={exitModal} class="p-2 rounded hover:bg-gray-200">
+                <svelte:component this={XIcon} size={20} />
+            </button>
+        </div>
+        <div class="flex flex-col gap-y-2" slot="content">
+            <span class="text-sm text-gray-400">{$LL.SingleRatingGroups.ActionsDeleteModal()}</span>
+        </div>
+    </ModalComponent>
+{/if}
 
 <div class="flex flex-col gap-y-5">
     <div class="flex flex-col lg:flex-row gap-x-20 gap-y-5 items-start justify-between">
@@ -132,7 +153,7 @@
                             <div class="flex gap-x-2">
                                 <Link class="text-xs md:text-sm font-semibold px-2 py-1 rounded-lg cursor-pointer whitespace-nowrap bg-blue-500 hover:bg-blue-600 text-white" to="/ratingGroups/{ratingGroup.ratingGroupId}">{$LL.RatingGroups.Preview()}</Link>
                                 {#if buttonDelete}
-                                    <button on:click={() => deleteRatingGroup(ratingGroup.ratingGroupId)}>
+                                    <button on:click={() => modalDeleteIsOpen = [true, ratingGroup.ratingGroupId]}>
                                         <svelte:component this={Trash2Icon} class="w-6 h-6 hover:text-gray-500" />
                                     </button>
                                 {/if}

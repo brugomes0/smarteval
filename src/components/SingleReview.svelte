@@ -285,7 +285,6 @@
 <!-- PAGE ELEMENTS -->
 {#if !loading}
     <div class="flex flex-col gap-y-2">
-        <!-- DETAILS TABLE -->
         <div class="border flex flex-col rounded border-gray-300">
             <div class="border-b flex justify-between p-4 rounded-t bg-gray-100 border-gray-300">
                 <span class="font-semibold text-lg">{review.title}</span>

@@ -3,10 +3,11 @@
     import toast from "svelte-french-toast"
     import { CalendarDaysIcon, ChevronLeftIcon, ChevronRightIcon, UploadIcon } from "lucide-svelte"
     import { convertUtcToLocalDate, convertUtcToLocalDateShort } from "../helpers/date"
+    import { fly } from "svelte/transition"
+    import { generateBottomUp, generateInterdepartamentalExcel } from "../helpers/generateExcel"
     import { getEvaluationTypeText } from "../helpers/action"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
-    import { generateBottomUp, generateInterdepartamentalExcel } from "../helpers/generateExcel"
 
     export let lang: string
     export let user: UserData
@@ -285,7 +286,7 @@
                         {/each}
                     </div>
                     {#each tableOfAveragesData.categories as category, index}
-                        <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 bg-blue-100 hover:bg-blue-200">
+                        <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 z-20 bg-blue-100 hover:bg-blue-200">
                             <span class="flex flex-grow font-medium pl-2 text-base">{index + 1}. {category.title}</span>
                             {#each category.averagesWithPercentages as item}
                                 <span class="flex-shrink-0 font-medium text-center text-sm w-20">{item.value ?? '-'}</span>
@@ -293,18 +294,20 @@
                             {/each}
                         </button>
                         {#if category.isOpen}
-                            {#each category.questions as question}
-                                <div class="flex items-center">
-                                    <div class="flex flex-col flex-grow pl-5 py-1">
-                                        <span class="text-base text-black">{question.title}</span>
-                                        <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                            <div transition:fly={{ duration: 200, y: -20 }} class="flex flex-col z-10">
+                                {#each category.questions as question}
+                                    <div class="flex items-center">
+                                        <div class="flex flex-col flex-grow pl-5 py-1">
+                                            <span class="text-base text-black">{question.title}</span>
+                                            <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                                        </div>
+                                        {#each question.answers as item}
+                                            <span class="flex-shrink-0 text-center text-xs w-20">{item.value != 0 ? `${item.value}` : '-'}</span>
+                                            <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : `-`}</span>
+                                        {/each}
                                     </div>
-                                    {#each question.answers as item}
-                                        <span class="flex-shrink-0 text-center text-xs w-20">{item.value != 0 ? `${item.value}` : '-'}</span>
-                                        <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : `-`}</span>
-                                    {/each}
-                                </div>
-                            {/each}
+                                {/each}
+                            </div>
                         {/if}
                     {/each}
                     <div class="border-b-2 border-t-2 flex items-center py-2 border-blue-400">
@@ -372,7 +375,7 @@
                                 {/each}
                             </div>
                             {#each employeesTable.categories as category, index}
-                                <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 bg-blue-100 hover:bg-blue-200">
+                                <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 z-20 bg-blue-100 hover:bg-blue-200">
                                     <span class="flex flex-grow font-medium pl-2 text-base">{index + 1}. {category.title}</span>
                                     {#each category.averagesWithPercentages as item}
                                         <span class="flex-shrink-0 font-medium text-center text-sm w-20">{item.value ?? '-'}</span>
@@ -380,18 +383,20 @@
                                     {/each}
                                 </button>
                                 {#if category.isOpen}
-                                    {#each category.questions as question}
-                                        <div class="flex items-center">
-                                            <div class="flex flex-col flex-grow pl-5 py-1">
-                                                <span class="text-base text-black">{question.title}</span>
-                                                <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                                    <div transition:fly={{ duration: 200, y: -20 }} class="flex flex-col z-10">
+                                        {#each category.questions as question}
+                                            <div class="flex items-center">
+                                                <div class="flex flex-col flex-grow pl-5 py-1">
+                                                    <span class="text-base text-black">{question.title}</span>
+                                                    <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                                                </div>
+                                                {#each question.answers as item}
+                                                    <span class="flex-shrink-0 text-center text-xs w-20">{item.value != 0 ? `${item.value}` : '-'}</span>
+                                                    <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : `-`}</span>
+                                                {/each}
                                             </div>
-                                            {#each question.answers as item}
-                                                <span class="flex-shrink-0 text-center text-xs w-20">{item.value != 0 ? `${item.value}` : '-'}</span>
-                                                <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : `-`}</span>
-                                            {/each}
-                                        </div>
-                                    {/each}
+                                        {/each}
+                                    </div>
                                 {/if}
                             {/each}
                             <div class="border-b-2 border-t-2 flex items-center py-2 border-blue-400">
@@ -438,7 +443,7 @@
                                 {/each}
                             </div>
                             {#each departmentsTable.categories as category, index}
-                                <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 bg-blue-100 hover:bg-blue-200">
+                                <button on:click={() => category.isOpen = !category.isOpen} class="flex items-center py-1 z-20 bg-blue-100 hover:bg-blue-200">
                                     <span class="flex flex-grow font-medium pl-2 text-base">{index + 1}. {category.title}</span>
                                     {#each category.averagesWithPercentages as item}
                                         <span class="flex-shrink-0 font-medium text-center text-sm w-[120px]">{item.value ?? '-'}</span>
@@ -446,18 +451,20 @@
                                     {/each}
                                 </button>
                                 {#if category.isOpen}
-                                    {#each category.questions as question}
-                                        <div class="flex items-center">
-                                            <div class="flex flex-col flex-grow pl-5 py-1">
-                                                <span class="text-base text-black">{question.title}</span>
-                                                <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                                    <div transition:fly={{ duration: 200, y: -20 }} class="flex flex-col z-10">
+                                        {#each category.questions as question}
+                                            <div class="flex items-center">
+                                                <div class="flex flex-col flex-grow pl-5 py-1">
+                                                    <span class="text-base text-black">{question.title}</span>
+                                                    <span class="hidden lg:inline text-xs text-gray-400">{question.description}</span>
+                                                </div>
+                                                {#each question.answers as item}
+                                                    <span class="flex-shrink-0 text-center text-xs w-[120px]">{item.value != 0 ? `${item.value}` : '-'}</span>
+                                                    <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : `-`}</span>
+                                                {/each}
                                             </div>
-                                            {#each question.answers as item}
-                                                <span class="flex-shrink-0 text-center text-xs w-[120px]">{item.value != 0 ? `${item.value}` : '-'}</span>
-                                                <span class="flex-shrink-0 text-center text-xs w-10">{item.percentageQuestion != 0 ? `${item.percentageQuestion}%` : `-`}</span>
-                                            {/each}
-                                        </div>
-                                    {/each}
+                                        {/each}
+                                    </div>
                                 {/if}
                             {/each}
                             <div class="border-b-2 border-t-2 flex items-center py-2 border-blue-400">

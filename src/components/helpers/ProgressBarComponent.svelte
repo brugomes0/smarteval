@@ -1,4 +1,5 @@
 <script lang="ts">
+    import BarComponent from "./BarComponent.svelte"
     import LL from "../../i18n/i18n-svelte"
     import { CircleCheckIcon, CircleXIcon, DotIcon } from "lucide-svelte"
 
@@ -10,9 +11,7 @@
 
 <div class="flex flex-col gap-y-2 mx-4">
     <div class="flex gap-x-2 items-center">
-        <div class="flex h-3 rounded-lg w-40 bg-gray-300">
-            <div class="flex rounded-lg select-none text-transparent {parseFloat(percentage) == 0 ? '': 'bg-blue-500'}" style="width: {percentage}%;">percentage</div>
-        </div>
+        <BarComponent bind:percentage />
         <svelte:component this={parseFloat(percentage) == 100 ? CircleCheckIcon : CircleXIcon} class="w-4 h-4 {parseFloat(percentage) == 100 ? 'text-green-500' : 'text-red-500'}" />
         <p>{percentage}/100.0%</p>
     </div>
