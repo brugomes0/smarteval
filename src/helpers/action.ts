@@ -84,3 +84,14 @@ export function getEvaluationTypeText(type: string): string {
     subscription()
     return text
 }
+
+// Function to get the right translation
+export function getTranslation(translations: any[], showingLang: string) {
+    return translations.find(t => t.language === showingLang) || 
+           translations.find(t => t.language === "PT") || 
+           translations[0]
+}
+
+export function translationExistInLang(translations: any[], showingLang: string): boolean {
+    return translations.some(t => t.language === showingLang)
+}

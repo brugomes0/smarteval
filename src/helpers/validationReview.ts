@@ -1,6 +1,6 @@
 import LL from "../i18n/i18n-svelte"
 
-export function validateReview(review: CreateReviewData, step: number) {
+export function validateReview(review: CreateReviewData|EditReviewData, step: number) {
     let message: string = ""
     let stepTypeMap: Record<number, string> = { 1: "TopDown", 2: "BottomUp", 3: "SelfEvaluation", 4: "TeamEvaluation", 5: "Interdepartamental" }
 
@@ -23,7 +23,8 @@ export function validateReview(review: CreateReviewData, step: number) {
             }
         }
     } else if (step === 6) {
-
+        if (review.evaluations.find(e => e.type === "Interdepartamental") && review.departments.length === 0) return message = errorMessage("noDepartments")
+        if (review.evaluations.find(e => e.type !== "Interdepartamental") && review.employees.length === 0) return message = errorMessage("noEmployees")
     } else if (step === 7) {
         if (review.evaluations.length === 0) return message = errorMessage("noEvaluations")
     }
@@ -44,6 +45,12 @@ function errorMessage(type: string, language?: string) {
                 break
             case "noCategoryValue":
                 errorMessage = ll.CreateReviews.ValidationError.NoCategoryValue()
+                break
+            case "noDepartments":
+                errorMessage = ll.CreateReviews.ValidationError.NoDepartments()
+                break
+            case "noEmployees":
+                errorMessage = ll.CreateReviews.ValidationError.NoEmployees()
                 break
             case "noEvaluations":
                 errorMessage = ll.CreateReviews.ValidationError.NoEvaluations()

@@ -64,12 +64,12 @@
     </div>
 
     <div>
-        <button class="cursor-pointer p-2 relative rounded text-black hover:bg-gray-100">
+        <div class="p-2 relative rounded text-black">
             <div class="absolute left-8 px-1 rounded text-xs top-0 bg-blue-500 text-white">
                 {selectedEmployees.length >= 100 ? '+99': `${selectedEmployees.length}`}
             </div>
             <svelte:component this={UsersIcon} size={40} />
-        </button>
+        </div>
     </div>
 
     <div class="flex gap-x-5 w-full">
@@ -84,12 +84,14 @@
                 {#if department.isOpen}
                     <div class="flex flex-col gap-y-1 ml-5">
                         {#await getEmployeesFromDepartment(department.departmentId)}
-                            <span class="ml-3">Loading...</span>
+                            <span class="ml-3">{$LL.App.Loading()}...</span>
                         {:then}
                             {#if department.employees.length == 0}
-                                <span class="ml-3">No employees to show.</span>
+                                <span class="ml-3">{$LL.EmployeesComponent.NoEmployees()}</span>
                             {:else}
-                                <button on:click={() => selectAllEmployees(department)} class="ml-3 hover:underline mr-auto">Select All</button>
+                                <button on:click={() => selectAllEmployees(department)} class="ml-3 hover:underline mr-auto">
+                                    {$LL.EmployeesComponent.SelectAll()}
+                                </button>
                                 {#each department.employees as employee}
                                     <label class="flex gap-x-2 items-center p-2 rounded text-sm  text-black hover:bg-gray-100">
                                         <svelte:component this={MinusIcon} size={16} />

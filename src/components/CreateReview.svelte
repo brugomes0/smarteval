@@ -23,6 +23,7 @@
     let categoriesEditModal: boolean = false
     let categoriesPage: number = 1
     let categoriesPageSize: number = 10
+    let categoriesTotal: number = 0
     let current: number = 0
     let editableCategory: CreateReviewCategoryData = { id: 0, categoryId: "", position: 0, value: 0, questions: [], translations: [] }
     let error: string = ""
@@ -36,6 +37,7 @@
     let ratingGroupsInput: string = ""
     let ratingGroupsPage: number = 1
     let ratingGroupsPageSize: number = 10
+    let ratingGroupsTotal: number = 0
     let review: CreateReviewData = { title: "", description: "", endDate: undefined, status: "NotStarted", departments: [], employees: [], evaluations: [] }
     let selectedRatingGroupId: string = ""
     let steps = [
@@ -52,22 +54,41 @@
     async function getCategories() {
         let response = await requestToApi("GET", `SmartEval/Categories/AvailableLanguages?page=${categoriesPage}&pageSize=${categoriesPageSize}&name=${categoriesInput}&languages=${languageChoosen.join(",")}`)
         if (response.statusCode === 200) {
-            categoriesInfo = response.data
+            categoriesInfo = [...categoriesInfo, ...response.data]
+            categoriesTotal = response.totalCount
+            if (categoriesInfo.length != categoriesTotal) {
+                categoriesPage++
+                getCategories()
+            }
         } else { error = response.error }
     }
 
     async function getRatingGroups() {
         let response = await requestToApi("GET", `SmartEval/RatingGroups/AvailableLanguages?page=${ratingGroupsPage}&pageSize=${ratingGroupsPageSize}&name=${ratingGroupsInput}&languages=${languageChoosen.join(",")}`)
         if (response.statusCode === 200) {
-            ratingGroupsInfo = response.data
+            ratingGroupsInfo = [...ratingGroupsInfo, ...response.data]
+            ratingGroupsTotal = response.totalCount
+            if (ratingGroupsInfo.length != ratingGroupsTotal) {
+                ratingGroupsPage++
+                getRatingGroups()
+            }
         } else { error = response.error }
     }
 
     async function saveReview() {
+        // Check if review is created with an endDate, if it is change status to active
         if (review.endDate) {
             review.endDate = convertLocalToUtcDate(review.endDate)
             review.status = "Active"
         }
+
+        // Re-order evaluations like the evaluationTypes element
+        review.evaluations.sort((a, b) => {
+            const evalA = parseInt(Object.entries(evaluationTypes).find(temp => temp[1] === a.type)?.[0]!)
+            const evalB = parseInt(Object.entries(evaluationTypes).find(temp => temp[1] === b.type)?.[0]!)
+            return (evalA - evalB)
+        })
+
         let response = await requestToApi("POST", `SmartEval/Reviews`, review)
         if (response.statusCode === 201) {
             toast.success($LL.CreateReviews.ToastSuccess())
@@ -337,8 +358,8 @@
                                 <svelte:component this={accValue == 100 ? CircleCheckIcon : CircleXIcon} class="w-4 h-4 {accValue == 100 ? 'text-green-500' : 'text-red-500'}" />
                                 <p>{accValue}/100%</p>
                             </div>
-                            <div class="flex gap-x-5 my-1 w-full">
-                                <div class="border flex rounded w-3/4 bg-gray-100 border-gray-300">
+                            <div class="flex gap-x-5 h-[400px] my-1 w-full">
+                                <div class="border flex overflow-y-auto rounded w-3/4 bg-gray-100 border-gray-300">
                                     {#each review.evaluations as evaluation, index}
                                         {#if evaluation.type === evaluationTypes[current]}
                                             {#if evaluation.template.length === 0}
@@ -366,7 +387,9 @@
                                                                                         {#if qTranslation.language === languageShow}
                                                                                             <p class="text-sm text-gray-900">{question.position}. {qTranslation.title} {question.isRequired ? '*': ''}</p>
                                                                                             <p class="hidden lg:inline text-xs text-gray-400">{qTranslation.description}</p>
-                                                                                            <span class="mx-4">{question.type === "Rating" ? '***[Resposta de classificação]***': '***[Resposta de texto]***'}</span>
+                                                                                            <span class="mx-4">
+                                                                                                {question.type === "Rating" ? `****[${$LL.CreateReviews.AnswerRating()}]****` : `***[${$LL.CreateReviews.AnswerText()}]***`}
+                                                                                            </span>
                                                                                         {/if}
                                                                                     {/each}
                                                                                 </div>
@@ -390,8 +413,8 @@
                                         {/if}
                                     {/each}
                                 </div>
-                                <div class="border flex flex-col p-1 overflow-y-scroll rounded w-1/4 bg-gray-100 border-gray-300">
-                                    <p class="font-medium my-2 text-base text-center text-gray-800">Categories</p>
+                                <div class="border flex flex-col p-1 overflow-y-auto rounded w-1/4 bg-gray-100 border-gray-300">
+                                    <p class="font-medium my-2 text-base text-center text-gray-800">{$LL.CreateReviews.Categories()}</p>
                                     {#each categoriesInfo as category}
                                         <button on:dblclick={() => selectCategory(category, current)} class="p-2 rounded text-left w-full hover:bg-gray-200">
                                             {#each category.translations as translation}
@@ -417,19 +440,21 @@
                             <svelte:component this={CirclePlusIcon} />
                             <span>{$LL.CreateReviews.AddEvaluation()}</span>
                         </button>
-                        <span class="font-semibold text-base text-black">{$LL.CreateReviews.CopyEvaluation()}</span>
-                        <div class="flex flex-col px-2">
-                            {#each review.evaluations as evaluation}
-                                {#if evaluation.type !== evaluationTypes[current]}
-                                    <div class="flex items-center">
-                                        <span class="text-xs w-[120px]">{getEvaluationTypeText(evaluation.type)}</span>
-                                        <button on:click={() => copyEvaluation(current, evaluation)} class="p-1 rounded hover:bg-gray-100">
-                                            <svelte:component this={CopyIcon} size={20} />
-                                        </button>
-                                    </div>
-                                {/if}
-                            {/each}
-                        </div>
+                        {#if review.evaluations.length > 0}
+                            <span class="font-semibold text-base text-black">{$LL.CreateReviews.CopyEvaluation()}</span>
+                            <div class="flex flex-col px-2">
+                                {#each review.evaluations as evaluation}
+                                    {#if evaluation.type !== evaluationTypes[current]}
+                                        <div class="flex items-center">
+                                            <span class="text-xs w-[120px]">{getEvaluationTypeText(evaluation.type)}</span>
+                                            <button on:click={() => copyEvaluation(current, evaluation)} class="p-1 rounded hover:bg-gray-100">
+                                                <svelte:component this={CopyIcon} size={20} />
+                                            </button>
+                                        </div>
+                                    {/if}
+                                {/each}
+                            </div>
+                        {/if}
                     </div>
                 {/if}
             {:else if current == 6}

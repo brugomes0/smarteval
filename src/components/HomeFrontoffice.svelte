@@ -26,7 +26,6 @@
 
     async function getCompetencies() {
         let response = await requestToApi("GET", `SmartEval/HomePage/LastReviewCompetencies`)
-        console.log(response)
         if (response.statusCode === 200) { competencies = response.data }
     }
 
@@ -130,7 +129,7 @@
                         {#each competencies as evaluation}
                             <div class="flex flex-col">
                                 <span class="text-xs text-blue-500">{getEvaluationTypeText(evaluation.evaluationType)}</span>
-                                <div class="flex gap-x-[10px] py-2 overflow-x-scroll">
+                                <div class="flex gap-x-[10px] py-2 overflow-x-auto">
                                     {#each evaluation.categories as category}
                                         <div class="flex flex-col shrink-0 w-[200px]">
                                             <div class="flex flex-col my-2">

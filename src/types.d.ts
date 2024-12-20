@@ -116,10 +116,36 @@ type EditCategoryData = {
     translations: EditTranslationData[]
 }
 
+type EditCategory2Data = {
+    id: number,
+    categoryId: string,
+    position: number,
+    questions: EditQuestion2Data[],
+    translations: EditTranslationData[],
+    value: number
+}
+
+type EditEvaluationData = {
+    type: string,
+    totalValue: number,
+    ratingGroupId: string,
+    template: EditCategory2Data[]
+}
+
 type EditQuestionData = {
     questionId?: string,
     type: string,
     translations: EditTranslationData[]
+}
+
+type EditQuestion2Data = {
+    id: number,
+    questionId: string,
+    isRequired: true,
+    position: number,
+    translations: EditTranslationData[],
+    type: string,
+    value: number
 }
 
 type EditRatingGroupData = {
@@ -133,6 +159,15 @@ type EditRatingOptionData = {
     numericValue: number,
     needComment: boolean,
     translations: EditTranslationData[]
+}
+
+type EditReviewData = {
+    reviewId: string,
+    title: string,
+    description: string,
+    departments: number[],
+    employees: number[],
+    evaluations: EditEvaluationData[]
 }
 
 type EditTranslationData = {
