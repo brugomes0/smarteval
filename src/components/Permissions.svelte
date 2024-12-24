@@ -67,6 +67,7 @@
             "Reviews": $LL.Menu.Reviews,
             "Statistics": $LL.Menu.Statistics,
             "Submissions": $LL.Menu.Submissions,
+            "Competencies": $LL.Menu.Competencies,
             "Create": $LL.Permissions.PermissionType.Create,
             "Delete": $LL.Permissions.PermissionType.Delete,
             "Patch": $LL.Permissions.PermissionType.Patch,

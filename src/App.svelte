@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { API_URL } from './stores/apiStore'
-	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutListIcon, ListIcon, PenSquareIcon, ShieldIcon, UsersIcon } from 'lucide-svelte'
+	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutListIcon, ListIcon, PenSquareIcon, ShieldIcon, StarIcon, UsersIcon } from 'lucide-svelte'
 	import { deleteCookie, getCookie, setCookie } from './helpers/cookie'
 	import { Route, Router } from 'svelte-routing'
 	import { loadAllLocales } from './i18n/i18n-util.sync'
@@ -25,6 +25,20 @@
 	import CreateCategoryComponent from './components/CreateCategory.svelte'
 	import SingleCategoryComponent from './components/SingleCategory.svelte'
 	import EditCategoryComponent from './components/EditCategory.svelte'
+	import ReviewsComponent from './components/Reviews.svelte'
+	import CreateReviewComponent from './components/CreateReview.svelte'
+	import SingleReviewComponent from './components/SingleReview.svelte'
+	import HomeFOComponent from './components/HomeFrontoffice.svelte'
+	import SubmissionsComponent from './components/Submissions.svelte'
+	import SingleSubmissionComponent from './components/SingleSubmission.svelte'
+    import StatisticsComponent from './components/Statistics.svelte'
+	import PerformanceComponent from './components/Performance.svelte'
+	import TeamPerformanceComponent from './components/TeamPerformance.svelte'
+	import EditReviewComponent from './components/EditReview.svelte'
+	import TeamComponent from './components/Team.svelte'
+	import CompetencyComponent from './components/Competency.svelte'
+    import TeamCompetencyComponent from './components/TeamCompetency.svelte'
+	import CompetenciesComponent from './components/Competencies.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -37,13 +51,15 @@
 		{ name: "Categories", endpoint: '/categories', icon: LayoutListIcon, permission: false },
 		{ name: "RatingGroups", endpoint: '/ratingGroups', icon: ListIcon, permission: false },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
+		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: false },
 		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
 	]
 	let menuFrontoffice = [
 		{ name: "Home", endpoint: '/', icon: HomeIcon, permission: true },
 		{ name: "Submissions", endpoint: '/submissions', icon: PenSquareIcon, permission: true },
+		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: true },
 		{ name: "Performance", endpoint: '/performance', icon: ActivityIcon, permission: true },
-		{ name: "TeamPerformance", endpoint: '/teamPerformance', icon: UsersIcon, permission: true }
+		{ name: "Team", endpoint: '/team', icon: UsersIcon, permission: false }
 	]
 	let sidebar: boolean = false
 	let token: {accessToken: string, refreshToken: string} = { accessToken: '', refreshToken: '' }
@@ -87,6 +103,8 @@
 				const permission = windowPermission?.permissions.find(temp => temp.permissionType === 'Read')
 				if (permission?.hasPermission) item.permission = true
 			})
+		} else if (user && user.profileType === 'Frontoffice' && user.isSuperior == true) {
+			menuFrontoffice = menuFrontoffice.map(item => item.name === "Team" ? {...item, permission: true} : item)
 		}
 
 		// change loading after all process, to show page in dom
@@ -113,10 +131,14 @@
 					<Sidebar bind:sidebar {user} menu={menuBackoffice} />
 				{/if}
 				<div class="flex flex-col flex-1 items-center {sidebar ? '2xl:ml-[250px]' : ''}">
-					<Header bind:sidebar />
+					<Header bind:sidebar bind:user />
 					<div class="flex justify-center w-full">
-						<div class="max-w-[1400px] w-full p-5">
-							<Route path="/" component={HomeBOComponent} />
+						<div class="max-w-[1400px] w-full p-[10px] lg:p-5">
+							<Route path="/" component={HomeBOComponent} {user} {lang} />
+							<Route path="/reviews" component={ReviewsComponent} {user} />
+							<Route path="/reviews/createReview" component={CreateReviewComponent} />
+							<Route path="/reviews/:reviewId" component={SingleReviewComponent} {user} {lang} />
+							<Route path="/reviews/:reviewId/edit" component={EditReviewComponent} />
 							<Route path="/categories" component={CategoriesComponent} {user} />
 							<Route path="/categories/createCategory" component={CreateCategoryComponent} />
 							<Route path="/categories/:categoryId" component={SingleCategoryComponent} {user} {lang} />
@@ -125,6 +147,9 @@
 							<Route path="/ratingGroups/createRatingGroup" component={CreateRatingGroupComponent} />
 							<Route path="/ratingGroups/:ratingGroupId" component={SingleRatingGroupComponent} {user} {lang} />
 							<Route path="/ratingGroups/:ratingGroupId/edit" component={EditRatingGroupComponent} />
+							<Route path="/competencies" component={CompetenciesComponent} {lang} />
+							<Route path="/statistics" component={StatisticsComponent} {user} {lang} />
+							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
@@ -140,9 +165,17 @@
 					<Sidebar bind:sidebar {user} menu={menuFrontoffice} />
 				{/if}
 				<div class="flex flex-col flex-1 items-center {sidebar ? '2xl:ml-[250px]' : ''}">
-					<Header bind:sidebar />
+					<Header bind:sidebar bind:user />
 					<div class="flex justify-center w-full">
-						<div class="max-w-[1400px] w-full p-5">
+						<div class="max-w-[1400px] w-full p-[10px] lg:p-5">
+							<Route path="/" component={HomeFOComponent} {user} />
+							<Route path="/submissions" component={SubmissionsComponent} {lang} />
+							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
+							<Route path="/competencies" component={CompetencyComponent} {lang} />
+							<Route path="/performance" component={PerformanceComponent} {lang} />
+							<Route path="/team" component={TeamComponent} />
+							<Route path="/teamCompetencies" component={TeamCompetencyComponent} {lang} {user} />
+							<Route path="/teamPerformance" component={TeamPerformanceComponent} {lang} />
 							<Route component={NotFoundComponent} />
 						</div>
 					</div>

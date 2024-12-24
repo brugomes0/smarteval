@@ -12,6 +12,7 @@
     function getText(name: string) {
         const menuMapping: { [key: string]: () => string } = {
             "Categories": $LL.Menu.Categories,
+            "Competencies": $LL.Menu.Competencies,
             "Home": $LL.Menu.Home,
             "Performance": $LL.Menu.Performance,
             "Permissions": $LL.Menu.Permissions,
@@ -19,6 +20,7 @@
             "RatingGroups": $LL.Menu.RatingGroups,
             "Statistics": $LL.Menu.Statistics,
             "Submissions": $LL.Menu.Submissions,
+            "Team": $LL.Menu.Team,
             "TeamPerformance": $LL.Menu.TeamPerformance,
             "Templates": $LL.Menu.Templates,
         }

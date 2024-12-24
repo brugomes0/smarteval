@@ -1,4 +1,8 @@
-type AuthorizationData = { moduleId: number, moduleType: string, windowPermissions: WindowPermissionData[] }
+type AuthorizationData = { 
+    moduleId: number,
+    moduleType: string,
+    windowPermissions: WindowPermissionData[]
+}
 
 type CategoryData = {
     categoryId: string,
@@ -13,6 +17,11 @@ type CategoryInfoData = {
     categoryId: string,
     title: string,
     description: string
+}
+
+type CategoryInfo2Data = {
+    categoryId: string,
+    translations: { language: string, title: string }[]
 }
 
 type CategoryTranslationData = {
@@ -44,10 +53,62 @@ type CreateRatingOptionData = {
     translations: CreateTranslationData[]
 }
 
+type CreateReviewCategoryData = {
+    id: number,
+    categoryId: string,
+    position: number,
+    value: number,
+    questions: CreateReviewQuestionData[]
+    translations: CreateTranslationData[]
+}
+
+type CreateReviewData = {
+    title: string,
+    description: string,
+    endDate: string | undefined,
+    status: string,
+    departments: number[],
+    employees: number[],
+    evaluations: CreateReviewEvaluationData[]
+}
+
+type CreateReviewEvaluationData = {
+    type: string,
+    totalValue: number,
+    ratingGroupId: string,
+    template: CreateReviewCategoryData[]
+}
+
+type CreateReviewQuestionData = {
+    id: number,
+    questionId: string,
+    type: string,
+    position: number,
+    value: number,
+    isRequired: boolean,
+    translations: CreateTranslationData[]
+}
+
+type CreateSubmissionData = {
+    evaluatedEmployeeId: number | null,
+    evaluatorEmployeeId: number | null,
+    evaluatedDepartmentId: number | null,
+    evaluatorDepartmentId: number | null
+}
+
 type CreateTranslationData = {
     language: string,
     title: string,
     description: string
+}
+
+type DepartmentData = {
+    departmentId: number,
+    departmentDescription: string,
+    departmentParentId: number,
+    employees: EmployeeData[],
+    totalEmployees: number | null,
+    isOpen: boolean
 }
 
 type EditCategoryData = {
@@ -55,10 +116,36 @@ type EditCategoryData = {
     translations: EditTranslationData[]
 }
 
+type EditCategory2Data = {
+    id: number,
+    categoryId: string,
+    position: number,
+    questions: EditQuestion2Data[],
+    translations: EditTranslationData[],
+    value: number
+}
+
+type EditEvaluationData = {
+    type: string,
+    totalValue: number,
+    ratingGroupId: string,
+    template: EditCategory2Data[]
+}
+
 type EditQuestionData = {
     questionId?: string,
     type: string,
     translations: EditTranslationData[]
+}
+
+type EditQuestion2Data = {
+    id: number,
+    questionId: string,
+    isRequired: true,
+    position: number,
+    translations: EditTranslationData[],
+    type: string,
+    value: number
 }
 
 type EditRatingGroupData = {
@@ -74,11 +161,49 @@ type EditRatingOptionData = {
     translations: EditTranslationData[]
 }
 
+type EditReviewData = {
+    reviewId: string,
+    title: string,
+    description: string,
+    departments: number[],
+    employees: number[],
+    evaluations: EditEvaluationData[]
+}
+
 type EditTranslationData = {
     translationId?: string,
     language: string,
     title: string,
     description: string
+}
+
+type EmployeeData = {
+    employeeId: number,
+    employeeName: string,
+    employeeEmail: string,
+    departmentId: number
+}
+
+type EvaluationData = {
+    evaluationId: string,
+    availableInLanguages: string[],
+    ratingOptions: EvaluationRatingOptionData[],
+    template: TemplateCategoryData[],
+    totalValue: number,
+    type: string
+}
+
+type EvaluationRatingOptionData = {
+    ratingOptionId: string,
+    numericValue: number,
+    needComment: boolean,
+    translations: { language: string, title: string, description: string }[]
+}
+
+type InfoEmployeeData = {
+    employeeId: number,
+    employeeName: string,
+    departmentName: string
 }
 
 type PermissionData = { 
@@ -91,13 +216,6 @@ type ProfileData = {
     idperfil: number,
     nome: string,
     portalColaborador: int
-}
-
-type RatingGroupInfoData = {
-    ratingGroupId: string,
-    title: string,
-    description: string,
-    createDate: string
 }
 
 type QuestionData = {
@@ -123,6 +241,19 @@ type RatingGroupData = {
     ratingOptions: RatingOptionData[]
 }
 
+type RatingGroupInfoData = {
+    ratingGroupId: string,
+    title: string,
+    description: string,
+    createDate: string
+}
+
+type RatingGroupInfo2Data = {
+    ratingGroupId: string,
+    title: string,
+    description: string
+}
+
 type RatingOptionData = {
     ratingOptionId: string
     numericValue: number,
@@ -137,11 +268,102 @@ type RatingOptionTranslationData = {
     description: string
 }
 
-type TemplateData = {
-    templateId: string,
+type ReviewData = {
+    reviewId: string,
     title: string,
     description: string,
-    createDate: Date
+    createByUser: string
+    createDate: string,
+    startDate: string,
+    endDate: string,
+    status: string,
+    evaluationsAvailable: string[],
+    evaluations: EvaluationData[]
+}
+
+type ReviewInfoData = {
+    reviewId: string,
+    title: string,
+    description: string,
+    status: string,
+    createDate: string,
+    startDate: string,
+    endDate: string
+    evaluationsAvailable: string[]|undefined
+}
+
+type ReviewInfo2Data = {
+    reviewId: string,
+    title: string,
+    description: string,
+    status: string,
+    createDate: string,
+    startDate: string,
+    endDate: string,
+    employees: int[]
+}
+
+type SubmissionData = {
+    submissionId: string,
+    isAnswered: boolean,
+    submissionDate: string,
+    evaluatedEmployee: string,
+    evaluatorEmployee: string,
+    evaluatedDepartment: string,
+    evaluatorDepartment: string
+}
+
+type SingleSubmissionData = {
+    submissionId: string,
+    evaluatedDepartment: string,
+    evaluatedEmployee: string,
+    review: string,
+    type: string,
+    endDate: string,
+    template: TemplateCategoryData[],
+    ratingOptions: RatingOptionData[],
+    answers: SubmissionPatchData[]
+}
+
+type SubmissionPatchData = {
+    questionId: string,
+    textResponse: string|null,
+    ratingValueResponse: number|null,
+    ratingValueComment: string|null
+}
+
+type SubmissionsEvaluationData = {
+    evaluationId: string,
+    type: string,
+    submissions: SubmissionData[]
+}
+
+type SubmissionsReviewData = {
+    reviewId: string,
+    title: string,
+    description: string,
+    endDate: string,
+    status: string,
+    username: string,
+    isOpen: boolean = false,
+    evaluations: SubmissionsEvaluationData[]
+}
+
+type TemplateCategoryData = {
+    categoryId: string,
+    position: number,
+    questions: TemplateQuestionData[],
+    translations: { language: string, title: string, description: string }[],
+    value: number
+}
+
+type TemplateQuestionData = {
+    questionId: string,
+    position: number,
+    isRequired: boolean,
+    type: string
+    translations: { language: string, title: string, description: string }[],
+    value: number
 }
 
 type UserData = {
@@ -151,6 +373,7 @@ type UserData = {
     userEmail: string | undefined,
     profileDescription: string,
     profileType: string,
+    isSuperior: boolean,
     authorizations: AuthorizationData[]
 }
 
