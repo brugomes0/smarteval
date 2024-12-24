@@ -85,6 +85,7 @@
         }
 
         let response = await requestToApi("GET", `SmartEval/Reviews/${reviewId}/Evaluation?evaluationType=${evaluationActive}`)
+        console.log(response)
         if (response.statusCode === 200) {
             review.evaluations = [...review.evaluations, response.data]
             if (review.status == "Active") await getEvalProgressBar(response.data.evaluationId)
@@ -424,7 +425,7 @@
                                                                 {#each evaluation.ratingOptions as ratingOption}
                                                                     <label class="flex gap-x-1 items-center">
                                                                         <input class="w-3 h-3" disabled type="radio" />
-                                                                        <span class="text-xs text-gray-800">{getTranslation(ratingOption.translations, languageSelected)?.title}</span>
+                                                                        <span class="text-xs text-gray-800">{getTranslation(ratingOption.translations, lang)?.title}</span>
                                                                     </label>
                                                                 {/each}
                                                             {:else if question.type === "Text"}

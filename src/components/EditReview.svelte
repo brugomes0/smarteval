@@ -1,18 +1,19 @@
 <script lang="ts">
     import EmployeesComponent from "./helpers/EmployeesComponent.svelte"
     import LL from "../i18n/i18n-svelte"
+    import ModalEditCategory from "./ModalEditCategory.svelte"
     import RatingGroupComponent from "./helpers/RatingGroupComponent.svelte"
     import toast from "svelte-french-toast"
     import { dndzone } from "svelte-dnd-action"
+    import { fade, fly } from "svelte/transition"
     import { flip } from "svelte/animate"
     import { getEvaluationTypeText, getFullLanguageText, getTranslation, translationExistInLang } from "../helpers/action"
+    import { navigate } from "svelte-routing"
     import { onMount } from "svelte"
     import { requestToApi } from "../helpers/api"
     import { validateReview } from "../helpers/validationReview"
     import { AlertTriangleIcon, ChevronLeftIcon, ChevronRightIcon, CircleCheckIcon, CirclePlusIcon, CircleXIcon, CopyIcon, FilePenIcon, FileQuestion, PencilIcon, Trash2Icon, XIcon } from "lucide-svelte"
     import { Steps } from "svelte-steps"
-    import ModalEditCategory from "./ModalEditCategory.svelte";
-    import { fly } from "svelte/transition";
 
     export let reviewId: string
 
@@ -43,7 +44,7 @@
             current += 1
         } else {
             document.getElementById('buttonGoForward')?.setAttribute('disabled', 'disabled')
-            //editReview()
+            updateReview()
         }
     }
 
@@ -79,6 +80,15 @@
         { text: $LL.Steps.Employees() }
     ]
 
+    async function getAvailableLanguages() {
+        let response = await requestToApi("GET", `SmartEval/Reviews/${reviewId}/AvailableLanguages`)
+        if (response.statusCode === 200) {
+            languagesChoosen = response.data
+        } else { error = response.error }
+
+        loading = false
+    }
+
     // Load categories available to the selected languages
     async function getCategories() {
         let response = await requestToApi(
@@ -87,7 +97,7 @@
         if (response.statusCode === 200) {
             categories = [...categories, ...response.data]
             categoriesTotal = response.totalCount
-            if (categories.length != categoriesTotal) { categoriesPage++; getCategories() }
+            if (categories.length < categoriesTotal) { categoriesPage++; getCategories() }
         } else { error = response.error }
     }
 
@@ -99,13 +109,13 @@
         if (response.statusCode === 200) {
             ratingGroups = [...ratingGroups, ...response.data]
             ratingGroupsTotal = response.totalCount
-            if (ratingGroups.length != ratingGroupsTotal) { ratingGroupsPage++; getRatingGroups() }
+            if (ratingGroups.length < ratingGroupsTotal) { ratingGroupsPage++; getRatingGroups() }
         } else { error = response.error }
     }
 
     // Load review to edit
     async function loadReview() {
-        let response = await requestToApi("GET", `SmartEval/Reviews/${reviewId}/Data`)
+        let response = await requestToApi("GET", `SmartEval/Reviews/${reviewId}/Data?languages=${languagesChoosen.join(",")}`)
         if (response.statusCode === 200) {
             review = response.data
             languagesChoosen = review.languages
@@ -145,9 +155,12 @@
                     }))
                 }))
             }
+
+            page++
         }
 
         loading = false
+        return response
     }
 
     // Function to select category
@@ -190,11 +203,30 @@
         }
     }
 
+    // Function to edit review
+    async function updateReview() {
+        let response = await requestToApi("PUT", `SmartEval/Reviews/${reviewId}`, editReview)
+        if (response.statusCode === 200) {
+            toast.success($LL.EditReviews.EditReviewValidationSuccess())
+            navigate(`/reviews/${reviewId}`)
+        } else {
+            toast.error($LL.EditReviews.EditReviewValidationFail())
+        }
+    }
+
     // Function to validate the selection of languages
     async function validateLanguages() {
         if (languagesChoosen.length === 0) {
             toast.error($LL.EditReviews.NoSelectionLanguages())
             return
+        }
+
+        languagesShow = languagesChoosen[0]
+        loading = true
+        let response = await loadReview()
+        if (response.error != null && response.error != "") {
+            toast.error($LL.EditReviews.NoLanguagesMatching())
+            return -1;
         }
 
         await getCategories()
@@ -208,9 +240,6 @@
             toast.error($LL.EditReviews.NoRatingGroups())
             return
         }
-
-        languagesShow = languagesChoosen[0]
-        page++
     }
 
     // Function to add evaluation to review when user click button
@@ -305,7 +334,7 @@
         }
     }
 
-    onMount(async () => loadReview())
+    onMount(async () => getAvailableLanguages())
 
     $: {
         if (current >= 1 && current <= 5) {
@@ -313,8 +342,6 @@
             if (evaluationIndex != -1) accValue = editReview.evaluations[evaluationIndex].template.reduce((acc: number, item: any) => acc + item.value, 0)
         }
     }
-
-    $: console.log(editReview)
 </script>
 
 {#if categoriesEditModal}
@@ -417,161 +444,165 @@
                         </div>
                     </div>
                 {:else if current >= 1 && current <= 5}
-                    {#each editReview.evaluations as evaluation}
-                        {#if evaluation.type === evaluationTypes[current]}
-                            <div class="flex flex-col gap-y-5">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex gap-x-2">
-                                        <p class="font-semibold text-base text-black">{$LL.EditReviews.ShowInLanguage()}</p>
-                                        <select bind:value={languagesShow} class="border p-1 rounded border-gray-300 bg-gray-100 text-gray-900">
-                                            {#each languagesChoosen as lang}
-                                                <option value={lang}>{getFullLanguageText(lang)}</option>
-                                            {/each}
-                                        </select>
-                                    </div>
-                                    <button
-                                        on:click={() => deleteEvaluation(evaluation.type)}
-                                        class="border rounded border-gray-300 hover:bg-gray-100"
-                                        title={$LL.EditReviews.DeleteEvaluation()}
-                                    >
-                                        <svelte:component this={XIcon} />
-                                    </button>
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="font-semibold text-base text-black">{$LL.EditReviews.CategoryDivTitle()}</p>
-                                    <p class="text-xs text-gray-400">{$LL.EditReviews.CategoryDivDesc()}</p>
-                                    <div class="flex gap-x-2 items-center mt-3">
-                                        <div class="flex h-3 rounded-lg w-40 bg-gray-300">
-                                            <div
-                                                class="border flex rounded-lg select-none text-transparent {accValue == 0 ? 'border-transparent': 'bg-gray-100 border-gray-300'}"
-                                                style="width: {accValue}%;"
-                                            >percentage</div>
+                    {#key current}
+                        <div in:fade={{ delay: 200 }} out:fly={{ x: 20, duration: 200 }} class="flex flex-col gap-y-5">
+                            {#each editReview.evaluations as evaluation}
+                                {#if evaluation.type === evaluationTypes[current]}
+                                    <div class="flex flex-col gap-y-5">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex gap-x-2">
+                                                <p class="font-semibold text-base text-black">{$LL.EditReviews.ShowInLanguage()}</p>
+                                                <select bind:value={languagesShow} class="border p-1 rounded border-gray-300 bg-gray-100 text-gray-900">
+                                                    {#each languagesChoosen as lang}
+                                                        <option value={lang}>{getFullLanguageText(lang)}</option>
+                                                    {/each}
+                                                </select>
+                                            </div>
+                                            <button
+                                                on:click={() => deleteEvaluation(evaluation.type)}
+                                                class="border rounded border-gray-300 hover:bg-gray-100"
+                                                title={$LL.EditReviews.DeleteEvaluation()}
+                                            >
+                                                <svelte:component this={XIcon} />
+                                            </button>
                                         </div>
-                                        <svelte:component
-                                            this={accValue == 100 ? CircleCheckIcon : CircleXIcon}
-                                            class="w-4 h-4 {accValue == 100 ? 'text-green-500' : 'text-red-500'}"
-                                        />
-                                        <p>{accValue}/100%</p>
-                                    </div>
-                                    <div class="flex gap-x-5 my-1 w-full">
-                                        <div class="border flex overflow-y-auto rounded w-3/4 bg-gray-100 border-gray-300">
-                                            {#each editReview.evaluations as evaluation, index}
-                                                {#if evaluation.type === evaluationTypes[current]}
-                                                    {#if evaluation.template.length === 0}
-                                                        <div class="px-4 py-2 text-sm">
-                                                            <p>{$LL.EditReviews.CategoryDivPlaceholder()}</p>
-                                                        </div>
-                                                    {:else}
-                                                        <section
-                                                            use:dndzone={{ items: evaluation.template, flipDurationMs, dropTargetStyle: {}, type: "categoriesDndZone" }}
-                                                            on:consider={(e) => handleSort(e, index)}
-                                                            on:finalize={(e) => handleSort(e, index)}
-                                                            class="flex flex-col gap-y-1 p-1 w-full"
-                                                        >
-                                                            {#each evaluation.template as category (category.id)}
-                                                                <div
-                                                                    class="flex gap-x-2 group items-start pl-[10px] pr-[5px] py-[5px] lg:pl-5 lg:pr-[10px] lg:py-[10px] rounded w-full hover:bg-gray-200"
-                                                                    animate:flip={{ duration: flipDurationMs }}
-                                                                >
-                                                                    <div class="flex flex-col flex-grow">
-                                                                        <div class="flex gap-x-[10px] items-center">
-                                                                            <span class="font-medium text-base text-gray-900">
-                                                                                {category.position}. {getTranslation(category.translations, languagesShow).title} ({category.value}%)
-                                                                            </span>
-                                                                            {#if !translationExistInLang(category.translations, languagesShow)}
-                                                                                <button title="Categoria não tem tradução neste idioma">
-                                                                                    <svelte:component class="text-red-500" size={20} this={AlertTriangleIcon} />
-                                                                                </button>
-                                                                            {/if}
-                                                                        </div>
-                                                                        
-                                                                        <span class="hidden lg:inline text-xs text-gray-400">
-                                                                            {getTranslation(category.translations, languagesShow).description}
-                                                                        </span>
-                                                                        <div class="flex flex-col flex-grow gap-y-1 mt-2 mx-5">
-                                                                            {#each category.questions as question}
-                                                                                <div class="flex flex-col">
-                                                                                    <span class="text-sm text-gray-900">
-                                                                                        {question.position}. {getTranslation(question.translations, languagesShow).title} {question.isRequired ? '*' : ''}
-                                                                                    </span>
-                                                                                    <span class="hidden lg:inline text-xs text-gray-400">
-                                                                                        {getTranslation(question.translations, languagesShow).description}
-                                                                                    </span>
-                                                                                    <span class="mx-4">
-                                                                                        {question.type === "Rating" ? `****[${$LL.EditReviews.AnswerRating()}]****` : `****[${$LL.EditReviews.AnswerText()}]****`}
-                                                                                    </span>
-                                                                                </div>
-                                                                            {/each}
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex flex-col gap-y-2 h-full shrink-0 w-4">
-                                                                        <button
-                                                                            on:click={() => openCategory(category, current)}
-                                                                            class="group-hover:inline hidden hover:text-gray-800"
-                                                                            title={$LL.EditReviews.EditCategory()}
-                                                                        >
-                                                                            <svelte:component this={PencilIcon} size={16} />
-                                                                        </button>
-                                                                        <button
-                                                                            on:click={() => deleteCategory(category.id, index)}
-                                                                            class="group-hover:inline hidden hover:text-gray-800"
-                                                                            title={$LL.EditReviews.DeleteCategory()}
-                                                                        >
-                                                                            <svelte:component this={Trash2Icon} size={16} />
-                                                                        </button>
-                                                                    </div>
+                                        <div class="flex flex-col">
+                                            <p class="font-semibold text-base text-black">{$LL.EditReviews.CategoryDivTitle()}</p>
+                                            <p class="text-xs text-gray-400">{$LL.EditReviews.CategoryDivDesc()}</p>
+                                            <div class="flex gap-x-2 items-center mt-3">
+                                                <div class="flex h-3 rounded-lg w-40 bg-gray-300">
+                                                    <div
+                                                        class="border flex rounded-lg select-none text-transparent {accValue == 0 ? 'border-transparent': 'bg-gray-100 border-gray-300'}"
+                                                        style="width: {accValue}%;"
+                                                    >percentage</div>
+                                                </div>
+                                                <svelte:component
+                                                    this={accValue == 100 ? CircleCheckIcon : CircleXIcon}
+                                                    class="w-4 h-4 {accValue == 100 ? 'text-green-500' : 'text-red-500'}"
+                                                />
+                                                <p>{accValue}/100%</p>
+                                            </div>
+                                            <div class="flex gap-x-5 my-1 w-full">
+                                                <div class="border flex overflow-y-auto rounded w-3/4 bg-gray-100 border-gray-300">
+                                                    {#each editReview.evaluations as evaluation, index}
+                                                        {#if evaluation.type === evaluationTypes[current]}
+                                                            {#if evaluation.template.length === 0}
+                                                                <div class="px-4 py-2 text-sm">
+                                                                    <p>{$LL.EditReviews.CategoryDivPlaceholder()}</p>
                                                                 </div>
+                                                            {:else}
+                                                                <section
+                                                                    use:dndzone={{ items: evaluation.template, flipDurationMs, dropTargetStyle: {}, type: "categoriesDndZone" }}
+                                                                    on:consider={(e) => handleSort(e, index)}
+                                                                    on:finalize={(e) => handleSort(e, index)}
+                                                                    class="flex flex-col gap-y-1 p-1 w-full"
+                                                                >
+                                                                    {#each evaluation.template as category (category.id)}
+                                                                        <div
+                                                                            class="flex gap-x-2 group items-start pl-[10px] pr-[5px] py-[5px] lg:pl-5 lg:pr-[10px] lg:py-[10px] rounded w-full hover:bg-gray-200"
+                                                                            animate:flip={{ duration: flipDurationMs }}
+                                                                        >
+                                                                            <div class="flex flex-col flex-grow">
+                                                                                <div class="flex gap-x-[10px] items-center">
+                                                                                    <span class="font-medium text-base text-gray-900">
+                                                                                        {category.position}. {getTranslation(category.translations, languagesShow).title} ({category.value}%)
+                                                                                    </span>
+                                                                                    {#if !translationExistInLang(category.translations, languagesShow)}
+                                                                                        <button title="Categoria não tem tradução neste idioma">
+                                                                                            <svelte:component class="text-red-500" size={20} this={AlertTriangleIcon} />
+                                                                                        </button>
+                                                                                    {/if}
+                                                                                </div>
+                                                                                
+                                                                                <span class="hidden lg:inline text-xs text-gray-400">
+                                                                                    {getTranslation(category.translations, languagesShow).description}
+                                                                                </span>
+                                                                                <div class="flex flex-col flex-grow gap-y-1 mt-2 mx-5">
+                                                                                    {#each category.questions as question}
+                                                                                        <div class="flex flex-col">
+                                                                                            <span class="text-sm text-gray-900">
+                                                                                                {question.position}. {getTranslation(question.translations, languagesShow).title} {question.isRequired ? '*' : ''}
+                                                                                            </span>
+                                                                                            <span class="hidden lg:inline text-xs text-gray-400">
+                                                                                                {getTranslation(question.translations, languagesShow).description}
+                                                                                            </span>
+                                                                                            <span class="mx-4">
+                                                                                                {question.type === "Rating" ? `****[${$LL.EditReviews.AnswerRating()}]****` : `****[${$LL.EditReviews.AnswerText()}]****`}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    {/each}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="flex flex-col gap-y-2 h-full shrink-0 w-4">
+                                                                                <button
+                                                                                    on:click={() => openCategory(category, current)}
+                                                                                    class="group-hover:inline hidden hover:text-gray-800"
+                                                                                    title={$LL.EditReviews.EditCategory()}
+                                                                                >
+                                                                                    <svelte:component this={PencilIcon} size={16} />
+                                                                                </button>
+                                                                                <button
+                                                                                    on:click={() => deleteCategory(category.id, index)}
+                                                                                    class="group-hover:inline hidden hover:text-gray-800"
+                                                                                    title={$LL.EditReviews.DeleteCategory()}
+                                                                                >
+                                                                                    <svelte:component this={Trash2Icon} size={16} />
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    {/each}
+                                                                </section>
+                                                            {/if}
+                                                        {/if}
+                                                    {/each}
+                                                </div>
+                                                <div class="border flex flex-col max-h-[400px] p-1 overflow-y-auto rounded w-1/4 bg-gray-100 border-gray-300">
+                                                    <p class="font-medium my-2 text-base text-center text-gray-800">{$LL.EditReviews.Categories()}</p>
+                                                    {#each categories as category}
+                                                        <button on:dblclick={() => selectCategory(category, current)} class="p-2 rounded text-left w-full hover:bg-gray-200">
+                                                            {#each category.translations as translation}
+                                                                {#if translation.language === languagesShow}
+                                                                    <li class="mx-1 text-gray-600">{translation.title}</li>
+                                                                {/if}
                                                             {/each}
-                                                        </section>
-                                                    {/if}
+                                                        </button>
+                                                    {/each}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <RatingGroupComponent bind:evaluation ratingGroupsInfo={ratingGroups} />
+                                    </div>
+                                {/if}
+                            {/each}
+                            {#if !editReview.evaluations.find(temp => temp.type === evaluationTypes[current])}
+                                <div class="flex flex-col gap-y-2">
+                                    <div class="flex flex-col">
+                                        <span class="font-semibold text-base text-black">{$LL.EditReviews.CreateEvaluation()}</span>
+                                        <span class="text-xs text-gray-400">{$LL.EditReviews.CreateEvaluationDesc()}</span>
+                                    </div>
+                                    <button on:click={() => addEvaluation(current)} class="flex gap-x-2 items-center p-2">
+                                        <svelte:component this={CirclePlusIcon} />
+                                        <span>{$LL.EditReviews.AddEvaluation()}</span>
+                                    </button>
+                                    {#if editReview.evaluations.length > 0}
+                                        <span class="font-semibold text-base text-black">{$LL.EditReviews.CopyEvaluation()}</span>
+                                        <div class="flex flex-col px-2">
+                                            {#each editReview.evaluations as evaluation}
+                                                {#if evaluation.type !== evaluationTypes[current]}
+                                                    <div class="flex items-center">
+                                                        <span class="text-xs w-[120px]">{getEvaluationTypeText(evaluation.type)}</span>
+                                                        <button on:click={() => copyEvaluation(current, evaluation)} class="p-1 rounded hover:bg-gray-100">
+                                                            <svelte:component this={CopyIcon} size={20} />
+                                                        </button>
+                                                    </div>
                                                 {/if}
                                             {/each}
                                         </div>
-                                        <div class="border flex flex-col max-h-[400px] p-1 overflow-y-auto rounded w-1/4 bg-gray-100 border-gray-300">
-                                            <p class="font-medium my-2 text-base text-center text-gray-800">{$LL.EditReviews.Categories()}</p>
-                                            {#each categories as category}
-                                                <button on:dblclick={() => selectCategory(category, current)} class="p-2 rounded text-left w-full hover:bg-gray-200">
-                                                    {#each category.translations as translation}
-                                                        {#if translation.language === languagesShow}
-                                                            <li class="mx-1 text-gray-600">{translation.title}</li>
-                                                        {/if}
-                                                    {/each}
-                                                </button>
-                                            {/each}
-                                        </div>
-                                    </div>
-                                </div>
-                                <RatingGroupComponent bind:evaluation ratingGroupsInfo={ratingGroups} />
-                            </div>
-                        {/if}
-                    {/each}
-                    {#if !editReview.evaluations.find(temp => temp.type === evaluationTypes[current])}
-                        <div class="flex flex-col gap-y-2">
-                            <div class="flex flex-col">
-                                <span class="font-semibold text-base text-black">{$LL.EditReviews.CreateEvaluation()}</span>
-                                <span class="text-xs text-gray-400">{$LL.EditReviews.CreateEvaluationDesc()}</span>
-                            </div>
-                            <button on:click={() => addEvaluation(current)} class="flex gap-x-2 items-center p-2">
-                                <svelte:component this={CirclePlusIcon} />
-                                <span>{$LL.EditReviews.AddEvaluation()}</span>
-                            </button>
-                            {#if editReview.evaluations.length > 0}
-                                <span class="font-semibold text-base text-black">{$LL.EditReviews.CopyEvaluation()}</span>
-                                <div class="flex flex-col px-2">
-                                    {#each editReview.evaluations as evaluation}
-                                        {#if evaluation.type !== evaluationTypes[current]}
-                                            <div class="flex items-center">
-                                                <span class="text-xs w-[120px]">{getEvaluationTypeText(evaluation.type)}</span>
-                                                <button on:click={() => copyEvaluation(current, evaluation)} class="p-1 rounded hover:bg-gray-100">
-                                                    <svelte:component this={CopyIcon} size={20} />
-                                                </button>
-                                            </div>
-                                        {/if}
-                                    {/each}
+                                    {/if}
                                 </div>
                             {/if}
                         </div>
-                    {/if}
+                    {/key}
                 {:else if current == 6}
                     <EmployeesComponent bind:selectedDepartments={editReview.departments} bind:selectedEmployees={editReview.employees} />
                 {/if}

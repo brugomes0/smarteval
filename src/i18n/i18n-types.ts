@@ -803,6 +803,14 @@ type RootTranslation = {
 		 */
 		EditCategory: string
 		/**
+		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​e​d​i​t​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​.​ ​T​e​n​t​e​ ​d​e​ ​n​o​v​o
+		 */
+		EditReviewValidationFail: string
+		/**
+		 * E​d​i​t​a​r​ ​a​v​a​l​i​a​ç​ã​o​ ​c​o​m​ ​s​u​c​e​s​s​o
+		 */
+		EditReviewValidationSuccess: string
+		/**
 		 * S​e​l​e​c​i​o​n​e​ ​p​a​r​a​ ​q​u​a​i​s​ ​i​d​i​o​m​a​s​ ​d​e​s​e​j​a​ ​c​r​i​a​r​ ​a​ ​c​a​t​e​g​o​r​i​a​.
 		 */
 		LanguageDesc: string
@@ -818,6 +826,10 @@ type RootTranslation = {
 		 * A​v​a​l​i​a​ç​ã​o​ ​n​ã​o​ ​e​n​c​o​n​t​r​a​d​a
 		 */
 		NoEvaluation: string
+		/**
+		 * N​e​m​ ​t​o​d​a​s​ ​a​s​ ​c​a​t​e​g​o​r​i​a​s​ ​t​ê​m​ ​t​o​d​a​s​ ​a​s​ ​l​i​n​g​u​a​g​e​n​s​ ​s​e​l​e​c​i​o​n​a​d​a​s
+		 */
+		NoLanguagesMatching: string
 		/**
 		 * N​ã​o​ ​e​x​i​s​t​e​m​ ​c​r​i​t​é​r​i​o​s​ ​d​e​ ​a​v​a​l​i​a​ç​ã​o​ ​n​a​ ​b​a​s​e​ ​d​e​ ​d​a​d​o​s​ ​c​o​m​ ​o​s​ ​i​d​i​o​m​a​s​ ​q​u​e​ ​d​e​s​e​j​a
 		 */
@@ -1544,7 +1556,7 @@ type RootTranslation = {
 		 */
 		ActionsCancelDesc: string
 		/**
-		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​c​a​n​c​e​l​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​c​a​n​c​e​l​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?​ ​E​s​t​a​ ​a​ç​ã​o​ ​n​ã​o​ ​p​o​d​e​ ​s​e​r​ ​r​e​v​e​r​t​i​d​a​.
 		 */
 		ActionsCancelModal: string
 		/**
@@ -1560,7 +1572,7 @@ type RootTranslation = {
 		 */
 		ActionsCompleteDesc: string
 		/**
-		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​f​i​n​a​l​i​z​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?
+		 * T​e​m​ ​a​ ​c​e​r​t​e​z​a​ ​q​u​e​ ​p​r​e​t​e​n​d​e​ ​f​i​n​a​l​i​z​a​r​ ​a​ ​a​v​a​l​i​a​ç​ã​o​?​ ​E​s​t​a​ ​a​ç​ã​o​ ​n​ã​o​ ​p​o​d​e​ ​s​e​r​ ​r​e​v​e​r​t​i​d​a​.
 		 */
 		ActionsCompleteModal: string
 		/**
@@ -2864,6 +2876,14 @@ export type TranslationFunctions = {
 		 */
 		EditCategory: () => LocalizedString
 		/**
+		 * Erro ao tentar editar a avaliação. Tente de novo
+		 */
+		EditReviewValidationFail: () => LocalizedString
+		/**
+		 * Editar avaliação com sucesso
+		 */
+		EditReviewValidationSuccess: () => LocalizedString
+		/**
 		 * Selecione para quais idiomas deseja criar a categoria.
 		 */
 		LanguageDesc: () => LocalizedString
@@ -2879,6 +2899,10 @@ export type TranslationFunctions = {
 		 * Avaliação não encontrada
 		 */
 		NoEvaluation: () => LocalizedString
+		/**
+		 * Nem todas as categorias têm todas as linguagens selecionadas
+		 */
+		NoLanguagesMatching: () => LocalizedString
 		/**
 		 * Não existem critérios de avaliação na base de dados com os idiomas que deseja
 		 */
@@ -3596,7 +3620,7 @@ export type TranslationFunctions = {
 		 */
 		ActionsCancelDesc: () => LocalizedString
 		/**
-		 * Tem a certeza que pretende cancelar a avaliação?
+		 * Tem a certeza que pretende cancelar a avaliação? Esta ação não pode ser revertida.
 		 */
 		ActionsCancelModal: () => LocalizedString
 		/**
@@ -3612,7 +3636,7 @@ export type TranslationFunctions = {
 		 */
 		ActionsCompleteDesc: () => LocalizedString
 		/**
-		 * Tem a certeza que pretende finalizar a avaliação?
+		 * Tem a certeza que pretende finalizar a avaliação? Esta ação não pode ser revertida.
 		 */
 		ActionsCompleteModal: () => LocalizedString
 		/**

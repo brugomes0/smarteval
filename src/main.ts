@@ -5,7 +5,7 @@ const app = new App({
     props: {
         authToken: "",
         baseUrl: "http://localhost:5104/v1/",
-        lang: "PT"
+        lang: "EN"
     }
 })
 

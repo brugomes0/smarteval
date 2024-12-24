@@ -315,7 +315,7 @@
                                                 {/if}
                                             {:else}
                                                 <div class="flex flex-col flex-grow">
-                                                    <p class="font-medium text-base text-gray-900">{rtoTranslation.title}</p>
+                                                    <p class="font-medium text-base text-gray-900">{rtoTranslation.title ? rtoTranslation.title : $LL.EditCategories.NoTitle()}</p>
                                                     <p class="text-xs text-gray-400">{rtoTranslation.description}</p>
                                                 </div>
                                             {/if}
