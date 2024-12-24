@@ -470,7 +470,7 @@ const en = {
     SingleSubmission: {
         EndDate: "Submit by",
         EvaluatedDepartment: "Department evaluating",
-        EvaluatedEmployee: "",
+        EvaluatedEmployee: "Employee evaluating",
         EvaluationType: "Evaluation",
         InfoSubmission: "Info about submission",
         Required: "Required",
