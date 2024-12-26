@@ -9,6 +9,7 @@
 	import { Toaster } from 'svelte-french-toast'
 	import LL, { setLocale } from './i18n/i18n-svelte'
 	import type { Locales } from './i18n/i18n-types'
+	import { baseLocale, isLocale } from './i18n/i18n-util'
 
 	// Import Components
 	import Tailwind from "./components/Tailwind.svelte"
@@ -65,6 +66,15 @@
 	let token: {accessToken: string, refreshToken: string} = { accessToken: '', refreshToken: '' }
 	let user: UserData
 
+	function safeSetLocale(locale: string) {
+		if (isLocale(locale)) {
+			setLocale(locale as Locales)
+		} else {
+			console.log(`Locale not found. Falling back to ${baseLocale}`)
+			setLocale(baseLocale)
+		}
+	}
+
 	onMount(async () => {
 		// update store of apiUrl with export variable
 		API_URL.update((temp: any) => temp = baseUrl)
@@ -112,7 +122,8 @@
 	})
 
 	loadAllLocales()
-	setLocale(lang.toLowerCase().slice(0, 2) as Locales)
+	safeSetLocale(lang.toLowerCase().slice(0, 2) as Locales)
+	
 </script>
 
 <Tailwind />
