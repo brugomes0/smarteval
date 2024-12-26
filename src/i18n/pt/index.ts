@@ -312,6 +312,7 @@ const pt = {
 		Permissions: "Permissões",
 		RatingGroups: "Critérios de Avaliação",
 		Reviews: "Avaliações",
+		Settings: "Definições",
 		Statistics: "Estatísticas",
 		Submissions: "Submissões",
 		Team: "Equipa",

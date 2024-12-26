@@ -1144,6 +1144,10 @@ type RootTranslation = {
 		 */
 		Reviews: string
 		/**
+		 * D​e​f​i​n​i​ç​õ​e​s
+		 */
+		Settings: string
+		/**
 		 * E​s​t​a​t​í​s​t​i​c​a​s
 		 */
 		Statistics: string
@@ -3213,6 +3217,10 @@ export type TranslationFunctions = {
 		 * Avaliações
 		 */
 		Reviews: () => LocalizedString
+		/**
+		 * Definições
+		 */
+		Settings: () => LocalizedString
 		/**
 		 * Estatísticas
 		 */

@@ -6,7 +6,7 @@
     import { ChevronLeftCircleIcon, ChevronRightCircleIcon } from "lucide-svelte"
     import LL from "../i18n/i18n-svelte"
 
-    export let lang: string;
+    export let lang: string
 
     let categoriesPage: number = 1;
     let categoriesSize: number = 10;
@@ -39,12 +39,12 @@
                 const lastCategory = entries[0];
                 if (!lastCategory.isIntersecting) return;
 
-                categoriesPage++;
-                await loadCategories();
-
                 if (categories.length == categoriesTotal) {
                     lastCategoryObserver.disconnect();
                 } else {
+                    categoriesPage++
+                    await loadCategories()
+
                     lastCategoryObserver.unobserve(lastCategory.target);
                     lastCategoryObserver.observe(
                         document.querySelector(".category:last-child")!,

@@ -85,7 +85,6 @@
         }
 
         let response = await requestToApi("GET", `SmartEval/Reviews/${reviewId}/Evaluation?evaluationType=${evaluationActive}`)
-        console.log(response)
         if (response.statusCode === 200) {
             review.evaluations = [...review.evaluations, response.data]
             if (review.status == "Active") await getEvalProgressBar(response.data.evaluationId)

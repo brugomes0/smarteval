@@ -311,6 +311,7 @@ const en = {
         Permissions: "Permissions",
         RatingGroups: "Rating Groups",
         Reviews: "Reviews",
+        Settings: "Settings",
         Statistics: "Statistics",
         Submissions: "Submissions",
         Team: "Team",

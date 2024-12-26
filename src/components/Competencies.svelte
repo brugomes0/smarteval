@@ -50,12 +50,12 @@
             const lastCategory = entries[0]
             if (!lastCategory.isIntersecting) return
 
-            categoriesPage++
-            await loadCategories()
-
             if (categories.length == categoriesTotal) {
                 lastCategoryObserver.disconnect()
             } else {
+                categoriesPage++
+                await loadCategories()
+
                 lastCategoryObserver.unobserve(lastCategory.target)
                 lastCategoryObserver.observe(document.querySelector('.category:last-child')!)
             }
@@ -85,7 +85,7 @@
     }
 
     async function loadCategories() {
-        const response = await requestToApi("GET", `SmartEval/Categories/AllCategories?page=${categoriesPage}&pageSize=${categoriesSize}&language=${lang}`)
+        const response = await requestToApi("GET", `SmartEval/Categories/AllCategories?page=${categoriesPage}&pageSize=${categoriesSize}&language=${lang}&employeeId=${selectedEmployee.employeeId}`)
         if (response.statusCode === 200) {
             categories = [...categories, ...response.data]
             categoriesTotal = response.totalCount
@@ -121,6 +121,7 @@
     function changePage(action: string) {
         if (action == "back") {
             selectedCategory = { categoryId: "", title: "", description: "" }
+            categories = []
             employeesPage = 1
             loadEmployees()
             page--

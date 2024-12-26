@@ -18,6 +18,7 @@
             "Permissions": $LL.Menu.Permissions,
             "Reviews": $LL.Menu.Reviews,
             "RatingGroups": $LL.Menu.RatingGroups,
+            "Settings": $LL.Menu.Settings,
             "Statistics": $LL.Menu.Statistics,
             "Submissions": $LL.Menu.Submissions,
             "Team": $LL.Menu.Team,

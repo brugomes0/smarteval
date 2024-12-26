@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { API_URL } from './stores/apiStore'
-	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutListIcon, ListIcon, PenSquareIcon, ShieldIcon, StarIcon, UsersIcon } from 'lucide-svelte'
+	import { ActivityIcon, BadgeInfoIcon, BadgeXIcon, ChartLineIcon, ClipboardIcon, HomeIcon, LayoutListIcon, ListIcon, PenSquareIcon, SettingsIcon, ShieldIcon, StarIcon, UsersIcon } from 'lucide-svelte'
 	import { deleteCookie, getCookie, setCookie } from './helpers/cookie'
 	import { Route, Router } from 'svelte-routing'
 	import { loadAllLocales } from './i18n/i18n-util.sync'
@@ -40,6 +40,7 @@
 	import CompetencyComponent from './components/Competency.svelte'
     import TeamCompetencyComponent from './components/TeamCompetency.svelte'
 	import CompetenciesComponent from './components/Competencies.svelte'
+	import SettingsComponent from './components/Settings.svelte'
 
 	export let authToken: string	// authentication token from smarttime
 	export let baseUrl: string		// url of web api
@@ -53,6 +54,7 @@
 		{ name: "RatingGroups", endpoint: '/ratingGroups', icon: ListIcon, permission: false },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
 		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: false },
+		{ name: "Settings", endpoint: '/settings', icon: SettingsIcon, permission: true },
 		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
 	]
 	let menuFrontoffice = [
@@ -123,7 +125,6 @@
 
 	loadAllLocales()
 	safeSetLocale(lang.toLowerCase().slice(0, 2) as Locales)
-	
 </script>
 
 <Tailwind />
@@ -161,6 +162,7 @@
 							<Route path="/competencies" component={CompetenciesComponent} {lang} />
 							<Route path="/statistics" component={StatisticsComponent} {user} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
+							<Route path="/settings" component={SettingsComponent} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
