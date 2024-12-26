@@ -393,6 +393,10 @@ const en = {
         SingleCompleted: "Completed",
         SingleNotStarted: "Not Started"
     },
+    Settings: {
+        Description: "In this page you can change your settings",
+        Title: "Settings"
+    },
     Sidebar: {
         Backoffice: "Backoffice Menu",
         Frontoffice: "Frontoffice Menu",

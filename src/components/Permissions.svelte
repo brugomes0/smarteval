@@ -65,6 +65,7 @@
             "Permissions": $LL.Menu.Permissions,
             "RatingGroups": $LL.Menu.RatingGroups,
             "Reviews": $LL.Menu.Reviews,
+            "Settings": $LL.Menu.Settings,
             "Statistics": $LL.Menu.Statistics,
             "Submissions": $LL.Menu.Submissions,
             "Competencies": $LL.Menu.Competencies,

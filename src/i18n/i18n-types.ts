@@ -1432,6 +1432,16 @@ type RootTranslation = {
 		 */
 		SingleNotStarted: string
 	}
+	Settings: {
+		/**
+		 * N​e​s​t​a​ ​p​á​g​i​n​a​ ​p​o​d​e​ ​a​l​t​e​r​a​r​ ​a​s​ ​s​u​a​s​ ​d​e​f​i​n​i​ç​õ​e​s​ ​d​e​ ​u​t​i​l​i​z​a​d​o​r​.
+		 */
+		Description: string
+		/**
+		 * D​e​f​i​n​i​ç​õ​e​s
+		 */
+		Title: string
+	}
 	Sidebar: {
 		/**
 		 * M​e​n​u​ ​B​a​c​k​o​f​f​i​c​e
@@ -3499,6 +3509,16 @@ export type TranslationFunctions = {
 		 * Não iniciada
 		 */
 		SingleNotStarted: () => LocalizedString
+	}
+	Settings: {
+		/**
+		 * Nesta página pode alterar as suas definições de utilizador.
+		 */
+		Description: () => LocalizedString
+		/**
+		 * Definições
+		 */
+		Title: () => LocalizedString
 	}
 	Sidebar: {
 		/**

@@ -394,6 +394,10 @@ const pt = {
 		SingleCompleted: "Completa",
 		SingleNotStarted: "Não iniciada"
 	},
+	Settings: {
+		Description: "Nesta página pode alterar as suas definições de utilizador.",
+		Title: "Definições"
+	},
 	Sidebar: {
 		Backoffice: "Menu Backoffice",
 		Frontoffice: "Menu Frontoffice",

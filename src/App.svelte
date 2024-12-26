@@ -54,8 +54,8 @@
 		{ name: "RatingGroups", endpoint: '/ratingGroups', icon: ListIcon, permission: false },
 		{ name: "Statistics", endpoint: '/statistics', icon: ChartLineIcon, permission: false },
 		{ name: "Competencies", endpoint: '/competencies', icon: StarIcon, permission: false },
-		{ name: "Settings", endpoint: '/settings', icon: SettingsIcon, permission: true },
-		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false }
+		{ name: "Permissions", endpoint: '/permissions', icon: ShieldIcon, permission: false },
+		{ name: "Settings", endpoint: '/settings', icon: SettingsIcon, permission: false }
 	]
 	let menuFrontoffice = [
 		{ name: "Home", endpoint: '/', icon: HomeIcon, permission: true },
