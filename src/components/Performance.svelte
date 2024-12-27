@@ -22,6 +22,7 @@
     let reviewsPage: number = 1
     let reviewsSize: number = 10
     let reviewsTotal: number = 0
+    let setting: any = { settingId: 0, title: "", isAllowed: false}
     let status: string = "MyPerformance"
     let submissionsOfEvaluations: any = []
     let tableData: any = []
@@ -35,7 +36,13 @@
             firstElement = Math.min((reviewsPage - 1) * reviewsSize + 1, reviewsTotal)
             lastElement = Math.min(reviewsPage * reviewsSize, reviewsTotal)
         } else { error = response.error }
+        await getSetting()
         loaded = true
+    }
+
+    async function getSetting() {
+        let response = await requestToApi("GET", "SmartEval/Settings/1")
+        if (response.statusCode === 200) { setting = response.data }
     }
 
     async function getSubmissionsFromReview() {
@@ -138,7 +145,9 @@
             <span class="font-semibold text-xl text-black">{reviewsChoosen?.title}</span>
             <div class="border-b flex border-gray-300">
                 <button on:click={() => alterTab('MyPerformance')} class="font-medium px-4 py-2 text-sm {status == 'MyPerformance' ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Performance.MyPerformance()}</button>
-                <button on:click={() => alterTab('SubmissionDetails')} class="font-medium px-4 py-2 text-sm {status == 'SubmissionDetails' ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Performance.SubmissionDetails()}</button>
+                {#if setting.isAllowed}
+                    <button on:click={() => alterTab('SubmissionDetails')} class="font-medium px-4 py-2 text-sm {status == 'SubmissionDetails' ? 'border-b-2 border-blue-500 text-gray-800' : 'hover:bg-gray-100 text-gray-400'}">{$LL.Performance.SubmissionDetails()}</button>
+                {/if}
             </div>
             {#if status == "MyPerformance"}
                 <div class="flex flex-col px-4 py-2">

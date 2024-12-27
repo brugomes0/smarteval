@@ -101,7 +101,6 @@
         const response = await requestToApi("GET", `Employees/SubordinatesList?chefiaId=${user.employeeId}&page=${employeesPage}&pageSize=${employeesSize}`)
         if (response.statusCode === 200) {
             employees = response.data
-            console.log(employees)
             employeesTotal = response.totalCount
             loading = false
         }

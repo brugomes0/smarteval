@@ -139,7 +139,7 @@
 		<Router>
 			<main class="flex min-h-screen">
 				{#if sidebar}
-					<div class="fixed 2xl:hidden inset-0 bg-black bg-opacity-50 z-20"></div>
+					<div class="fixed 2xl:hidden inset-0 bg-black bg-opacity-50 z-30"></div>
 					<Sidebar bind:sidebar {user} menu={menuBackoffice} />
 				{/if}
 				<div class="flex flex-col flex-1 items-center {sidebar ? '2xl:ml-[250px]' : ''}">
@@ -162,7 +162,7 @@
 							<Route path="/competencies" component={CompetenciesComponent} {lang} />
 							<Route path="/statistics" component={StatisticsComponent} {user} {lang} />
 							<Route path="/submissions/:submissionId" component={SingleSubmissionComponent} {lang} />
-							<Route path="/settings" component={SettingsComponent} />
+							<Route path="/settings" component={SettingsComponent} {user} />
 							<Route path="/permissions" component={PermissionsComponent} {user} />
 							<Route component={NotFoundComponent} />
 						</div>
@@ -174,7 +174,7 @@
 		<Router>
 			<main class="flex min-h-screen">
 				{#if sidebar}
-					<div class="fixed 2xl:hidden inset-0 bg-black bg-opacity-50 z-20"></div>
+					<div class="fixed 2xl:hidden inset-0 bg-black bg-opacity-50 z-30"></div>
 					<Sidebar bind:sidebar {user} menu={menuFrontoffice} />
 				{/if}
 				<div class="flex flex-col flex-1 items-center {sidebar ? '2xl:ml-[250px]' : ''}">

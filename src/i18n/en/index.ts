@@ -395,6 +395,11 @@ const en = {
     },
     Settings: {
         Description: "In this page you can change your settings",
+        NoTranslation: "No translation",
+        Save: "Save",
+        SaveSettingsToastError: "Error saving settings.",
+        SaveSettingsToastSuccess: "Settings saved successfully",
+        Setting01: "Employee can check submissions done by others to him",
         Title: "Settings"
     },
     Sidebar: {

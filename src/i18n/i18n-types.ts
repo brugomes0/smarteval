@@ -1438,6 +1438,26 @@ type RootTranslation = {
 		 */
 		Description: string
 		/**
+		 * S​e​m​ ​t​r​a​d​u​ç​ã​o
+		 */
+		NoTranslation: string
+		/**
+		 * G​u​a​r​d​a​r
+		 */
+		Save: string
+		/**
+		 * E​r​r​o​ ​a​o​ ​t​e​n​t​a​r​ ​g​u​a​r​d​a​r​ ​a​s​ ​d​e​f​i​n​i​ç​õ​e​s​.
+		 */
+		SaveSettingsToastError: string
+		/**
+		 * D​e​f​i​n​i​ç​õ​e​s​ ​g​u​a​r​d​a​d​a​s​ ​c​o​m​ ​s​u​c​e​s​s​o​.
+		 */
+		SaveSettingsToastSuccess: string
+		/**
+		 * F​u​n​c​i​o​n​á​r​i​o​ ​p​o​d​e​ ​v​e​r​ ​s​u​b​m​i​s​s​õ​e​s​ ​f​e​i​t​a​s​ ​p​o​r​ ​o​u​t​r​o​s​ ​a​ ​s​i
+		 */
+		Setting01: string
+		/**
 		 * D​e​f​i​n​i​ç​õ​e​s
 		 */
 		Title: string
@@ -3515,6 +3535,26 @@ export type TranslationFunctions = {
 		 * Nesta página pode alterar as suas definições de utilizador.
 		 */
 		Description: () => LocalizedString
+		/**
+		 * Sem tradução
+		 */
+		NoTranslation: () => LocalizedString
+		/**
+		 * Guardar
+		 */
+		Save: () => LocalizedString
+		/**
+		 * Erro ao tentar guardar as definições.
+		 */
+		SaveSettingsToastError: () => LocalizedString
+		/**
+		 * Definições guardadas com sucesso.
+		 */
+		SaveSettingsToastSuccess: () => LocalizedString
+		/**
+		 * Funcionário pode ver submissões feitas por outros a si
+		 */
+		Setting01: () => LocalizedString
 		/**
 		 * Definições
 		 */

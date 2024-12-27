@@ -396,6 +396,11 @@ const pt = {
 	},
 	Settings: {
 		Description: "Nesta página pode alterar as suas definições de utilizador.",
+		NoTranslation: "Sem tradução",
+		Save: "Guardar",
+		SaveSettingsToastError: "Erro ao tentar guardar as definições.",
+		SaveSettingsToastSuccess: "Definições guardadas com sucesso.",
+		Setting01: "Funcionário pode ver submissões feitas por outros a si",
 		Title: "Definições"
 	},
 	Sidebar: {
