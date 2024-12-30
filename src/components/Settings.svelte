@@ -65,21 +65,27 @@
             </svg>
         </div>
     {:else}
-        <div class="flex flex-col gap-y-2">
-            {#each settings as setting}
-                <div class="flex gap-x-5 items-center justify-between lg:pl-5">
-                    <li class="text-sm font-medium text-black">{getTitleSetting(setting.title)}</li>
-                    <div class="flex-grow border-b-2 lg:inline hidden border-gray-300"></div>
-                    <label class="toggle">
-                        <input bind:checked={setting.isAllowed} type="checkbox" />
-                        <span class="slider" />
-                    </label>
-                </div>
-            {/each}
-        </div>
+        {#if settings.length === 0}
+            <div class="flex flex-col gap-y-2">
+                <span class="text-sm text-gray-800">{$LL.Settings.NoSettings()}</span>
+            </div>
+        {:else}
+            <div class="flex flex-col gap-y-2">
+                {#each settings as setting}
+                    <div class="flex gap-x-5 items-center justify-between lg:pl-5">
+                        <li class="text-sm font-medium text-black">{getTitleSetting(setting.title)}</li>
+                        <div class="flex-grow border-b-2 lg:inline hidden border-gray-300"></div>
+                        <label class="toggle">
+                            <input bind:checked={setting.isAllowed} type="checkbox" />
+                            <span class="slider" />
+                        </label>
+                    </div>
+                {/each}
+            </div>
+        {/if}
     {/if}
 
-    {#if permissionSave}
+    {#if permissionSave && settings.length > 0}
         <button
             on:click={() => saveSettings()}
             class="flex font-semibold items-center justify-center mx-auto py-2 rounded w-[100px] bg-blue-500 hover:bg-blue-600 text-white"

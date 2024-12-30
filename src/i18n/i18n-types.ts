@@ -1438,6 +1438,10 @@ type RootTranslation = {
 		 */
 		Description: string
 		/**
+		 * S​e​m​ ​d​e​f​i​n​i​ç​õ​e​s​ ​d​i​s​p​o​n​í​v​e​i​s​ ​p​a​r​a​ ​m​o​s​t​r​a​r​.
+		 */
+		NoSettings: string
+		/**
 		 * S​e​m​ ​t​r​a​d​u​ç​ã​o
 		 */
 		NoTranslation: string
@@ -3535,6 +3539,10 @@ export type TranslationFunctions = {
 		 * Nesta página pode alterar as suas definições de utilizador.
 		 */
 		Description: () => LocalizedString
+		/**
+		 * Sem definições disponíveis para mostrar.
+		 */
+		NoSettings: () => LocalizedString
 		/**
 		 * Sem tradução
 		 */

@@ -396,6 +396,7 @@ const pt = {
 	},
 	Settings: {
 		Description: "Nesta página pode alterar as suas definições de utilizador.",
+		NoSettings: "Sem definições disponíveis para mostrar.",
 		NoTranslation: "Sem tradução",
 		Save: "Guardar",
 		SaveSettingsToastError: "Erro ao tentar guardar as definições.",

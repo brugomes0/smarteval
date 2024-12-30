@@ -395,6 +395,7 @@ const en = {
     },
     Settings: {
         Description: "In this page you can change your settings",
+        NoSettings: "No settings to show",
         NoTranslation: "No translation",
         Save: "Save",
         SaveSettingsToastError: "Error saving settings.",
