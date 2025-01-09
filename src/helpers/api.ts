@@ -26,12 +26,14 @@ export async function requestNewTokens() {
 // Function to make every request
 export async function requestToApi(method: string, endpoint: string, body?: any) {
     let apiUrl = getUrl()
+    debugger;
     let accessToken = getCookie('se_at') ?? ''
+    console.log(accessToken)
 
     let response = await fetch(`${apiUrl}` + endpoint, {
+        credentials: "include",
         method: method,
         headers: {
-            'Authorization': 'Bearer ' + accessToken,
             'Content-Type': 'application/json'
         },
         body: body && JSON.stringify(body)

@@ -91,8 +91,8 @@
 			if (response.statusCode === 200) {
 				token.accessToken = response.data.token
 				token.refreshToken = response.data.refreshToken
-				setCookie('se_at', token.accessToken)
-				setCookie('se_rt', token.refreshToken)
+				// setCookie('se_at', token.accessToken)
+				// setCookie('se_rt', token.refreshToken)
 			}
 		} else {
 			token.accessToken = getCookie('se_at') ?? ''

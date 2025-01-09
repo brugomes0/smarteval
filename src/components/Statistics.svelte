@@ -28,6 +28,7 @@
     let employeesTableLoaded: boolean = false
     let employeesTotal: number = 0
     let error: string = ""
+    let excelFile: boolean = false
     let firstElement: number = 0
     let lastElement: number = 0
     let loaded: boolean = false
@@ -158,7 +159,16 @@
         timeoutId = setTimeout(func, delay)
     }
 
-    onMount(async () => { getCompletedReviews() })
+    onMount(async () => {
+        const module = user.authorizations.find(temp => temp.moduleType === "SmartEval")
+
+        const windowPermission = module?.windowPermissions.find(temp => temp.windowType === "Statistics")
+        const permissionCreate = windowPermission?.permissions.find(temp => temp.permissionType === "Create")
+
+        if (permissionCreate?.hasPermission) excelFile = true
+
+        getCompletedReviews()
+    })
 </script>
 
 <div class="flex flex-col gap-y-5">
@@ -331,29 +341,31 @@
                             </div>
                         {/each}
                     </div>
-                    <div class="flex flex-col mt-4">
-                        <span class="font-medium text-base text-gray-800">{$LL.Statistics.ExcelFiles()}</span>
-                        <ul class="flex flex-col gap-y-2 list-disc px-4 py-2">
-                            {#if reviewsChoosen.evaluationsAvailable?.some(evaluation => evaluation === 'BottomUp')}
-                                <li class="flex gap-x-1 items-center">
-                                    {$LL.EvaluationTypes.BottomUp()}: 
-                                    <button on:click={() => getExcelBottomUp()} class="flex font-medium items-center gap-x-1 px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
-                                        <svelte:component this={UploadIcon} size={18} strokeWidth={2} />
-                                        Download
-                                    </button>
-                                </li>
-                            {/if}
-                            {#if reviewsChoosen.evaluationsAvailable?.some(evaluation => evaluation === 'Interdepartamental')}
-                                <li class="flex items-center gap-x-1">
-                                    {$LL.EvaluationTypes.Interdepartmental()}: 
-                                    <button on:click={() => getExcelInterdepartmental()} class="flex font-medium gap-x-1 items-center px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
-                                        <svelte:component this={UploadIcon} size={18} strokeWidth={2} />
-                                        Download
-                                    </button>
-                                </li>
-                            {/if}
-                        </ul>
-                    </div>
+                    {#if excelFile}
+                        <div class="flex flex-col mt-4">
+                            <span class="font-medium text-base text-gray-800">{$LL.Statistics.ExcelFiles()}</span>
+                            <ul class="flex flex-col gap-y-2 list-disc px-4 py-2">
+                                {#if reviewsChoosen.evaluationsAvailable?.some(evaluation => evaluation === 'BottomUp')}
+                                    <li class="flex gap-x-1 items-center">
+                                        {$LL.EvaluationTypes.BottomUp()}: 
+                                        <button on:click={() => getExcelBottomUp()} class="flex font-medium items-center gap-x-1 px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
+                                            <svelte:component this={UploadIcon} size={18} strokeWidth={2} />
+                                            Download
+                                        </button>
+                                    </li>
+                                {/if}
+                                {#if reviewsChoosen.evaluationsAvailable?.some(evaluation => evaluation === 'Interdepartamental')}
+                                    <li class="flex items-center gap-x-1">
+                                        {$LL.EvaluationTypes.Interdepartmental()}: 
+                                        <button on:click={() => getExcelInterdepartmental()} class="flex font-medium gap-x-1 items-center px-2 py-1 rounded text-xs bg-blue-500 hover:bg-blue-600 text-white">
+                                            <svelte:component this={UploadIcon} size={18} strokeWidth={2} />
+                                            Download
+                                        </button>
+                                    </li>
+                                {/if}
+                            </ul>
+                        </div>
+                    {/if}
                 </div>
             {:else if choosedTab == 2}
                 <div class="flex flex-col px-4">
